@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tom's US Relocation Research — Summary (Oct 2026)</title>
+<style>
+:root{--ink:#1d2733;--muted:#5b6b7c;--bg:#f6f8fa;--card:#fff;--line:#e3e8ee;--accent:#1f6f8b;--accent2:#2e9d6b;--warn:#c98a12;--bad:#c2413b;--soft:#eaf4f7;--radius:14px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:16px}
+a{color:var(--accent)}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:18px;height:58px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+nav .wrap::-webkit-scrollbar{display:none}
+nav .brand{font-weight:700;color:var(--accent);text-decoration:none;margin-right:6px}
+nav a.l{color:var(--muted);text-decoration:none;font-size:14.5px;font-weight:500;padding:6px 2px;border-bottom:2px solid transparent}
+nav a.l:hover{color:var(--ink);border-color:var(--accent)}
+/* hero */
+header.hero{position:relative;color:#fff;background:linear-gradient(120deg,rgba(14,52,72,.88),rgba(31,111,139,.72)),url(assets/ga_lanier.jpg) center/cover;padding:72px 0 64px}
+.hero h1{font-size:clamp(28px,4.6vw,46px);line-height:1.15;margin:0 0 12px;letter-spacing:-.5px}
+.hero p.lead{font-size:clamp(16px,2vw,19px);max-width:720px;opacity:.95;margin:0}
+.hero .meta{margin-top:20px;font-size:14px;opacity:.85}
+.pill{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:3px 11px;border-radius:99px;margin:4px 6px 0 0;font-size:13px}
+/* sections */
+section{padding:56px 0 8px}
+h2{font-size:clamp(23px,3vw,30px);margin:0 0 6px;letter-spacing:-.3px}
+h2+.sub{color:var(--muted);margin:0 0 26px}
+h3{margin:0 0 6px;font-size:20px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.card .tag{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px}
+.card .big{font-size:21px;font-weight:700;margin:4px 0 6px;line-height:1.25}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.t-good{color:var(--accent2)}.t-park{color:var(--warn)}.t-stretch{color:#7a5af5}.t-key{color:var(--accent)}
+.card.hl{border-top:4px solid var(--accent2)}.card.pk{border-top:4px solid var(--warn)}.card.st{border-top:4px solid #7a5af5}.card.ky{border-top:4px solid var(--accent)}
+/* checklist */
+.checklist{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;list-style:none;padding:0;margin:0}
+.checklist li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px 14px 50px;position:relative}
+.checklist li::before{content:"✓";position:absolute;left:14px;top:13px;width:24px;height:24px;border-radius:7px;background:var(--soft);color:var(--accent);font-weight:800;display:grid;place-items:center;font-size:14px}
+.checklist b{display:block}
+.checklist span{color:var(--muted);font-size:14.5px}
+.checklist li.hard{border-color:#f0d9a8;background:#fffaf0}
+.checklist li.hard::before{content:"!";background:#fbe7bf;color:#8a5a00}
+/* table */
+.tablewrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;min-width:860px;font-size:14.5px}
+th,td{padding:11px 10px;text-align:center;border-bottom:1px solid var(--line)}
+thead th{background:#f0f4f7;font-size:12.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);position:sticky;top:0}
+td:first-child,th:first-child{text-align:left;position:sticky;left:0;background:inherit}
+tbody tr{background:#fff}
+tbody tr:nth-child(even){background:#fbfcfd}
+td:first-child{font-weight:600;min-width:190px}
+td:first-child small{display:block;font-weight:400;color:var(--muted);font-size:12.5px}
+.m{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;font-weight:800;font-size:14px}
+.y{background:#e2f5ec;color:#1e7a50}.n{background:#fbe5e4;color:#a8322d}.p{background:#fdf1d8;color:#93610a}.u{background:#eef1f4;color:#8796a5}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0 0;font-size:14px;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend .m{width:22px;height:22px;font-size:12px}
+.status{font-size:12px;font-weight:700;padding:2px 9px;border-radius:99px;white-space:nowrap}
+.s-best{background:#e2f5ec;color:#1e7a50}.s-park{background:#fdf1d8;color:#93610a}.s-stretch{background:#ece7fe;color:#5a3fd0}.s-drop{background:#eef1f4;color:#5b6b7c}
+/* place */
+.place{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-bottom:22px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+.place.noimg{grid-template-columns:1fr}
+.place figure{margin:0;position:relative;min-height:240px;background:#dde5ec}
+.place figure img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.place figcaption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(0,0,0,.65));color:#fff;font-size:12px;padding:22px 12px 8px}
+.place .body{padding:22px 24px}
+.place .head{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:6px}
+.place .head h3{margin:0}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px 18px;margin:12px 0}
+.facts div{font-size:14.5px}
+.facts b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+.food{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.food>div{background:var(--soft);border-radius:10px;padding:10px 12px;font-size:14.5px}
+.food b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--accent)}
+.food ul{margin:4px 0 0;padding-left:18px}
+.pros,.cons{margin:6px 0;padding-left:20px;font-size:15px}
+.pros li::marker{content:"+  ";color:var(--accent2);font-weight:700}
+.cons li::marker{content:"–  ";color:var(--bad);font-weight:700}
+.note{font-size:13px;color:var(--muted);background:#f6f8fa;border-left:3px solid var(--warn);padding:8px 12px;border-radius:6px;margin-top:10px}
+.subhead{margin:34px 0 14px;font-size:15px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted)}
+.mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.mini .card{padding:0;overflow:hidden}
+.mini .card .ph{display:grid;grid-template-columns:1fr 1fr;gap:2px;height:150px;background:#dde5ec}
+.mini .card .ph img{width:100%;height:150px;object-fit:cover}
+.mini .card .ph.one{grid-template-columns:1fr}
+.mini .card .in{padding:14px 16px}
+.mini .card h4{margin:0 0 4px;font-size:16.5px}
+/* timeline */
+.timeline{position:relative;margin:0;padding:0 0 0 34px;list-style:none}
+.timeline::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--accent),var(--accent2))}
+.timeline>li{position:relative;margin-bottom:22px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.timeline>li::before{content:attr(data-n);position:absolute;left:-34px;top:14px;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:12.5px;font-weight:700;display:grid;place-items:center;box-shadow:0 0 0 4px var(--bg)}
+.timeline h4{margin:0 0 4px;font-size:17px}
+.timeline p{margin:4px 0;font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{font-size:12.5px;padding:2px 9px;border-radius:99px;background:#eef1f4;color:#44515e}
+.chip.up{background:#e2f5ec;color:#1e7a50}.chip.out{background:#fbe5e4;color:#a8322d;text-decoration:line-through;text-decoration-color:rgba(168,50,45,.45)}
+/* status */
+.statusbox{background:linear-gradient(135deg,#0f4c5c,#1f6f8b);color:#fff;border-radius:var(--radius);padding:28px}
+.statusbox h3{font-size:22px}
+.statusbox ul{margin:10px 0 0;padding-left:20px}
+.statusbox li{margin:6px 0}
+.insight{margin-top:18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:14px 16px}
+footer{margin-top:56px;padding:30px 0 40px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);background:#fff}
+footer ul{padding-left:18px;margin:6px 0}
+@media (max-width:780px){
+  .place{grid-template-columns:1fr}
+  .place figure{min-height:220px}
+  .food{grid-template-columns:1fr}
+  section{padding-top:42px}
+  header.hero{padding:48px 0 44px}
+}
+@media print{nav{display:none}.place{break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top">Tom's Move</a>
+  <a class="l" href="#summary">Summary</a>
+  <a class="l" href="#criteria">Criteria</a>
+  <a class="l" href="#compare">Compare</a>
+  <a class="l" href="#places">Places</a>
+  <a class="l" href="#timeline">Timeline</a>
+  <a class="l" href="#status">Status</a>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <h1>Where should Tom live next?</h1>
+  <p class="lead">A plain-English summary of the US relocation search so far: what Tom is looking for, which places made it, which didn't, and why.</p>
+  <div class="meta">
+    <span class="pill">Starting point: Coral Springs, FL</span>
+    <span class="pill">Report date: 10 Oct 2026</span>
+    <span class="pill">Latest scout: 30 Sep 2026</span>
+  </div>
+</div></header>
+
+<main class="wrap">
+
+<!-- SUMMARY -->
+<section id="summary">
+  <h2>The short version</h2>
+  <p class="sub">Four things to know right now.</p>
+  <div class="cards">
+    <div class="card hl"><div class="tag t-good">Best new option</div><div class="big">East Forsyth County, GA</div><p>Cumming / Pilgrim Mill side of Lake Lanier. The only new place to pass every screen in the latest scout, including 3 Turkish and 2 Sichuan spots within ~30 min.</p></div>
+    <div class="card pk"><div class="tag t-park">Parked at Tom's request</div><div class="big">Happy Valley / W. Damascus, OR</div><p>The cleanest full-stack hit of the US search and the head-to-head winner over Duvall, but Tom isn't sure about Oregon.</p></div>
+    <div class="card st"><div class="tag t-stretch">Stretch-budget option</div><div class="big">Duvall / Snoqualmie Valley, WA</div><p>Better Cascades and food, no state income tax, but acreage runs ~$980K+ and there is flood risk.</p></div>
+    <div class="card ky"><div class="tag t-key">Key insight</div><div class="big">Food is the bottleneck</div><p>The hardest part is finding 2+ real Sichuan <em>and</em> 2+ real Turkish restaurants within ~40 min of affordable mountain-and-lake acreage.</p></div>
+  </div>
+</section>
+
+<!-- CRITERIA -->
+<section id="criteria">
+  <h2>Tom's checklist</h2>
+  <p class="sub">Every place was judged against these. The highlighted one is what knocked out the most places.</p>
+  <ul class="checklist">
+    <li><b>Four true seasons</b><span>Real winters, not just a cool spell.</span></li>
+    <li><b>Low crime</b><span>Safe day-to-day living.</span></li>
+    <li><b>A couple of acres (~1–3)</b><span>At roughly Coral Springs house money (~$680–720K). Current lot is ~0.22 acre.</span></li>
+    <li><b>Mountains and lakes nearby</b><span>Both within about 45–60 minutes.</span></li>
+    <li><b>Little dangerous wildlife</b><span>In daily life, not just on hikes.</span></li>
+    <li><b>Good schools</b><span>Good colleges plus solid K-12 / charter options.</span></li>
+    <li><b>Museums within ~60 min</b><span>Culture within an easy day trip.</span></li>
+    <li><b>Good infrastructure</b><span>Airport, hospital, broadband.</span></li>
+    <li class="hard"><b>Multiple real Sichuan AND multiple real Turkish restaurants</b><span>Within a ~35–40 min weeknight drive. Real Sichuan = mapo, dan dan, mala, hot pot. Real Turkish = pide, lahmacun, kebab, Iskender. Gyro-only or daytime-only cafes don't count.</span></li>
+    <li><b>Stay in the US</b><span>Canada was explored, then dropped.</span></li>
+  </ul>
+</section>
+
+<!-- COMPARE -->
+<section id="compare">
+  <h2>Side-by-side comparison</h2>
+  <p class="sub">The main contenders and near-misses from rounds 4–6. Swipe sideways on a phone.</p>
+  <div class="tablewrap">
+  <table>
+    <thead><tr>
+      <th>Place</th><th>Status</th><th>Acreage ~$700K</th><th>Mtns + lakes</th><th>Low crime</th><th>Schools</th><th>Wildlife / hazards</th><th>4 seasons</th><th>2+ Sichuan</th><th>2+ Turkish</th><th>In US</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>East Forsyth Co., GA<small>Cumming / Pilgrim Mill</small></td><td><span class="status s-best">Best new</span></td><td><span class="m y">✓</span></td><td><span class="m p">~</span></td><td><span class="m y">✓</span></td><td><span class="m u">·</span></td><td><span class="m u">·</span></td><td><span class="m p">~</span></td><td><span class="m y">✓</span></td><td><span class="m y">✓</span></td><td><span class="m y">✓</span></td></tr>
+      <tr><td>Happy Valley / W. Damascus, OR</td><td><span class="status s-park">Parked</span></td><td><span class="m y">✓</span></td><td><span class="m y">✓</span></td><td><span class="m u">·</span></td><td><span class="m u">·</span></td><td><span class="m u">·</span></td><td><span class="m p">~</span></td><td><span class="m y">✓</span></td><td><span class="m y">✓</span></td><td><span class="m y">✓</span></td></tr>
+      <tr><td>Duvall / Snoqualmie Valley, WA</td><td><span class="status s-stretch">Stretch</span></td><td><span class="m n">✗</span></td><td><span class="m y">✓</span></td><td><span class="m u">·</span></td><td><span class="m u">·</span></td><td><span class="m p">~</span></td><td><span class="m u">·</span></td><td><span class="m y">✓</span></td><td><span class="m y">✓</span></td><td><span class="m y">✓</span></td></tr>
+      <tr><td>Golden, CO</td><td><span class="status s-drop">Round 4 #2</span></td><td><span class="m n">✗</span></td><td><span class="m y">✓</span></td><td><span class="m n">✗</span></td><td><span class="m u">·</span></td><td><span class="m n">✗</span></td><td><span class="m u">·</span></td><td><span class="m p">~</span></td><td><span class="m p">~</span></td><td><span class="m y">✓</span></td></tr>
+      <tr><td>Draper / Alpine-Highland, UT</td><td><span class="status s-drop">Round 4 #3</span></td><td><span class="m n">✗</span></td><td><span class="m u">·</span></td><td><span class="m y">✓</span></td><td><span class="m y">✓</span></td><td><span class="m u">·</span></td><td><span class="m u">·</span></td><td><span class="m y">✓</span></td><td><span class="m n">✗</span></td><td><span class="m y">✓</span></td></tr>
+      <tr><td>Chelsea / Cantley, QC</td><td><span class="status s-drop">Round 4 #1 · Canada</span></td><td><span class="m y">✓</span></td><td><span class="m y">✓</span></td><td><span class="m u">·</span></td><td><span class="m p">~</span></td><td><span class="m u">·</span></td><td><span class="m u">·</span></td><td><span class="m y">✓</span></td><td><span class="m y">✓</span></td><td><span class="m n">✗</span></td></tr>
+      <tr><td>Maryville / Blount Co., TN</td><td><span class="status s-drop">Near-miss</span></td><td><span class="m y">✓</span></td><td><span class="m y">✓</span></td><td><span class="m u">·</span></td><td><span class="m u">·</span></td><td><span class="m u">·</span></td><td><span class="m u">·</span></td><td><span class="m n">✗</span></td><td><span class="m n">✗</span></td><td><span class="m y">✓</span></td></tr>
+      <tr><td>Elizabeth, CO</td><td><span class="status s-drop">Near-miss</span></td><td><span class="m y">✓</span></td><td><span class="m u">·</span></td><td><span class="m u">·</span></td><td><span class="m u">·</span></td><td><span class="m u">·</span></td><td><span class="m u">·</span></td><td><span class="m n">✗</span></td><td><span class="m n">✗</span></td><td><span class="m y">✓</span></td></tr>
+      <tr><td>Boise foothills, ID</td><td><span class="status s-drop">Near-miss</span></td><td><span class="m u">·</span></td><td><span class="m u">·</span></td><td><span class="m u">·</span></td><td><span class="m u">·</span></td><td><span class="m u">·</span></td><td><span class="m u">·</span></td><td><span class="m n">✗</span></td><td><span class="m n">✗</span></td><td><span class="m y">✓</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="legend">
+    <span><i class="m y">✓</i> Pass</span>
+    <span><i class="m p">~</i> Partial / with caveats</span>
+    <span><i class="m n">✗</i> Fail</span>
+    <span><i class="m u">·</i> Not a deciding factor / not specifically noted in the research</span>
+  </div>
+  <p class="note">Notes behind the marks: Forsyth's lake is minutes away but mountains are ~51–62 min, and winters are short with long hot summers. Oregon's winters are mild (PNW). Duvall has flood risk. Golden's food works from Golden proper but not ~40 min out at acreage; it also has wildfire risk and bears/lions. Utah's K-12 is the strongest seen (Lone Peak ~97% grad, real charters). Quebec has no US-style charters.</p>
+</section>
+
+<!-- PLACES -->
+<section id="places">
+  <h2>The places, one by one</h2>
+  <p class="sub">Current options first, then the places that were explored and set aside. All prices and listings are "as of" the dates shown and should be re-verified. Drive times are free-flow estimates (no traffic).</p>
+
+  <!-- FORSYTH -->
+  <article class="place" id="forsyth">
+    <figure><img src="assets/ga_lanier.jpg" alt="Lake Lanier, Georgia, with tree-lined shores"><figcaption>Lake Lanier, GA — Thomson200, CC0, via Wikimedia Commons</figcaption></figure>
+    <div class="body">
+      <div class="head"><h3>East Forsyth County, Georgia</h3><span class="status s-best">Best new option</span></div>
+      <p>Cumming / Pilgrim Mill side of Lake Lanier. The only new full pass from the 30 Sep 2026 scout.</p>
+      <div class="facts">
+        <div><b>Example listing</b>2785 Pilgrim Mill Rd — 1.36 acres, ~3,680 sq ft, listed $665K <em>(active as of 28 Aug 2026; re-verify)</em></div>
+        <div><b>Lakes / mountains</b>Lake Lanier minutes away; Amicalola Falls ~51 min; Mount Yonah ~62 min</div>
+        <div><b>Crime</b>FBI UCR 2024, Forsyth Sheriff: ~45 violent crimes per 100k</div>
+        <div><b>College / culture / travel</b>UNG Dahlonega ~38 min; Atlanta museums and airport ~67 min</div>
+      </div>
+      <div class="food">
+        <div><b>Turkish (3)</b><ul><li>Turkuaz, Suwanee ~15 min</li><li>Ephesus, Alpharetta ~18 min</li><li>Efendi, Alpharetta ~22 min</li></ul></div>
+        <div><b>Sichuan (2)</b><ul><li>Masterpiece, Duluth ~29 min (Michelin-listed)</li><li>Xi Hotpot, Duluth ~30 min</li></ul></div>
+      </div>
+      <ul class="cons"><li>Hot, humid, long summers and a short winter</li><li>Mountains are a planned trip, not a daily backdrop</li></ul>
+    </div>
+  </article>
+
+  <!-- OREGON -->
+  <article class="place" id="oregon">
+    <figure><img src="assets/or_hood.jpg" alt="Mount Hood seen beyond downtown Portland"><figcaption>Mount Hood from downtown Portland — M.O. Stevens, CC BY-SA 4.0, via Wikimedia Commons</figcaption></figure>
+    <div class="body">
+      <div class="head"><h3>Happy Valley / western Damascus, Oregon</h3><span class="status s-park">Parked at Tom's request</span></div>
+      <p>The cleanest full-stack hit of the US search, and it beat Duvall head-to-head. Tom said he isn't sure about Oregon, so it's on hold rather than ruled out.</p>
+      <div class="facts">
+        <div><b>Acreage</b>~2 acres for ~$475–620K</div>
+        <div><b>Airport</b>PDX ~25–30 min</div>
+        <div><b>Climate</b>Mild Pacific Northwest winters</div>
+        <div><b>Taxes</b>Oregon income tax up to 9.9%</div>
+      </div>
+      <div class="food">
+        <div><b>Sichuan (3)</b><ul><li>Sichuan City</li><li>Sichuan Taste</li><li>Ding &amp; Spice</li></ul></div>
+        <div><b>Turkish (3)</b><ul><li>Shiki Shiki Baba</li><li>Chef Agir</li><li>Constantinople</li></ul></div>
+      </div>
+      <ul class="pros"><li>Hits the budget with room to spare</li><li>Every food requirement met</li></ul>
+      <ul class="cons"><li>Winters are mild, not a strong four seasons</li><li>State income tax up to 9.9%</li></ul>
+    </div>
+  </article>
+
+  <!-- DUVALL -->
+  <article class="place" id="duvall">
+    <figure><img src="assets/wa_snoq.jpg" alt="Aerial view of the Snoqualmie Valley with mountains"><figcaption>Snoqualmie Valley near North Bend &amp; Mount Si — brewbooks, CC BY-SA 2.0, via Wikimedia Commons</figcaption></figure>
+    <div class="body">
+      <div class="head"><h3>Duvall / Snoqualmie Valley, Washington</h3><span class="status s-stretch">Stretch budget</span></div>
+      <p>Better Cascades scenery and better food than Oregon, but it costs more.</p>
+      <div class="facts">
+        <div><b>Prices</b>Median ~$850K; acreage ~$980K+</div>
+        <div><b>Taxes</b>No state income tax</div>
+        <div><b>Risk</b>Flood risk in the valley</div>
+      </div>
+      <div class="food">
+        <div><b>Sichuan (Bellevue)</b><ul><li>Dan Gui</li><li>Frying Fish</li><li>Spicy PoPo</li></ul></div>
+        <div><b>Turkish (Kirkland)</b><ul><li>Koza</li><li>Cafe Sabah</li></ul></div>
+      </div>
+      <ul class="cons"><li>Acreage well above the ~$700K target</li><li>Flood risk</li></ul>
+    </div>
+  </article>
+
+  <h3 class="subhead">Round 4 finalists (explored, then set aside)</h3>
+
+  <article class="place" id="cantley">
+    <figure><img src="assets/qc_gatineau.jpg" alt="Fall colours at the Eardley Escarpment, Gatineau Park"><figcaption>Eardley Escarpment, Gatineau Park — cjuneau, CC BY 2.0, via Wikimedia Commons</figcaption></figure>
+    <div class="body">
+      <div class="head"><h3>Chelsea / Cantley, Quebec</h3><span class="status s-drop">Was #1 · dropped (Canada)</span></div>
+      <p>The only place with a genuine multi-restaurant Sichuan and Turkish scene (thanks to Ottawa). Set aside when Tom decided to stay in the US.</p>
+      <div class="facts">
+        <div><b>Example</b>Cantley ~3.38 acres, ~$570K CAD (~$410K USD)</div>
+        <div><b>Outdoors</b>Gatineau Park; Meech and Philippe lakes</div>
+      </div>
+      <div class="food">
+        <div><b>Sichuan</b><ul><li>Spicy Man</li><li>Liuyishou (Merivale)</li></ul></div>
+        <div><b>Turkish</b><ul><li>Sultan Ahmet (Glebe)</li><li>Tava (Kanata)</li><li>Agha (Merivale)</li></ul></div>
+      </div>
+      <ul class="cons"><li>Quebec taxes (~53% top combined rate)</li><li>Immigration via PSTQ</li><li>French language / Bill 96</li><li>No US-style charter schools</li></ul>
+    </div>
+  </article>
+
+  <article class="place" id="golden">
+    <figure><img src="assets/co_golden.jpg" alt="Lookout Mountain hillside near Golden, Colorado"><figcaption>Lookout Mountain Park, Golden, CO — Hustvedt, CC BY-SA 3.0, via Wikimedia Commons</figcaption></figure>
+    <div class="body">
+      <div class="head"><h3>Golden, Colorado</h3><span class="status s-drop">Was #2</span></div>
+      <p>Mountains right in the yard. Food works from Golden proper but breaks down ~40 min out where the acreage is.</p>
+      <div class="facts">
+        <div><b>Prices</b>Nice 2-acre homes usually $900K–$1.8M</div>
+        <div><b>Airport</b>DEN ~55 min</div>
+      </div>
+      <div class="food">
+        <div><b>Sichuan (from Golden proper)</b><ul><li>Wok Spicy</li><li>Bronze Empire</li></ul></div>
+        <div><b>Turkish (from Golden proper)</b><ul><li>Pizza &amp; Pide</li><li>Bosphorus</li></ul></div>
+      </div>
+      <ul class="cons"><li>Over budget for acreage</li><li>Property crime not low</li><li>Wildfire risk; bears and mountain lions</li></ul>
+    </div>
+  </article>
+
+  <article class="place noimg" id="utah">
+    <div class="body">
+      <div class="head"><h3>Draper / Alpine-Highland, Utah</h3><span class="status s-drop">Was #3</span></div>
+      <p>Best schools and lowest crime of any place studied, but fails on land and Turkish food.</p>
+      <div class="facts">
+        <div><b>Schools</b>Lone Peak ~97% graduation; real charter options</div>
+        <div><b>Crime</b>~29 violent per 100k (Alpine/Highland, 2024)</div>
+        <div><b>Prices</b>$1M+ for ~1 acre — 2 acres at ~$700K not realistic</div>
+        <div><b>Sichuan (OK)</b>Beijing Restaurant (Sugar House), Chengdu Hotpot</div>
+      </div>
+      <ul class="cons"><li>Fails the 2-acre budget</li><li>Fails multiple Turkish</li></ul>
+    </div>
+  </article>
+
+  <h3 class="subhead">Round 6 near-misses</h3>
+  <div class="cards">
+    <div class="card"><h3>Maryville / Blount Co., TN</h3><p>Smokies and TVA lakes. A 6-acre $600K listing went pending (Aug 2026). Only one Sichuan (Asia Kitchen) and one Turkish (Quality Turkish Market &amp; Deli).</p></div>
+    <div class="card"><h3>Elizabeth, CO</h3><p>5360 Pine Ridge Dr: 2.07 acres, $650K <em>(as of 25 Sep 2026; re-verify)</em>. Turkish ~49 min; can't get two Sichuan within 40 min.</p></div>
+    <div class="card"><h3>Boise foothills, ID</h3><p>Mala House is real Sichuan, but there's no second one, and no two Turkish.</p></div>
+  </div>
+
+  <h3 class="subhead">Round 2 survivors (one of each food) — thin on "multiple"</h3>
+  <div class="cards">
+    <div class="card"><h3>Fort Collins, CO</h3><p>Rose to #1 once food was added: Beijing Noodle (Sichuan) and Turkish Cafe Co. Thin when "multiple" was required.</p></div>
+    <div class="card"><h3>Spokane South Hill, WA</h3><p>Anatolia Grill (opened Mar 2026) and Chef Lu's Sichuan section. Gordy's Sichuan closed Jan 2025. Thin.</p></div>
+    <div class="card"><h3>Lebanon / Enfield, NH</h3><p>Upper Valley survivor of round 2; thin on multiple Sichuan and Turkish.</p></div>
+    <div class="card"><h3>Wilton, NY (south only)</h3><p>Only the southern part survived round 2; thin in round 3.</p></div>
+  </div>
+
+  <h3 class="subhead">Round 1 shortlist (before food was a criterion)</h3>
+  <div class="mini">
+    <div class="card"><div class="ph"><img src="assets/idaho_cda.jpg" alt="Coeur d'Alene waterfront"><img src="assets/idaho_haydenlake.jpg" alt="Aerial view of Hayden Lake"></div><div class="in"><h4>Post Falls / Hayden, ID</h4><p>First-round shortlist. Did not survive the food criterion.</p></div></div>
+    <div class="card"><div class="ph"><img src="assets/ny_lakegeorge.jpg" alt="Lake George village and mountains"><img src="assets/map_ny.jpg" alt="Map of the Queensbury / Lake George area"></div><div class="in"><h4>Queensbury / Wilton, NY</h4><p>Shortlisted; only Wilton (south) made it through round 2.</p></div></div>
+    <div class="card"><div class="ph"><img src="assets/nh_winnipesaukee.jpg" alt="Lake Winnipesaukee from above"><img src="assets/nh_meredith.jpg" alt="Meredith, NH waterfront"></div><div class="in"><h4>Gilford / Meredith, NH</h4><p>Dropped in round 2 on food.</p></div></div>
+    <div class="card"><div class="ph"><img src="assets/va_sml.jpg" alt="Smith Mountain Lake marina"><img src="assets/va_salem.jpg" alt="Main street in Salem, VA"></div><div class="in"><h4>Salem / Botetourt, VA</h4><p>Dropped in round 2: Spicity in Blacksburg for Sichuan, but no Turkish.</p></div></div>
+    <div class="card"><div class="ph"><img src="assets/on_georgianbay.jpg" alt="Georgian Bay view"><img src="assets/on_bluemountain.jpg" alt="Blue Mountain village sign"></div><div class="in"><h4>Collingwood / Blue Mountains, ON</h4><p>Dropped in round 2: Barrie, the nearest food option, is ~1 hr away.</p></div></div>
+  </div>
+  <h3 class="subhead">Round 1 area maps</h3>
+  <div class="mini">
+    <div class="card"><div class="ph one"><img src="assets/map_idaho.jpg" alt="Map of the Post Falls / Coeur d'Alene area"></div><div class="in"><h4>Post Falls / Hayden area, ID</h4></div></div>
+    <div class="card"><div class="ph one"><img src="assets/map_nh.jpg" alt="Map of the Gilford / Meredith area"></div><div class="in"><h4>Gilford / Meredith area, NH</h4></div></div>
+    <div class="card"><div class="ph one"><img src="assets/map_va.jpg" alt="Map of the Salem / Botetourt area"></div><div class="in"><h4>Salem / Botetourt area, VA</h4></div></div>
+    <div class="card"><div class="ph one"><img src="assets/map_on.jpg" alt="Map of the Collingwood area on Georgian Bay"></div><div class="in"><h4>Collingwood area, ON</h4></div></div>
+    <div class="card"><div class="ph one"><img src="assets/on_collingwood.jpg" alt="Aerial view of Collingwood, ON"></div><div class="in"><h4>Collingwood from the air</h4></div></div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <h2>How the search narrowed</h2>
+  <p class="sub">Six rounds, each one tightening the filter.</p>
+  <ol class="timeline">
+    <li data-n="1"><h4>First shortlist (before food)</h4>
+      <p>Five areas made the first cut before food was considered.</p>
+      <div class="chips"><span class="chip up">Post Falls/Hayden ID</span><span class="chip up">Queensbury/Wilton NY</span><span class="chip up">Gilford/Meredith NH</span><span class="chip up">Salem/Botetourt VA</span><span class="chip up">Collingwood/Blue Mtns ON</span></div>
+      <div class="chips"><span class="chip out">Bozeman</span><span class="chip out">Flathead</span><span class="chip out">Asheville</span><span class="chip out">Boulder</span><span class="chip out">Burlington city</span><span class="chip out">Kelowna</span><span class="chip out">Canmore</span><span class="chip out">Traverse City</span><span class="chip out">Ithaca</span><span class="chip out">Duluth</span><span class="chip out">Roanoke city</span></div></li>
+    <li data-n="2"><h4>Food added — at least one of each</h4>
+      <p>Fort Collins jumped to #1 (Beijing Noodle + Turkish Cafe Co). Most of the first shortlist fell away.</p>
+      <div class="chips"><span class="chip up">Fort Collins CO</span><span class="chip up">Spokane South Hill WA</span><span class="chip up">Chelsea/Cantley QC</span><span class="chip up">Lebanon/Enfield NH</span><span class="chip up">Wilton NY (south)</span></div>
+      <div class="chips"><span class="chip out">Gilford/Meredith</span><span class="chip out">Salem/Botetourt</span><span class="chip out">Collingwood</span></div></li>
+    <li data-n="3"><h4>Multiple of each required</h4>
+      <p>Only Chelsea/Cantley (via Ottawa) had a real scene: 2 Sichuan, 3 Turkish. Fort Collins, Spokane, the Upper Valley and Wilton were too thin.</p></li>
+    <li data-n="4"><h4>Three-way comparison</h4>
+      <p>#1 Chelsea/Cantley QC, #2 Golden CO, #3 Draper/Alpine-Highland UT. Tom then chose to stay in the US.</p></li>
+    <li data-n="5"><h4>US-only search</h4>
+      <p>Happy Valley OR came out as the cleanest full-stack hit and beat Duvall WA head-to-head. Tom isn't sure about Oregon, so it's parked.</p></li>
+    <li data-n="6"><h4>Latest scout — 30 Sep 2026</h4>
+      <p>One new full pass: East Forsyth County, GA. Near-misses: Maryville TN, Elizabeth CO, Boise foothills.</p>
+      <div class="chips"><span class="chip up">East Forsyth Co. GA</span></div>
+      <div class="chips"><span class="chip out">Colorado Springs/Monument/Black Forest</span><span class="chip out">Chattanooga</span><span class="chip out">Bellingham</span><span class="chip out">Ogden</span><span class="chip out">NW Arkansas</span><span class="chip out">Greenville/Travelers Rest</span><span class="chip out">Bend</span><span class="chip out">Tacoma/Puyallup/Olympia</span><span class="chip out">Huntsville (weak mountains)</span></div>
+      <p style="font-size:13px;color:var(--muted)">All struck through in this round were killed on food, except Huntsville (weak mountains).</p></li>
+  </ol>
+</section>
+
+<!-- STATUS -->
+<section id="status">
+  <h2>Where things stand</h2>
+  <p class="sub">As of 10 Oct 2026.</p>
+  <div class="statusbox">
+    <h3>Tom asked to keep hunting for more US places.</h3>
+    <ul>
+      <li><b>East Forsyth County, GA</b> is the best new option.</li>
+      <li><b>Happy Valley, OR</b> is parked at Tom's request.</li>
+      <li><b>Duvall, WA</b> is the stretch-budget option.</li>
+    </ul>
+    <div class="insight"><b>Key insight:</b> the hardest part is finding 2+ Sichuan and 2+ Turkish restaurants within ~40 minutes of affordable mountain-and-lake acreage. Land, scenery and safety are much easier to find than the food.</div>
+  </div>
+</section>
+
+</main>
+
+<footer><div class="wrap">
+  <p><b>About this report.</b> Prices and listings are as of the dates shown and should be re-verified before acting on them. Drive times are free-flow estimates (no traffic). Restaurant openings and closings change, so confirm before visiting.</p>
+  <p><b>Image credits.</b> All photos and maps are from Wikimedia Commons, used under their respective free licences:</p>
+  <ul>
+    <li>Lake Lanier, July 2018 — Thomson200, CC0</li>
+    <li>Mount Hood from downtown, Portland, Oregon — M.O. Stevens, CC BY-SA 4.0</li>
+    <li>Looking east to Snoqualmie Valley, North Bend and Mount Si — brewbooks, CC BY-SA 2.0</li>
+    <li>Lookout Mountain Park, Golden CO — Hustvedt, CC BY-SA 3.0</li>
+    <li>Eardley Escarpment, Gatineau Park — cjuneau, CC BY 2.0</li>
+    <li>Coeur d'Alene, Hayden Lake, Lake George, Lake Winnipesaukee, Meredith, Smith Mountain Lake, Salem VA, Collingwood (aerial), Georgian Bay, Blue Mountain, and the area maps — Wikimedia Commons contributors (see each file's Commons page for author and licence)</li>
+  </ul>
+</div></footer>
+</body>
+</html>
