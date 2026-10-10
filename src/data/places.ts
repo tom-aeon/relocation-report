@@ -3,7 +3,7 @@
 // shown in the UI as "not checked yet". Coordinates are approximate area centroids
 // used only to place map markers; they are not research findings.
 
-export type Status = 'best' | 'parked' | 'stretch' | 'near-miss' | 'dropped' | 'canada-dropped'
+export type Status = 'best' | 'parked' | 'stretch' | 'near-miss' | 'dropped'
 export type Mark = 'pass' | 'partial' | 'fail' | 'unknown'
 export type CriterionKey =
   | 'seasons' | 'crime' | 'acreage' | 'mountains' | 'lakes' | 'wildlife'
@@ -88,7 +88,8 @@ export const REPORT = {
   startingPoint: 'Coral Springs, FL',
   currentLot: '~0.22 acre',
   budget: '~$680–720K (roughly Coral Springs house money)',
-  statusHeadline: 'He asked to keep hunting for more US places.',
+  statusHeadline: 'He asked to keep hunting for more places. Canada is back in as of 10 Oct 2026, so Chelsea/Cantley, QC is a top live option again.',
+  canadaBack: '10 Oct 2026',
   keyInsight:
     'The hardest part is finding 2+ Sichuan and 2+ Turkish restaurants within ~40 minutes of affordable mountain-and-lake acreage. Land, scenery and safety are much easier to find than the food.',
   disclaimer:
@@ -111,15 +112,14 @@ export const CRITERIA: Criterion[] = [
   { key: 'turkish', label: '2+ real Turkish', detail: 'Within a ~35–40 min weeknight drive. Real Turkish = pide, lahmacun, kebab, Iskender. Gyro-only or daytime-only cafes don’t count.', hard: true },
 ]
 
-export const EXTRA_CRITERION = { label: 'Stay in the US', detail: 'Canada was explored, then dropped.' }
+export const EXTRA_CRITERION = { label: 'US or Canada', detail: 'Both countries are in play. The search briefly focused on the US; Canada is back in as of 10 Oct 2026.' }
 
 export const STATUS_META: Record<Status, { label: string; color: string; badge: string }> = {
-  best: { label: 'Best option', color: '#16a34a', badge: 'bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300' },
+  best: { label: 'Top live option', color: '#16a34a', badge: 'bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300' },
   parked: { label: 'Parked', color: '#d97706', badge: 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300' },
   stretch: { label: 'Stretch', color: '#7c3aed', badge: 'bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-300' },
   'near-miss': { label: 'Near-miss', color: '#0284c7', badge: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300' },
   dropped: { label: 'Dropped', color: '#64748b', badge: 'bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-300' },
-  'canada-dropped': { label: 'Canada – dropped', color: '#dc2626', badge: 'bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300' },
 }
 
 const T = (mark: Mark, note?: string): Score => ({ mark, source: 'table', note })
@@ -257,12 +257,10 @@ export const PLACES: Place[] = [
     name: 'Chelsea / Cantley, Quebec',
     short: 'Chelsea / Cantley, QC',
     country: 'Canada',
-    status: 'canada-dropped',
-    statusLabel: 'Was #1 · dropped (Canada)',
+    status: 'best',
+    statusLabel: 'Top live option · Canada',
     firstRound: 2,
-    cutRound: 5,
-    cutReason: 'Ranked #1 in the round 4 three-way comparison, then set aside when he decided to stay in the US.',
-    summary: 'The only place with a genuine multi-restaurant Sichuan and Turkish scene in rounds 3–4 (thanks to Ottawa). Set aside when he decided to stay in the US.',
+    summary: 'The only place with a real multi-Sichuan and multi-Turkish scene near affordable acreage (thanks to Ottawa). Ranked #1 in the round 4 comparison; Canada is back in as of 10 Oct 2026. Caveats: Quebec taxes, immigration via PSTQ, French language / Bill 96, and no US-style charter schools.',
     lat: 45.56, lng: -75.79,
     listings: [{ description: 'Cantley ~3.38 acres', price: '~$570K CAD (~$410K USD)', }],
     mountainsLakes: 'Gatineau Park; Meech and Philippe lakes',
@@ -279,7 +277,7 @@ export const PLACES: Place[] = [
       { name: 'Tava', cuisine: 'Turkish', area: 'Kanata, Ottawa', status: 'counted' },
       { name: 'Agha', cuisine: 'Turkish', area: 'Merivale, Ottawa', status: 'counted' },
     ],
-    pros: ['Genuine multi-restaurant Sichuan and Turkish scene via Ottawa', '~3.38 acres around ~$410K USD', 'Gatineau Park plus Meech and Philippe lakes'],
+    pros: ['Only place with a real multi-Sichuan and multi-Turkish scene near affordable acreage (via Ottawa)', '~3.38 acres around ~$410K USD', 'Gatineau Park plus Meech and Philippe lakes'],
     cons: ['Quebec taxes (~53% top combined rate)', 'Immigration via PSTQ', 'French language / Bill 96', 'No US-style charter schools'],
     scores: {
       acreage: T('pass'),
@@ -666,23 +664,23 @@ export const ROUNDS: Round[] = [
   },
   {
     n: 4, title: 'Three-way comparison',
-    summary: '#1 Chelsea/Cantley QC, #2 Golden CO, #3 Draper/Alpine-Highland UT. He then chose to stay in the US.',
+    summary: '#1 Chelsea/Cantley QC, #2 Golden CO, #3 Draper/Alpine-Highland UT. After this the search briefly focused on the US.',
     added: ['golden', 'draper'],
     cut: [],
   },
   {
-    n: 5, title: 'US-only search',
+    n: 5, title: 'US-focused search',
     summary: 'Happy Valley OR came out as the cleanest full-stack hit and beat Duvall WA head-to-head. He isn’t sure about Oregon, so it’s parked.',
     added: ['happy-valley', 'duvall'],
-    cut: ['cantley', 'golden', 'draper'],
-    note: 'Chelsea/Cantley was dropped because he chose to stay in the US; Golden and Draper were set aside after round 4.',
+    cut: ['golden', 'draper'],
+    note: 'The search briefly focused on the US in this round. Chelsea/Cantley was paused, not cut, and Canada is back in as of 10 Oct 2026. Golden and Draper were set aside after round 4.',
   },
   {
     n: 6, title: 'Latest scout', date: '30 Sep 2026',
     summary: 'One new full pass: East Forsyth County, GA. Near-misses: Maryville TN, Elizabeth CO, Boise foothills.',
     added: ['forsyth'],
     cut: ['maryville', 'elizabeth', 'boise', 'colorado-springs', 'chattanooga', 'bellingham', 'ogden', 'nw-arkansas', 'greenville', 'bend', 'tacoma', 'huntsville'],
-    note: 'All struck in this round were killed on food, except Huntsville (weak mountains). Maryville, Elizabeth and Boise were near-misses.',
+    note: 'All struck in this round were killed on food, except Huntsville (weak mountains). Maryville, Elizabeth and Boise were near-misses. As of 10 Oct 2026 Canada is back in, so Chelsea/Cantley is live alongside East Forsyth.',
   },
 ]
 

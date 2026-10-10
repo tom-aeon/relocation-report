@@ -11,15 +11,15 @@ export default function Scorecard() {
     try { const v = JSON.parse(localStorage.getItem(KEY) ?? 'null'); if (v) return { ...DEFAULT_WEIGHTS, ...v } } catch { /* ignore */ }
     return DEFAULT_WEIGHTS
   })
-  const [usOnly, setUsOnly] = useState(true)
+  const [country, setCountry] = useState<'all' | 'US' | 'Canada'>('all')
   const [minKnown, setMinKnown] = useState(3)
   useEffect(() => { try { localStorage.setItem(KEY, JSON.stringify(w)) } catch { /* ignore */ } }, [w])
 
   const ranked = useMemo(() => PLACES
-    .filter((p) => !p.minor && (!usOnly || p.inUS))
+    .filter((p) => !p.minor && (country === 'all' || p.country === country))
     .map((p) => rankPlace(p, w))
     .filter((r) => r.known >= minKnown)
-    .sort((a, b) => (b.score ?? -1) - (a.score ?? -1) || b.known - a.known), [w, usOnly, minKnown])
+    .sort((a, b) => (b.score ?? -1) - (a.score ?? -1) || b.known - a.known), [w, country, minKnown])
 
   return (
     <div>
@@ -37,7 +37,7 @@ export default function Scorecard() {
             <button className="btn" onClick={() => setW(Object.fromEntries(CRITERIA.map((c) => [c.key, c.key === 'sichuan' || c.key === 'turkish' ? 5 : 1])) as Weights)}>Food first</button>
             <button className="btn" onClick={() => setW(Object.fromEntries(CRITERIA.map((c) => [c.key, ['acreage', 'mountains', 'lakes'].includes(c.key) ? 5 : 1])) as Weights)}>Land first</button>
           </div>
-          <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={usOnly} onChange={(e) => setUsOnly(e.target.checked)} /> US only (his rule)</label>
+          <label className="flex items-center gap-2 text-sm">Country <select className="input" value={country} onChange={(e) => setCountry(e.target.value as 'all' | 'US' | 'Canada')} aria-label="Country filter"><option value="all">US and Canada</option><option value="US">US only</option><option value="Canada">Canada only</option></select></label>
           <label className="block text-sm">Hide places with fewer than <b>{minKnown}</b> known criteria
             <input type="range" min={1} max={8} value={minKnown} onChange={(e) => setMinKnown(Number(e.target.value))} className="w-full accent-teal-700" aria-label="Minimum known criteria" />
           </label>

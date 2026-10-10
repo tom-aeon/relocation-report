@@ -2,7 +2,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { CRITERIA, PLACES, placeById, type Place } from '../data/places'
 import { MarkDot, MarkLegend, NotChecked, PageHeader, StatusBadge } from '../components/ui'
 
-const DEFAULT = ['forsyth', 'happy-valley', 'duvall']
+const DEFAULT = ['cantley', 'forsyth', 'happy-valley']
 
 export default function Compare() {
   const [params, setParams] = useSearchParams()
@@ -19,7 +19,7 @@ export default function Compare() {
     ...CRITERIA.map((c) => ({ label: c.label, render: (p: Place) => (
       <div className="flex items-start gap-2"><MarkDot score={p.scores[c.key]} size="sm" /><span className="text-xs text-slate-500">{p.scores[c.key]?.note ?? (p.scores[c.key] ? '' : 'not checked yet')}</span></div>
     ) })),
-    { label: 'In the US', render: (p) => <MarkDot score={{ mark: p.inUS ? 'pass' : 'fail', source: 'table' }} size="sm" /> },
+    { label: 'Country', render: (p) => p.country },
     { label: 'Mountains / lakes', render: (p) => p.mountainsLakes ?? <NotChecked /> },
     { label: 'Crime', render: (p) => p.crime ?? <NotChecked /> },
     { label: 'Schools', render: (p) => p.schools ?? <NotChecked /> },

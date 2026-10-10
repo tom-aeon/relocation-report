@@ -130,7 +130,7 @@ export default function PlaceDetail() {
                   <span><span className="font-medium">{c.label}</span>{p.scores[c.key]?.note && <span className="block text-xs text-slate-500">{p.scores[c.key]!.note}</span>}</span>
                 </li>
               ))}
-              <li className="flex items-center gap-2"><MarkDot score={{ mark: p.inUS ? 'pass' : 'fail', source: 'table' }} size="sm" /><span className="font-medium">In the US</span></li>
+              <li className="flex items-center gap-2 pl-8"><span className="font-medium">Country:</span> {p.country}</li>
             </ul>
             <div className="mt-4 text-xs"><MarkLegend /></div>
             <Link to={`/compare?ids=${p.id}`} className="btn mt-4">Compare this place →</Link>

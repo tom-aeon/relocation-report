@@ -3,14 +3,14 @@ import { CRITERIA, EXTRA_CRITERION, PLACES, REPORT, ROUNDS, placeById } from '..
 import { PlaceCard } from '../components/ui'
 
 export default function Home() {
-  const current = ['forsyth', 'happy-valley', 'duvall'].map((id) => placeById(id)!)
+  const current = ['cantley', 'forsyth', 'happy-valley', 'duvall'].map((id) => placeById(id)!)
   return (
     <div className="space-y-12">
       <section className="relative -mx-4 -mt-8 overflow-hidden px-4 py-14 text-white sm:rounded-b-3xl"
         style={{ background: 'linear-gradient(120deg,rgba(14,52,72,.9),rgba(31,111,139,.75)),url(assets/ga_lanier.jpg) center/cover' }}>
         <div className="mx-auto max-w-6xl">
           <h1 className="text-3xl font-bold tracking-tight sm:text-5xl">{REPORT.title}</h1>
-          <p className="mt-3 max-w-2xl text-lg opacity-95">An interactive explorer of the US relocation search so far: what he is looking for, which places made it, which didn’t, and why.</p>
+          <p className="mt-3 max-w-2xl text-lg opacity-95">An interactive explorer of the relocation search so far (US and Canada): what he is looking for, which places made it, which didn’t, and why.</p>
           <div className="mt-5 flex flex-wrap gap-2 text-sm">
             {[`Starting point: ${REPORT.startingPoint}`, `Report date: ${REPORT.reportDate}`, `Latest scout: ${REPORT.latestScout}`, `${PLACES.length} places tracked`, `${ROUNDS.length} search rounds`].map((t) => (
               <span key={t} className="rounded-full border border-white/35 bg-white/15 px-3 py-0.5">{t}</span>
@@ -27,7 +27,7 @@ export default function Home() {
       <section>
         <h2 className="mb-1 text-xl font-bold">Where things stand</h2>
         <p className="mb-4 text-slate-600 dark:text-slate-400">As of {REPORT.reportDate}. {REPORT.statusHeadline}</p>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {current.map((p) => <PlaceCard key={p.id} place={p} />)}
         </div>
         <div className="mt-4 rounded-2xl bg-gradient-to-br from-teal-800 to-sky-800 p-5 text-white">

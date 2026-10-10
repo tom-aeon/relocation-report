@@ -4,7 +4,7 @@ import { PLACES, ROUNDS, STATUS_META, consideredIn, isAliveIn, type Status } fro
 import { PageHeader, PlaceCard } from '../components/ui'
 import { useStore } from '../lib/store'
 
-const ALL: Status[] = ['best', 'parked', 'stretch', 'near-miss', 'dropped', 'canada-dropped']
+const ALL: Status[] = ['best', 'parked', 'stretch', 'near-miss', 'dropped']
 
 export default function Places() {
   const [params, setParams] = useSearchParams()
