@@ -37,7 +37,7 @@ export default function Scorecard() {
             <button className="btn" onClick={() => setW(Object.fromEntries(CRITERIA.map((c) => [c.key, c.key === 'sichuan' || c.key === 'turkish' ? 5 : 1])) as Weights)}>Food first</button>
             <button className="btn" onClick={() => setW(Object.fromEntries(CRITERIA.map((c) => [c.key, ['acreage', 'mountains', 'lakes'].includes(c.key) ? 5 : 1])) as Weights)}>Land first</button>
           </div>
-          <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={usOnly} onChange={(e) => setUsOnly(e.target.checked)} /> US only (Tom’s rule)</label>
+          <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={usOnly} onChange={(e) => setUsOnly(e.target.checked)} /> US only (his rule)</label>
           <label className="block text-sm">Hide places with fewer than <b>{minKnown}</b> known criteria
             <input type="range" min={1} max={8} value={minKnown} onChange={(e) => setMinKnown(Number(e.target.value))} className="w-full accent-teal-700" aria-label="Minimum known criteria" />
           </label>

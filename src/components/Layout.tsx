@@ -30,7 +30,7 @@ export default function Layout() {
         <div className="mx-auto flex h-14 max-w-6xl items-center gap-3 px-4">
           <NavLink to="/" className="mr-2 flex items-center gap-2 font-bold text-teal-700 dark:text-teal-400">
             <span className="grid h-7 w-7 place-items-center rounded-lg bg-teal-700 text-sm text-white">⛰</span>
-            Tom’s Move
+            The Move
           </NavLink>
           <nav className="hidden flex-1 items-center gap-1 lg:flex">
             {LINKS.map((l) => (

@@ -10,7 +10,7 @@ export default function Home() {
         style={{ background: 'linear-gradient(120deg,rgba(14,52,72,.9),rgba(31,111,139,.75)),url(assets/ga_lanier.jpg) center/cover' }}>
         <div className="mx-auto max-w-6xl">
           <h1 className="text-3xl font-bold tracking-tight sm:text-5xl">{REPORT.title}</h1>
-          <p className="mt-3 max-w-2xl text-lg opacity-95">An interactive explorer of the US relocation search so far: what Tom is looking for, which places made it, which didn’t, and why.</p>
+          <p className="mt-3 max-w-2xl text-lg opacity-95">An interactive explorer of the US relocation search so far: what he is looking for, which places made it, which didn’t, and why.</p>
           <div className="mt-5 flex flex-wrap gap-2 text-sm">
             {[`Starting point: ${REPORT.startingPoint}`, `Report date: ${REPORT.reportDate}`, `Latest scout: ${REPORT.latestScout}`, `${PLACES.length} places tracked`, `${ROUNDS.length} search rounds`].map((t) => (
               <span key={t} className="rounded-full border border-white/35 bg-white/15 px-3 py-0.5">{t}</span>
@@ -37,7 +37,7 @@ export default function Home() {
       </section>
 
       <section>
-        <h2 className="mb-1 text-xl font-bold">Tom’s checklist</h2>
+        <h2 className="mb-1 text-xl font-bold">The checklist</h2>
         <p className="mb-4 text-slate-600 dark:text-slate-400">Every place was judged against these. The food rule is what knocked out the most places.</p>
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {CRITERIA.map((c) => (

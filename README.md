@@ -1,4 +1,4 @@
-# Tom's Move — Relocation Explorer
+# The Move — Our Relocation Explorer
 
 Interactive React (Vite + TypeScript + Tailwind) explorer of the relocation research (report dated 10 Oct 2026).
 All data lives in `src/data/places.ts`.

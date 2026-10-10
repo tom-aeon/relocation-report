@@ -11,7 +11,7 @@ export default function Notes() {
   const ids = Array.from(new Set([...saved.favorites, ...Object.keys(saved.notes)])).filter((id) => placeById(id))
 
   const exportJson = () => {
-    const data = { app: 'toms-move-relocation-explorer', version: 1, exportedAt: new Date().toISOString(), ...saved }
+    const data = { app: 'the-move-relocation-explorer', version: 1, exportedAt: new Date().toISOString(), ...saved }
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
     const a = document.createElement('a')
     a.href = URL.createObjectURL(blob)

@@ -1,4 +1,4 @@
-// All facts below are taken from Tom's relocation report (report date 10 Oct 2026).
+// All facts below are taken from our relocation report (report date 10 Oct 2026).
 // Nothing here is invented: anything the report does not state is left undefined and
 // shown in the UI as "not checked yet". Coordinates are approximate area centroids
 // used only to place map markers; they are not research findings.
@@ -82,13 +82,13 @@ export interface Round {
 }
 
 export const REPORT = {
-  title: 'Where should Tom live next?',
+  title: 'Where should we live next?',
   reportDate: '10 Oct 2026',
   latestScout: '30 Sep 2026',
   startingPoint: 'Coral Springs, FL',
   currentLot: '~0.22 acre',
   budget: '~$680–720K (roughly Coral Springs house money)',
-  statusHeadline: 'Tom asked to keep hunting for more US places.',
+  statusHeadline: 'He asked to keep hunting for more US places.',
   keyInsight:
     'The hardest part is finding 2+ Sichuan and 2+ Turkish restaurants within ~40 minutes of affordable mountain-and-lake acreage. Land, scenery and safety are much easier to find than the food.',
   disclaimer:
@@ -187,9 +187,9 @@ export const PLACES: Place[] = [
     short: 'Happy Valley / W. Damascus, OR',
     country: 'US',
     status: 'parked',
-    statusLabel: 'Parked at Tom’s request',
+    statusLabel: 'Parked at his request',
     firstRound: 5,
-    summary: 'The cleanest full-stack hit of the US search, and it beat Duvall head-to-head. Tom said he isn’t sure about Oregon, so it’s on hold rather than ruled out.',
+    summary: 'The cleanest full-stack hit of the US search, and it beat Duvall head-to-head. He said he isn’t sure about Oregon, so it’s on hold rather than ruled out.',
     lat: 45.43, lng: -122.47,
     listings: [{ description: '~2 acres (typical range, no specific listing in the report)', price: '~$475–620K' }],
     infrastructure: 'PDX ~25–30 min',
@@ -261,8 +261,8 @@ export const PLACES: Place[] = [
     statusLabel: 'Was #1 · dropped (Canada)',
     firstRound: 2,
     cutRound: 5,
-    cutReason: 'Ranked #1 in the round 4 three-way comparison, then set aside when Tom decided to stay in the US.',
-    summary: 'The only place with a genuine multi-restaurant Sichuan and Turkish scene in rounds 3–4 (thanks to Ottawa). Set aside when Tom decided to stay in the US.',
+    cutReason: 'Ranked #1 in the round 4 three-way comparison, then set aside when he decided to stay in the US.',
+    summary: 'The only place with a genuine multi-restaurant Sichuan and Turkish scene in rounds 3–4 (thanks to Ottawa). Set aside when he decided to stay in the US.',
     lat: 45.56, lng: -75.79,
     listings: [{ description: 'Cantley ~3.38 acres', price: '~$570K CAD (~$410K USD)', }],
     mountainsLakes: 'Gatineau Park; Meech and Philippe lakes',
@@ -666,16 +666,16 @@ export const ROUNDS: Round[] = [
   },
   {
     n: 4, title: 'Three-way comparison',
-    summary: '#1 Chelsea/Cantley QC, #2 Golden CO, #3 Draper/Alpine-Highland UT. Tom then chose to stay in the US.',
+    summary: '#1 Chelsea/Cantley QC, #2 Golden CO, #3 Draper/Alpine-Highland UT. He then chose to stay in the US.',
     added: ['golden', 'draper'],
     cut: [],
   },
   {
     n: 5, title: 'US-only search',
-    summary: 'Happy Valley OR came out as the cleanest full-stack hit and beat Duvall WA head-to-head. Tom isn’t sure about Oregon, so it’s parked.',
+    summary: 'Happy Valley OR came out as the cleanest full-stack hit and beat Duvall WA head-to-head. He isn’t sure about Oregon, so it’s parked.',
     added: ['happy-valley', 'duvall'],
     cut: ['cantley', 'golden', 'draper'],
-    note: 'Chelsea/Cantley was dropped because Tom chose to stay in the US; Golden and Draper were set aside after round 4.',
+    note: 'Chelsea/Cantley was dropped because he chose to stay in the US; Golden and Draper were set aside after round 4.',
   },
   {
     n: 6, title: 'Latest scout', date: '30 Sep 2026',
