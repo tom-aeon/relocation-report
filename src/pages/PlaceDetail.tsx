@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { CRITERIA, ROUNDS, placeById, type Restaurant } from '../data/places'
+import { BUYING_IN_CANADA, CRITERIA, ROUNDS, placeById, type Restaurant, type Retail, type RetailStop } from '../data/places'
 import { FavButton, MarkDot, MarkLegend, NotChecked, StatusBadge } from '../components/ui'
 import { useStore } from '../lib/store'
 
@@ -22,14 +22,58 @@ function FoodList({ title, items }: { title: string; items: Restaurant[] }) {
           {items.map((r) => (
             <li key={r.name} className={r.status === 'closed' ? 'line-through opacity-60' : ''}>
               <b>{r.name}</b>{r.area ? `, ${r.area}` : ''} · {r.driveText ?? <NotChecked text="drive time not checked yet" />}
+              {r.address && <span className="block text-xs text-slate-500">{r.address}</span>}
               {r.status === 'closed' && <span className="ml-1 rounded bg-red-100 px-1.5 text-xs text-red-700 no-underline dark:bg-red-900/50 dark:text-red-300">closed</span>}
               {r.status === 'caveat' && <span className="ml-1 rounded bg-amber-100 px-1.5 text-xs text-amber-800 dark:bg-amber-900/50 dark:text-amber-300">caveat</span>}
               {r.note && <span className="block text-xs text-slate-500">{r.note}</span>}
+              {r.openEvidence && <span className="block text-xs italic text-slate-400">Open evidence: {r.openEvidence}</span>}
             </li>
           ))}
         </ul>
       )}
     </div>
+  )
+}
+
+function RetailGroup({ title, stops }: { title: string; stops: RetailStop[] }) {
+  return (
+    <div>
+      <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">{title}</div>
+      {stops.length === 0 ? <NotChecked /> : (
+        <ul className="mt-1 space-y-1.5 text-sm">
+          {stops.map((s, i) => (
+            <li key={s.name + s.address} className={`flex items-start gap-2 ${i > 0 ? 'opacity-75' : ''}`}>
+              <MarkDot score={{ mark: s.mark, source: 'table' }} size="sm" />
+              <span><b>{s.name}</b> · {s.driveText}{i === 0 && <span className="ml-1 rounded bg-slate-100 px-1 text-[10px] uppercase dark:bg-slate-800">nearest</span>}
+                <span className="block text-xs text-slate-500">{s.address}{s.source && (s.source.startsWith('http') ? <> · <a className="underline" href={s.source} target="_blank" rel="noreferrer">source</a></> : ` · ${s.source}`)}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
+}
+
+function RetailSection({ retail }: { retail?: Retail }) {
+  return (
+    <section className="card p-5">
+      <div className="mb-3 flex flex-wrap items-center gap-2">
+        <h2 className="font-semibold">Everyday retail</h2>
+        {retail && <MarkDot score={{ mark: retail.overall, source: 'table' }} size="sm" />}
+        {retail && <span className="text-xs text-slate-500">overall · checked {retail.checked}</span>}
+      </div>
+      {!retail ? <NotChecked /> : (
+        <>
+          <div className="grid gap-4 sm:grid-cols-3">
+            <RetailGroup title="Coffee chain" stops={retail.coffee} />
+            <RetailGroup title="Big box" stops={retail.bigBox} />
+            <RetailGroup title="Home improvement" stops={retail.hardware} />
+          </div>
+          <p className="mt-3 text-xs text-slate-500">From: {retail.base}. {retail.method} Good ≤ ~25 min, partial 25–35, fail &gt; 35. Overall = the weakest of the three.</p>
+        </>
+      )}
+    </section>
   )
 }
 
@@ -82,12 +126,13 @@ export default function PlaceDetail() {
         <div className="space-y-6 lg:col-span-2">
           <section className="card p-5">
             <h2 className="mb-3 font-semibold">Example listing(s)</h2>
+            {p.homeBase && <p className="mb-2 text-xs text-slate-500">Home base for drive times: {p.homeBase}</p>}
             {p.listings.length === 0 ? <NotChecked /> : (
               <ul className="space-y-2">
                 {p.listings.map((l) => (
                   <li key={l.description} className="rounded-lg bg-slate-50 p-3 text-sm dark:bg-slate-800/60">
                     <b>{l.description}</b> — {l.price}
-                    <div className="text-xs text-slate-500">{l.asOf ? `As of ${l.asOf}. ` : 'No as-of date in the report. '}{l.note ?? ''} Re-verify before acting.</div>
+                    <div className="text-xs text-slate-500">{l.asOf ? `As of ${l.asOf}. ` : 'No as-of date in the report. '}{l.note ?? ''} Re-verify before acting.{l.source && <> · <a className="underline" href={l.source} target="_blank" rel="noreferrer">listing source</a></>}</div>
                   </li>
                 ))}
               </ul>
@@ -101,8 +146,19 @@ export default function PlaceDetail() {
             <Field label="Climate" value={p.climate} />
             <Field label="Taxes" value={p.taxes} />
             <Field label="Risks / hazards" value={p.risks} />
+            <Field label="Museums" value={p.museums} />
+            <Field label="Wildlife" value={p.wildlifeText} />
             {p.otherFacts.map((f) => <Field key={f.label} label={f.label} value={f.value} />)}
           </section>
+          {p.country === 'Canada' && !p.minor && (
+            <section className="rounded-2xl border border-red-200 bg-red-50 p-5 text-sm dark:border-red-900 dark:bg-red-950/30">
+              <h2 className="mb-2 font-semibold">Buying in Canada</h2>
+              <ul className="list-disc space-y-1 pl-5">{BUYING_IN_CANADA.map((x) => <li key={x}>{x}</li>)}</ul>
+              {p.foreignBuyer && <p className="mt-2"><b>For this place:</b> {p.foreignBuyer}</p>}
+              {p.province === 'ON' ? null : <p className="mt-2 text-xs text-slate-500">Quebec has its own rules (immigration via PSTQ); the Ontario NRST does not apply in Quebec.</p>}
+            </section>
+          )}
+          <RetailSection retail={p.retail} />
           <section className="grid gap-4 sm:grid-cols-2">
             <FoodList title="Sichuan" items={p.restaurants.filter((r) => r.cuisine === 'Sichuan')} />
             <FoodList title="Turkish" items={p.restaurants.filter((r) => r.cuisine === 'Turkish')} />

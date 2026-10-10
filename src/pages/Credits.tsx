@@ -24,6 +24,7 @@ export default function Credits() {
         <h2 className="font-semibold">About the data</h2>
         <p>{REPORT.disclaimer}</p>
         <p>Everything here comes from the relocation report dated {REPORT.reportDate}. Anything the report doesn’t state is shown as “not checked yet” rather than guessed. Map markers sit at approximate area centres and are not research findings.</p>
+        <p>Ontario places come from the 10 Oct 2026 Ontario scout. Everyday-retail stops (coffee chain, big box, home improvement) were checked on 10 Oct 2026 from store-locator and listing pages plus OpenStreetMap, with OSRM free-flow drive times: good ≤ ~25 min, partial 25–35, fail &gt; 35.</p>
         <p>Checklist marks (✓ / ~ / ✗) come from the report’s comparison table. Marks with a blue dot are read from the report’s text about that place. Scorecard: pass = 3, partial = 1.5, fail = 0; unknown criteria are excluded from a place’s average.</p>
       </section>
     </div>

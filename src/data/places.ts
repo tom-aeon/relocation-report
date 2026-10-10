@@ -3,15 +3,18 @@
 // shown in the UI as "not checked yet". Coordinates are approximate area centroids
 // used only to place map markers; they are not research findings.
 
-export type Status = 'best' | 'parked' | 'stretch' | 'near-miss' | 'dropped'
+import { ONTARIO_PLACES, ONTARIO_CUT_IDS } from './ontario'
+import { RETAIL } from './retail'
+
+export type Status = 'best' | 'live' | 'parked' | 'stretch' | 'near-miss' | 'dropped'
 export type Mark = 'pass' | 'partial' | 'fail' | 'unknown'
 export type CriterionKey =
   | 'seasons' | 'crime' | 'acreage' | 'mountains' | 'lakes' | 'wildlife'
-  | 'schools' | 'museums' | 'infrastructure' | 'sichuan' | 'turkish'
+  | 'schools' | 'museums' | 'infrastructure' | 'sichuan' | 'turkish' | 'retail'
 
 export interface Score {
   mark: Mark
-  /** 'table' = the report's comparison-table mark; 'derived' = read from the report's text for that place */
+  /** 'table' = an explicit mark from the research (report table or scout); 'derived' = read from the research text for that place */
   source: 'table' | 'derived'
   note?: string
 }
@@ -20,17 +23,40 @@ export interface Restaurant {
   name: string
   cuisine: 'Sichuan' | 'Turkish'
   area?: string
+  address?: string
   driveText?: string
   /** Upper bound of the drive estimate in minutes (free-flow, no traffic) when the report gives one */
   driveMin?: number
   status: 'counted' | 'closed' | 'caveat'
   note?: string
+  openEvidence?: string
 }
 
 export interface Listing {
   description: string
   price: string
   asOf?: string
+  note?: string
+  source?: string
+}
+
+export interface RetailStop {
+  name: string
+  address: string
+  driveMin: number
+  driveText: string
+  mark: Mark
+  source?: string
+}
+export interface Retail {
+  /** Where drive times were measured from */
+  base: string
+  checked: string
+  method: string
+  coffee: RetailStop[]
+  bigBox: RetailStop[]
+  hardware: RetailStop[]
+  overall: Mark
   note?: string
 }
 
@@ -62,6 +88,12 @@ export interface Place {
   climate?: string
   taxes?: string
   risks?: string
+  museums?: string
+  wildlifeText?: string
+  foreignBuyer?: string
+  homeBase?: string
+  province?: string
+  retail?: Retail
   otherFacts: Fact[]
   restaurants: Restaurant[]
   pros: string[]
@@ -88,7 +120,7 @@ export const REPORT = {
   startingPoint: 'Coral Springs, FL',
   currentLot: '~0.22 acre',
   budget: '~$680–720K (roughly Coral Springs house money)',
-  statusHeadline: 'He asked to keep hunting for more places. Canada is back in as of 10 Oct 2026, so Chelsea/Cantley, QC is a top live option again.',
+  statusHeadline: 'He asked to keep hunting for more places. Canada is back in as of 10 Oct 2026: Chelsea/Cantley, QC and Carp/Huntley, ON (West Carleton, Ottawa) are top live options, and Dunrobin/Constance Bay, ON also passes.',
   canadaBack: '10 Oct 2026',
   keyInsight:
     'The hardest part is finding 2+ Sichuan and 2+ Turkish restaurants within ~40 minutes of affordable mountain-and-lake acreage. Land, scenery and safety are much easier to find than the food.',
@@ -110,22 +142,24 @@ export const CRITERIA: Criterion[] = [
   { key: 'infrastructure', label: 'Good infrastructure', detail: 'Airport, hospital, broadband.' },
   { key: 'sichuan', label: '2+ real Sichuan', detail: 'Within a ~35–40 min weeknight drive. Real Sichuan = mapo, dan dan, mala, hot pot.', hard: true },
   { key: 'turkish', label: '2+ real Turkish', detail: 'Within a ~35–40 min weeknight drive. Real Turkish = pide, lahmacun, kebab, Iskender. Gyro-only or daytime-only cafes don’t count.', hard: true },
+  { key: 'retail', label: 'Everyday retail', detail: 'A Starbucks (or similar coffee chain), a big box (Target, Walmart, Costco; in Canada Walmart, Costco or Canadian Tire) and a Home Depot (or Lowe’s, RONA). Good ≤ ~25 min, partial 25–35, fail > 35 (free-flow).' },
 ]
 
 export const EXTRA_CRITERION = { label: 'US or Canada', detail: 'Both countries are in play. The search briefly focused on the US; Canada is back in as of 10 Oct 2026.' }
 
 export const STATUS_META: Record<Status, { label: string; color: string; badge: string }> = {
   best: { label: 'Top live option', color: '#16a34a', badge: 'bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300' },
+  live: { label: 'Live · passes', color: '#0d9488', badge: 'bg-teal-100 text-teal-800 dark:bg-teal-900/50 dark:text-teal-300' },
   parked: { label: 'Parked', color: '#d97706', badge: 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300' },
   stretch: { label: 'Stretch', color: '#7c3aed', badge: 'bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-300' },
   'near-miss': { label: 'Near-miss', color: '#0284c7', badge: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300' },
   dropped: { label: 'Dropped', color: '#64748b', badge: 'bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-300' },
 }
 
-const T = (mark: Mark, note?: string): Score => ({ mark, source: 'table', note })
-const D = (mark: Mark, note: string): Score => ({ mark, source: 'derived', note })
+export const T = (mark: Mark, note?: string): Score => ({ mark, source: 'table', note })
+export const D = (mark: Mark, note: string): Score => ({ mark, source: 'derived', note })
 
-const minor = (
+export const minor = (
   id: string, name: string, short: string, round: number, reason: string,
   lat: number, lng: number, country: 'US' | 'Canada' = 'US', coordNote?: string,
 ): Place => ({
@@ -631,7 +665,14 @@ export const PLACES: Place[] = [
   minor('bend', 'Bend, Oregon', 'Bend, OR', 6, ROUND6_FOOD, 44.058, -121.315),
   minor('tacoma', 'Tacoma / Puyallup / Olympia, Washington', 'Tacoma / Puyallup / Olympia, WA', 6, ROUND6_FOOD, 47.15, -122.6),
   minor('huntsville', 'Huntsville, Alabama', 'Huntsville, AL', 6, 'Cut in the 30 Sep 2026 scout for weak mountains.', 34.73, -86.586),
+  ...ONTARIO_PLACES,
 ]
+
+// Retail findings (10 Oct 2026)
+for (const p of PLACES) {
+  const rt = RETAIL[p.id]
+  if (rt) { p.retail = rt; p.scores.retail = { mark: rt.overall, source: 'table', note: rt.note } }
+}
 
 // Minor round-6 cuts: the report says these were killed on food
 for (const p of PLACES) {
@@ -682,6 +723,13 @@ export const ROUNDS: Round[] = [
     cut: ['maryville', 'elizabeth', 'boise', 'colorado-springs', 'chattanooga', 'bellingham', 'ogden', 'nw-arkansas', 'greenville', 'bend', 'tacoma', 'huntsville'],
     note: 'All struck in this round were killed on food, except Huntsville (weak mountains). Maryville, Elizabeth and Boise were near-misses. As of 10 Oct 2026 Canada is back in, so Chelsea/Cantley is live alongside East Forsyth.',
   },
+  {
+    n: 7, title: 'Ontario scout', date: '10 Oct 2026',
+    summary: 'With Canada back in, Ontario was scouted. Carp/Huntley (West Carleton, Ottawa) is a top live option; Dunrobin/Constance Bay passes with a flood caveat. North Gower, Rural Flamborough and Oro-Medonte are near-misses. Everyday retail was added as a criterion the same day.',
+    added: ['on-carp-huntley', 'on-dunrobin'],
+    cut: ['on-north-gower', 'on-flamborough', 'on-oro-medonte', ...ONTARIO_CUT_IDS],
+    note: 'Ontario avoids Quebec’s PSTQ and Bill 96 issues, but the federal foreign-buyer ban (to 1 Jan 2027) covers the Ottawa and Hamilton CMAs, and Ontario’s 25% NRST applies unless he is a permanent resident.',
+  },
 ]
 
 export const CREDITS: string[] = [
@@ -691,6 +739,13 @@ export const CREDITS: string[] = [
   'Lookout Mountain Park, Golden CO — Hustvedt, CC BY-SA 3.0',
   'Eardley Escarpment, Gatineau Park — cjuneau, CC BY 2.0',
   'Coeur d’Alene, Hayden Lake, Lake George, Lake Winnipesaukee, Meredith, Smith Mountain Lake, Salem VA, Collingwood (aerial), Georgian Bay, Blue Mountain, and the area maps — Wikimedia Commons contributors (see each file’s Commons page for author and licence)',
+]
+
+export const BUYING_IN_CANADA = [
+  'The federal foreign-buyer ban runs to 1 Jan 2027 and applies inside census metropolitan areas, including Ottawa and Hamilton (no further extension announced as of Oct 2026).',
+  'Ontario’s 25% non-resident speculation tax (NRST) is waived for permanent residents.',
+  'Practical order: get permanent residency first, then buy.',
+  'Ontario’s 2026 top combined income-tax rate is 53.53% (Quebec’s is ~53%).',
 ]
 
 export const placeById = (id: string) => PLACES.find((p) => p.id === id)

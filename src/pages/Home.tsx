@@ -3,7 +3,7 @@ import { CRITERIA, EXTRA_CRITERION, PLACES, REPORT, ROUNDS, placeById } from '..
 import { PlaceCard } from '../components/ui'
 
 export default function Home() {
-  const current = ['cantley', 'forsyth', 'happy-valley', 'duvall'].map((id) => placeById(id)!)
+  const current = ['cantley', 'on-carp-huntley', 'forsyth', 'on-dunrobin', 'happy-valley', 'duvall'].map((id) => placeById(id)!)
   return (
     <div className="space-y-12">
       <section className="relative -mx-4 -mt-8 overflow-hidden px-4 py-14 text-white sm:rounded-b-3xl"
@@ -27,7 +27,7 @@ export default function Home() {
       <section>
         <h2 className="mb-1 text-xl font-bold">Where things stand</h2>
         <p className="mb-4 text-slate-600 dark:text-slate-400">As of {REPORT.reportDate}. {REPORT.statusHeadline}</p>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {current.map((p) => <PlaceCard key={p.id} place={p} />)}
         </div>
         <div className="mt-4 rounded-2xl bg-gradient-to-br from-teal-800 to-sky-800 p-5 text-white">

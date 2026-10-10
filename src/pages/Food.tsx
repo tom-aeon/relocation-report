@@ -53,7 +53,7 @@ export default function Food() {
               <tr key={`${r.place.id}-${r.name}`} className={`border-t border-slate-100 dark:border-slate-800 ${r.status === 'closed' ? 'opacity-60' : ''}`}>
                 <td className={`p-3 font-medium ${r.status === 'closed' ? 'line-through' : ''}`}>{r.name}{r.note && <span className="block text-xs font-normal text-slate-500 no-underline">{r.note}</span>}</td>
                 <td className="p-3"><span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${r.cuisine === 'Sichuan' ? 'bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300' : 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300'}`}>{r.cuisine}</span></td>
-                <td className="p-3">{r.area ?? <NotChecked />}</td>
+                <td className="p-3">{r.area ?? r.address ?? <NotChecked />}</td>
                 <td className="p-3 tabular-nums">{r.driveText ?? <NotChecked />}</td>
                 <td className="p-3"><Link to={`/places/${r.place.id}`} className="flex items-center gap-1.5 hover:underline"><span className="h-2.5 w-2.5 rounded-full" style={{ background: STATUS_META[r.place.status].color }} />{r.place.short}</Link></td>
                 <td className="p-3">

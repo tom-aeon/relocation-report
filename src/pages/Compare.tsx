@@ -2,7 +2,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { CRITERIA, PLACES, placeById, type Place } from '../data/places'
 import { MarkDot, MarkLegend, NotChecked, PageHeader, StatusBadge } from '../components/ui'
 
-const DEFAULT = ['cantley', 'forsyth', 'happy-valley']
+const DEFAULT = ['cantley', 'on-carp-huntley', 'forsyth']
 
 export default function Compare() {
   const [params, setParams] = useSearchParams()
@@ -20,9 +20,15 @@ export default function Compare() {
       <div className="flex items-start gap-2"><MarkDot score={p.scores[c.key]} size="sm" /><span className="text-xs text-slate-500">{p.scores[c.key]?.note ?? (p.scores[c.key] ? '' : 'not checked yet')}</span></div>
     ) })),
     { label: 'Country', render: (p) => p.country },
+    { label: 'Retail: coffee', render: (p) => retail(p, 'coffee') },
+    { label: 'Retail: big box', render: (p) => retail(p, 'bigBox') },
+    { label: 'Retail: hardware', render: (p) => retail(p, 'hardware') },
+    { label: 'Buying (Canada)', render: (p) => p.country === 'Canada' ? (p.foreignBuyer ?? 'See the Buying in Canada note on the place page.') : '—' },
     { label: 'Mountains / lakes', render: (p) => p.mountainsLakes ?? <NotChecked /> },
     { label: 'Crime', render: (p) => p.crime ?? <NotChecked /> },
     { label: 'Schools', render: (p) => p.schools ?? <NotChecked /> },
+    { label: 'Museums', render: (p) => p.museums ?? <NotChecked /> },
+    { label: 'Wildlife', render: (p) => p.wildlifeText ?? <NotChecked /> },
     { label: 'Infrastructure', render: (p) => p.infrastructure ?? <NotChecked /> },
     { label: 'Climate', render: (p) => p.climate ?? <NotChecked /> },
     { label: 'Taxes', render: (p) => p.taxes ?? <NotChecked /> },
@@ -77,6 +83,12 @@ export default function Compare() {
       <div className="mt-4 text-xs"><MarkLegend /></div>
     </div>
   )
+}
+
+function retail(p: Place, k: 'coffee' | 'bigBox' | 'hardware') {
+  const s = p.retail?.[k]?.[0]
+  if (!s) return <NotChecked />
+  return <div className="flex items-start gap-2"><MarkDot score={{ mark: s.mark, source: 'table' }} size="sm" /><span>{s.name} · {s.driveText}<span className="block text-xs text-slate-500">{s.address}</span></span></div>
 }
 
 function list(p: Place, cuisine: 'Sichuan' | 'Turkish') {
