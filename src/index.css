@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+html { scroll-behavior: smooth; }
+body { @apply bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-200 antialiased; }
+.card { @apply rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900; }
+.btn { @apply inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700; }
+.btn-primary { @apply inline-flex items-center gap-1.5 rounded-lg bg-teal-700 px-3 py-1.5 text-sm font-medium text-white hover:bg-teal-800; }
+.input { @apply rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm dark:border-slate-700 dark:bg-slate-900; }
+.leaflet-container { font: inherit; }
+.dark .leaflet-tile { filter: brightness(0.75) invert(1) contrast(0.85) hue-rotate(200deg) saturate(0.4) brightness(0.9); }
