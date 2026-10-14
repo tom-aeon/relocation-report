@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
-import { CRITERIA, EXTRA_CRITERION, PLACES, REPORT, ROUNDS, placeById } from '../data/places'
+import { CRITERIA, CURRENT_STATUSES, EXTRA_CRITERION, PLACES, REPORT, ROUNDS, STATUS_META, STATUS_ORDER, currentHeadline, currentPlaces, statusCounts } from '../data/places'
 import { PlaceCard } from '../components/ui'
 
 export default function Home() {
-  const current = ['cantley', 'on-carp-huntley', 'forsyth', 'on-dunrobin', 'happy-valley', 'duvall'].map((id) => placeById(id)!)
+  const current = currentPlaces()
+  const counts = statusCounts()
   return (
     <div className="space-y-12">
       <section className="relative -mx-4 -mt-8 overflow-hidden px-4 py-14 text-white sm:rounded-b-3xl"
@@ -26,9 +27,18 @@ export default function Home() {
 
       <section>
         <h2 className="mb-1 text-xl font-bold">Where things stand</h2>
-        <p className="mb-4 text-slate-600 dark:text-slate-400">As of {REPORT.reportDate}. {REPORT.statusHeadline}</p>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {current.map((p) => <PlaceCard key={p.id} place={p} />)}
+        <p className="mb-2 text-slate-600 dark:text-slate-400" data-testid="home-headline">{REPORT.statusContext} {currentHeadline()}</p>
+        <div className="mb-4 flex flex-wrap gap-2 text-sm">
+          {STATUS_ORDER.map((s) => (
+            <Link key={s} to={`/places?s=${s}`} data-testid={`home-count-${s}`} data-count={counts[s]}
+              className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-0.5 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:hover:bg-slate-800">
+              <span className="h-2.5 w-2.5 rounded-full" style={{ background: STATUS_META[s].color }} />{STATUS_META[s].label} <b>{counts[s]}</b>
+            </Link>
+          ))}
+          <Link to={`/places?s=${CURRENT_STATUSES.join(',')}`} className="text-teal-700 underline dark:text-teal-400">See current options in Places →</Link>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" data-testid="home-current" data-count={current.length}>
+          {current.map((p) => <div key={p.id} data-testid="home-current-card" data-id={p.id} data-status={p.status} className="contents"><PlaceCard place={p} /></div>)}
         </div>
         <div className="mt-4 rounded-2xl bg-gradient-to-br from-teal-800 to-sky-800 p-5 text-white">
           <div className="text-xs font-bold uppercase tracking-wider opacity-80">Key insight · food is the bottleneck</div>

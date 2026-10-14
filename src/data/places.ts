@@ -122,7 +122,8 @@ export const REPORT = {
   startingPoint: 'Coral Springs, FL',
   currentLot: '~0.22 acre',
   budget: '~$680–720K (roughly Coral Springs house money)',
-  statusHeadline: 'He asked to keep hunting for more places. Canada is back in as of 10 Oct 2026: Chelsea/Cantley, QC and Carp/Huntley, ON (West Carleton, Ottawa) are top live options, and Dunrobin/Constance Bay, ON also passes.',
+  // The 'where things stand' headline is computed from place statuses (see currentHeadline); only context lives here.
+  statusContext: 'He asked to keep hunting for more places. Canada is back in as of 10 Oct 2026.',
   canadaBack: '10 Oct 2026',
   keyInsight:
     'The hardest part is finding 2+ Sichuan and 2+ Turkish restaurants within ~40 minutes of affordable mountain-and-lake acreage. Land, scenery and safety are much easier to find than the food.',
@@ -754,6 +755,28 @@ export const BUYING_IN_CANADA = [
   'Practical order: get permanent residency first, then buy.',
   'Ontario’s 2026 top combined income-tax rate is 53.53% (Quebec’s is ~53%).',
 ]
+
+/** Single source of truth for status order everywhere (home, places, map, compare, scorecard). */
+export const STATUS_ORDER: Status[] = ['best', 'live', 'stretch', 'parked', 'near-miss', 'other', 'dropped']
+/** Statuses that count as a current option on the home page. */
+export const CURRENT_STATUSES: Status[] = ['best', 'live', 'stretch', 'parked']
+
+const rank = (s: Status) => STATUS_ORDER.indexOf(s)
+export const byStatus = (a: Place, b: Place) => rank(a.status) - rank(b.status)
+export const currentPlaces = (list: Place[] = PLACES) => list.filter((p) => CURRENT_STATUSES.includes(p.status)).sort(byStatus)
+export function statusCounts(list: Place[] = PLACES): Record<Status, number> {
+  const c = Object.fromEntries(STATUS_ORDER.map((s) => [s, 0])) as Record<Status, number>
+  for (const p of list) c[p.status]++
+  return c
+}
+export function currentHeadline(list: Place[] = PLACES): string {
+  const cur = currentPlaces(list)
+  const parts = CURRENT_STATUSES.map((s) => {
+    const names = cur.filter((p) => p.status === s).map((p) => p.short)
+    return names.length ? `${STATUS_META[s].label.toLowerCase()}: ${names.join(', ')}` : null
+  }).filter(Boolean)
+  return `${cur.length} current options — ${parts.join('; ')}.`
+}
 
 export const placeById = (id: string) => PLACES.find((p) => p.id === id)
 

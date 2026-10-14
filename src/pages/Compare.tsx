@@ -1,8 +1,8 @@
 import { Link, useSearchParams } from 'react-router-dom'
-import { CRITERIA, PLACES, placeById, type Place } from '../data/places'
+import { CRITERIA, PLACES, byStatus, currentPlaces, placeById, type Place } from '../data/places'
 import { MarkDot, MarkLegend, NotChecked, PageHeader, StatusBadge } from '../components/ui'
 
-const DEFAULT = ['cantley', 'on-carp-huntley', 'forsyth']
+const DEFAULT = currentPlaces().slice(0, 3).map((p) => p.id)
 
 export default function Compare() {
   const [params, setParams] = useSearchParams()
@@ -10,7 +10,7 @@ export default function Compare() {
   const ids = (raw ? raw.split(',') : DEFAULT).filter((id) => placeById(id)).slice(0, 3)
   const places = ids.map((id) => placeById(id)!) as Place[]
   const setIds = (next: string[]) => setParams({ ids: next.join(',') }, { replace: true })
-  const options = [...PLACES].sort((a, b) => Number(!!a.minor) - Number(!!b.minor))
+  const options = [...PLACES].sort((a, b) => Number(!!a.minor) - Number(!!b.minor) || byStatus(a, b))
 
   const rows: { label: string; render: (p: Place) => React.ReactNode }[] = [
     { label: 'Status', render: (p) => <StatusBadge status={p.status} label={p.statusLabel} /> },

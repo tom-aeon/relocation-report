@@ -2,10 +2,10 @@ import { useMemo } from 'react'
 import { useNavigate, useSearchParams, Link } from 'react-router-dom'
 import { MapContainer, TileLayer, CircleMarker, Tooltip } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-import { OTHER_MEANING, PLACES, ROUNDS, STATUS_META, isAliveIn, consideredIn, type Status } from '../data/places'
+import { OTHER_MEANING, PLACES, ROUNDS, STATUS_META, STATUS_ORDER, isAliveIn, consideredIn, type Status } from '../data/places'
 import { PageHeader } from '../components/ui'
 
-const ALL: Status[] = ['best', 'live', 'parked', 'stretch', 'near-miss', 'dropped', 'other']
+const ALL: Status[] = STATUS_ORDER
 
 export default function MapPage() {
   const nav = useNavigate()

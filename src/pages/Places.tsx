@@ -1,10 +1,10 @@
 import { useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { OTHER_MEANING, PLACES, ROUNDS, STATUS_META, consideredIn, isAliveIn, type Status } from '../data/places'
+import { OTHER_MEANING, PLACES, ROUNDS, STATUS_META, STATUS_ORDER, byStatus, consideredIn, isAliveIn, statusCounts, type Place, type Status } from '../data/places'
 import { PageHeader, PlaceCard } from '../components/ui'
 import { useStore } from '../lib/store'
 
-const ALL: Status[] = ['best', 'live', 'parked', 'stretch', 'near-miss', 'dropped', 'other']
+const ALL: Status[] = STATUS_ORDER
 
 export default function Places() {
   const [params, setParams] = useSearchParams()
@@ -26,18 +26,20 @@ export default function Places() {
     set('s', next.length === ALL.length ? null : next.join(','))
   }
 
-  const list = useMemo(() => {
+  // Every filter except status; status chip counts are computed from this so they always match the list
+  const base = useMemo(() => {
     const needle = q.trim().toLowerCase()
-    return PLACES.filter((p) => {
-      if (!statuses.includes(p.status)) return false
+    return PLACES.filter((p: Place) => {
       if (favOnly && !saved.favorites.includes(p.id)) return false
       if (!showMinor && p.minor) return false
       if (round && !(roundMode === 'alive' ? isAliveIn(p, round) : consideredIn(p, round))) return false
       if (!needle) return true
       const hay = [p.name, p.short, p.summary, p.statusLabel, p.cutReason, ...p.restaurants.map((r) => `${r.name} ${r.area ?? ''}`), ...p.pros, ...p.cons, saved.notes[p.id] ?? ''].join(' ').toLowerCase()
       return hay.includes(needle)
-    })
-  }, [q, statuses, favOnly, showMinor, round, roundMode, saved])
+    }).sort(byStatus)
+  }, [q, favOnly, showMinor, round, roundMode, saved])
+  const counts = statusCounts(base)
+  const list = base.filter((p) => statuses.includes(p.status))
 
   return (
     <div>
@@ -63,7 +65,7 @@ export default function Places() {
               <button key={s} onClick={() => toggleStatus(s)} aria-pressed={on}
                 className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-sm transition ${on ? 'border-slate-300 bg-white dark:border-slate-600 dark:bg-slate-800' : 'border-dashed border-slate-300 opacity-50 dark:border-slate-700'}`}>
                 <span className="h-2.5 w-2.5 rounded-full" style={{ background: STATUS_META[s].color }} />{STATUS_META[s].label}
-                <span className="text-xs text-slate-500">{PLACES.filter((p) => p.status === s).length}</span>
+                <span className="text-xs text-slate-500" data-testid={`places-count-${s}`} data-count={counts[s]}>{counts[s]}</span>
               </button>
             )
           })}
@@ -72,9 +74,9 @@ export default function Places() {
         </div>
       </div>
       <p className="mb-1 text-xs text-slate-500"><span className="mr-1 inline-block h-2.5 w-2.5 rounded-full" style={{ background: STATUS_META.other.color }} />{OTHER_MEANING}</p>
-      <p className="mb-3 text-sm text-slate-500">{list.length} of {PLACES.length} places{round ? ` · round ${round} (${roundMode === 'alive' ? 'alive after it' : 'considered in it'})` : ''}</p>
+      <p className="mb-3 text-sm text-slate-500" data-testid="places-total" data-count={list.length}>{list.length} of {PLACES.length} places{round ? ` · round ${round} (${roundMode === 'alive' ? 'alive after it' : 'considered in it'})` : ''}</p>
       {list.length === 0 ? <div className="card p-8 text-center text-slate-500">No places match those filters.</div> : (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{list.map((p) => <PlaceCard key={p.id} place={p} />)}</div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{list.map((p) => <div key={p.id} data-testid="places-card" data-id={p.id} data-status={p.status} className="contents"><PlaceCard place={p} /></div>)}</div>
       )}
     </div>
   )

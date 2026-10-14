@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { CRITERIA, PLACES } from '../data/places'
+import { CRITERIA, PLACES, STATUS_META, STATUS_ORDER, type Status } from '../data/places'
 import { DEFAULT_WEIGHTS, rankPlace, type Weights } from '../lib/score'
 import { MarkDot, PageHeader, StatusBadge } from '../components/ui'
 
@@ -13,13 +13,14 @@ export default function Scorecard() {
   })
   const [country, setCountry] = useState<'all' | 'US' | 'Canada'>('all')
   const [minKnown, setMinKnown] = useState(3)
+  const [statuses, setStatuses] = useState<Status[]>(STATUS_ORDER)
   useEffect(() => { try { localStorage.setItem(KEY, JSON.stringify(w)) } catch { /* ignore */ } }, [w])
 
   const ranked = useMemo(() => PLACES
-    .filter((p) => !p.minor && (country === 'all' || p.country === country))
+    .filter((p) => !p.minor && statuses.includes(p.status) && (country === 'all' || p.country === country))
     .map((p) => rankPlace(p, w))
     .filter((r) => r.known >= minKnown)
-    .sort((a, b) => (b.score ?? -1) - (a.score ?? -1) || b.known - a.known), [w, country, minKnown])
+    .sort((a, b) => (b.score ?? -1) - (a.score ?? -1) || b.known - a.known), [w, country, minKnown, statuses])
 
   return (
     <div>
@@ -38,6 +39,14 @@ export default function Scorecard() {
             <button className="btn" onClick={() => setW(Object.fromEntries(CRITERIA.map((c) => [c.key, ['acreage', 'mountains', 'lakes'].includes(c.key) ? 5 : 1])) as Weights)}>Land first</button>
           </div>
           <label className="flex items-center gap-2 text-sm">Country <select className="input" value={country} onChange={(e) => setCountry(e.target.value as 'all' | 'US' | 'Canada')} aria-label="Country filter"><option value="all">US and Canada</option><option value="US">US only</option><option value="Canada">Canada only</option></select></label>
+          <div className="flex flex-wrap gap-1.5" aria-label="Status filter">
+            {STATUS_ORDER.map((s) => (
+              <button key={s} aria-pressed={statuses.includes(s)} onClick={() => setStatuses(statuses.includes(s) ? statuses.filter((x) => x !== s) : [...statuses, s])}
+                className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs ${statuses.includes(s) ? 'border-slate-300 dark:border-slate-600' : 'border-dashed opacity-50'}`}>
+                <span className="h-2 w-2 rounded-full" style={{ background: STATUS_META[s].color }} />{STATUS_META[s].label}
+              </button>
+            ))}
+          </div>
           <label className="block text-sm">Hide places with fewer than <b>{minKnown}</b> known criteria
             <input type="range" min={1} max={8} value={minKnown} onChange={(e) => setMinKnown(Number(e.target.value))} className="w-full accent-teal-700" aria-label="Minimum known criteria" />
           </label>
