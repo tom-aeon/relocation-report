@@ -1,10 +1,10 @@
 import { useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { PLACES, ROUNDS, STATUS_META, consideredIn, isAliveIn, type Status } from '../data/places'
+import { OTHER_MEANING, PLACES, ROUNDS, STATUS_META, consideredIn, isAliveIn, type Status } from '../data/places'
 import { PageHeader, PlaceCard } from '../components/ui'
 import { useStore } from '../lib/store'
 
-const ALL: Status[] = ['best', 'live', 'parked', 'stretch', 'near-miss', 'dropped']
+const ALL: Status[] = ['best', 'live', 'parked', 'stretch', 'near-miss', 'dropped', 'other']
 
 export default function Places() {
   const [params, setParams] = useSearchParams()
@@ -71,6 +71,7 @@ export default function Places() {
           <label className="flex items-center gap-1.5 text-sm"><input type="checkbox" checked={showMinor} onChange={(e) => set('minor', e.target.checked ? null : '0')} /> Include cut-list-only places</label>
         </div>
       </div>
+      <p className="mb-1 text-xs text-slate-500"><span className="mr-1 inline-block h-2.5 w-2.5 rounded-full" style={{ background: STATUS_META.other.color }} />{OTHER_MEANING}</p>
       <p className="mb-3 text-sm text-slate-500">{list.length} of {PLACES.length} places{round ? ` · round ${round} (${roundMode === 'alive' ? 'alive after it' : 'considered in it'})` : ''}</p>
       {list.length === 0 ? <div className="card p-8 text-center text-slate-500">No places match those filters.</div> : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{list.map((p) => <PlaceCard key={p.id} place={p} />)}</div>

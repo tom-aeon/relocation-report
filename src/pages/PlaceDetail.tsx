@@ -107,7 +107,7 @@ export default function PlaceDetail() {
           <p className="text-slate-600 dark:text-slate-300">{p.summary}</p>
           {p.cutReason && (
             <div className="rounded-lg border-l-4 border-red-500 bg-red-50 px-3 py-2 text-sm dark:bg-red-950/40">
-              <b>Why it was {p.status === 'near-miss' ? 'a near-miss' : 'dropped'}{p.cutRound ? ` (round ${p.cutRound}: ${ROUNDS.find((r) => r.n === p.cutRound)?.title})` : ''}:</b> {p.cutReason}
+              <b>{p.status === 'other' ? 'Why it’s in Other' : `Why it was ${p.status === 'near-miss' ? 'a near-miss' : 'dropped'}`}{p.cutRound ? ` (round ${p.cutRound}: ${ROUNDS.find((r) => r.n === p.cutRound)?.title})` : ''}:</b> {p.cutReason}
             </div>
           )}
           {p.photos.length > 1 && (

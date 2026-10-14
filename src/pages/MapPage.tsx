@@ -2,10 +2,10 @@ import { useMemo } from 'react'
 import { useNavigate, useSearchParams, Link } from 'react-router-dom'
 import { MapContainer, TileLayer, CircleMarker, Tooltip } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-import { PLACES, ROUNDS, STATUS_META, isAliveIn, consideredIn, type Status } from '../data/places'
+import { OTHER_MEANING, PLACES, ROUNDS, STATUS_META, isAliveIn, consideredIn, type Status } from '../data/places'
 import { PageHeader } from '../components/ui'
 
-const ALL: Status[] = ['best', 'live', 'parked', 'stretch', 'near-miss', 'dropped']
+const ALL: Status[] = ['best', 'live', 'parked', 'stretch', 'near-miss', 'dropped', 'other']
 
 export default function MapPage() {
   const nav = useNavigate()
@@ -38,6 +38,7 @@ export default function MapPage() {
           {ROUNDS.map((r) => <option key={r.n} value={r.n}>Round {r.n}: {r.title}</option>)}
         </select>
       </div>
+      <p className="mb-2 text-xs text-slate-500"><span className="mr-1 inline-block h-2.5 w-2.5 rounded-full" style={{ background: STATUS_META.other.color }} />{OTHER_MEANING}</p>
       {round > 0 && <p className="mb-2 text-sm text-slate-500">Round {round}: solid markers were still alive after the round; hollow markers were considered and cut in it.</p>}
       <div className="card h-[65vh] min-h-[420px] overflow-hidden">
         <MapContainer center={[42, -98]} zoom={4} scrollWheelZoom className="h-full w-full">

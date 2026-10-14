@@ -66,6 +66,17 @@ export default function History() {
             )}
           </div>
 
+          {round.askedAbout && round.askedAbout.length > 0 && (
+            <div className="card border-pink-300 p-5 dark:border-pink-900">
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-pink-700 dark:text-pink-400">Asked about — filed under Other</h3>
+              <ul className="mt-1 space-y-2 text-sm">
+                {round.askedAbout.map((id) => { const p = placeById(id)!; return (
+                  <li key={id}><Link to={`/places/${id}`} className="font-medium hover:underline">{p.short}</Link><span className="block text-slate-600 dark:text-slate-400">{p.cutReason}</span></li>
+                ) })}
+              </ul>
+            </div>
+          )}
+
           <div>
             <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
               <h3 className="font-semibold">Still alive after round {round.n} ({alive.length})</h3>

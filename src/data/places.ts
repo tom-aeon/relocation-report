@@ -3,10 +3,10 @@
 // shown in the UI as "not checked yet". Coordinates are approximate area centroids
 // used only to place map markers; they are not research findings.
 
-import { ONTARIO_PLACES, ONTARIO_CUT_IDS } from './ontario'
+import { ONTARIO_PLACES, ONTARIO_CUT_IDS, TORONTO } from './ontario'
 import { RETAIL } from './retail'
 
-export type Status = 'best' | 'live' | 'parked' | 'stretch' | 'near-miss' | 'dropped'
+export type Status = 'best' | 'live' | 'parked' | 'stretch' | 'near-miss' | 'dropped' | 'other'
 export type Mark = 'pass' | 'partial' | 'fail' | 'unknown'
 export type CriterionKey =
   | 'seasons' | 'crime' | 'acreage' | 'mountains' | 'lakes' | 'wildlife'
@@ -110,6 +110,8 @@ export interface Round {
   summary: string
   added: string[]
   cut: string[]
+  /** Places he asked about that don't fit the criteria (status 'other') */
+  askedAbout?: string[]
   note?: string
 }
 
@@ -153,6 +155,7 @@ export const STATUS_META: Record<Status, { label: string; color: string; badge: 
   parked: { label: 'Parked', color: '#d97706', badge: 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300' },
   stretch: { label: 'Stretch', color: '#7c3aed', badge: 'bg-violet-100 text-violet-800 dark:bg-violet-900/50 dark:text-violet-300' },
   'near-miss': { label: 'Near-miss', color: '#0284c7', badge: 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300' },
+  other: { label: 'Other (asked about)', color: '#db2777', badge: 'bg-pink-100 text-pink-800 dark:bg-pink-900/50 dark:text-pink-300' },
   dropped: { label: 'Dropped', color: '#64748b', badge: 'bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-300' },
 }
 
@@ -666,6 +669,7 @@ export const PLACES: Place[] = [
   minor('tacoma', 'Tacoma / Puyallup / Olympia, Washington', 'Tacoma / Puyallup / Olympia, WA', 6, ROUND6_FOOD, 47.15, -122.6),
   minor('huntsville', 'Huntsville, Alabama', 'Huntsville, AL', 6, 'Cut in the 30 Sep 2026 scout for weak mountains.', 34.73, -86.586),
   ...ONTARIO_PLACES,
+  TORONTO,
 ]
 
 // Retail findings (10 Oct 2026)
@@ -725,9 +729,10 @@ export const ROUNDS: Round[] = [
   },
   {
     n: 7, title: 'Ontario scout', date: '10 Oct 2026',
-    summary: 'With Canada back in, Ontario was scouted. Carp/Huntley (West Carleton, Ottawa) is a top live option; Dunrobin/Constance Bay passes with a flood caveat. North Gower, Rural Flamborough and Oro-Medonte are near-misses. Everyday retail was added as a criterion the same day.',
+    summary: 'With Canada back in, Ontario was scouted. Carp/Huntley (West Carleton, Ottawa) is a top live option; Dunrobin/Constance Bay passes with a flood caveat. North Gower, Rural Flamborough and Oro-Medonte are near-misses. Everyday retail was added as a criterion the same day. On 13 Oct 2026 he asked about Toronto; it doesn’t fit (acreage price, no mountains) and is filed under Other.',
     added: ['on-carp-huntley', 'on-dunrobin'],
     cut: ['on-north-gower', 'on-flamborough', 'on-oro-medonte', ...ONTARIO_CUT_IDS],
+    askedAbout: ['toronto'],
     note: 'Ontario avoids Quebec’s PSTQ and Bill 96 issues, but the federal foreign-buyer ban (to 1 Jan 2027) covers the Ottawa and Hamilton CMAs, and Ontario’s 25% NRST applies unless he is a permanent resident.',
   },
 ]
@@ -740,6 +745,8 @@ export const CREDITS: string[] = [
   'Eardley Escarpment, Gatineau Park — cjuneau, CC BY 2.0',
   'Coeur d’Alene, Hayden Lake, Lake George, Lake Winnipesaukee, Meredith, Smith Mountain Lake, Salem VA, Collingwood (aerial), Georgian Bay, Blue Mountain, and the area maps — Wikimedia Commons contributors (see each file’s Commons page for author and licence)',
 ]
+
+export const OTHER_MEANING = 'Other = notable places he asked about that don’t fit the criteria.'
 
 export const BUYING_IN_CANADA = [
   'The federal foreign-buyer ban runs to 1 Jan 2027 and applies inside census metropolitan areas, including Ottawa and Hamilton (no further extension announced as of Oct 2026).',
