@@ -2,6 +2,8 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { CRITERIA, PLACES, byStatus, currentPlaces, placeById, type Place } from '../data/places'
 import { MarkDot, MarkLegend, NotChecked, PageHeader, StatusBadge } from '../components/ui'
 
+const AWL = { pass: 'Good', partial: 'Partial', fail: 'Concern', unknown: 'Not checked yet' } as const
+
 const DEFAULT = currentPlaces().slice(0, 3).map((p) => p.id)
 
 export default function Compare() {
@@ -23,6 +25,9 @@ export default function Compare() {
     { label: 'Retail: coffee', render: (p) => retail(p, 'coffee') },
     { label: 'Retail: big box', render: (p) => retail(p, 'bigBox') },
     { label: 'Retail: hardware', render: (p) => retail(p, 'hardware') },
+    { label: 'Air', render: (p) => p.airWater ? <span className="text-xs"><b>{AWL[p.airWater.air.mark]}</b> · {p.airWater.air.summary}</span> : <NotChecked /> },
+    { label: 'Water', render: (p) => p.airWater ? <span className="text-xs"><b>{AWL[p.airWater.water.mark]}</b> · {p.airWater.water.summary}</span> : <NotChecked /> },
+    { label: 'Well test', render: (p) => p.airWater ? <span className="text-xs">{p.airWater.water.wellRisks[0]}</span> : <NotChecked /> },
     { label: 'Buying (Canada)', render: (p) => p.country === 'Canada' ? (p.foreignBuyer ?? 'See the Buying in Canada note on the place page.') : '—' },
     { label: 'Mountains / lakes', render: (p) => p.mountainsLakes ?? <NotChecked /> },
     { label: 'Crime', render: (p) => p.crime ?? <NotChecked /> },

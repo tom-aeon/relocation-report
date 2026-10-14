@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom'
 import { BUYING_IN_CANADA, CRITERIA, ROUNDS, placeById, type Restaurant, type Retail, type RetailStop } from '../data/places'
 import { FavButton, MarkDot, MarkLegend, NotChecked, StatusBadge } from '../components/ui'
 import { useStore } from '../lib/store'
+import { AW_METHOD, WELL_TEST, type AirWater, type AWFact } from '../data/airwater'
+import type { Mark } from '../data/places'
 
 function Field({ label, value }: { label: string; value?: string }) {
   return (
@@ -72,6 +74,61 @@ function RetailSection({ retail }: { retail?: Retail }) {
           </div>
           <p className="mt-3 text-xs text-slate-500">From: {retail.base}. {retail.method} Good ≤ ~25 min, partial 25–35, fail &gt; 35. Overall = the weakest of the three.</p>
         </>
+      )}
+    </section>
+  )
+}
+
+const AW_LABEL: Record<Mark, string> = { pass: 'good', partial: 'partial', fail: 'concern', unknown: 'not checked yet' }
+
+function AWMark({ mark }: { mark: Mark }) {
+  return <span className="inline-flex items-center gap-1"><MarkDot score={{ mark, source: 'table' }} size="sm" /><span className="text-xs font-medium">{AW_LABEL[mark]}</span></span>
+}
+
+function FactList({ facts }: { facts: AWFact[] }) {
+  return (
+    <dl className="mt-2 space-y-1.5 text-sm">
+      {facts.map((f) => (
+        <div key={f.label}><dt className="inline font-medium">{f.label}: </dt><dd className="inline">{f.value}</dd> <span className="text-xs text-slate-500">({f.source})</span></div>
+      ))}
+    </dl>
+  )
+}
+
+function AirWaterSection({ aw }: { aw?: AirWater }) {
+  return (
+    <section className="card p-5" data-testid="airwater-section">
+      <div className="mb-3 flex flex-wrap items-center gap-2">
+        <h2 className="font-semibold">Air &amp; water</h2>
+        {aw && <AWMark mark={aw.overall} />}
+        {aw && <span className="text-xs text-slate-500">overall · checked {aw.checked}</span>}
+      </div>
+      {!aw ? <NotChecked /> : (
+        <div className="space-y-4">
+          <p className="text-sm">{aw.note}</p>
+          <div className="grid gap-4 md:grid-cols-2">
+            <div>
+              <h3 className="flex items-center gap-2 text-sm font-semibold">Air <AWMark mark={aw.air.mark} /></h3>
+              <p className="mt-1 text-sm">{aw.air.summary}</p>
+              <p className="mt-1 text-xs text-slate-500">Station: {aw.air.station}</p>
+              <FactList facts={aw.air.facts} />
+            </div>
+            <div>
+              <h3 className="flex items-center gap-2 text-sm font-semibold">Water <AWMark mark={aw.water.mark} /></h3>
+              <p className="mt-1 text-sm">{aw.water.summary}</p>
+              <FactList facts={aw.water.municipal} />
+              <p className="mt-3 text-sm"><span className="font-medium">Well or septic? </span>{aw.water.listingSupply}</p>
+              <h4 className="mt-3 text-sm font-medium">Well-water risks in the area</h4>
+              <ul className="ml-5 list-disc text-sm">{aw.water.wellRisks.map((r) => <li key={r}>{r}</li>)}</ul>
+              <p className="mt-3 rounded-md bg-amber-50 p-2 text-sm text-amber-900 dark:bg-amber-900/30 dark:text-amber-200"><span className="font-medium">Recommended: </span>{WELL_TEST}</p>
+            </div>
+          </div>
+          <div>
+            <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-500">Sources</h4>
+            <ul className="ml-5 list-disc text-xs">{aw.sources.map((s) => <li key={s.url}><a className="text-teal-700 underline dark:text-teal-400" href={s.url} target="_blank" rel="noreferrer">{s.label}</a></li>)}</ul>
+            <p className="mt-2 text-xs text-slate-500">{AW_METHOD} Data changes; re-verify before buying.</p>
+          </div>
+        </div>
       )}
     </section>
   )
@@ -159,6 +216,7 @@ export default function PlaceDetail() {
             </section>
           )}
           <RetailSection retail={p.retail} />
+          <AirWaterSection aw={p.airWater} />
           <section className="grid gap-4 sm:grid-cols-2">
             <FoodList title="Sichuan" items={p.restaurants.filter((r) => r.cuisine === 'Sichuan')} />
             <FoodList title="Turkish" items={p.restaurants.filter((r) => r.cuisine === 'Turkish')} />

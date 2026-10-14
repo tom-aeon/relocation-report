@@ -25,6 +25,7 @@ export default function Credits() {
         <p>{REPORT.disclaimer}</p>
         <p>Everything here comes from the relocation report dated {REPORT.reportDate}. Anything the report doesn’t state is shown as “not checked yet” rather than guessed. Map markers sit at approximate area centres and are not research findings.</p>
         <p>Ontario places come from the 10 Oct 2026 Ontario scout. Everyday-retail stops (coffee chain, big box, home improvement) were checked on 10 Oct 2026 from store-locator and listing pages plus OpenStreetMap, with OSRM free-flow drive times: good ≤ ~25 min, partial 25–35, fail &gt; 35.</p>
+        <p>Air &amp; water was checked on 14 Oct 2026 for every place still in play (not dropped): EPA AirData and ALA State of the Air 2026 in the US, Ontario and Quebec station data in Canada, utility water reports, EPA SDWIS and UCMR 5 PFAS results, and state/provincial well guidance. Marks: good / partial / concern. Sources are listed on each place page.</p>
         <p>Checklist marks (✓ / ~ / ✗) come from the report’s comparison table. Marks with a blue dot are read from the report’s text about that place. Scorecard: pass = 3, partial = 1.5, fail = 0; unknown criteria are excluded from a place’s average.</p>
       </section>
     </div>

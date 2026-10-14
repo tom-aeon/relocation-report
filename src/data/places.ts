@@ -5,12 +5,13 @@
 
 import { ONTARIO_PLACES, ONTARIO_CUT_IDS, TORONTO } from './ontario'
 import { RETAIL } from './retail'
+import { AIRWATER, type AirWater } from './airwater'
 
 export type Status = 'best' | 'live' | 'parked' | 'stretch' | 'near-miss' | 'dropped' | 'other'
 export type Mark = 'pass' | 'partial' | 'fail' | 'unknown'
 export type CriterionKey =
   | 'seasons' | 'crime' | 'acreage' | 'mountains' | 'lakes' | 'wildlife'
-  | 'schools' | 'museums' | 'infrastructure' | 'sichuan' | 'turkish' | 'retail'
+  | 'schools' | 'museums' | 'infrastructure' | 'sichuan' | 'turkish' | 'retail' | 'airwater'
 
 export interface Score {
   mark: Mark
@@ -94,6 +95,7 @@ export interface Place {
   homeBase?: string
   province?: string
   retail?: Retail
+  airWater?: AirWater
   otherFacts: Fact[]
   restaurants: Restaurant[]
   pros: string[]
@@ -146,6 +148,7 @@ export const CRITERIA: Criterion[] = [
   { key: 'sichuan', label: '2+ real Sichuan', detail: 'Within a ~35–40 min weeknight drive. Real Sichuan = mapo, dan dan, mala, hot pot.', hard: true },
   { key: 'turkish', label: '2+ real Turkish', detail: 'Within a ~35–40 min weeknight drive. Real Turkish = pide, lahmacun, kebab, Iskender. Gyro-only or daytime-only cafes don’t count.', hard: true },
   { key: 'retail', label: 'Everyday retail', detail: 'A Starbucks (or similar coffee chain), a big box (Target, Walmart, Costco; in Canada Walmart, Costco or Canadian Tire) and a Home Depot (or Lowe’s, RONA). Good ≤ ~25 min, partial 25–35, fail > 35 (free-flow).' },
+  { key: 'airwater', label: 'Air & water quality', detail: 'Clean air (EPA / ALA grades in the US, provincial station data in Canada; wildfire smoke noted) and safe water (utility reports, EPA violations and PFAS results; most acreage is on a private well, so a well test is needed). Good / partial / concern.' },
 ]
 
 export const EXTRA_CRITERION = { label: 'US or Canada', detail: 'Both countries are in play. The search briefly focused on the US; Canada is back in as of 10 Oct 2026.' }
@@ -677,6 +680,12 @@ export const PLACES: Place[] = [
 for (const p of PLACES) {
   const rt = RETAIL[p.id]
   if (rt) { p.retail = rt; p.scores.retail = { mark: rt.overall, source: 'table', note: rt.note } }
+}
+
+// Air & water findings (14 Oct 2026)
+for (const p of PLACES) {
+  const aw = AIRWATER[p.id]
+  if (aw) { p.airWater = aw; p.scores.airwater = { mark: aw.overall, source: 'table', note: aw.note } }
 }
 
 // Minor round-6 cuts: the report says these were killed on food
