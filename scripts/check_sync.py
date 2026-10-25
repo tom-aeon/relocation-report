@@ -1,6 +1,22 @@
 """Fails (exit 1) if the home page and the Places page disagree.
 Usage: python3 scripts/check_sync.py [base_url]   (default: serves ./dist on a free port)"""
-import sys, subprocess, socket, time, asyncio, os
+import sys, subprocess, socket, time, asyncio, os, json, re
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+
+def check_listings():
+    f = []
+    data = json.load(open(os.path.join(HERE, 'homes.json')))
+    ts = open(os.path.join(HERE, '..', 'src', 'data', 'homes.ts'), encoding='utf-8').read()
+    for h in data['homes']:
+        u = h.get('url') or ''
+        if not re.fullmatch(r'https?://[^\s/$.?#][^\s]*\.[^\s]+', u): f.append(f"listing {h['id']} has no valid http(s) URL: {u!r}")
+        if u and u not in ts: f.append(f"listing {h['id']} URL missing from src/data/homes.ts (re-run generator)")
+        if not h.get('photos'): f.append(f"listing {h['id']} has no photo")
+        for ph in h.get('photos', []):
+            if not os.path.isfile(os.path.join(HERE, '..', 'public', ph)): f.append(f"listing {h['id']} photo file missing: {ph}")
+    return f, len(data['homes'])
+
 from playwright.async_api import async_playwright
 
 CURRENT = ['best', 'live', 'stretch', 'parked']
@@ -33,6 +49,19 @@ async def run(base):
         if f'{len(cards)} current options' not in headline: fails.append(f'headline does not match cards: {headline!r}')
         for _, st in cards:
             if st not in CURRENT: fails.append(f'non-current status on home: {st}')
+        lf, n = check_listings(); fails += lf
+        await pg.goto(base + '#/homes', wait_until='networkidle')
+        hc = pg.get_by_test_id('home-card')
+        if await hc.count() != n: fails.append(f'homes page shows {await hc.count()} cards, data has {n}')
+        for c in await hc.all():
+            u = await c.get_attribute('data-url')
+            v = c.get_by_test_id('view-listing')
+            if await v.count() != 1 or await v.get_attribute('href') != u or await v.get_attribute('target') != '_blank' or 'noopener' not in (await v.get_attribute('rel') or ''):
+                fails.append(f'card {u} lacks a proper View listing button')
+            if not re.match(r'https?://', u or ''): fails.append(f'card has invalid listing URL {u!r}')
+        imgs = await pg.evaluate("Promise.all([...document.querySelectorAll('[data-testid=home-card] img')].map(i=>(i.loading='eager', i.decode().then(()=>i.naturalWidth).catch(()=>0))))")
+        if any(w == 0 for w in imgs): fails.append(f'{sum(w == 0 for w in imgs)} home photos failed to load')
+        print('listings     :', n)
         await b.close()
     fails += [f'console error: {e}' for e in errs]
     print('home counts  :', home_counts); print('places counts:', places_counts); print('home cards   :', [i for i, _ in cards])

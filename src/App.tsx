@@ -6,6 +6,7 @@ import History from './pages/History'
 import Places from './pages/Places'
 import PlaceDetail from './pages/PlaceDetail'
 import Compare from './pages/Compare'
+import Homes from './pages/Homes'
 import Scorecard from './pages/Scorecard'
 import Food from './pages/Food'
 import Notes from './pages/Notes'
@@ -28,6 +29,7 @@ export default function App() {
             <Route path="history" element={<History />} />
             <Route path="places" element={<Places />} />
             <Route path="places/:id" element={<PlaceDetail />} />
+            <Route path="homes" element={<Homes />} />
             <Route path="map" element={<Suspense fallback={<p>Loading map…</p>}><MapPage /></Suspense>} />
             <Route path="compare" element={<Compare />} />
             <Route path="scorecard" element={<Scorecard />} />

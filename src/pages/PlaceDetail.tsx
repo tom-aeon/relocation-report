@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom'
 import { BUYING_IN_CANADA, CRITERIA, ROUNDS, placeById, type Restaurant, type Retail, type RetailStop } from '../data/places'
 import { FavButton, MarkDot, MarkLegend, NotChecked, StatusBadge } from '../components/ui'
 import { useStore } from '../lib/store'
+import { HOMES, HOMES_META } from '../data/homes'
+import { HomeCard, HomesNote } from '../components/HomeCard'
 import { AW_METHOD, WELL_TEST, type AirWater, type AWFact } from '../data/airwater'
 import type { Mark } from '../data/places'
 
@@ -134,6 +136,26 @@ function AirWaterSection({ aw }: { aw?: AirWater }) {
   )
 }
 
+function HomesSection({ placeId }: { placeId: string }) {
+  const hs = HOMES.filter((h) => h.placeId === placeId)
+  const gap = HOMES_META.gaps[placeId]
+  return (
+    <section className="card p-5" data-testid="homes-section">
+      <div className="mb-3 flex flex-wrap items-center gap-2">
+        <h2 className="font-semibold">Example homes</h2>
+        <span className="text-xs text-slate-500">as of {HOMES_META.asOf}, re-verify · <Link to="/homes" className="text-teal-700 underline dark:text-teal-400">all homes</Link></span>
+      </div>
+      {hs.length === 0 ? <NotChecked text={gap ?? 'not checked yet'} /> : (
+        <>
+          {gap && <p className="mb-3 text-sm text-amber-700 dark:text-amber-300">{gap}</p>}
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{hs.map((h) => <HomeCard key={h.id} h={h} />)}</div>
+          <div className="mt-3"><HomesNote /></div>
+        </>
+      )}
+    </section>
+  )
+}
+
 export default function PlaceDetail() {
   const { id = '' } = useParams()
   const p = placeById(id)
@@ -217,6 +239,7 @@ export default function PlaceDetail() {
           )}
           <RetailSection retail={p.retail} />
           <AirWaterSection aw={p.airWater} />
+          <HomesSection placeId={p.id} />
           <section className="grid gap-4 sm:grid-cols-2">
             <FoodList title="Sichuan" items={p.restaurants.filter((r) => r.cuisine === 'Sichuan')} />
             <FoodList title="Turkish" items={p.restaurants.filter((r) => r.cuisine === 'Turkish')} />

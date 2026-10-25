@@ -1,3 +1,4 @@
+import { HOMES_META } from '../data/homes'
 import { Link } from 'react-router-dom'
 import { CRITERIA, CURRENT_STATUSES, EXTRA_CRITERION, PLACES, REPORT, ROUNDS, STATUS_META, STATUS_ORDER, currentHeadline, currentPlaces, statusCounts } from '../data/places'
 import { PlaceCard } from '../components/ui'
@@ -35,6 +36,7 @@ export default function Home() {
               <span className="h-2.5 w-2.5 rounded-full" style={{ background: STATUS_META[s].color }} />{STATUS_META[s].label} <b>{counts[s]}</b>
             </Link>
           ))}
+          <Link to="/homes" className="text-teal-700 underline dark:text-teal-400" data-testid="listings-as-of">Example homes: listings as of {HOMES_META.asOf}, re-verify →</Link>
           <Link to={`/places?s=${CURRENT_STATUSES.join(',')}`} className="text-teal-700 underline dark:text-teal-400">See current options in Places →</Link>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" data-testid="home-current" data-count={current.length}>

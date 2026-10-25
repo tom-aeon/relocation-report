@@ -8,6 +8,7 @@ const LINKS = [
   { to: '/', label: 'Home', end: true },
   { to: '/history', label: 'History' },
   { to: '/places', label: 'Places' },
+  { to: '/homes', label: 'Homes' },
   { to: '/map', label: 'Map' },
   { to: '/compare', label: 'Compare' },
   { to: '/scorecard', label: 'Scorecard' },
