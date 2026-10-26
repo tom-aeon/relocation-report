@@ -4,7 +4,7 @@ export const MARK_VALUE: Record<Exclude<Mark, 'unknown'>, number> = { pass: 3, p
 
 export type Weights = Record<CriterionKey, number>
 export const DEFAULT_WEIGHTS: Weights = Object.fromEntries(
-  CRITERIA.map((c) => [c.key, c.hard ? 3 : 2]),
+  CRITERIA.map((c) => [c.key, c.optional ? 0 : c.hard ? 3 : 2]),
 ) as Weights
 
 export interface Ranked {

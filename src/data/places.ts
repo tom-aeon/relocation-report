@@ -6,12 +6,14 @@
 import { ONTARIO_PLACES, ONTARIO_CUT_IDS, TORONTO } from './ontario'
 import { RETAIL } from './retail'
 import { AIRWATER, type AirWater } from './airwater'
+import { AMENITIES, OUTDOOR } from './amenities'
+import type { PlaceAmenities } from './amenitiesTypes'
 
 export type Status = 'best' | 'live' | 'parked' | 'stretch' | 'near-miss' | 'dropped' | 'other'
 export type Mark = 'pass' | 'partial' | 'fail' | 'unknown'
 export type CriterionKey =
   | 'seasons' | 'crime' | 'acreage' | 'mountains' | 'lakes' | 'wildlife'
-  | 'schools' | 'museums' | 'infrastructure' | 'sichuan' | 'turkish' | 'retail' | 'airwater'
+  | 'schools' | 'museums' | 'infrastructure' | 'sichuan' | 'turkish' | 'retail' | 'airwater' | 'outdoor'
 
 export interface Score {
   mark: Mark
@@ -96,6 +98,7 @@ export interface Place {
   province?: string
   retail?: Retail
   airWater?: AirWater
+  amenities?: PlaceAmenities
   otherFacts: Fact[]
   restaurants: Restaurant[]
   pros: string[]
@@ -133,7 +136,7 @@ export const REPORT = {
     'Prices and listings are as of the dates shown and should be re-verified before acting on them. Drive times are free-flow estimates (no traffic). Restaurant openings and closings change, so confirm before visiting.',
 }
 
-export interface Criterion { key: CriterionKey; label: string; detail: string; hard?: boolean }
+export interface Criterion { key: CriterionKey; label: string; detail: string; hard?: boolean; optional?: boolean }
 
 export const CRITERIA: Criterion[] = [
   { key: 'seasons', label: 'Four true seasons', detail: 'Real winters, not just a cool spell.' },
@@ -149,6 +152,7 @@ export const CRITERIA: Criterion[] = [
   { key: 'turkish', label: '2+ real Turkish', detail: 'Within a ~35–40 min weeknight drive. Real Turkish = pide, lahmacun, kebab, Iskender. Gyro-only or daytime-only cafes don’t count.', hard: true },
   { key: 'retail', label: 'Everyday retail', detail: 'A Starbucks (or similar coffee chain), a big box (Target, Walmart, Costco; in Canada Walmart, Costco or Canadian Tire) and a Home Depot (or Lowe’s, RONA). Good ≤ ~25 min, partial 25–35, fail > 35 (free-flow).' },
   { key: 'airwater', label: 'Air & water quality', detail: 'Clean air (EPA / ALA grades in the US, provincial station data in Canada; wildfire smoke noted) and safe water (utility reports, EPA violations and PFAS results; most acreage is on a private well, so a well test is needed). Good / partial / concern.' },
+  { key: 'outdoor', label: 'Outdoor & recreation', optional: true, detail: 'Optional (weight starts at 0). Derived from the Nearby amenities drive times: pass if a ski area is within 90 min and a national/state/provincial park within 45 min; fail if no ski area within 180 min and no park within 60 min; partial otherwise.' },
 ]
 
 export const EXTRA_CRITERION = { label: 'US or Canada', detail: 'Both countries are in play. The search briefly focused on the US; Canada is back in as of 10 Oct 2026.' }
@@ -686,6 +690,12 @@ for (const p of PLACES) {
 for (const p of PLACES) {
   const aw = AIRWATER[p.id]
   if (aw) { p.airWater = aw; p.scores.airwater = { mark: aw.overall, source: 'table', note: aw.note } }
+}
+
+// Nearby amenities (OpenStreetMap + OSRM)
+for (const p of PLACES) {
+  const am = AMENITIES[p.id]
+  if (am) { p.amenities = am; const o = OUTDOOR[p.id]; if (o) p.scores.outdoor = { mark: o.mark, source: 'derived', note: o.note } }
 }
 
 // Minor round-6 cuts: the report says these were killed on food

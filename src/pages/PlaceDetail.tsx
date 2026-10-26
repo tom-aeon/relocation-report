@@ -5,6 +5,7 @@ import { FavButton, MarkDot, MarkLegend, NotChecked, StatusBadge } from '../comp
 import { useStore } from '../lib/store'
 import { HOMES, HOMES_META } from '../data/homes'
 import { HomeCard, HomesNote } from '../components/HomeCard'
+import { AmenitiesSection } from '../components/Amenities'
 import { AW_METHOD, WELL_TEST, type AirWater, type AWFact } from '../data/airwater'
 import type { Mark } from '../data/places'
 
@@ -143,9 +144,10 @@ function HomesSection({ placeId }: { placeId: string }) {
     <section className="card p-5" data-testid="homes-section">
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <h2 className="font-semibold">Example homes</h2>
+        <span className="text-xs text-slate-500">4+ bed · 3+ bath · ~1–3 acres · under US$850K</span>
         <span className="text-xs text-slate-500">as of {HOMES_META.asOf}, re-verify · <Link to="/homes" className="text-teal-700 underline dark:text-teal-400">all homes</Link></span>
       </div>
-      {hs.length === 0 ? <NotChecked text={gap ?? 'not checked yet'} /> : (
+      {hs.length === 0 ? <p className="text-sm text-amber-700 dark:text-amber-300" data-testid="homes-none">{gap ?? 'No qualifying listings found (4+ bed, 3+ bath, ~1–3 acres, under US$850K, in the drive zone).'}</p> : (
         <>
           {gap && <p className="mb-3 text-sm text-amber-700 dark:text-amber-300">{gap}</p>}
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{hs.map((h) => <HomeCard key={h.id} h={h} />)}</div>
@@ -239,6 +241,7 @@ export default function PlaceDetail() {
           )}
           <RetailSection retail={p.retail} />
           <AirWaterSection aw={p.airWater} />
+          <AmenitiesSection am={p.amenities} />
           <HomesSection placeId={p.id} />
           <section className="grid gap-4 sm:grid-cols-2">
             <FoodList title="Sichuan" items={p.restaurants.filter((r) => r.cuisine === 'Sichuan')} />

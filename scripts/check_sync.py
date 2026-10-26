@@ -12,6 +12,9 @@ def check_listings():
         u = h.get('url') or ''
         if not re.fullmatch(r'https?://[^\s/$.?#][^\s]*\.[^\s]+', u): f.append(f"listing {h['id']} has no valid http(s) URL: {u!r}")
         if u and u not in ts: f.append(f"listing {h['id']} URL missing from src/data/homes.ts (re-run generator)")
+        tot = lambda x: sum(int(p or 0) for p in str(x or 0).split('+'))
+        if tot(h.get('beds')) < 4: f.append(f"listing {h['id']} has under 4 beds: {h.get('beds')}")
+        if tot(h.get('baths')) < 3: f.append(f"listing {h['id']} has under 3 baths: {h.get('baths')}")
         if not h.get('photos'): f.append(f"listing {h['id']} has no photo")
         for ph in h.get('photos', []):
             if not os.path.isfile(os.path.join(HERE, '..', 'public', ph)): f.append(f"listing {h['id']} photo file missing: {ph}")

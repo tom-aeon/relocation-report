@@ -9,6 +9,7 @@ export interface Home {
   acresNote?: string
   beds: string | number | null
   baths: string | number | null
+  bathNote?: string | null
   sqft: string | number | null
   daysOnMarket?: number | null
   listedDate?: string | null
@@ -23,3 +24,5 @@ export interface Home {
   photos: string[]
   note?: string
 }
+
+export const total = (x: string | number | null | undefined) => (x == null ? 0 : String(x).split('+').reduce((a, b) => a + (Number(b) || 0), 0))

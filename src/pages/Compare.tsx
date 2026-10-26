@@ -1,3 +1,4 @@
+import type { AmItem, AmKey } from '../data/amenitiesTypes'
 import { Link, useSearchParams } from 'react-router-dom'
 import { CRITERIA, PLACES, byStatus, currentPlaces, placeById, type Place } from '../data/places'
 import { MarkDot, MarkLegend, NotChecked, PageHeader, StatusBadge } from '../components/ui'
@@ -5,6 +6,12 @@ import { MarkDot, MarkLegend, NotChecked, PageHeader, StatusBadge } from '../com
 const AWL = { pass: 'Good', partial: 'Partial', fail: 'Concern', unknown: 'Not checked yet' } as const
 
 const DEFAULT = currentPlaces().slice(0, 3).map((p) => p.id)
+
+function am(p: Place, k: AmKey, f: (i: AmItem) => boolean = () => true) {
+  if (!p.amenities) return <NotChecked />
+  const it = p.amenities[k].items.filter((i) => i.driveMin != null && f(i)).sort((a, b) => a.driveMin! - b.driveMin!)[0]
+  return it ? <span className="text-xs"><b>{it.name}</b> · ~{it.driveMin} min</span> : <span className="text-xs text-slate-500">{p.amenities[k].note ?? 'none found'}</span>
+}
 
 export default function Compare() {
   const [params, setParams] = useSearchParams()
@@ -28,6 +35,11 @@ export default function Compare() {
     { label: 'Air', render: (p) => p.airWater ? <span className="text-xs"><b>{AWL[p.airWater.air.mark]}</b> · {p.airWater.air.summary}</span> : <NotChecked /> },
     { label: 'Water', render: (p) => p.airWater ? <span className="text-xs"><b>{AWL[p.airWater.water.mark]}</b> · {p.airWater.water.summary}</span> : <NotChecked /> },
     { label: 'Well test', render: (p) => p.airWater ? <span className="text-xs">{p.airWater.water.wellRisks[0]}</span> : <NotChecked /> },
+    { label: 'Nearest ski', render: (p) => am(p, 'ski') },
+    { label: 'Nearest rink', render: (p) => am(p, 'rink') },
+    { label: 'Nearest national park/forest', render: (p) => am(p, 'park', (i) => i.kind.startsWith('national')) },
+    { label: 'Nearest stadium/arena', render: (p) => am(p, 'stadium') },
+    { label: 'Nearest university/college', render: (p) => am(p, 'university') },
     { label: 'Buying (Canada)', render: (p) => p.country === 'Canada' ? (p.foreignBuyer ?? 'See the Buying in Canada note on the place page.') : '—' },
     { label: 'Mountains / lakes', render: (p) => p.mountainsLakes ?? <NotChecked /> },
     { label: 'Crime', render: (p) => p.crime ?? <NotChecked /> },
