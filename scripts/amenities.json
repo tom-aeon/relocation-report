@@ -1,0 +1,2905 @@
+{
+ "forsyth": {
+  "ski": {
+   "items": [
+    {
+     "name": "Sapphire Valley Ski Resort",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 154,
+     "km": 134,
+     "source": "https://www.openstreetmap.org/way/1247000294",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Cloudmont Ski Hill",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 175,
+     "km": 144,
+     "source": "https://www.openstreetmap.org/way/1246749803",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Cataloochee Ski Area",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 210,
+     "km": 171,
+     "source": "https://www.openstreetmap.org/way/1311290835",
+     "note": "Season and snow reliability: not checked yet."
+    }
+   ],
+   "note": "Skiing is limited in the Southeast: small resorts with shorter seasons that lean on snowmaking. None within 120 min; nearest shown."
+  },
+  "rink": {
+   "items": [
+    {
+     "name": "The Ice",
+     "kind": "ice rink / arena",
+     "town": "",
+     "driveMin": 17,
+     "km": 12,
+     "source": "https://www.openstreetmap.org/node/358719644"
+    },
+    {
+     "name": "The Cooler",
+     "kind": "ice rink / arena",
+     "town": "",
+     "driveMin": 32,
+     "km": 32,
+     "source": "https://www.openstreetmap.org/way/269159582"
+    },
+    {
+     "name": "Atlanta IceForum",
+     "kind": "ice rink / arena",
+     "town": "Duluth",
+     "driveMin": 41,
+     "km": 30,
+     "source": "https://www.openstreetmap.org/node/4608053792"
+    },
+    {
+     "name": "State Farm Arena",
+     "kind": "major hockey arena",
+     "town": "Atlanta",
+     "driveMin": 59,
+     "km": 62,
+     "source": "https://en.wikipedia.org/wiki/State_Farm_Arena",
+     "note": "State Farm Arena is an indoor arena located in Atlanta, Georgia, United States The arena serves as the home venue for the Atlanta Hawks of the National Basketball Association (NBA)."
+    }
+   ]
+  },
+  "stadium": {
+   "items": [
+    {
+     "name": "Truist Park",
+     "kind": "stadium / arena",
+     "town": "Atlanta",
+     "driveMin": 53,
+     "km": 54,
+     "source": "https://en.wikipedia.org/wiki/Truist_Park",
+     "note": "Truist Park is a baseball stadium in the Atlanta metropolitan area, approximately 10 miles (16 km) northwest of downtown Atlanta in the unincorporated community of Cumberland, in Cobb County, Georgia."
+    },
+    {
+     "name": "Bobby Dodd Stadium",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 56,
+     "km": 61,
+     "source": "https://en.wikipedia.org/wiki/Bobby_Dodd_Stadium",
+     "note": "Bobby Dodd Stadium, commonly known as Bobby Dodd or The Flats  is the football stadium located at the corner of North Avenue at Techwood Drive on the campus of the Georgia Institute of Technology in Atlanta."
+    },
+    {
+     "name": "Russ Chandler Stadium",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 57,
+     "km": 60,
+     "source": "https://en.wikipedia.org/wiki/Russ_Chandler_Stadium",
+     "note": "Mac Nease Baseball Park at Russ Chandler Stadium is a college baseball stadium in Atlanta, Georgia."
+    },
+    {
+     "name": "Eddie S. Henderson Stadium",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 58,
+     "km": 59,
+     "source": "https://en.wikipedia.org/wiki/Eddie_S._Henderson_Stadium",
+     "note": "Eddie S. Henderson Stadium is an Atlanta Public School football stadium located in Midtown Atlanta, south of Piedmont Park."
+    }
+   ],
+   "note": null
+  },
+  "park": {
+   "items": [
+    {
+     "name": "Chattahoochee River National Recreation Area",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 36,
+     "km": 32,
+     "source": "https://www.openstreetmap.org/relation/143350"
+    },
+    {
+     "name": "Chattahoochee-Oconee National Forest",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 39,
+     "km": 31,
+     "source": "https://en.wikipedia.org/wiki/Chattahoochee%E2%80%93Oconee_National_Forest",
+     "note": "The Chattahoochee–Oconee National Forest in northern Georgia comprises two United States National Forests, the Oconee National Forest in eastern Georgia and the Chattahoochee National Forest located in the North Georgia Mountains."
+    },
+    {
+     "name": "Martin Luther King Jr. National Historic Site",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 58,
+     "km": 62,
+     "source": "https://www.openstreetmap.org/relation/20231004"
+    },
+    {
+     "name": "Amicalola Falls State Park",
+     "kind": "state park",
+     "town": "Dawsonville",
+     "driveMin": 54,
+     "km": 39,
+     "source": "https://www.openstreetmap.org/relation/9644975"
+    },
+    {
+     "name": "Don Carter State Park",
+     "kind": "state park",
+     "town": "",
+     "driveMin": 60,
+     "km": 34,
+     "source": "https://www.openstreetmap.org/way/456269017"
+    },
+    {
+     "name": "Fort Yargo State Park",
+     "kind": "state park",
+     "town": "Winder",
+     "driveMin": 66,
+     "km": 44,
+     "source": "https://www.openstreetmap.org/way/34775681"
+    }
+   ]
+  },
+  "university": {
+   "items": [
+    {
+     "name": "Georgia State University Alpharetta",
+     "kind": "university",
+     "town": "",
+     "driveMin": 30,
+     "km": 27,
+     "source": "https://www.openstreetmap.org/way/970921554",
+     "note": "Type and size: not checked yet."
+    },
+    {
+     "name": "Brenau Downtown Center",
+     "kind": "university",
+     "town": "",
+     "driveMin": 31,
+     "km": 23,
+     "source": "https://www.openstreetmap.org/way/1156413399",
+     "note": "Type and size: not checked yet."
+    },
+    {
+     "name": "Gwinnett Technical College",
+     "kind": "college",
+     "town": "Lawrenceville",
+     "driveMin": 45,
+     "km": 32,
+     "source": "https://en.wikipedia.org/wiki/Gwinnett_Technical_College",
+     "note": "Gwinnett Technical College is a public technical college in the U.S. state of Georgia with campuses in unincorporated Gwinnett County and Alpharetta."
+    }
+   ]
+  },
+  "hospital": {
+   "items": [
+    {
+     "name": "Northside Hospital Forsyth",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Cumming",
+     "driveMin": 17,
+     "km": 10,
+     "source": "https://www.openstreetmap.org/way/1552728115"
+    },
+    {
+     "name": "Emory Johns Creek Hospital",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Johns Creek",
+     "driveMin": 28,
+     "km": 23,
+     "source": "https://www.openstreetmap.org/way/34846170"
+    }
+   ]
+  },
+  "golf": {
+   "items": [
+    {
+     "name": "Hampton Golf Village",
+     "kind": "golf course",
+     "town": "",
+     "driveMin": 12,
+     "km": 6,
+     "source": "https://www.openstreetmap.org/way/34773105"
+    }
+   ]
+  },
+  "asOf": "26 Oct 2026",
+  "method": "Places from OpenStreetMap (Overpass), notes from Wikipedia summaries where linked; drive times are free-flow OSRM estimates from the place’s base, as of 26 Oct 2026. For large parks and forests the time is to the area’s map centre, so the nearest edge is usually closer. Re-verify before relying on them."
+ },
+ "happy-valley": {
+  "ski": {
+   "items": [
+    {
+     "name": "Mt. Hood Skibowl",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 62,
+     "km": 56,
+     "source": "https://www.openstreetmap.org/node/2630391344",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Summit Ski Area",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 64,
+     "km": 58,
+     "source": "https://www.openstreetmap.org/node/2630380877",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Mount Hood Meadows Ski Resort",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 83,
+     "km": 64,
+     "source": "https://en.wikipedia.org/wiki/Mount_Hood_Meadows",
+     "note": "Mount Hood Meadows is a ski resort on the southeastern face of Mount Hood in northern Oregon, and is the largest of the mountain's ski resorts."
+    }
+   ],
+   "note": null
+  },
+  "rink": {
+   "items": [
+    {
+     "name": "Veterans Memorial Coliseum",
+     "kind": "ice rink / arena",
+     "town": "",
+     "driveMin": 30,
+     "km": 19,
+     "source": "https://www.openstreetmap.org/way/34813762"
+    },
+    {
+     "name": "Mountain View Ice Arena",
+     "kind": "ice rink / arena",
+     "town": "Vancouver",
+     "driveMin": 33,
+     "km": 21,
+     "source": "https://www.openstreetmap.org/node/5792863864"
+    },
+    {
+     "name": "Sherwood Ice Arena",
+     "kind": "ice rink / arena",
+     "town": "Sherwood",
+     "driveMin": 41,
+     "km": 30,
+     "source": "https://www.openstreetmap.org/way/356300476"
+    },
+    {
+     "name": "Moda Center",
+     "kind": "major hockey arena",
+     "town": "",
+     "driveMin": 30,
+     "km": 19,
+     "source": "https://en.wikipedia.org/wiki/Moda_Center",
+     "note": "Moda Center, formerly known as the Rose Garden, is the primary indoor sports arena in Portland, Oregon, United States."
+    }
+   ]
+  },
+  "stadium": {
+   "items": [
+    {
+     "name": "Moda Center",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 30,
+     "km": 19,
+     "source": "https://en.wikipedia.org/wiki/Moda_Center",
+     "note": "Moda Center, formerly known as the Rose Garden, is the primary indoor sports arena in Portland, Oregon, United States."
+    },
+    {
+     "name": "Veterans Memorial Coliseum",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 30,
+     "km": 19,
+     "source": "https://en.wikipedia.org/wiki/Veterans_Memorial_Coliseum_(Portland%2C_Oregon)",
+     "note": "The Veterans Memorial Coliseum is an indoor arena located in the oldest part of the Rose Quarter area in Portland, Oregon."
+    },
+    {
+     "name": "Chiles Center",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 41,
+     "km": 26,
+     "source": "https://en.wikipedia.org/wiki/Chiles_Center",
+     "note": "The Earle A. & Virginia H. Chiles Center is a 4,852-seat multi-purpose arena in Portland, Oregon, United States."
+    },
+    {
+     "name": "Merlo Field",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 42,
+     "km": 26,
+     "source": "https://en.wikipedia.org/wiki/Merlo_Field",
+     "note": "Harry A. Merlo Field at the Clive Charles Soccer Complex is a 4,892-capacity soccer-specific stadium in Portland, Oregon on the campus of the University of Portland where it serves as home to the school's men's and women's soccer teams."
+    }
+   ],
+   "note": null
+  },
+  "park": {
+   "items": [
+    {
+     "name": "Fort Vancouver National Historic Site, McLoughlin House Site",
+     "kind": "national / federal",
+     "town": "Oregon City",
+     "driveMin": 21,
+     "km": 13,
+     "source": "https://en.wikipedia.org/wiki/Fort_Vancouver_National_Historic_Site",
+     "note": "Fort Vancouver National Historic Site is a United States National Historic Site located in the states of Washington and Oregon."
+    },
+    {
+     "name": "Tualatin River National Wildlife Refuge",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 43,
+     "km": 30,
+     "source": "https://en.wikipedia.org/wiki/Tualatin_River_National_Wildlife_Refuge",
+     "note": "The Tualatin River National Wildlife Refuge is a 1,856 acres (751 ha) wetlands and lowlands sanctuary in the northwestern part of the U.S. state of Oregon."
+    },
+    {
+     "name": "Steigerwald Lake National Wildlife Refuge",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 44,
+     "km": 20,
+     "source": "https://en.wikipedia.org/wiki/Steigerwald_Lake_National_Wildlife_Refuge",
+     "note": "The Steigerwald Lake National Wildlife Refuge is a 1,049-acre riverine flood plain habitat, semi-permanent wetland on the Columbia River, 10 miles (16 km) east of Vancouver, Washington, with cottonwood-dominated riparian corridors, pastures, and remnant stands of Oregon white oak."
+    },
+    {
+     "name": "George W. Joseph State Park",
+     "kind": "state park",
+     "town": "",
+     "driveMin": 39,
+     "km": 22,
+     "source": "https://www.openstreetmap.org/relation/8125923"
+    },
+    {
+     "name": "Guy W. Talbot State Park",
+     "kind": "state park",
+     "town": "",
+     "driveMin": 39,
+     "km": 23,
+     "source": "https://www.openstreetmap.org/relation/8125925"
+    },
+    {
+     "name": "Rooster Rock State Park",
+     "kind": "state park",
+     "town": "",
+     "driveMin": 42,
+     "km": 23,
+     "source": "https://www.openstreetmap.org/relation/8126046"
+    }
+   ]
+  },
+  "university": {
+   "items": [
+    {
+     "name": "Warner Pacific University East Campus",
+     "kind": "university",
+     "town": "Portland",
+     "driveMin": 18,
+     "km": 11,
+     "source": "https://www.openstreetmap.org/node/11929154190",
+     "note": "Type and size: not checked yet."
+    },
+    {
+     "name": "Walla Walla University - Portland",
+     "kind": "university",
+     "town": "Portland",
+     "driveMin": 21,
+     "km": 11,
+     "source": "https://www.openstreetmap.org/way/450027903",
+     "note": "Type and size: not checked yet."
+    },
+    {
+     "name": "University of Western States",
+     "kind": "university",
+     "town": "Portland",
+     "driveMin": 24,
+     "km": 15,
+     "source": "https://www.openstreetmap.org/way/271946847",
+     "note": "Type and size: not checked yet."
+    }
+   ]
+  },
+  "hospital": {
+   "items": [
+    {
+     "name": "Kaiser Sunnyside Medical Center",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Clackamas",
+     "driveMin": 13,
+     "km": 7,
+     "source": "https://www.openstreetmap.org/way/459258560"
+    },
+    {
+     "name": "Legacy Mount Hood Medical Center",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Gresham",
+     "driveMin": 21,
+     "km": 11,
+     "source": "https://www.openstreetmap.org/way/496245680"
+    }
+   ]
+  },
+  "golf": {
+   "items": [
+    {
+     "name": "Persimmon Country Club",
+     "kind": "golf course",
+     "town": "",
+     "driveMin": 15,
+     "km": 5,
+     "source": "https://www.openstreetmap.org/way/142411196"
+    }
+   ]
+  },
+  "asOf": "26 Oct 2026",
+  "method": "Places from OpenStreetMap (Overpass), notes from Wikipedia summaries where linked; drive times are free-flow OSRM estimates from the place’s base, as of 26 Oct 2026. For large parks and forests the time is to the area’s map centre, so the nearest edge is usually closer. Re-verify before relying on them."
+ },
+ "duvall": {
+  "ski": {
+   "items": [
+    {
+     "name": "Three Summits",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 72,
+     "km": 57,
+     "source": "https://www.openstreetmap.org/way/1361868120",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Alpental",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 74,
+     "km": 53,
+     "source": "https://www.openstreetmap.org/relation/6855067",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Summit West",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 76,
+     "km": 55,
+     "source": "https://www.openstreetmap.org/way/1499174311",
+     "note": "Season and snow reliability: not checked yet."
+    }
+   ],
+   "note": null
+  },
+  "rink": {
+   "items": [
+    {
+     "name": "Sno-King Ice Arena",
+     "kind": "ice rink / arena",
+     "town": "Kirkland",
+     "driveMin": 27,
+     "km": 14,
+     "source": "https://www.openstreetmap.org/node/4470299294"
+    },
+    {
+     "name": "Bellevue Downtown Ice Rink",
+     "kind": "ice rink / arena",
+     "town": "Bellevue",
+     "driveMin": 31,
+     "km": 21,
+     "source": "https://www.openstreetmap.org/way/1451219368"
+    },
+    {
+     "name": "Olympicview Arena",
+     "kind": "ice rink / arena",
+     "town": "Mountlake Terrace",
+     "driveMin": 43,
+     "km": 26,
+     "source": "https://www.openstreetmap.org/way/341902322"
+    },
+    {
+     "name": "Climate Pledge Arena",
+     "kind": "major hockey arena",
+     "town": "Seattle",
+     "driveMin": 43,
+     "km": 30,
+     "source": "https://en.wikipedia.org/wiki/Climate_Pledge_Arena",
+     "note": "Climate Pledge Arena is a multi-purpose indoor arena in Seattle, Washington, United States."
+    }
+   ]
+  },
+  "stadium": {
+   "items": [
+    {
+     "name": "Husky Stadium",
+     "kind": "stadium / arena, 70,138 seats (OSM)",
+     "town": "Seattle",
+     "driveMin": 35,
+     "km": 25,
+     "source": "https://en.wikipedia.org/wiki/Husky_Stadium",
+     "note": "Husky Stadium is an outdoor football stadium on the campus of the University of Washington in Seattle, Washington, United States."
+    },
+    {
+     "name": "Husky Ballpark",
+     "kind": "stadium / arena, 2,500 seats (OSM)",
+     "town": "",
+     "driveMin": 37,
+     "km": 25,
+     "source": "https://en.wikipedia.org/wiki/Husky_Ballpark",
+     "note": "Husky Ballpark is a college baseball park in the Northwestern United States, located on the campus of the University of Washington in Seattle."
+    },
+    {
+     "name": "Clarence S. \"Hec\" Edmundson Pavilion",
+     "kind": "stadium / arena, 10,000 seats (OSM)",
+     "town": "Seattle",
+     "driveMin": 38,
+     "km": 25,
+     "source": "https://en.wikipedia.org/wiki/Hec_Edmundson_Pavilion",
+     "note": "Alaska Airlines Arena at Hec Edmundson Pavilion is an indoor arena on the campus of the University of Washington in Seattle, Washington."
+    },
+    {
+     "name": "Angel of the Winds Arena",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 38,
+     "km": 31,
+     "source": "https://en.wikipedia.org/wiki/Angel_of_the_Winds_Arena",
+     "note": "Angel of the Winds Arena is a multi-purpose sports arena complex in Everett, Washington, United States, designed and developed by the Everett Public Facilities District."
+    }
+   ],
+   "note": null
+  },
+  "park": {
+   "items": [
+    {
+     "name": "Mount Baker-Snoqualmie National Forest",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 73,
+     "km": 46,
+     "source": "https://en.wikipedia.org/wiki/Mount_Baker%E2%80%93Snoqualmie_National_Forest",
+     "note": "The Mount Baker–Snoqualmie National Forest is a National Forest in Washington extending more than 140 miles (230 km) along the western slopes of the Cascade Range from the Canada–US border to the northern boundary of Mount Rainier National Park."
+    },
+    {
+     "name": "Billy Frank Jr. Nisqually National Wildlife Refuge",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 98,
+     "km": 90,
+     "source": "https://en.wikipedia.org/wiki/Billy_Frank_Jr._Nisqually_National_Wildlife_Refuge",
+     "note": "The Billy Frank Jr Nisqually National Wildlife Refuge is a wildlife preserve operated by the United States Fish and Wildlife Service on the Nisqually River Delta near Puget Sound in northeastern Thurston County, Washington and northwestern Pierce County, Washington."
+    },
+    {
+     "name": "Okanogan-Wenatchee National Forest",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 135,
+     "km": 99,
+     "source": "https://en.wikipedia.org/wiki/Okanogan%E2%80%93Wenatchee_National_Forest",
+     "note": "The Okanogan–Wenatchee National Forest is a U.S. National Forest located in Okanogan County in north-central Washington, United States."
+    },
+    {
+     "name": "Bridle Trails State Park",
+     "kind": "state park",
+     "town": "",
+     "driveMin": 31,
+     "km": 17,
+     "source": "https://www.openstreetmap.org/relation/6641109"
+    },
+    {
+     "name": "Saint Edward State Park",
+     "kind": "state park",
+     "town": "",
+     "driveMin": 36,
+     "km": 20,
+     "source": "https://www.openstreetmap.org/relation/5630068"
+    },
+    {
+     "name": "Lake Sammamish State Park",
+     "kind": "state park",
+     "town": "",
+     "driveMin": 36,
+     "km": 21,
+     "source": "https://www.openstreetmap.org/relation/5967398"
+    }
+   ]
+  },
+  "university": {
+   "items": [
+    {
+     "name": "Cascadia College",
+     "kind": "college",
+     "town": "Bothell",
+     "driveMin": 26,
+     "km": 15,
+     "source": "https://en.wikipedia.org/wiki/Cascadia_College",
+     "note": "Cascadia College is a public community college in Bothell, Washington, on a shared campus with the University of Washington Bothell."
+    },
+    {
+     "name": "University of Washington - Bothell",
+     "kind": "university",
+     "town": "Bothell",
+     "driveMin": 26,
+     "km": 15,
+     "source": "https://www.openstreetmap.org/way/41656208",
+     "note": "Type and size: not checked yet."
+    },
+    {
+     "name": "Northwest University",
+     "kind": "university",
+     "town": "",
+     "driveMin": 31,
+     "km": 18,
+     "source": "https://www.openstreetmap.org/way/181548845",
+     "note": "Type and size: not checked yet."
+    }
+   ]
+  },
+  "hospital": {
+   "items": [
+    {
+     "name": "Swedish Hospital",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Redmond",
+     "driveMin": 20,
+     "km": 11,
+     "source": "https://www.openstreetmap.org/way/148894456"
+    },
+    {
+     "name": "EvergreenHealth Monroe",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Monroe",
+     "driveMin": 20,
+     "km": 14,
+     "source": "https://www.openstreetmap.org/way/485032829"
+    }
+   ]
+  },
+  "golf": {
+   "items": [
+    {
+     "name": "The Golf Club at Redmond Ridge",
+     "kind": "golf course",
+     "town": "Redmond",
+     "driveMin": 11,
+     "km": 5,
+     "source": "https://www.openstreetmap.org/relation/9098120"
+    }
+   ]
+  },
+  "asOf": "26 Oct 2026",
+  "method": "Places from OpenStreetMap (Overpass), notes from Wikipedia summaries where linked; drive times are free-flow OSRM estimates from the place’s base, as of 26 Oct 2026. For large parks and forests the time is to the area’s map centre, so the nearest edge is usually closer. Re-verify before relying on them."
+ },
+ "cantley": {
+  "ski": {
+   "items": [
+    {
+     "name": "Mont Cascades Ski",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 9,
+     "km": 5,
+     "source": "https://www.openstreetmap.org/way/330118914",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Sommet Edelweiss",
+     "kind": "ski area",
+     "town": "Wakefield",
+     "driveMin": 15,
+     "km": 10,
+     "source": "https://en.wikipedia.org/wiki/Sommet_Edelweiss",
+     "note": "Sommet Edelweiss is a ski area located in Wakefield, Quebec, 30 minutes north of Ottawa, Ontario, Canada, in the Gatineau Hills."
+    },
+    {
+     "name": "Centre Vorlage",
+     "kind": "ski area",
+     "town": "Wakefield",
+     "driveMin": 25,
+     "km": 15,
+     "source": "https://en.wikipedia.org/wiki/Vorlage_(ski_hill)",
+     "note": "Vorlage is a ski hill located at the village of Wakefield, within the municipality of La Pêche, Quebec, in the Gatineau Hills north of Ottawa, Ontario."
+    }
+   ],
+   "note": null
+  },
+  "rink": {
+   "items": [
+    {
+     "name": "Arena Beaudry",
+     "kind": "ice rink / arena",
+     "town": "Gatineau",
+     "driveMin": 12,
+     "km": 8,
+     "source": "https://www.openstreetmap.org/way/87362850"
+    },
+    {
+     "name": "Arena Jean-Paul-Sabourin",
+     "kind": "ice rink / arena",
+     "town": "Gatineau",
+     "driveMin": 17,
+     "km": 11,
+     "source": "https://www.openstreetmap.org/way/164940545"
+    },
+    {
+     "name": "Centre Slush Puppie",
+     "kind": "ice rink / arena",
+     "town": "Gatineau",
+     "driveMin": 22,
+     "km": 12,
+     "source": "https://www.openstreetmap.org/way/1014110594"
+    },
+    {
+     "name": "TD Place Stadium",
+     "kind": "major hockey arena",
+     "town": "",
+     "driveMin": 32,
+     "km": 20,
+     "source": "https://en.wikipedia.org/wiki/TD_Place_Stadium",
+     "note": "TD Place Stadium is an outdoor stadium in Ottawa, Ontario, Canada It is located at Lansdowne Park, on the southern edge of The Glebe neighbourhood, where Bank Street crosses the Rideau Canal."
+    }
+   ]
+  },
+  "stadium": {
+   "items": [
+    {
+     "name": "Gee-Gees Field",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 31,
+     "km": 19,
+     "source": "https://en.wikipedia.org/wiki/Gee-Gees_Field",
+     "note": "Gee-Gees Field is a Canadian football stadium at the University of Ottawa in Ottawa, Ontario, Canada."
+    },
+    {
+     "name": "Ottawa Stadium",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 31,
+     "km": 19,
+     "source": "https://en.wikipedia.org/wiki/Ottawa_Stadium",
+     "note": "Ottawa Stadium is a baseball stadium in Ottawa, Ontario, Canada, with a seating capacity of 10,278."
+    },
+    {
+     "name": "MNP Park",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 31,
+     "km": 20,
+     "source": "https://en.wikipedia.org/wiki/TAAG_Park",
+     "note": "TAAG Park is a stadium located on the Carleton University campus in Ottawa, Ontario, Canada."
+    },
+    {
+     "name": "TD Place Stadium",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 32,
+     "km": 20,
+     "source": "https://en.wikipedia.org/wiki/TD_Place_Stadium",
+     "note": "TD Place Stadium is an outdoor stadium in Ottawa, Ontario, Canada It is located at Lansdowne Park, on the southern edge of The Glebe neighbourhood, where Bank Street crosses the Rideau Canal."
+    }
+   ],
+   "note": null
+  },
+  "park": {
+   "items": [
+    {
+     "name": "Parc de la Gatineau",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 52,
+     "km": 17,
+     "source": "https://en.wikipedia.org/wiki/Gatineau_Park",
+     "note": "Gatineau Park is a federal park located in the Outaouais region of Quebec, Canada Administered by the National Capital Commission as part of the National Capital Region, Gatineau Park is a 361 square kilometres (139 mi2) wedge of land extending north and west from the city of Gatineau."
+    },
+    {
+     "name": "Battle of the Windmill National Historic Site",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 94,
+     "km": 96,
+     "source": "https://en.wikipedia.org/wiki/Battle_of_the_Windmill_National_Historic_Site",
+     "note": "Battle of the Windmill National Historic Site marks the site of the November 1838 Battle of the Windmill, fought around a grist windmill near Prescott, Ontario, Canada."
+    },
+    {
+     "name": "Fort Wellington National Historic Site",
+     "kind": "national / federal",
+     "town": "Prescott",
+     "driveMin": 94,
+     "km": 97,
+     "source": "https://en.wikipedia.org/wiki/Fort_Wellington",
+     "note": "Fort Wellington National Historic Site is a historic military fortification located on the north shore of the St."
+    },
+    {
+     "name": "Burnt Lands Provincial Park",
+     "kind": "provincial park",
+     "town": "Fitzroy Harbour",
+     "driveMin": 64,
+     "km": 44,
+     "source": "https://www.openstreetmap.org/relation/8328485"
+    },
+    {
+     "name": "Rideau River Provincial Park",
+     "kind": "provincial park",
+     "town": "Kemptville",
+     "driveMin": 67,
+     "km": 57,
+     "source": "https://www.openstreetmap.org/way/91370862"
+    },
+    {
+     "name": "Fitzroy Provincial Park",
+     "kind": "provincial park",
+     "town": "",
+     "driveMin": 82,
+     "km": 35,
+     "source": "https://www.openstreetmap.org/relation/14197708"
+    }
+   ]
+  },
+  "university": {
+   "items": [
+    {
+     "name": "CEGEP de l'Outaouais - Campus Félix-Leclerc",
+     "kind": "college",
+     "town": "",
+     "driveMin": 21,
+     "km": 12,
+     "source": "https://en.wikipedia.org/wiki/C%C3%A9gep_de_l'Outaouais",
+     "note": "Cégep de l'Outaouais is a Canadian college It is the biggest public college (CEGEP) in the Outaouais region and is located in the city of Gatineau, Quebec."
+    },
+    {
+     "name": "École nationale d’administration publique",
+     "kind": "university",
+     "town": "Gatineau",
+     "driveMin": 24,
+     "km": 16,
+     "source": "https://www.openstreetmap.org/node/14013501007",
+     "note": "Type and size: not checked yet."
+    },
+    {
+     "name": "Université du Québec en Outaouais",
+     "kind": "university",
+     "town": "Gatineau",
+     "driveMin": 24,
+     "km": 16,
+     "source": "https://www.openstreetmap.org/way/162003784",
+     "note": "Type and size: not checked yet."
+    }
+   ]
+  },
+  "hospital": {
+   "items": [
+    {
+     "name": "Hôpital de Gatineau",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "",
+     "driveMin": 19,
+     "km": 11,
+     "source": "https://www.openstreetmap.org/way/163144321"
+    },
+    {
+     "name": "Hôpital de Hull",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Gatineau",
+     "driveMin": 22,
+     "km": 13,
+     "source": "https://www.openstreetmap.org/way/355151993"
+    }
+   ]
+  },
+  "golf": {
+   "items": [
+    {
+     "name": "Larrimac Golf Club",
+     "kind": "golf course",
+     "town": "Chelsea",
+     "driveMin": 29,
+     "km": 3,
+     "source": "https://www.openstreetmap.org/relation/3644603"
+    }
+   ]
+  },
+  "asOf": "26 Oct 2026",
+  "method": "Places from OpenStreetMap (Overpass), notes from Wikipedia summaries where linked; drive times are free-flow OSRM estimates from the place’s base, as of 26 Oct 2026. For large parks and forests the time is to the area’s map centre, so the nearest edge is usually closer. Re-verify before relying on them."
+ },
+ "maryville": {
+  "ski": {
+   "items": [
+    {
+     "name": "Ober Mountain",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 73,
+     "km": 37,
+     "source": "https://www.openstreetmap.org/way/1282431650",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Cataloochee Ski Area",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 137,
+     "km": 82,
+     "source": "https://www.openstreetmap.org/way/1311290835",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Hatley Pointe",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 170,
+     "km": 133,
+     "source": "https://www.openstreetmap.org/way/1126110799",
+     "note": "Season and snow reliability: not checked yet."
+    }
+   ],
+   "note": "Skiing is limited in the Southeast: small resorts with shorter seasons that lean on snowmaking."
+  },
+  "rink": {
+   "items": [
+    {
+     "name": "Ober Ice Rink",
+     "kind": "ice rink / arena",
+     "town": "",
+     "driveMin": 74,
+     "km": 38,
+     "source": "https://www.openstreetmap.org/node/12737002811"
+    }
+   ]
+  },
+  "stadium": {
+   "items": [
+    {
+     "name": "Lloyd L. Thornton Stadium",
+     "kind": "stadium / arena",
+     "town": "Maryville",
+     "driveMin": 3,
+     "km": 1,
+     "source": "https://en.wikipedia.org/wiki/Lloyd_L._Thornton_Stadium",
+     "note": "The Lloyd L. Thornton Stadium is located in Maryville, Tennessee, and serves as the home stadium for the Maryville College Fighting Scots’ football team."
+    },
+    {
+     "name": "Sherri Parker Lee Stadium",
+     "kind": "stadium / arena",
+     "town": "Knoxville",
+     "driveMin": 30,
+     "km": 21,
+     "source": "https://en.wikipedia.org/wiki/Sherri_Parker_Lee_Stadium",
+     "note": "Sherri Parker Lee Stadium is a softball stadium in Knoxville, Tennessee It is the home field of the University of Tennessee Volunteers college softball team."
+    },
+    {
+     "name": "Regal Soccer Stadium",
+     "kind": "stadium / arena, 3,000 seats (OSM)",
+     "town": "Knoxville",
+     "driveMin": 30,
+     "km": 21,
+     "source": "https://en.wikipedia.org/wiki/Regal_Soccer_Stadium",
+     "note": "Regal Soccer Stadium is a soccer-specific stadium in Knoxville, Tennessee This stadium hosts the Tennessee Lady Volunteers soccer team in the NCAA.The stadium is located on the University of Tennessee's campus, adjacent to Sherri Parker Lee Stadium, home of the Tennessee Lady Vols Softball team."
+    },
+    {
+     "name": "Neyland Stadium",
+     "kind": "stadium / arena",
+     "town": "Knoxville",
+     "driveMin": 30,
+     "km": 22,
+     "source": "https://en.wikipedia.org/wiki/Neyland_Stadium",
+     "note": "Neyland Stadium is a sports stadium in Knoxville, Tennessee, United States It serves primarily as the home of the Tennessee Volunteers football team, but is also used to host large conventions and has been a site for several National Football League (NFL) exhibition games."
+    }
+   ],
+   "note": null
+  },
+  "park": {
+   "items": [
+    {
+     "name": "Great Smoky Mountains National Park",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 76,
+     "km": 44,
+     "source": "https://en.wikipedia.org/wiki/Great_Smoky_Mountains_National_Park",
+     "note": "Great Smoky Mountains National Park is a national park of the United States in the southeast, with parts in North Carolina and Tennessee."
+    },
+    {
+     "name": "Cherokee National Forest",
+     "kind": "national / federal",
+     "town": "Cleveland",
+     "driveMin": 87,
+     "km": 72,
+     "source": "https://en.wikipedia.org/wiki/Cherokee_National_Forest",
+     "note": "The Cherokee National Forest is a United States National Forest located in the U.S. states of Tennessee and North Carolina that was created on June 14, 1920."
+    },
+    {
+     "name": "Andrew Johnson National Historic Site",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 107,
+     "km": 112,
+     "source": "https://en.wikipedia.org/wiki/Andrew_Johnson_National_Historic_Site",
+     "note": "Andrew Johnson National Historic Site is a National Historic Site in Greeneville, Tennessee, maintained by the National Park Service."
+    },
+    {
+     "name": "Justin P. Wilson Cumberland Trail State Park",
+     "kind": "state park",
+     "town": "",
+     "driveMin": 64,
+     "km": 56,
+     "source": "https://www.openstreetmap.org/relation/11748820"
+    },
+    {
+     "name": "Norris Dam State Park",
+     "kind": "state park",
+     "town": "",
+     "driveMin": 67,
+     "km": 55,
+     "source": "https://www.openstreetmap.org/node/356824219"
+    },
+    {
+     "name": "Cove Lake State Park",
+     "kind": "state park",
+     "town": "",
+     "driveMin": 69,
+     "km": 65,
+     "source": "https://www.openstreetmap.org/relation/13069278"
+    }
+   ]
+  },
+  "university": {
+   "items": [
+    {
+     "name": "Maryville College",
+     "kind": "university",
+     "town": "Maryville",
+     "driveMin": 3,
+     "km": 1,
+     "source": "https://en.wikipedia.org/wiki/Maryville_College",
+     "note": "Maryville College is a private liberal arts college in Maryville, Tennessee It was founded in 1819 by Presbyterian minister Isaac L. Anderson for the purpose of furthering education and enlightenment in what was then America's southwestern frontier."
+    },
+    {
+     "name": "University of Tennessee, Knoxville",
+     "kind": "university",
+     "town": "Knoxville",
+     "driveMin": 29,
+     "km": 22,
+     "source": "https://en.wikipedia.org/wiki/University_of_Tennessee",
+     "note": "The University of Tennessee, Knoxville is a public land-grant research university in Knoxville, Tennessee, United States."
+    },
+    {
+     "name": "Pellissippi State Community College",
+     "kind": "college",
+     "town": "",
+     "driveMin": 32,
+     "km": 28,
+     "source": "https://en.wikipedia.org/wiki/Pellissippi_State_Community_College",
+     "note": "Pellissippi State Community College is a public community college based in Knox and Blount Counties in Tennessee."
+    }
+   ]
+  },
+  "hospital": {
+   "items": [
+    {
+     "name": "Blount Memorial Hospital",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Maryville",
+     "driveMin": 3,
+     "km": 1,
+     "source": "https://www.openstreetmap.org/way/473433788"
+    },
+    {
+     "name": "Turkey Creek Medical Center",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Knoxville",
+     "driveMin": 28,
+     "km": 22,
+     "source": "https://www.openstreetmap.org/way/983215538"
+    }
+   ]
+  },
+  "golf": {
+   "items": [
+    {
+     "name": "Green Meadow Country Club",
+     "kind": "golf course",
+     "town": "Alcoa",
+     "driveMin": 8,
+     "km": 4,
+     "source": "https://www.openstreetmap.org/way/497726668"
+    }
+   ]
+  },
+  "asOf": "26 Oct 2026",
+  "method": "Places from OpenStreetMap (Overpass), notes from Wikipedia summaries where linked; drive times are free-flow OSRM estimates from the place’s base, as of 26 Oct 2026. For large parks and forests the time is to the area’s map centre, so the nearest edge is usually closer. Re-verify before relying on them."
+ },
+ "elizabeth": {
+  "ski": {
+   "items": [
+    {
+     "name": "Hoedown Hill",
+     "kind": "ski area",
+     "town": "Windsor",
+     "driveMin": 113,
+     "km": 125,
+     "source": "https://www.openstreetmap.org/way/1443608615",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Echo Mountain",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 115,
+     "km": 87,
+     "source": "https://www.openstreetmap.org/way/530998534",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Loveland Valley Ski Area",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 127,
+     "km": 116,
+     "source": "https://www.openstreetmap.org/way/184326663",
+     "note": "Season and snow reliability: not checked yet."
+    }
+   ],
+   "note": null
+  },
+  "rink": {
+   "items": [
+    {
+     "name": "Ball Arena",
+     "kind": "major hockey arena",
+     "town": "Denver",
+     "driveMin": 59,
+     "km": 56,
+     "source": "https://en.wikipedia.org/wiki/Ball_Arena",
+     "note": "Ball Arena is a multi-purpose indoor arena located in Denver, Colorado, United States It is situated at Speer Boulevard, a main thoroughfare in downtown Denver, and is served by two nearby exits off Interstate 25."
+    }
+   ]
+  },
+  "stadium": {
+   "items": [
+    {
+     "name": "Ball Arena",
+     "kind": "stadium / arena",
+     "town": "Denver",
+     "driveMin": 59,
+     "km": 56,
+     "source": "https://en.wikipedia.org/wiki/Ball_Arena",
+     "note": "Ball Arena is a multi-purpose indoor arena located in Denver, Colorado, United States It is situated at Speer Boulevard, a main thoroughfare in downtown Denver, and is served by two nearby exits off Interstate 25."
+    },
+    {
+     "name": "Empower Field at Mile High",
+     "kind": "stadium / arena",
+     "town": "Denver",
+     "driveMin": 59,
+     "km": 56,
+     "source": "https://en.wikipedia.org/wiki/Empower_Field_at_Mile_High",
+     "note": "Invesco Field at Mile High is an American football stadium in the western United States, located in Denver, Colorado."
+    },
+    {
+     "name": "Coors Field",
+     "kind": "stadium / arena",
+     "town": "Denver",
+     "driveMin": 62,
+     "km": 56,
+     "source": "https://en.wikipedia.org/wiki/Coors_Field",
+     "note": "Coors Field is a baseball stadium in downtown Denver, Colorado, United States It is the ballpark of Major League Baseball's Colorado Rockies."
+    },
+    {
+     "name": "UCHealth Park",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 63,
+     "km": 53,
+     "source": "https://en.wikipedia.org/wiki/Blocktickets_Park",
+     "note": "Blocktickets Park, styled as blocktickets PARK, is a baseball park in the western United States, on the eastern edge of Colorado Springs, Colorado."
+    }
+   ],
+   "note": null
+  },
+  "park": {
+   "items": [
+    {
+     "name": "Rocky Mountain Arsenal National Wildlife Refuge",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 75,
+     "km": 57,
+     "source": "https://en.wikipedia.org/wiki/Rocky_Mountain_Arsenal_National_Wildlife_Refuge",
+     "note": "The Rocky Mountain Arsenal National Wildlife Refuge is a 15,988-acre (24.981 sq mi) National Wildlife Refuge located adjacent to Denver and Commerce City, Colorado, in the United States."
+    },
+    {
+     "name": "Two Ponds National Wildlife Refuge",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 78,
+     "km": 69,
+     "source": "https://www.openstreetmap.org/relation/5903847"
+    },
+    {
+     "name": "Colorado Chautauqua National Historic Landmark",
+     "kind": "national / federal",
+     "town": "Boulder",
+     "driveMin": 94,
+     "km": 92,
+     "source": "https://www.openstreetmap.org/node/5087677105"
+    },
+    {
+     "name": "Castlewood Canyon State Park",
+     "kind": "state park",
+     "town": "",
+     "driveMin": 25,
+     "km": 13,
+     "source": "https://www.openstreetmap.org/way/30453752"
+    },
+    {
+     "name": "Chatfield State Park",
+     "kind": "state park",
+     "town": "",
+     "driveMin": 51,
+     "km": 44,
+     "source": "https://www.openstreetmap.org/way/57872691"
+    },
+    {
+     "name": "Cherry Creek State Park",
+     "kind": "state park",
+     "town": "Aurora",
+     "driveMin": 58,
+     "km": 37,
+     "source": "https://www.openstreetmap.org/way/224202720"
+    }
+   ]
+  },
+  "university": {
+   "items": [
+    {
+     "name": "Rocky Vista University",
+     "kind": "university",
+     "town": "Parker",
+     "driveMin": 37,
+     "km": 29,
+     "source": "https://www.openstreetmap.org/way/906025085",
+     "note": "Type and size: not checked yet."
+    },
+    {
+     "name": "ECPI University Denver",
+     "kind": "university",
+     "town": "Centennial",
+     "driveMin": 41,
+     "km": 34,
+     "source": "https://www.openstreetmap.org/node/11356406020",
+     "note": "Type and size: not checked yet."
+    },
+    {
+     "name": "University of Denver",
+     "kind": "university",
+     "town": "Denver",
+     "driveMin": 51,
+     "km": 47,
+     "source": "https://en.wikipedia.org/wiki/University_of_Denver",
+     "note": "The University of Denver (DU) is a private research university in Denver, Colorado, United States."
+    }
+   ]
+  },
+  "hospital": {
+   "items": [
+    {
+     "name": "AdventHealth Castle Rock Hospital",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Castle Rock",
+     "driveMin": 29,
+     "km": 25,
+     "source": "https://www.openstreetmap.org/way/580881275"
+    },
+    {
+     "name": "AdventHealth Parker Hospital",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Parker",
+     "driveMin": 32,
+     "km": 25,
+     "source": "https://www.openstreetmap.org/way/133848672"
+    }
+   ]
+  },
+  "golf": {
+   "items": [
+    {
+     "name": "Spring Valley Golf Course",
+     "kind": "golf course",
+     "town": "Elizabeth",
+     "driveMin": 19,
+     "km": 14,
+     "source": "https://www.openstreetmap.org/way/621343784"
+    }
+   ]
+  },
+  "asOf": "26 Oct 2026",
+  "method": "Places from OpenStreetMap (Overpass), notes from Wikipedia summaries where linked; drive times are free-flow OSRM estimates from the place’s base, as of 26 Oct 2026. For large parks and forests the time is to the area’s map centre, so the nearest edge is usually closer. Re-verify before relying on them."
+ },
+ "boise": {
+  "ski": {
+   "items": [
+    {
+     "name": "Bogus Basin Mountain Recreation Area",
+     "kind": "ski area",
+     "town": "Boise",
+     "driveMin": 46,
+     "km": 14,
+     "source": "https://www.openstreetmap.org/node/2627806063",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Hasbrouck Ranch Nordic Trails",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 115,
+     "km": 85,
+     "source": "https://www.openstreetmap.org/way/1125761974",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Soldier Mountain Ski Area",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 151,
+     "km": 109,
+     "source": "https://www.openstreetmap.org/node/8016512628",
+     "note": "Season and snow reliability: not checked yet."
+    }
+   ],
+   "note": null
+  },
+  "rink": {
+   "items": [
+    {
+     "name": "Idaho IceWorld",
+     "kind": "ice rink / arena",
+     "town": "Boise",
+     "driveMin": 25,
+     "km": 13,
+     "source": "https://www.openstreetmap.org/way/973322386"
+    }
+   ]
+  },
+  "stadium": {
+   "items": [
+    {
+     "name": "Albertsons Stadium",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 15,
+     "km": 6,
+     "source": "https://en.wikipedia.org/wiki/Albertsons_Stadium",
+     "note": "Albertsons Stadium is an outdoor athletic stadium in the Western United States, located on the campus of Boise State University in Boise, Idaho."
+    },
+    {
+     "name": "ExtraMile Arena",
+     "kind": "stadium / arena",
+     "town": "Boise",
+     "driveMin": 16,
+     "km": 6,
+     "source": "https://en.wikipedia.org/wiki/ExtraMile_Arena",
+     "note": "ExtraMile Arena is a multi-purpose indoor arena in the western United States, on the campus of Boise State University in Boise, Idaho."
+    }
+   ],
+   "note": null
+  },
+  "park": {
+   "items": [
+    {
+     "name": "Deer Flat National Wildlife Refuge",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 71,
+     "km": 57,
+     "source": "https://en.wikipedia.org/wiki/Deer_Flat_National_Wildlife_Refuge",
+     "note": "The Deer Flat National Wildlife Refuge is an important breeding area for mammals, birds, and other animals."
+    },
+    {
+     "name": "Boise National Forest",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 139,
+     "km": 63,
+     "source": "https://www.openstreetmap.org/relation/6023246"
+    },
+    {
+     "name": "Sawtooth National Forest",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 177,
+     "km": 180,
+     "source": "https://en.wikipedia.org/wiki/Sawtooth_National_Forest",
+     "note": "Sawtooth National Forest is a national forest that covers 2,110,408 acres in the U.S. states of Idaho and Utah."
+    },
+    {
+     "name": "Lucky Peak State Park",
+     "kind": "state park",
+     "town": "Boise",
+     "driveMin": 35,
+     "km": 16,
+     "source": "https://www.openstreetmap.org/way/468620402"
+    },
+    {
+     "name": "Three Island Crossing State Park",
+     "kind": "state park",
+     "town": "",
+     "driveMin": 91,
+     "km": 104,
+     "source": "https://www.openstreetmap.org/way/362874686"
+    },
+    {
+     "name": "Bruneau Dunes State Park",
+     "kind": "state park",
+     "town": "",
+     "driveMin": 103,
+     "km": 92,
+     "source": "https://www.openstreetmap.org/way/362874134"
+    }
+   ]
+  },
+  "university": {
+   "items": [
+    {
+     "name": "Boise State University - Computer Science",
+     "kind": "university",
+     "town": "",
+     "driveMin": 13,
+     "km": 5,
+     "source": "https://www.openstreetmap.org/node/12199531534",
+     "note": "Type and size: not checked yet."
+    },
+    {
+     "name": "College of Western Idaho",
+     "kind": "university",
+     "town": "Nampa",
+     "driveMin": 37,
+     "km": 27,
+     "source": "https://www.openstreetmap.org/way/398445981",
+     "note": "Type and size: not checked yet."
+    },
+    {
+     "name": "Northwest Nazarene University",
+     "kind": "university",
+     "town": "",
+     "driveMin": 43,
+     "km": 33,
+     "source": "https://www.openstreetmap.org/way/231767380",
+     "note": "Type and size: not checked yet."
+    }
+   ]
+  },
+  "hospital": {
+   "items": [
+    {
+     "name": "Boise VA Medical Center",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Boise",
+     "driveMin": 13,
+     "km": 4,
+     "source": "https://www.openstreetmap.org/way/581437232"
+    },
+    {
+     "name": "St. Luke's Boise Medical Center",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Boise",
+     "driveMin": 13,
+     "km": 4,
+     "source": "https://www.openstreetmap.org/way/458928501"
+    }
+   ]
+  },
+  "golf": {
+   "items": [
+    {
+     "name": "Crane Creek Country Club",
+     "kind": "golf course",
+     "town": "Boise",
+     "driveMin": 17,
+     "km": 1,
+     "source": "https://www.openstreetmap.org/relation/9198175"
+    }
+   ]
+  },
+  "asOf": "26 Oct 2026",
+  "method": "Places from OpenStreetMap (Overpass), notes from Wikipedia summaries where linked; drive times are free-flow OSRM estimates from the place’s base, as of 26 Oct 2026. For large parks and forests the time is to the area’s map centre, so the nearest edge is usually closer. Re-verify before relying on them."
+ },
+ "on-carp-huntley": {
+  "ski": {
+   "items": [
+    {
+     "name": "Mount Pakenham Ski Hill",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 47,
+     "km": 25,
+     "source": "https://en.wikipedia.org/wiki/Mount_Pakenham",
+     "note": "Mount Pakenham is a ski hill to the south-west of Ottawa, Ontario, Canada, near the town of Pakenham."
+    },
+    {
+     "name": "Camp Fortune",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 54,
+     "km": 29,
+     "source": "https://en.wikipedia.org/wiki/Camp_Fortune",
+     "note": "Camp Fortune is a commercial alpine ski centre located in the municipality of Chelsea in the Gatineau Hills north of Gatineau, Quebec, approximately fifteen minutes from Downtown Ottawa, Ontario."
+    },
+    {
+     "name": "Mont Cascades Ski",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 59,
+     "km": 37,
+     "source": "https://www.openstreetmap.org/way/330118914",
+     "note": "Season and snow reliability: not checked yet."
+    }
+   ],
+   "note": null
+  },
+  "rink": {
+   "items": [
+    {
+     "name": "Carrol Homestead Community Park Ice Rink",
+     "kind": "ice rink / arena",
+     "town": "",
+     "driveMin": 6,
+     "km": 4,
+     "source": "https://www.openstreetmap.org/way/264209679"
+    },
+    {
+     "name": "Arcadia Park Ice Rink",
+     "kind": "ice rink / arena",
+     "town": "",
+     "driveMin": 10,
+     "km": 7,
+     "source": "https://www.openstreetmap.org/node/5316600172"
+    },
+    {
+     "name": "Pioneer Plains Park Ice Rink",
+     "kind": "ice rink / arena",
+     "town": "",
+     "driveMin": 11,
+     "km": 7,
+     "source": "https://www.openstreetmap.org/node/5316593317"
+    },
+    {
+     "name": "Canadian Tire Centre",
+     "kind": "major hockey arena",
+     "town": "",
+     "driveMin": 12,
+     "km": 8,
+     "source": "https://en.wikipedia.org/wiki/Canadian_Tire_Centre",
+     "note": "Canadian Tire Centre is a multi-purpose arena in the suburb of Kanata in Ottawa, Ontario, Canada."
+    }
+   ]
+  },
+  "stadium": {
+   "items": [
+    {
+     "name": "Canadian Tire Centre",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 12,
+     "km": 8,
+     "source": "https://en.wikipedia.org/wiki/Canadian_Tire_Centre",
+     "note": "Canadian Tire Centre is a multi-purpose arena in the suburb of Kanata in Ottawa, Ontario, Canada."
+    },
+    {
+     "name": "MNP Park",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 29,
+     "km": 28,
+     "source": "https://en.wikipedia.org/wiki/TAAG_Park",
+     "note": "TAAG Park is a stadium located on the Carleton University campus in Ottawa, Ontario, Canada."
+    },
+    {
+     "name": "TD Place Stadium",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 31,
+     "km": 30,
+     "source": "https://en.wikipedia.org/wiki/TD_Place_Stadium",
+     "note": "TD Place Stadium is an outdoor stadium in Ottawa, Ontario, Canada It is located at Lansdowne Park, on the southern edge of The Glebe neighbourhood, where Bank Street crosses the Rideau Canal."
+    },
+    {
+     "name": "Gee-Gees Field",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 31,
+     "km": 32,
+     "source": "https://en.wikipedia.org/wiki/Gee-Gees_Field",
+     "note": "Gee-Gees Field is a Canadian football stadium at the University of Ottawa in Ottawa, Ontario, Canada."
+    }
+   ],
+   "note": null
+  },
+  "park": {
+   "items": [
+    {
+     "name": "Parc de la Gatineau",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 60,
+     "km": 31,
+     "source": "https://en.wikipedia.org/wiki/Gatineau_Park",
+     "note": "Gatineau Park is a federal park located in the Outaouais region of Quebec, Canada Administered by the National Capital Commission as part of the National Capital Region, Gatineau Park is a 361 square kilometres (139 mi2) wedge of land extending north and west from the city of Gatineau."
+    },
+    {
+     "name": "Battle of the Windmill National Historic Site",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 74,
+     "km": 75,
+     "source": "https://en.wikipedia.org/wiki/Battle_of_the_Windmill_National_Historic_Site",
+     "note": "Battle of the Windmill National Historic Site marks the site of the November 1838 Battle of the Windmill, fought around a grist windmill near Prescott, Ontario, Canada."
+    },
+    {
+     "name": "Fort Wellington National Historic Site",
+     "kind": "national / federal",
+     "town": "Prescott",
+     "driveMin": 75,
+     "km": 74,
+     "source": "https://en.wikipedia.org/wiki/Fort_Wellington",
+     "note": "Fort Wellington National Historic Site is a historic military fortification located on the north shore of the St."
+    },
+    {
+     "name": "Burnt Lands Provincial Park",
+     "kind": "provincial park",
+     "town": "Fitzroy Harbour",
+     "driveMin": 17,
+     "km": 11,
+     "source": "https://www.openstreetmap.org/relation/8328485"
+    },
+    {
+     "name": "Fitzroy Provincial Park",
+     "kind": "provincial park",
+     "town": "",
+     "driveMin": 38,
+     "km": 28,
+     "source": "https://www.openstreetmap.org/relation/14197708"
+    },
+    {
+     "name": "Alexander Stewart Provincial Park",
+     "kind": "provincial park",
+     "town": "",
+     "driveMin": 42,
+     "km": 41,
+     "source": "https://www.openstreetmap.org/way/1065363981"
+    }
+   ]
+  },
+  "university": {
+   "items": [
+    {
+     "name": "Carleton University",
+     "kind": "university",
+     "town": "",
+     "driveMin": 30,
+     "km": 28,
+     "source": "https://www.openstreetmap.org/way/10583513",
+     "note": "Type and size: not checked yet."
+    },
+    {
+     "name": "Saint Paul University",
+     "kind": "university",
+     "town": "",
+     "driveMin": 30,
+     "km": 31,
+     "source": "https://www.openstreetmap.org/way/363054489",
+     "note": "Type and size: not checked yet."
+    },
+    {
+     "name": "University of Ottawa",
+     "kind": "university",
+     "town": "",
+     "driveMin": 31,
+     "km": 31,
+     "source": "https://en.wikipedia.org/wiki/University_of_Ottawa",
+     "note": "The University of Ottawa, often referred to as uOttawa, is a bilingual public research university in Ottawa, Ontario, the capital city of Canada."
+    }
+   ]
+  },
+  "hospital": {
+   "items": [
+    {
+     "name": "Queensway Carleton Hospital",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Ottawa",
+     "driveMin": 20,
+     "km": 18,
+     "source": "https://www.openstreetmap.org/way/590820287"
+    },
+    {
+     "name": "Almonte General Hospital",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "",
+     "driveMin": 22,
+     "km": 14,
+     "source": "https://www.openstreetmap.org/way/321396258"
+    }
+   ]
+  },
+  "golf": {
+   "items": [
+    {
+     "name": "Thunderbird Sports Centre",
+     "kind": "golf course",
+     "town": "",
+     "driveMin": 8,
+     "km": 6,
+     "source": "https://www.openstreetmap.org/way/87362397"
+    }
+   ]
+  },
+  "asOf": "26 Oct 2026",
+  "method": "Places from OpenStreetMap (Overpass), notes from Wikipedia summaries where linked; drive times are free-flow OSRM estimates from the place’s base, as of 26 Oct 2026. For large parks and forests the time is to the area’s map centre, so the nearest edge is usually closer. Re-verify before relying on them."
+ },
+ "on-dunrobin": {
+  "ski": {
+   "items": [
+    {
+     "name": "Mount Pakenham Ski Hill",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 45,
+     "km": 26,
+     "source": "https://en.wikipedia.org/wiki/Mount_Pakenham",
+     "note": "Mount Pakenham is a ski hill to the south-west of Ottawa, Ontario, Canada, near the town of Pakenham."
+    },
+    {
+     "name": "Camp Fortune",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 63,
+     "km": 18,
+     "source": "https://en.wikipedia.org/wiki/Camp_Fortune",
+     "note": "Camp Fortune is a commercial alpine ski centre located in the municipality of Chelsea in the Gatineau Hills north of Gatineau, Quebec, approximately fifteen minutes from Downtown Ottawa, Ontario."
+    },
+    {
+     "name": "Mont Cascades Ski",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 68,
+     "km": 23,
+     "source": "https://www.openstreetmap.org/way/330118914",
+     "note": "Season and snow reliability: not checked yet."
+    }
+   ],
+   "note": null
+  },
+  "rink": {
+   "items": [
+    {
+     "name": "Dunrobin Community Ice Rink",
+     "kind": "ice rink / arena",
+     "town": "",
+     "driveMin": 6,
+     "km": 4,
+     "source": "https://www.openstreetmap.org/way/440685187"
+    },
+    {
+     "name": "Cavanagh Sensplex",
+     "kind": "ice rink / arena",
+     "town": "",
+     "driveMin": 10,
+     "km": 8,
+     "source": "https://www.openstreetmap.org/way/228086904"
+    },
+    {
+     "name": "Kinburn Community Centre Ice Rink",
+     "kind": "ice rink / arena",
+     "town": "",
+     "driveMin": 13,
+     "km": 12,
+     "source": "https://www.openstreetmap.org/way/440686279"
+    },
+    {
+     "name": "Canadian Tire Centre",
+     "kind": "major hockey arena",
+     "town": "",
+     "driveMin": 27,
+     "km": 20,
+     "source": "https://en.wikipedia.org/wiki/Canadian_Tire_Centre",
+     "note": "Canadian Tire Centre is a multi-purpose arena in the suburb of Kanata in Ottawa, Ontario, Canada."
+    }
+   ]
+  },
+  "stadium": {
+   "items": [
+    {
+     "name": "Canadian Tire Centre",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 27,
+     "km": 20,
+     "source": "https://en.wikipedia.org/wiki/Canadian_Tire_Centre",
+     "note": "Canadian Tire Centre is a multi-purpose arena in the suburb of Kanata in Ottawa, Ontario, Canada."
+    },
+    {
+     "name": "MNP Park",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 38,
+     "km": 30,
+     "source": "https://en.wikipedia.org/wiki/TAAG_Park",
+     "note": "TAAG Park is a stadium located on the Carleton University campus in Ottawa, Ontario, Canada."
+    },
+    {
+     "name": "TD Place Stadium",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 40,
+     "km": 30,
+     "source": "https://en.wikipedia.org/wiki/TD_Place_Stadium",
+     "note": "TD Place Stadium is an outdoor stadium in Ottawa, Ontario, Canada It is located at Lansdowne Park, on the southern edge of The Glebe neighbourhood, where Bank Street crosses the Rideau Canal."
+    },
+    {
+     "name": "Gee-Gees Field",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 40,
+     "km": 31,
+     "source": "https://en.wikipedia.org/wiki/Gee-Gees_Field",
+     "note": "Gee-Gees Field is a Canadian football stadium at the University of Ottawa in Ottawa, Ontario, Canada."
+    }
+   ],
+   "note": null
+  },
+  "park": {
+   "items": [
+    {
+     "name": "Parc de la Gatineau",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 46,
+     "km": 12,
+     "source": "https://en.wikipedia.org/wiki/Gatineau_Park",
+     "note": "Gatineau Park is a federal park located in the Outaouais region of Quebec, Canada Administered by the National Capital Commission as part of the National Capital Region, Gatineau Park is a 361 square kilometres (139 mi2) wedge of land extending north and west from the city of Gatineau."
+    },
+    {
+     "name": "Fort Wellington National Historic Site",
+     "kind": "national / federal",
+     "town": "Prescott",
+     "driveMin": 84,
+     "km": 93,
+     "source": "https://en.wikipedia.org/wiki/Fort_Wellington",
+     "note": "Fort Wellington National Historic Site is a historic military fortification located on the north shore of the St."
+    },
+    {
+     "name": "Battle of the Windmill National Historic Site",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 84,
+     "km": 93,
+     "source": "https://en.wikipedia.org/wiki/Battle_of_the_Windmill_National_Historic_Site",
+     "note": "Battle of the Windmill National Historic Site marks the site of the November 1838 Battle of the Windmill, fought around a grist windmill near Prescott, Ontario, Canada."
+    },
+    {
+     "name": "Fitzroy Provincial Park",
+     "kind": "provincial park",
+     "town": "",
+     "driveMin": 20,
+     "km": 13,
+     "source": "https://www.openstreetmap.org/relation/14197708"
+    },
+    {
+     "name": "Burnt Lands Provincial Park",
+     "kind": "provincial park",
+     "town": "Fitzroy Harbour",
+     "driveMin": 33,
+     "km": 23,
+     "source": "https://www.openstreetmap.org/relation/8328485"
+    },
+    {
+     "name": "Alexander Stewart Provincial Park",
+     "kind": "provincial park",
+     "town": "",
+     "driveMin": 42,
+     "km": 34,
+     "source": "https://www.openstreetmap.org/way/1065363981"
+    }
+   ]
+  },
+  "university": {
+   "items": [
+    {
+     "name": "Carleton University",
+     "kind": "university",
+     "town": "",
+     "driveMin": 39,
+     "km": 30,
+     "source": "https://www.openstreetmap.org/way/10583513",
+     "note": "Type and size: not checked yet."
+    },
+    {
+     "name": "Saint Paul University",
+     "kind": "university",
+     "town": "",
+     "driveMin": 39,
+     "km": 31,
+     "source": "https://www.openstreetmap.org/way/363054489",
+     "note": "Type and size: not checked yet."
+    },
+    {
+     "name": "University of Ottawa - Lees Campus",
+     "kind": "university",
+     "town": "",
+     "driveMin": 40,
+     "km": 31,
+     "source": "https://www.openstreetmap.org/way/18642098",
+     "note": "Type and size: not checked yet."
+    }
+   ]
+  },
+  "hospital": {
+   "items": [
+    {
+     "name": "Queensway Carleton Hospital",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Ottawa",
+     "driveMin": 29,
+     "km": 24,
+     "source": "https://www.openstreetmap.org/way/590820287"
+    },
+    {
+     "name": "Arnprior & District Memorial Hospital",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "",
+     "driveMin": 31,
+     "km": 23,
+     "source": "https://www.openstreetmap.org/way/242169983"
+    }
+   ]
+  },
+  "golf": {
+   "items": [
+    {
+     "name": "Edgewood Links Golf and Driving Range",
+     "kind": "golf course",
+     "town": "Woodlawn",
+     "driveMin": 0,
+     "km": 1,
+     "source": "https://www.openstreetmap.org/way/581633081"
+    }
+   ]
+  },
+  "asOf": "26 Oct 2026",
+  "method": "Places from OpenStreetMap (Overpass), notes from Wikipedia summaries where linked; drive times are free-flow OSRM estimates from the place’s base, as of 26 Oct 2026. For large parks and forests the time is to the area’s map centre, so the nearest edge is usually closer. Re-verify before relying on them."
+ },
+ "on-north-gower": {
+  "ski": {
+   "items": [
+    {
+     "name": "Camp Fortune",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 67,
+     "km": 45,
+     "source": "https://en.wikipedia.org/wiki/Camp_Fortune",
+     "note": "Camp Fortune is a commercial alpine ski centre located in the municipality of Chelsea in the Gatineau Hills north of Gatineau, Quebec, approximately fifteen minutes from Downtown Ottawa, Ontario."
+    },
+    {
+     "name": "Mont Cascades Ski",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 72,
+     "km": 53,
+     "source": "https://www.openstreetmap.org/way/330118914",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Centre Vorlage",
+     "kind": "ski area",
+     "town": "Wakefield",
+     "driveMin": 76,
+     "km": 61,
+     "source": "https://en.wikipedia.org/wiki/Vorlage_(ski_hill)",
+     "note": "Vorlage is a ski hill located at the village of Wakefield, within the municipality of La Pêche, Quebec, in the Gatineau Hills north of Ottawa, Ontario."
+    }
+   ],
+   "note": null
+  },
+  "rink": {
+   "items": [
+    {
+     "name": "Alfred Taylor Ice Rink",
+     "kind": "ice rink / arena",
+     "town": "",
+     "driveMin": 9,
+     "km": 6,
+     "source": "https://www.openstreetmap.org/way/243167055"
+    },
+    {
+     "name": "Meadowbrook Park Ice Rink",
+     "kind": "ice rink / arena",
+     "town": "",
+     "driveMin": 11,
+     "km": 6,
+     "source": "https://www.openstreetmap.org/way/550451362"
+    },
+    {
+     "name": "Harry Craig Centre Ice Rink",
+     "kind": "ice rink / arena",
+     "town": "",
+     "driveMin": 14,
+     "km": 9,
+     "source": "https://www.openstreetmap.org/way/550351106"
+    },
+    {
+     "name": "Canadian Tire Centre",
+     "kind": "major hockey arena",
+     "town": "",
+     "driveMin": 32,
+     "km": 23,
+     "source": "https://en.wikipedia.org/wiki/Canadian_Tire_Centre",
+     "note": "Canadian Tire Centre is a multi-purpose arena in the suburb of Kanata in Ottawa, Ontario, Canada."
+    }
+   ]
+  },
+  "stadium": {
+   "items": [
+    {
+     "name": "Canadian Tire Centre",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 32,
+     "km": 23,
+     "source": "https://en.wikipedia.org/wiki/Canadian_Tire_Centre",
+     "note": "Canadian Tire Centre is a multi-purpose arena in the suburb of Kanata in Ottawa, Ontario, Canada."
+    },
+    {
+     "name": "MNP Park",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 42,
+     "km": 32,
+     "source": "https://en.wikipedia.org/wiki/TAAG_Park",
+     "note": "TAAG Park is a stadium located on the Carleton University campus in Ottawa, Ontario, Canada."
+    },
+    {
+     "name": "TD Place Stadium",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 44,
+     "km": 33,
+     "source": "https://en.wikipedia.org/wiki/TD_Place_Stadium",
+     "note": "TD Place Stadium is an outdoor stadium in Ottawa, Ontario, Canada It is located at Lansdowne Park, on the southern edge of The Glebe neighbourhood, where Bank Street crosses the Rideau Canal."
+    },
+    {
+     "name": "Gee-Gees Field",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 44,
+     "km": 35,
+     "source": "https://en.wikipedia.org/wiki/Gee-Gees_Field",
+     "note": "Gee-Gees Field is a Canadian football stadium at the University of Ottawa in Ottawa, Ontario, Canada."
+    }
+   ],
+   "note": null
+  },
+  "park": {
+   "items": [
+    {
+     "name": "Fort Wellington National Historic Site",
+     "kind": "national / federal",
+     "town": "Prescott",
+     "driveMin": 51,
+     "km": 49,
+     "source": "https://en.wikipedia.org/wiki/Fort_Wellington",
+     "note": "Fort Wellington National Historic Site is a historic military fortification located on the north shore of the St."
+    },
+    {
+     "name": "Battle of the Windmill National Historic Site",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 51,
+     "km": 49,
+     "source": "https://en.wikipedia.org/wiki/Battle_of_the_Windmill_National_Historic_Site",
+     "note": "Battle of the Windmill National Historic Site marks the site of the November 1838 Battle of the Windmill, fought around a grist windmill near Prescott, Ontario, Canada."
+    },
+    {
+     "name": "Parc de la Gatineau",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 74,
+     "km": 52,
+     "source": "https://en.wikipedia.org/wiki/Gatineau_Park",
+     "note": "Gatineau Park is a federal park located in the Outaouais region of Quebec, Canada Administered by the National Capital Commission as part of the National Capital Region, Gatineau Park is a 361 square kilometres (139 mi2) wedge of land extending north and west from the city of Gatineau."
+    },
+    {
+     "name": "Rideau River Provincial Park",
+     "kind": "provincial park",
+     "town": "Kemptville",
+     "driveMin": 19,
+     "km": 11,
+     "source": "https://www.openstreetmap.org/way/91370862"
+    },
+    {
+     "name": "Burnt Lands Provincial Park",
+     "kind": "provincial park",
+     "town": "Fitzroy Harbour",
+     "driveMin": 48,
+     "km": 34,
+     "source": "https://www.openstreetmap.org/relation/8328485"
+    },
+    {
+     "name": "Brockville Long Swamp Fen Provincial Park",
+     "kind": "provincial park",
+     "town": "",
+     "driveMin": 63,
+     "km": 46,
+     "source": "https://www.openstreetmap.org/relation/14197651"
+    }
+   ]
+  },
+  "university": {
+   "items": [
+    {
+     "name": "Carleton University",
+     "kind": "university",
+     "town": "",
+     "driveMin": 42,
+     "km": 31,
+     "source": "https://www.openstreetmap.org/way/10583513",
+     "note": "Type and size: not checked yet."
+    },
+    {
+     "name": "Saint Paul University",
+     "kind": "university",
+     "town": "",
+     "driveMin": 43,
+     "km": 34,
+     "source": "https://www.openstreetmap.org/way/363054489",
+     "note": "Type and size: not checked yet."
+    },
+    {
+     "name": "University of Ottawa - Lees Campus",
+     "kind": "university",
+     "town": "",
+     "driveMin": 44,
+     "km": 35,
+     "source": "https://www.openstreetmap.org/way/18642098",
+     "note": "Type and size: not checked yet."
+    }
+   ]
+  },
+  "hospital": {
+   "items": [
+    {
+     "name": "Kemptville District Hospital",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Kemptville",
+     "driveMin": 24,
+     "km": 16,
+     "source": "https://www.openstreetmap.org/way/550514260"
+    },
+    {
+     "name": "Queensway Carleton Hospital",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Ottawa",
+     "driveMin": 33,
+     "km": 25,
+     "source": "https://www.openstreetmap.org/way/590820287"
+    }
+   ]
+  },
+  "golf": {
+   "items": [
+    {
+     "name": "Richmond Centennial Golf Club",
+     "kind": "golf course",
+     "town": "Richmond",
+     "driveMin": 20,
+     "km": 8,
+     "source": "https://www.openstreetmap.org/way/84830917"
+    }
+   ]
+  },
+  "asOf": "26 Oct 2026",
+  "method": "Places from OpenStreetMap (Overpass), notes from Wikipedia summaries where linked; drive times are free-flow OSRM estimates from the place’s base, as of 26 Oct 2026. For large parks and forests the time is to the area’s map centre, so the nearest edge is usually closer. Re-verify before relying on them."
+ },
+ "on-flamborough": {
+  "ski": {
+   "items": [
+    {
+     "name": "Glen Eden",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 26,
+     "km": 16,
+     "source": "https://www.openstreetmap.org/way/1254861406",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Earl Bales Park Ski and Snowboard Centre",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 63,
+     "km": 64,
+     "source": "https://www.openstreetmap.org/way/30734163",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Hockley Valley Resort",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 92,
+     "km": 66,
+     "source": "https://www.openstreetmap.org/way/1254864403",
+     "note": "Season and snow reliability: not checked yet."
+    }
+   ],
+   "note": null
+  },
+  "rink": {
+   "items": [
+    {
+     "name": "Harry Howell Arena",
+     "kind": "ice rink / arena",
+     "town": "",
+     "driveMin": 16,
+     "km": 11,
+     "source": "https://www.openstreetmap.org/way/256371784"
+    },
+    {
+     "name": "Waterdown Skating pad",
+     "kind": "ice rink / arena",
+     "town": "",
+     "driveMin": 18,
+     "km": 12,
+     "source": "https://www.openstreetmap.org/node/8191666422"
+    },
+    {
+     "name": "J.L. Grightmire Arena",
+     "kind": "ice rink / arena",
+     "town": "",
+     "driveMin": 19,
+     "km": 14,
+     "source": "https://www.openstreetmap.org/way/43940673"
+    },
+    {
+     "name": "Sleeman Centre",
+     "kind": "major hockey arena",
+     "town": "Guelph",
+     "driveMin": 34,
+     "km": 26,
+     "source": "https://en.wikipedia.org/wiki/Sleeman_Centre",
+     "note": "The Sleeman Centre is a 4,715 seat multi-purpose facility in Guelph, Ontario, Canada The Sleeman Centre has hosted concerts, sporting and family events as well as trade shows and conferences."
+    }
+   ]
+  },
+  "stadium": {
+   "items": [
+    {
+     "name": "TD Coliseum",
+     "kind": "stadium / arena",
+     "town": "Hamilton",
+     "driveMin": 23,
+     "km": 19,
+     "source": "https://en.wikipedia.org/wiki/TD_Coliseum",
+     "note": "TD Coliseum is a sports and entertainment arena at the corner of Bay Street North and York Boulevard in Hamilton, Ontario, Canada."
+    },
+    {
+     "name": "Hamilton Stadium",
+     "kind": "stadium / arena",
+     "town": "Hamilton",
+     "driveMin": 30,
+     "km": 22,
+     "source": "https://en.wikipedia.org/wiki/Hamilton_Stadium",
+     "note": "Hamilton Stadium is a multi-purpose stadium in Hamilton, Ontario, Canada Completed in 2014 with a capacity of 22,500, it was built as a replacement on the same site as the previous stadium, named Ivor Wynne Stadium, which had been there since 1930."
+    },
+    {
+     "name": "Sleeman Centre",
+     "kind": "stadium / arena",
+     "town": "Guelph",
+     "driveMin": 34,
+     "km": 26,
+     "source": "https://en.wikipedia.org/wiki/Sleeman_Centre",
+     "note": "The Sleeman Centre is a 4,715 seat multi-purpose facility in Guelph, Ontario, Canada The Sleeman Centre has hosted concerts, sporting and family events as well as trade shows and conferences."
+    },
+    {
+     "name": "University Stadium",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 48,
+     "km": 41,
+     "source": "https://en.wikipedia.org/wiki/University_Stadium_(Waterloo%2C_Ontario)",
+     "note": "University Stadium, also known as Knight–Newbrough Field and formerly known as Seagram Stadium, is a stadium on the campus of Wilfrid Laurier University in Waterloo, Ontario."
+    }
+   ],
+   "note": null
+  },
+  "park": {
+   "items": [
+    {
+     "name": "Bell Homestead National Historic Site",
+     "kind": "national / federal",
+     "town": "Brantford",
+     "driveMin": 52,
+     "km": 36,
+     "source": "https://en.wikipedia.org/wiki/Bell_Homestead_National_Historic_Site",
+     "note": "The Bell Homestead National Historic Site, located in Brantford, Ontario, Canada, also known by the name of its principal structure, Melville House, was the first North American home of Professor Alexander Melville Bell and his family, including his last surviving son, scientist Alexander Graham Bell."
+    },
+    {
+     "name": "Fort York National Historic Site",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 63,
+     "km": 59,
+     "source": "https://www.openstreetmap.org/way/1416813033"
+    },
+    {
+     "name": "Bank of Upper Canada Building National Historic Site of Canada",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 65,
+     "km": 62,
+     "source": "https://www.openstreetmap.org/node/2283661472"
+    },
+    {
+     "name": "Bronte Creek Provincial Park",
+     "kind": "provincial park",
+     "town": "",
+     "driveMin": 34,
+     "km": 21,
+     "source": "https://www.openstreetmap.org/relation/14183961"
+    },
+    {
+     "name": "Forks of the Credit Provincial Park",
+     "kind": "provincial park",
+     "town": "",
+     "driveMin": 73,
+     "km": 49,
+     "source": "https://www.openstreetmap.org/way/58242259"
+    },
+    {
+     "name": "Short Hills Provincial Park",
+     "kind": "provincial park",
+     "town": "",
+     "driveMin": 73,
+     "km": 68,
+     "source": "https://www.openstreetmap.org/relation/14194395"
+    }
+   ]
+  },
+  "university": {
+   "items": [
+    {
+     "name": "McMaster University",
+     "kind": "university",
+     "town": "Hamilton",
+     "driveMin": 26,
+     "km": 16,
+     "source": "https://en.wikipedia.org/wiki/McMaster_University",
+     "note": "McMaster University is a public research university in Hamilton, Ontario, Canada The main McMaster campus is on 152.4 hectares of land near the residential neighbourhoods of Ainslie Wood and Westdale, adjacent to the Royal Botanical Gardens."
+    },
+    {
+     "name": "Wilfrid Laurier University Milton Campus (Temporary)",
+     "kind": "university",
+     "town": "",
+     "driveMin": 29,
+     "km": 19,
+     "source": "https://www.openstreetmap.org/way/1466282606",
+     "note": "Type and size: not checked yet."
+    },
+    {
+     "name": "Mohawk College",
+     "kind": "college",
+     "town": "",
+     "driveMin": 29,
+     "km": 19,
+     "source": "https://en.wikipedia.org/wiki/Mohawk_College",
+     "note": "Mohawk College of Applied Arts and Technology is a public college of applied arts and technology located in Hamilton, Ontario, Canada."
+    }
+   ]
+  },
+  "hospital": {
+   "items": [
+    {
+     "name": "McMaster University Medical Centre",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Hamilton",
+     "driveMin": 24,
+     "km": 16,
+     "source": "https://www.openstreetmap.org/way/712110943"
+    },
+    {
+     "name": "Hamilton General Hospital",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Hamilton",
+     "driveMin": 26,
+     "km": 19,
+     "source": "https://www.openstreetmap.org/way/405235868"
+    }
+   ]
+  },
+  "golf": {
+   "items": [
+    {
+     "name": "Dragon's Fire Golf Club",
+     "kind": "golf course",
+     "town": "Hamilton",
+     "driveMin": 33,
+     "km": 6,
+     "source": "https://www.openstreetmap.org/way/76966629"
+    }
+   ]
+  },
+  "asOf": "26 Oct 2026",
+  "method": "Places from OpenStreetMap (Overpass), notes from Wikipedia summaries where linked; drive times are free-flow OSRM estimates from the place’s base, as of 26 Oct 2026. For large parks and forests the time is to the area’s map centre, so the nearest edge is usually closer. Re-verify before relying on them."
+ },
+ "on-oro-medonte": {
+  "ski": {
+   "items": [
+    {
+     "name": "Horseshoe Resort",
+     "kind": "ski area",
+     "town": "Township of Oro-Medonte",
+     "driveMin": 12,
+     "km": 3,
+     "source": "https://en.wikipedia.org/wiki/Horseshoe_Valley_Resort",
+     "note": "Horseshoe Valley Resort, formerly Horseshoe Valley Ski Club, is an Ontario ski resort and four season vacation destination."
+    },
+    {
+     "name": "The Heights Ski & Country Club",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 13,
+     "km": 4,
+     "source": "https://www.openstreetmap.org/way/1330188582",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Mount St. Louis Moonstone",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 23,
+     "km": 11,
+     "source": "https://www.openstreetmap.org/node/2633977898",
+     "note": "Season and snow reliability: not checked yet."
+    }
+   ],
+   "note": null
+  },
+  "rink": {
+   "items": [
+    {
+     "name": "Circle at the Centre Rink",
+     "kind": "ice rink / arena",
+     "town": "",
+     "driveMin": 26,
+     "km": 16,
+     "source": "https://www.openstreetmap.org/node/1256983305"
+    },
+    {
+     "name": "Sadlon Arena",
+     "kind": "ice rink / arena",
+     "town": "",
+     "driveMin": 31,
+     "km": 22,
+     "source": "https://www.openstreetmap.org/way/297822165"
+    },
+    {
+     "name": "National Training Rinks",
+     "kind": "ice rink / arena",
+     "town": "Barrie",
+     "driveMin": 34,
+     "km": 20,
+     "source": "https://www.openstreetmap.org/way/297796195"
+    },
+    {
+     "name": "Scotiabank Arena",
+     "kind": "major hockey arena",
+     "town": "Toronto",
+     "driveMin": 100,
+     "km": 101,
+     "source": "https://en.wikipedia.org/wiki/Scotiabank_Arena",
+     "note": "Scotiabank Arena, formerly known as Air Canada Centre (ACC), is a multi-purpose arena located on Bay Street in downtown Toronto, Ontario, Canada."
+    }
+   ]
+  },
+  "stadium": {
+   "items": [
+    {
+     "name": "Sobeys Stadium",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 78,
+     "km": 85,
+     "source": "https://en.wikipedia.org/wiki/Sobeys_Stadium",
+     "note": "Sobeys Stadium, formerly Rexall Centre and Aviva Centre, is a tennis stadium in Toronto, Ontario, Canada, located on the grounds of York University's Keele Campus."
+    },
+    {
+     "name": "Esther Shiner Stadium",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 86,
+     "km": 85,
+     "source": "https://en.wikipedia.org/wiki/Esther_Shiner_Stadium",
+     "note": "Esther Shiner Stadium is a multi-purpose outdoor sports facility in Toronto, Ontario, Canada."
+    },
+    {
+     "name": "Varsity Stadium",
+     "kind": "stadium / arena",
+     "town": "Toronto",
+     "driveMin": 95,
+     "km": 98,
+     "source": "https://en.wikipedia.org/wiki/Varsity_Stadium",
+     "note": "Varsity Stadium is an outdoor collegiate stadium of the University of Toronto located at the \"Varsity Centre & Arena\", a sports complex on the St."
+    },
+    {
+     "name": "Allan Lamport Stadium",
+     "kind": "stadium / arena",
+     "town": "Toronto",
+     "driveMin": 96,
+     "km": 101,
+     "source": "https://en.wikipedia.org/wiki/Lamport_Stadium",
+     "note": "Allan A. Lamport Stadium is a multi-purpose stadium on King Street West in the Liberty Village neighbourhood of Toronto, Ontario, Canada."
+    }
+   ],
+   "note": null
+  },
+  "park": {
+   "items": [
+    {
+     "name": "Saint-Louis Mission National Historic Site of Canada",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 45,
+     "km": 25,
+     "source": "https://en.wikipedia.org/wiki/List_of_National_Historic_Sites_of_Canada_in_Ontario",
+     "note": "This is a list of National Historic Sites in the province of Ontario As of July 2021, there were 274 sites designated in Ontario, 39 of which are administered by Parks Canada."
+    },
+    {
+     "name": "Beausoleil Island National Historic Site",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 62,
+     "km": 41,
+     "source": "https://www.openstreetmap.org/relation/17714198"
+    },
+    {
+     "name": "Sharon Temple National Historic Site",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 70,
+     "km": 50,
+     "source": "https://www.openstreetmap.org/way/1228737415"
+    },
+    {
+     "name": "Springwater Provincial Park",
+     "kind": "provincial park",
+     "town": "",
+     "driveMin": 29,
+     "km": 15,
+     "source": "https://www.openstreetmap.org/way/58244352"
+    },
+    {
+     "name": "Bass Lake Provincial Park",
+     "kind": "provincial park",
+     "town": "",
+     "driveMin": 33,
+     "km": 15,
+     "source": "https://www.openstreetmap.org/way/58244356"
+    },
+    {
+     "name": "Mara Provincial Park",
+     "kind": "provincial park",
+     "town": "",
+     "driveMin": 36,
+     "km": 23,
+     "source": "https://www.openstreetmap.org/way/58248142"
+    }
+   ]
+  },
+  "university": {
+   "items": [
+    {
+     "name": "Georgian College",
+     "kind": "college",
+     "town": "Barrie",
+     "driveMin": 26,
+     "km": 13,
+     "source": "https://en.wikipedia.org/wiki/Georgian_College",
+     "note": "Georgian College is a College of Applied Arts and Technology in Ontario, Canada It has more than 13,500 full-time students, including over 5,500 international students from 92 countries."
+    },
+    {
+     "name": "Lakehead University - Orillia Campus",
+     "kind": "university",
+     "town": "",
+     "driveMin": 26,
+     "km": 16,
+     "source": "https://www.openstreetmap.org/way/515721211",
+     "note": "Type and size: not checked yet."
+    }
+   ]
+  },
+  "hospital": {
+   "items": [
+    {
+     "name": "Royal Victoria Regional Health Centre",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Barrie",
+     "driveMin": 25,
+     "km": 13,
+     "source": "https://www.openstreetmap.org/way/211459961"
+    },
+    {
+     "name": "Orillia Soldiers' Memorial Hospital",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "Orillia",
+     "driveMin": 28,
+     "km": 19,
+     "source": "https://www.openstreetmap.org/way/712066696"
+    }
+   ]
+  },
+  "golf": {
+   "items": [
+    {
+     "name": "Horseshoe Valley Club",
+     "kind": "golf course",
+     "town": "",
+     "driveMin": 11,
+     "km": 3,
+     "source": "https://www.openstreetmap.org/relation/18247362"
+    }
+   ]
+  },
+  "asOf": "26 Oct 2026",
+  "method": "Places from OpenStreetMap (Overpass), notes from Wikipedia summaries where linked; drive times are free-flow OSRM estimates from the place’s base, as of 26 Oct 2026. For large parks and forests the time is to the area’s map centre, so the nearest edge is usually closer. Re-verify before relying on them."
+ },
+ "toronto": {
+  "ski": {
+   "items": [
+    {
+     "name": "Earl Bales Park Ski and Snowboard Centre",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 41,
+     "km": 27,
+     "source": "https://www.openstreetmap.org/way/30734163",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Hockley Valley Resort",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 45,
+     "km": 32,
+     "source": "https://www.openstreetmap.org/way/1254864403",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "ROC",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 58,
+     "km": 44,
+     "source": "https://www.openstreetmap.org/way/760061443",
+     "note": "Season and snow reliability: not checked yet."
+    }
+   ],
+   "note": null
+  },
+  "rink": {
+   "items": [
+    {
+     "name": "Trisan Centre",
+     "kind": "ice rink / arena",
+     "town": "Schomberg",
+     "driveMin": 9,
+     "km": 9,
+     "source": "https://www.openstreetmap.org/way/250704789"
+    },
+    {
+     "name": "King City Community Centre",
+     "kind": "ice rink / arena",
+     "town": "",
+     "driveMin": 18,
+     "km": 11,
+     "source": "https://www.openstreetmap.org/way/93992846"
+    },
+    {
+     "name": "Al Paladini Community Centre",
+     "kind": "ice rink / arena",
+     "town": "",
+     "driveMin": 20,
+     "km": 14,
+     "source": "https://www.openstreetmap.org/node/599896643"
+    },
+    {
+     "name": "Coca-Cola Coliseum",
+     "kind": "major hockey arena",
+     "town": "",
+     "driveMin": 49,
+     "km": 38,
+     "source": "https://en.wikipedia.org/wiki/Coca-Cola_Coliseum",
+     "note": "Coca-Cola Coliseum is an arena at Exhibition Place in Toronto, Ontario, Canada, used for agricultural displays, ice hockey, basketball, and trade shows."
+    }
+   ]
+  },
+  "stadium": {
+   "items": [
+    {
+     "name": "Sobeys Stadium",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 30,
+     "km": 21,
+     "source": "https://en.wikipedia.org/wiki/Sobeys_Stadium",
+     "note": "Sobeys Stadium, formerly Rexall Centre and Aviva Centre, is a tennis stadium in Toronto, Ontario, Canada, located on the grounds of York University's Keele Campus."
+    },
+    {
+     "name": "Esther Shiner Stadium",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 39,
+     "km": 24,
+     "source": "https://en.wikipedia.org/wiki/Esther_Shiner_Stadium",
+     "note": "Esther Shiner Stadium is a multi-purpose outdoor sports facility in Toronto, Ontario, Canada."
+    },
+    {
+     "name": "BMO Field",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 47,
+     "km": 38,
+     "source": "https://en.wikipedia.org/wiki/BMO_Field",
+     "note": "BMO Field is an outdoor stadium located at Exhibition Place in Toronto, Ontario, Canada Constructed on the former Exhibition Stadium site and first opened in 2007, it is the home field of Toronto FC of Major League Soccer (MLS) and the Toronto Argonauts of the Canadian Football League (CFL)."
+    },
+    {
+     "name": "Varsity Stadium",
+     "kind": "stadium / arena",
+     "town": "Toronto",
+     "driveMin": 48,
+     "km": 36,
+     "source": "https://en.wikipedia.org/wiki/Varsity_Stadium",
+     "note": "Varsity Stadium is an outdoor collegiate stadium of the University of Toronto located at the \"Varsity Centre & Arena\", a sports complex on the St."
+    }
+   ],
+   "note": null
+  },
+  "park": {
+   "items": [
+    {
+     "name": "Sharon Temple National Historic Site",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 37,
+     "km": 26,
+     "source": "https://www.openstreetmap.org/way/1228737415"
+    },
+    {
+     "name": "Fort York National Historic Site",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 49,
+     "km": 38,
+     "source": "https://www.openstreetmap.org/way/1416813033"
+    },
+    {
+     "name": "Bank of Upper Canada Building National Historic Site of Canada",
+     "kind": "national / federal",
+     "town": "",
+     "driveMin": 51,
+     "km": 39,
+     "source": "https://www.openstreetmap.org/node/2283661472"
+    },
+    {
+     "name": "Holland Landing Prairie Provincial Park",
+     "kind": "provincial park",
+     "town": "",
+     "driveMin": 36,
+     "km": 25,
+     "source": "https://www.openstreetmap.org/way/58242253"
+    },
+    {
+     "name": "Beattie Pinery Provincial Park",
+     "kind": "provincial park",
+     "town": "",
+     "driveMin": 39,
+     "km": 27,
+     "source": "https://www.openstreetmap.org/way/58244322"
+    },
+    {
+     "name": "Earl Rowe Provincial Park",
+     "kind": "provincial park",
+     "town": "Tosorontio",
+     "driveMin": 48,
+     "km": 32,
+     "source": "https://www.openstreetmap.org/relation/14187267"
+    }
+   ]
+  },
+  "university": {
+   "items": [
+    {
+     "name": "Seneca @ York Campus",
+     "kind": "college",
+     "town": "",
+     "driveMin": 31,
+     "km": 22,
+     "source": "https://en.wikipedia.org/wiki/Seneca_Polytechnic",
+     "note": "Seneca College of Applied Arts and Technology, branded as Seneca Polytechnic since 2023, is a multi-campus public college in the Greater Toronto Area and Peterborough, Ontario, Canada."
+    },
+    {
+     "name": "York University, Keele Campus",
+     "kind": "university",
+     "town": "Toronto",
+     "driveMin": 32,
+     "km": 21,
+     "source": "https://en.wikipedia.org/wiki/York_University",
+     "note": "York University is a public research university in Toronto, Ontario, Canada It is Canada's third-largest university, with approximately 53,500 students, 7,000 faculty and staff, and over 375,000 alumni worldwide."
+    },
+    {
+     "name": "Algoma at Brampton",
+     "kind": "university",
+     "town": "",
+     "driveMin": 39,
+     "km": 28,
+     "source": "https://www.openstreetmap.org/node/2288670975",
+     "note": "Type and size: not checked yet."
+    }
+   ]
+  },
+  "hospital": {
+   "items": [
+    {
+     "name": "Cortellucci Vaughan Hospital",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "",
+     "driveMin": 21,
+     "km": 13,
+     "source": "https://www.openstreetmap.org/way/388597293"
+    },
+    {
+     "name": "Etobicoke General Hospital",
+     "kind": "hospital, ER (OSM emergency=yes)",
+     "town": "",
+     "driveMin": 29,
+     "km": 23,
+     "source": "https://www.openstreetmap.org/way/670281258"
+    }
+   ]
+  },
+  "golf": {
+   "items": [
+    {
+     "name": "Nobleton Lakes Country Club",
+     "kind": "golf course",
+     "town": "",
+     "driveMin": 2,
+     "km": 1,
+     "source": "https://www.openstreetmap.org/way/43936264"
+    }
+   ]
+  },
+  "asOf": "26 Oct 2026",
+  "method": "Places from OpenStreetMap (Overpass), notes from Wikipedia summaries where linked; drive times are free-flow OSRM estimates from the place’s base, as of 26 Oct 2026. For large parks and forests the time is to the area’s map centre, so the nearest edge is usually closer. Re-verify before relying on them."
+ }
+}

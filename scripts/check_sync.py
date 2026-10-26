@@ -4,6 +4,23 @@ import sys, subprocess, socket, time, asyncio, os, json, re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
+CURRENT_IDS = ['forsyth','happy-valley','duvall','cantley','maryville','elizabeth','boise','on-carp-huntley','on-dunrobin','on-north-gower','on-flamborough','on-oro-medonte','toronto']
+AM_KEYS = ['ski','rink','park','stadium','university','hospital','golf']
+def check_amenities(ids):
+    f = []
+    am = json.load(open(os.path.join(HERE, 'amenities.json')))
+    for pid in ids:
+        a = am.get(pid)
+        if not a: f.append(f'place {pid} has no amenities entry'); continue
+        if not a.get('asOf'): f.append(f'place {pid} amenities lack an as-of date')
+        for k in AM_KEYS:
+            c = a.get(k)
+            if c is None: f.append(f'place {pid} amenities missing category {k}'); continue
+            if not c['items'] and not c.get('note'): f.append(f'place {pid} {k}: no items and no explanation')
+            for i in c['items']:
+                if not re.match(r'https?://', i.get('source') or ''): f.append(f"place {pid} {k} item {i.get('name')!r} has no source")
+    return f
+
 def check_listings():
     f = []
     data = json.load(open(os.path.join(HERE, 'homes.json')))
@@ -53,6 +70,13 @@ async def run(base):
         for _, st in cards:
             if st not in CURRENT: fails.append(f'non-current status on home: {st}')
         lf, n = check_listings(); fails += lf
+        nd = []
+        await pg.goto(base + '#/places', wait_until='networkidle')
+        nd = [await c.get_attribute('data-id') for c in await pg.locator('[data-testid="places-card"]').all() if await c.get_attribute('data-status') != 'dropped']
+        fails += check_amenities(sorted(set(nd) | set(CURRENT_IDS)))
+        for pid in nd[:2]:
+            await pg.goto(base + '#/places/' + pid, wait_until='networkidle')
+            if await pg.get_by_test_id('amenities-section').count() != 1: fails.append(f'place page {pid} has no amenities section')
         await pg.goto(base + '#/homes', wait_until='networkidle')
         hc = pg.get_by_test_id('home-card')
         if await hc.count() != n: fails.append(f'homes page shows {await hc.count()} cards, data has {n}')
