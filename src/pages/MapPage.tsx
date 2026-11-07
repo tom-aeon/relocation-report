@@ -2,13 +2,15 @@ import { useMemo } from 'react'
 import { useNavigate, useSearchParams, Link } from 'react-router-dom'
 import { MapContainer, TileLayer, CircleMarker, Tooltip } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-import { OTHER_MEANING, PLACES, ROUNDS, STATUS_META, STATUS_ORDER, isAliveIn, consideredIn, type Status } from '../data/places'
+import { OTHER_MEANING, ROUNDS, STATUS_META, STATUS_ORDER, isAliveIn, consideredIn, type Status } from '../data/places'
 import { PageHeader } from '../components/ui'
+import { useStore } from '../lib/store'
 
 const ALL: Status[] = STATUS_ORDER
 
 export default function MapPage() {
   const nav = useNavigate()
+  const { activePlaces, rejectedCount } = useStore()
   const [params, setParams] = useSearchParams()
   const round = Number(params.get('round')) || 0
   const statuses = (params.get('s')?.split(',').filter(Boolean) as Status[] | undefined) ?? ALL
@@ -21,7 +23,7 @@ export default function MapPage() {
     const next = statuses.includes(s) ? statuses.filter((x) => x !== s) : [...statuses, s]
     set('s', next.length === ALL.length ? null : next.join(','))
   }
-  const shown = useMemo(() => PLACES.filter((p) => statuses.includes(p.status) && (!round || consideredIn(p, round))), [statuses, round])
+  const shown = useMemo(() => activePlaces.filter((p) => statuses.includes(p.status) && (!round || consideredIn(p, round))), [statuses, round, activePlaces])
 
   return (
     <div>
@@ -65,7 +67,10 @@ export default function MapPage() {
           </Link>
         ))}
       </div>
-      <p className="mt-2 text-xs text-slate-500">{shown.length} markers shown ({shown.filter((p) => p.minor).length} small markers are places only named in a round’s cut list).</p>
+      <p className="mt-2 text-xs text-slate-500">
+        {shown.length} markers shown ({shown.filter((p) => p.minor).length} small markers are places only named in a round's cut list).
+        {rejectedCount > 0 && <> · {rejectedCount} personally rejected place{rejectedCount === 1 ? '' : 's'} excluded. <Link to="/places?rejected=1" className="text-teal-700 underline dark:text-teal-400">View rejected →</Link></>}
+      </p>
     </div>
   )
 }

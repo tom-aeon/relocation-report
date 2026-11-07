@@ -59,20 +59,54 @@ export function FavButton({ id, className = '' }: { id: string; className?: stri
   )
 }
 
-export function PlaceCard({ place }: { place: Place }) {
-  const { saved } = useStore()
+export function RejectButton({ id, className = '', showLabel = false }: { id: string; className?: string; showLabel?: boolean }) {
+  const { isRejected, toggleReject } = useStore()
+  const rejected = isRejected(id)
+  return (
+    <button
+      type="button"
+      onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleReject(id) }}
+      aria-pressed={rejected}
+      aria-label={rejected ? 'Restore this place' : 'Reject this place'}
+      title={rejected ? 'Restore this place' : 'Reject this place'}
+      className={`inline-flex items-center gap-1 rounded-full px-2 py-1 text-sm font-medium transition ${
+        rejected
+          ? 'bg-slate-200 text-slate-700 hover:bg-green-100 hover:text-green-700 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-green-900 dark:hover:text-green-300'
+          : 'bg-red-50 text-red-600 hover:bg-red-100 dark:bg-red-950/50 dark:text-red-400 dark:hover:bg-red-900/50'
+      } ${className}`}
+    >
+      {rejected ? '↩' : '✕'}
+      {showLabel && <span>{rejected ? 'Restore' : 'Reject'}</span>}
+    </button>
+  )
+}
+
+export function PlaceCard({ place, showReject = true }: { place: Place; showReject?: boolean }) {
+  const { saved, isRejected } = useStore()
   const photo = place.photos[0]
   const sich = place.restaurants.filter((r) => r.cuisine === 'Sichuan' && r.status !== 'closed').length
   const turk = place.restaurants.filter((r) => r.cuisine === 'Turkish' && r.status !== 'closed').length
+  const rejected = isRejected(place.id)
   return (
-    <Link to={`/places/${place.id}`} className="card group flex flex-col overflow-hidden transition hover:-translate-y-0.5 hover:shadow-md">
+    <Link to={`/places/${place.id}`} className={`card group flex flex-col overflow-hidden transition hover:-translate-y-0.5 hover:shadow-md ${rejected ? 'opacity-60' : ''}`}>
       <div className="relative h-36 bg-gradient-to-br from-teal-700 to-sky-800">
         {photo ? <img src={photo.src} alt={photo.alt} loading="lazy" className="h-full w-full object-cover" />
           : <div className="grid h-full place-items-center text-sm text-white/70">No photo in report</div>}
-        <div className="absolute right-2 top-2 rounded-full bg-white/90 dark:bg-slate-900/90"><FavButton id={place.id} /></div>
+        <div className="absolute right-2 top-2 flex gap-1">
+          {showReject && <div className="rounded-full bg-white/90 dark:bg-slate-900/90"><RejectButton id={place.id} /></div>}
+          <div className="rounded-full bg-white/90 dark:bg-slate-900/90"><FavButton id={place.id} /></div>
+        </div>
+        {rejected && (
+          <div className="absolute inset-0 flex items-center justify-center bg-slate-900/50">
+            <span className="rounded-full bg-slate-800 px-3 py-1 text-sm font-medium text-white">Rejected</span>
+          </div>
+        )}
       </div>
       <div className="flex flex-1 flex-col gap-2 p-4">
-        <div className="flex flex-wrap items-center gap-2"><StatusBadge status={place.status} label={place.statusLabel} /></div>
+        <div className="flex flex-wrap items-center gap-2">
+          <StatusBadge status={place.status} label={place.statusLabel} />
+          {rejected && <span className="rounded-full bg-slate-200 px-2 py-0.5 text-xs font-medium text-slate-600 dark:bg-slate-700 dark:text-slate-300">Rejected</span>}
+        </div>
         <h3 className="font-semibold leading-tight group-hover:text-teal-700 dark:group-hover:text-teal-400">{place.name}</h3>
         <p className="line-clamp-3 text-sm text-slate-600 dark:text-slate-400">{place.summary}</p>
         <div className="mt-auto flex flex-wrap gap-2 pt-1 text-xs text-slate-500 dark:text-slate-400">

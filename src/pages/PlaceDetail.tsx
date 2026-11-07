@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { BUYING_IN_CANADA, CRITERIA, ROUNDS, placeById, type Restaurant, type Retail, type RetailStop } from '../data/places'
-import { FavButton, MarkDot, MarkLegend, NotChecked, StatusBadge } from '../components/ui'
+import { FavButton, MarkDot, MarkLegend, NotChecked, RejectButton, StatusBadge } from '../components/ui'
 import { useStore } from '../lib/store'
 import { HOMES, HOMES_META } from '../data/homes'
 import { HomeCard, HomesNote } from '../components/HomeCard'
@@ -161,14 +161,24 @@ function HomesSection({ placeId }: { placeId: string }) {
 export default function PlaceDetail() {
   const { id = '' } = useParams()
   const p = placeById(id)
-  const { saved, setNote } = useStore()
+  const { saved, setNote, isRejected } = useStore()
   const [photoIdx, setPhotoIdx] = useState(0)
   if (!p) return <div className="card p-8 text-center">Place not found. <Link className="text-teal-700 underline" to="/places">Back to places</Link></div>
   const photo = p.photos[photoIdx] ?? p.photos[0]
+  const rejected = isRejected(p.id)
 
   return (
     <article className="space-y-6">
       <Link to="/places" className="text-sm text-teal-700 hover:underline dark:text-teal-400">← All places</Link>
+      {rejected && (
+        <div className="rounded-lg bg-slate-200 px-4 py-3 dark:bg-slate-800">
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">You have rejected this place.</span>
+            <RejectButton id={p.id} showLabel />
+          </div>
+          <p className="mt-1 text-xs text-slate-500">Personal rejection stored in your browser. Does not affect the canonical research status.</p>
+        </div>
+      )}
       <div className="card overflow-hidden lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
         <figure className="relative min-h-60 bg-gradient-to-br from-teal-700 to-sky-800">
           {photo ? (
@@ -182,7 +192,10 @@ export default function PlaceDetail() {
           <div className="flex flex-wrap items-center gap-2">
             <StatusBadge status={p.status} label={p.statusLabel} />
             <span className="text-xs text-slate-500">{p.country} · rounds {p.firstRound}{p.cutRound ? `–${p.cutRound}` : '–now'}</span>
-            <FavButton id={p.id} className="ml-auto" />
+            <div className="ml-auto flex items-center gap-1">
+              {!rejected && <RejectButton id={p.id} showLabel />}
+              <FavButton id={p.id} />
+            </div>
           </div>
           <h1 className="text-2xl font-bold sm:text-3xl">{p.name}</h1>
           <p className="text-slate-600 dark:text-slate-300">{p.summary}</p>

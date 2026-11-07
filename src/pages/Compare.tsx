@@ -1,11 +1,10 @@
 import type { AmItem, AmKey } from '../data/amenitiesTypes'
 import { Link, useSearchParams } from 'react-router-dom'
-import { CRITERIA, PLACES, byStatus, currentPlaces, placeById, type Place } from '../data/places'
+import { CRITERIA, byStatus, currentPlaces, placeById, type Place } from '../data/places'
 import { MarkDot, MarkLegend, NotChecked, PageHeader, StatusBadge } from '../components/ui'
+import { useStore } from '../lib/store'
 
 const AWL = { pass: 'Good', partial: 'Partial', fail: 'Concern', unknown: 'Not checked yet' } as const
-
-const DEFAULT = currentPlaces().slice(0, 3).map((p) => p.id)
 
 function am(p: Place, k: AmKey, f: (i: AmItem) => boolean = () => true) {
   if (!p.amenities) return <NotChecked />
@@ -14,12 +13,14 @@ function am(p: Place, k: AmKey, f: (i: AmItem) => boolean = () => true) {
 }
 
 export default function Compare() {
+  const { activePlaces, rejectedCount } = useStore()
+  const defaultIds = currentPlaces(activePlaces).slice(0, 3).map((p) => p.id)
   const [params, setParams] = useSearchParams()
   const raw = params.get('ids')
-  const ids = (raw ? raw.split(',') : DEFAULT).filter((id) => placeById(id)).slice(0, 3)
+  const ids = (raw ? raw.split(',') : defaultIds).filter((id) => placeById(id)).slice(0, 3)
   const places = ids.map((id) => placeById(id)!) as Place[]
   const setIds = (next: string[]) => setParams({ ids: next.join(',') }, { replace: true })
-  const options = [...PLACES].sort((a, b) => Number(!!a.minor) - Number(!!b.minor) || byStatus(a, b))
+  const options = [...activePlaces].sort((a, b) => Number(!!a.minor) - Number(!!b.minor) || byStatus(a, b))
 
   const rows: { label: string; render: (p: Place) => React.ReactNode }[] = [
     { label: 'Status', render: (p) => <StatusBadge status={p.status} label={p.statusLabel} /> },
@@ -98,6 +99,7 @@ export default function Compare() {
         </div>
       )}
       <div className="mt-4 text-xs"><MarkLegend /></div>
+      {rejectedCount > 0 && <p className="mt-2 text-xs text-slate-500">{rejectedCount} personally rejected place{rejectedCount === 1 ? '' : 's'} excluded from the dropdown. <Link to="/places?rejected=1" className="text-teal-700 underline dark:text-teal-400">View rejected →</Link></p>}
     </div>
   )
 }

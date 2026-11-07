@@ -2,9 +2,9 @@
 import type { Home } from './homesTypes'
 
 export const HOMES_META: { asOf: string; fx: string; note: string; gaps: Record<string, string> } = {
- "asOf": "25–26 Oct 2026",
- "fx": "Canadian prices converted at 1 USD = 1.3995 CAD (ECB rate via frankfurter.dev, 23 Oct 2026).",
- "note": "Every listing has 4+ bedrooms and 3+ bathrooms as listed (“3+1” = above + below grade). Listings come from Zillow (US) and Royal LePage (Canada) and were checked active on 25 Oct 2026 (US, Zillow) and 26 Oct 2026 (Canada, Royal LePage). Re-verify before acting. Photos are copyright of the listing brokerages and are shown only as small thumbnails linked to the source. 1 USD = 1.3995 CAD (ECB via frankfurter.dev, 23 Oct 2026). Drive times are free-flow OSRM estimates.",
+ "asOf": "7 Nov 2026",
+ "fx": "Canadian prices converted at 1 USD = 1.4066 CAD (ECB rate via frankfurter.dev, 6 Nov 2026).",
+ "note": "Every listing has 4+ bedrooms and 3+ bathrooms as listed (“3+1” = above + below grade). Listings come from Zillow (US) and Royal LePage (Canada) . US listings were spot-checked for active status on 7 Nov 2026; some may have changed since the initial 25–26 Oct 2026 research. Re-verify before acting. Photos are copyright of the listing brokerages and are shown only as small thumbnails linked to the source. 1 USD = 1.3995 CAD (ECB via frankfurter.dev, 23 Oct 2026). Drive times are free-flow OSRM estimates.",
  "gaps": {
   "duvall": "None qualify right now. No active 4+ bed / 3+ bath house on ~1–3 acres under US$850K was found within ~25 min of Duvall on Zillow (25 Oct 2026). The closest near-miss, 5511 96th Dr SE, Snohomish (0.85 ac), is ~31 min away, outside the zone. The two earlier homes were dropped (under 4 bed / 3 bath).",
   "boise": "Only 2 qualify, both in southwest Boise valley acreage, not the foothills. No foothill-area (Hidden Springs, Highlands, Table Rock, Eagle foothills) 4+ bed / 3+ bath house on ~1+ acre under US$850K was listed on Zillow on 25 Oct 2026. 9298 W Teakwood is 0.99 ac.",
@@ -220,32 +220,6 @@ export const HOMES: Home[] = [
   "photos": [
    "listings/maryville/2-1.jpg",
    "listings/maryville/2-2.jpg"
-  ]
- },
- {
-  "id": "maryville-3",
-  "placeId": "maryville",
-  "address": "4434 Oakhurst Dr, Louisville, TN 37777",
-  "price": 574900,
-  "currency": "USD",
-  "priceUsd": 574900,
-  "acres": 1.3,
-  "beds": 4,
-  "baths": 4,
-  "bathNote": "3 full + 1 half",
-  "sqft": 2418,
-  "daysOnMarket": null,
-  "newListing": false,
-  "mls": null,
-  "url": "https://www.zillow.com/homedetails/4434-Oakhurst-Dr-Louisville-TN-37777/40809494_zpid/",
-  "source": "Zillow",
-  "broker": null,
-  "water": null,
-  "sewer": null,
-  "driveMin": 15,
-  "photos": [
-   "listings/maryville/3-1.jpg",
-   "listings/maryville/3-2.jpg"
   ]
  },
  {
