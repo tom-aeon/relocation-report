@@ -1,14 +1,21 @@
 {
  "meta": {
-  "asOf": "7 Nov 2026",
-  "fx": "Canadian prices converted at 1 USD = 1.3995 CAD (ECB rate via frankfurter.dev, 23 Oct 2026).",
-  "note": "Every listing has 4+ bedrooms and 3+ bathrooms as listed (\u201c3+1\u201d = above + below grade). Listings come from Zillow (US) and Royal LePage (Canada) and were checked active on 25 Oct 2026 (US, Zillow) and 26 Oct 2026 (Canada, Royal LePage). Re-verify before acting. Photos are copyright of the listing brokerages and are shown only as small thumbnails linked to the source. 1 USD = 1.3995 CAD (ECB via frankfurter.dev, 23 Oct 2026). Drive times are free-flow OSRM estimates.",
+  "asOf": "12 Nov 2026",
+  "fx": "Canadian prices converted at 1 USD = 1.4066 CAD (ECB rate via frankfurter.dev, 6 Nov 2026).",
+  "note": "Every listing has 4+ bedrooms and 3+ full bathrooms (half baths are not counted toward the 3). Listings already on the page were collected earlier from Zillow (US) and Royal LePage (Canada). New 12 Nov 2026 listings were re-verified the same day on their brokerage pages. Re-verify before acting. Photos are copyright of the listing brokerages and are shown only as small thumbnails linked to the source. 1 USD = 1.4066 CAD (ECB via frankfurter.dev, 6 Nov 2026). Drive times are free-flow OSRM estimates from the place map marker.",
   "gaps": {
-   "duvall": "None qualify right now. No active 4+ bed / 3+ bath house on ~1\u20133 acres under US$850K was found within ~25 min of Duvall on Zillow (25 Oct 2026). The closest near-miss, 5511 96th Dr SE, Snohomish (0.85 ac), is ~31 min away, outside the zone. The two earlier homes were dropped (under 4 bed / 3 bath).",
+   "duvall": "None qualify right now. No active 4+ bed / 3+ bath house on ~1–3 acres under US$850K was found within ~25 min of Duvall on Zillow (25 Oct 2026). The closest near-miss, 5511 96th Dr SE, Snohomish (0.85 ac), is ~31 min away, outside the zone. The two earlier homes were dropped (under 4 bed / 3 bath).",
    "boise": "Only 2 qualify, both in southwest Boise valley acreage, not the foothills. No foothill-area (Hidden Springs, Highlands, Table Rock, Eagle foothills) 4+ bed / 3+ bath house on ~1+ acre under US$850K was listed on Zillow on 25 Oct 2026. 9298 W Teakwood is 0.99 ac.",
-   "cantley": "None qualify right now. Royal LePage had no active 4+ bed / 3+ bath house on ~1\u20133 acres under CAD ~$1.19M within ~25 min of Cantley (26 Oct 2026). The three earlier homes were dropped (under 4 bed / 3 bath).",
+   "cantley": "None qualify right now. Royal LePage had no active 4+ bed / 3+ bath house on ~1–3 acres under CAD ~$1.19M within ~25 min of Cantley (26 Oct 2026). The three earlier homes were dropped (under 4 bed / 3 bath).",
    "on-flamborough": "Only 1 qualifies (26 Oct 2026). Under the CAD ~$1.19M cap, 4+ bed / 3+ bath houses on 1+ acre are scarce. One other candidate (22 Old Brock Rd, Puslinch) was skipped because it is an unfinished build.",
-   "toronto": "None qualify right now. Searching King Twp, King City, Schomberg, Nobleton, Kleinburg, Stouffville, Aurora and Caledon on Royal LePage (26 Oct 2026) found no active 4+ bed / 3+ bath house on ~1\u20133 acres under CAD ~$1.19M within ~30 min. One candidate was skipped because it was sold \u201cas is\u201d. The earlier Schomberg home (2+1 bed) was dropped."
+   "toronto": "None qualify right now. Searching King Twp, King City, Schomberg, Nobleton, Kleinburg, Stouffville, Aurora and Caledon on Royal LePage (26 Oct 2026) found no active 4+ bed / 3+ bath house on ~1–3 acres under CAD ~$1.19M within ~30 min. One candidate was skipped because it was sold “as is”. The earlier Schomberg home (2+1 bed) was dropped.",
+   "victor-mendon": "None qualify right now. No currently-active 4-bed / 3-full-bath house on 1–3 acres under US$850K was re-verified on 12 Nov 2026. Several 4-bed acreage listings under the cap were 2 full + 1 half bath, including 8090 The Siding Court, Victor ($699,900, 1.4 acres, marketed as 3 baths). A patient search is realistic given prices in this belt; nothing is shown until a 3-full-bath listing is confirmed live.",
+   "stokesdale": "None shown. 6101 Trotter Ridge Road, Summerfield (MLS 1237335, $635,000, 4 bed, 3 full baths, 1.25 acres) was reported active in the 12 Nov 2026 scout, but its brokerage and listing pages could not be re-verified in this pass (blocked or empty). It is not shown until it can be confirmed live. Sold comps were not used as live homes.",
+   "wexford-pine": "Only 1 qualifies (re-verified 12 Nov 2026): 231 McKinney Road, Wexford. Fewer than 3 is fine; the list is not padded.",
+   "apex-holly-springs": "None qualify right now. The 9208 Holly Springs Road, Apex listing that appeared in the scout is pending and only 2.5 baths. No other active 4-bed / 3-full-bath house on 1–3 acres under US$850K was re-verified on 12 Nov 2026.",
+   "guelph-eramosa": "Only 1 qualifies (re-verified 12 Nov 2026): 5066 Wellington 32 Road, listed at CAD $750,000, on a septic system, sold as-is and needing significant renovation. Acreage at budget is thin. Fewer than 3 is fine; the list is not padded.",
+   "cochrane": "None qualify right now. No active 4-bed / 3-full-bath house on 1–3 acres under CAD $1.196M (US$850K at 1.4066) was found in the west foothills on 12 Nov 2026. In-town Cochrane houses on small lots are affordable; typical foothills acreages were listed from about CAD $1.77M up. A Bearspaw-area 15.32-acre house under the dollar cap is well over the 1–3 acre target; a $739,900 Redwood Meadows house is only 0.28 acres.",
+   "waxhaw-lake-norman": "None shown. This place is filed under Other on food geography and mountains; no qualifying 4-bed / 3-full-bath listing on 1–3 acres under US$850K was re-verified on 12 Nov 2026."
   }
  },
  "homes": [
@@ -684,6 +691,63 @@
     "listings/on-oro-medonte/3-1.jpg",
     "listings/on-oro-medonte/3-2.jpg"
    ]
+  },
+  {
+   "id": "wexford-pine-1",
+   "placeId": "wexford-pine",
+   "address": "231 McKinney Road, Wexford, PA 15090",
+   "price": 675000,
+   "currency": "USD",
+   "priceUsd": 675000,
+   "acres": 1.47,
+   "beds": 4,
+   "baths": 3,
+   "bathNote": "3 full baths (re-verified on the brokerage page, 12 Nov 2026).",
+   "sqft": 1644,
+   "daysOnMarket": null,
+   "listedDate": "2026-09-26",
+   "newListing": false,
+   "mls": "1776720",
+   "url": "https://www.231mckinneyroad.com/",
+   "source": "231mckinneyroad.com (Berkshire Hathaway HomeServices The Preferred Realty)",
+   "broker": "Betsy Wotherspoon & Team of Berkshire Hathaway HomeServices The Preferred Realty",
+   "water": null,
+   "sewer": null,
+   "driveMin": 4,
+   "photos": [
+    "listings/wexford-pine/1-1.jpg",
+    "listings/wexford-pine/1-2.jpg"
+   ],
+   "note": "Pine Township, borders North Park. Pine-Richland schools. Tax about $5,525/year. Status For Sale (schema.org InStock) on the brokerage page fetched 12 Nov 2026. Ranch plus finished lower level."
+  },
+  {
+   "id": "guelph-eramosa-1",
+   "placeId": "guelph-eramosa",
+   "address": "5066 Wellington 32 Road, Guelph/Eramosa, ON N1H 6J4",
+   "price": 750000,
+   "currency": "CAD",
+   "priceUsd": 533200,
+   "acres": 1.52,
+   "acresNote": "About 1.52 acres from the listed lot size 375 × 176.3 ft (66,112.5 sq ft ÷ 43,560). The scout also described it as 1.55 acres.",
+   "beds": 4,
+   "baths": 3,
+   "bathNote": "Listed as 3 bathrooms (two on the main levels and one in the basement). The listing does not call any of them a half bath; included with that note.",
+   "sqft": 1900,
+   "daysOnMarket": null,
+   "listedDate": null,
+   "newListing": false,
+   "mls": "X14099698",
+   "url": "https://www.viewhomes.ca/idx/5066-wellington-32-road-guelph-eramosa-on-n1h6j4/1810906442_spid/",
+   "source": "viewhomes.ca",
+   "broker": null,
+   "water": null,
+   "sewer": "Septic System",
+   "driveMin": 0,
+   "photos": [
+    "listings/guelph-eramosa/1-1.jpg",
+    "listings/guelph-eramosa/1-2.jpg"
+   ],
+   "note": "Active (listingStatus Active; schema.org InStock) on the page fetched 12 Nov 2026, last updated 22 Oct 2026. Sold as-is and needs significant renovation — that is a sale condition, not a Sold status. About 1,900 sq ft."
   }
  ]
 }

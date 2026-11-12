@@ -405,4 +405,173 @@ export const AIRWATER: Record<string, AirWater> = {
     },
     sources: [ON_STATS, ON_2023, PHO_WELL],
   },
+
+  'victor-mendon': {
+    checked: '12 Nov 2026', overall: 'partial',
+    note: 'Monroe County (Mendon) ALA 2026 grades are ozone B, short-term particles D and a Pass on year-round particles. Ontario County (Victor) has no ALA grade (data not collected). Municipal water reports were not retrieved; rural lots are often on private wells. EPA radon Zone 1 — test the house and, if on a well, radon in water.',
+    air: {
+      mark: 'partial',
+      summary: 'Victor is in Ontario County, which has no ALA 2026 grade (data not collected). The nearest graded county is Monroe (Rochester, which includes the Town of Mendon): ozone B, short-term particles D, year-round particles Pass (annual design value 7.0 µg/m³). The short-term D is the reason this is partial, and is in line with many Northeast metros in the Canadian-wildfire years. EPA AirData annual means were not retrieved in this pass.',
+      station: 'ALA 2026 grades for Monroe County, NY (Ontario County: no data collected)',
+      facts: [
+        { label: 'ALA 2026, Monroe County (Mendon)', value: 'Ozone B (2 orange days, weighted average 0.7) · 24-h PM D (2 orange, 3 red, weighted average 2.2) · annual PM Pass (design value 7.0)', source: 'ALA State of the Air 2026, via official county API, 12 Nov 2026' },
+        { label: 'ALA 2026, Ontario County (Victor)', value: 'DNC (no data collected) for ozone and particles', source: 'ALA State of the Air 2026, via official county API, 12 Nov 2026' },
+      ],
+    },
+    water: {
+      mark: 'partial',
+      summary: 'Municipal consumer-confidence reports for Victor and Mendon were not retrieved in this pass. Rural acreage in this belt is often on a private well and septic — confirm with the listing and get a full well test. EPA radon Zone 1 is typical for upstate New York.',
+      municipal: [{ label: 'Town / county drinking-water reports', value: 'Not retrieved in this pass.', source: '—' }],
+      listingSupply: LISTING_UNKNOWN,
+      wellRisks: [
+        'EPA radon Zone 1: test any house, especially with a basement, and test radon in well water.',
+        WELL_TEST,
+      ],
+    },
+    sources: [ala('new-york', 'Monroe'), ala('new-york', 'Ontario'), EPA_AIRDATA],
+  },
+  stokesdale: {
+    checked: '12 Nov 2026', overall: 'partial',
+    note: 'Guilford County (Stokesdale, Oak Ridge, Summerfield) ALA 2026: ozone B, short-term particles C, year-round Pass (8.5). Forsyth County (Kernersville) is ozone C, short-term D, year-round Pass (8.1). Municipal water reports were not retrieved; some lots are on private wells.',
+    air: {
+      mark: 'partial',
+      summary: 'Stokesdale, Oak Ridge and Summerfield are in Guilford County: ALA 2026 ozone B, short-term particles C, year-round particles Pass (annual design value 8.5 µg/m³). Kernersville is in Forsyth County: ozone C, short-term D, year-round Pass (8.1). The short-term D in Forsyth is the reason this is partial. EPA AirData annual means were not retrieved in this pass.',
+      station: 'ALA 2026 grades for Guilford and Forsyth Counties, NC',
+      facts: [
+        { label: 'ALA 2026, Guilford County', value: 'Ozone B (2 orange days, weighted average 0.7) · 24-h PM C (3 orange, weighted average 1.0) · annual PM Pass (design value 8.5)', source: 'ALA State of the Air 2026, via official county API, 12 Nov 2026' },
+        { label: 'ALA 2026, Forsyth County (Kernersville)', value: 'Ozone C (6 orange days, weighted average 2.0) · 24-h PM D (6 orange, 1 red, weighted average 2.5) · annual PM Pass (design value 8.1)', source: 'ALA State of the Air 2026, via official county API, 12 Nov 2026' },
+      ],
+    },
+    water: {
+      mark: 'partial',
+      summary: 'Municipal consumer-confidence reports for Stokesdale, Oak Ridge, Kernersville and Summerfield were not retrieved in this pass. Some acreage lots in this belt are on a private well and septic — confirm with the listing and get a full well test.',
+      municipal: [{ label: 'Town drinking-water reports', value: 'Not retrieved in this pass.', source: '—' }],
+      listingSupply: LISTING_UNKNOWN,
+      wellRisks: [
+        'North Carolina wells: test for radon (moderate potential), nitrates (agriculture), bacteria and metals.',
+        WELL_TEST,
+      ],
+    },
+    sources: [ala('north-carolina', 'Guilford'), ala('north-carolina', 'Forsyth'), EPA_AIRDATA],
+  },
+  'wexford-pine': {
+    checked: '12 Nov 2026', overall: 'fail',
+    note: 'Allegheny County ALA 2026 grades are the reason this is a near-miss: ozone F, short-term particles F, and a Fail on year-round particles (design value 10.6 µg/m³). That is a standing regional problem, not just wildfire years. EPA radon Zone 1 — test every house.',
+    air: {
+      mark: 'fail',
+      summary: 'ALA State of the Air 2026 for Allegheny County (Pittsburgh, including Pine Township / Wexford): ozone F, short-term particle pollution F, and a Fail on year-round particle pollution (annual design value 10.6 µg/m³, above the 9.1 Fail threshold). Weighted averages: 4.5 ozone and 9.3 short-term particles, with 12 orange and 1 red ozone day and 23 orange, 2 red and 1 purple short-term particle day over the 2022–2024 design period. This is the worst air of the 12 Nov 2026 scout, and it is the reason this place is a near-miss rather than a live option. EPA AirData annual means were not retrieved in this pass.',
+      station: 'ALA 2026 grades for Allegheny County, PA (Pittsburgh–Weirton–Steubenville metro)',
+      facts: [
+        { label: 'ALA 2026, Allegheny County', value: 'Ozone F (12 orange, 1 red, weighted average 4.5) · 24-h PM F (23 orange, 2 red, 1 purple, weighted average 9.3) · annual PM Fail (design value 10.6)', source: 'ALA State of the Air 2026, via official county API, 12 Nov 2026' },
+      ],
+    },
+    water: {
+      mark: 'partial',
+      summary: 'Municipal consumer-confidence reports for Pine Township and neighbouring boroughs were not retrieved in this pass. Confirm well vs public water with the listing. EPA radon Zone 1 for Pennsylvania — test every house and, if on a well, radon in water.',
+      municipal: [{ label: 'Township / authority drinking-water reports', value: 'Not retrieved in this pass.', source: '—' }],
+      listingSupply: LISTING_UNKNOWN,
+      wellRisks: [
+        'EPA radon Zone 1: test every house, and test radon in well water.',
+        WELL_TEST,
+      ],
+    },
+    sources: [ala('pennsylvania', 'Allegheny'), EPA_AIRDATA],
+  },
+  'apex-holly-springs': {
+    checked: '12 Nov 2026', overall: 'partial',
+    note: 'Wake County ALA 2026: ozone B, short-term particles C, year-round Pass (design value 7.7). Municipal water reports were not retrieved.',
+    air: {
+      mark: 'partial',
+      summary: 'ALA 2026 for Wake County: ozone B, short-term particles C, year-round particles Pass (annual design value 7.7 µg/m³). The short-term C is the reason this is partial. EPA AirData annual means were not retrieved in this pass.',
+      station: 'ALA 2026 grades for Wake County, NC',
+      facts: [
+        { label: 'ALA 2026, Wake County', value: 'Ozone B (2 orange days, weighted average 0.7) · 24-h PM C (5 orange, weighted average 1.7) · annual PM Pass (design value 7.7)', source: 'ALA State of the Air 2026, via official county API, 12 Nov 2026' },
+      ],
+    },
+    water: {
+      mark: 'partial',
+      summary: 'Municipal consumer-confidence reports for Apex and Holly Springs were not retrieved in this pass. Confirm well vs town water with the listing; get a full well test if the lot is on a well.',
+      municipal: [{ label: 'Town drinking-water reports', value: 'Not retrieved in this pass.', source: '—' }],
+      listingSupply: LISTING_UNKNOWN,
+      wellRisks: [
+        'North Carolina wells: test for radon, nitrates, bacteria and metals.',
+        WELL_TEST,
+      ],
+    },
+    sources: [ala('north-carolina', 'Wake'), EPA_AIRDATA],
+  },
+  'guelph-eramosa': {
+    checked: '12 Nov 2026', overall: 'partial',
+    note: 'Guelph MECP station is under the 8.8 µg/m³ PM2.5 reference level in 2023–2025, with smoke spikes in 2023 and 2025. Rural lots are normally on private wells; municipal reports don’t cover those.',
+    air: {
+      mark: 'pass',
+      summary: 'The Guelph provincial station (Exhibition St. / Clark St. W., the nearest official monitor for the township) averaged under the 8.8 µg/m³ PM2.5 reference level in 2023, 2024 and 2025. Wildfire smoke shows up as 24-hour spikes: 12 days over 27 µg/m³ in 2023, none in 2024, 9 in 2025. There is no rural Guelph/Eramosa station; Kitchener (West Ave. / Homewood Ave.) was similar but slightly higher, and was over the annual reference in the 2023 smoke year (9.30).',
+      station: 'Guelph (Exhibition St. / Clark St. W.), Ontario MECP station 28028',
+      facts: [
+        { label: 'PM2.5 annual mean', value: 'Guelph 2023: 8.75 · 2024: 6.28 · 2025: 7.28 µg/m³ (reference 8.8). Kitchener 2023: 9.30 · 2024: 6.73 · 2025: 7.75', source: 'Ontario MECP PM2.5 statistics (2003–2025 file, data.ontario.ca)' },
+        { label: 'Smoke days', value: '24-hour PM2.5 above the 27 µg/m³ criterion at Guelph: 12 (2023), 0 (2024), 9 (2025, 24-hour max 57.21)', source: 'Ontario MECP PM2.5 statistics (2003–2025 file, data.ontario.ca)' },
+        { label: 'Ozone', value: 'Hours over the 1-hour criterion (80 ppb) at Guelph: 2 (2023), 0 (2024), 0 (2025)', source: 'Ontario MECP ozone statistics (1995–2025 file, data.ontario.ca)' },
+      ],
+    },
+    water: {
+      mark: 'partial',
+      summary: 'Rural Guelph/Eramosa lots are normally on a private well and septic. The 5066 Wellington 32 Road listing is on a septic system; well vs municipal water was not stated clearly on the page that was fetched. City of Guelph drinking-water reports do not cover township wells and were not retrieved as a proxy.',
+      municipal: [{ label: 'City of Guelph / township reports', value: 'Not retrieved in this pass (and would not cover rural wells).', source: '—' }],
+      listingSupply: '5066 Wellington 32 Road is listed with a septic system. Well vs municipal water: not clearly stated on the listing page fetched 12 Nov 2026. Confirm with the listing agent.',
+      wellRisks: [
+        'Ontario limits: arsenic 0.010 mg/L, uranium 0.020 mg/L; test any well with an accredited lab. Public Health Ontario tests bacteria free.',
+        WELL_TEST,
+      ],
+    },
+    sources: [ON_STATS, ON_2023, PHO_WELL],
+  },
+  cochrane: {
+    checked: '12 Nov 2026', overall: 'partial',
+    note: 'Official annual air-station figures for Cochrane or Calgary were not retrieved in this pass. Wildfire smoke is a known regional summer issue. Municipal water reports were not retrieved. West-foothills lots may be on private wells.',
+    air: {
+      mark: 'partial',
+      summary: 'Official Alberta or Environment and Climate Change Canada annual station statistics for Cochrane or Calgary were not retrieved in this pass, so a grade is not assigned from numbers. Wildfire smoke in summer is a known regional issue; without a sourced annual mean, this is marked partial and the figures are “not available,” never estimated.',
+      station: 'Cochrane / Calgary-region official annual figures: not retrieved in this pass',
+      facts: [
+        { label: 'Annual PM2.5 / ozone', value: 'Not retrieved in this pass. Official station statistics should be pulled from Alberta Environment and Protected Areas or Environment and Climate Change Canada before a pass/fail grade.', source: '—' },
+        { label: 'Wildfire smoke', value: 'Summer wildfire smoke is a known issue in the Calgary–foothills region. No official annual “smoke day” count is shown here because the station file was not retrieved.', source: '—' },
+      ],
+    },
+    water: {
+      mark: 'partial',
+      summary: 'Town of Cochrane drinking-water reports were not retrieved in this pass. In-town lots are typically on municipal water; west-foothills acreage may be on a private well and septic — confirm with the listing.',
+      municipal: [{ label: 'Town of Cochrane drinking-water report', value: 'Not retrieved in this pass.', source: '—' }],
+      listingSupply: LISTING_UNKNOWN_CA,
+      wellRisks: [
+        'If the lot is on a private well, get a full accredited-lab test (bacteria, nitrate, metals, and other local guidance). Alberta-specific well guidance: not checked yet.',
+        WELL_TEST,
+      ],
+    },
+    sources: [{ label: 'Alberta Environment and Protected Areas — air quality (not retrieved in this pass)', url: 'https://www.alberta.ca/air-quality' }],
+  },
+  'waxhaw-lake-norman': {
+    checked: '12 Nov 2026', overall: 'fail',
+    note: 'The two sides of this place have different air grades. Union County (Waxhaw) is ozone B with no particle grade (data not collected). Mecklenburg County (Davidson / Lake Norman) is ozone F, short-term C, and a Fail on year-round particles (design value 9.2). Municipal water reports were not retrieved.',
+    air: {
+      mark: 'fail',
+      summary: 'Waxhaw is in Union County: ALA 2026 ozone B (1 orange day, weighted average 0.3) and no particle grade (data not collected). Davidson and the Lake Norman towns on the Mecklenburg side are a different county: ozone F (10 orange, 1 red, weighted average 3.8), short-term particles C (3 orange, weighted average 1.0), and a Fail on year-round particles (annual design value 9.2 µg/m³). The Mecklenburg Fail is why the air mark for this combined place is fail. EPA AirData annual means were not retrieved in this pass.',
+      station: 'ALA 2026 grades for Union County (Waxhaw) and Mecklenburg County (Davidson / Lake Norman)',
+      facts: [
+        { label: 'ALA 2026, Union County (Waxhaw)', value: 'Ozone B (1 orange day, weighted average 0.3) · 24-h PM DNC · annual PM DNC', source: 'ALA State of the Air 2026, via official county API, 12 Nov 2026' },
+        { label: 'ALA 2026, Mecklenburg County (Davidson / Lake Norman)', value: 'Ozone F (10 orange, 1 red, weighted average 3.8) · 24-h PM C (3 orange, weighted average 1.0) · annual PM Fail (design value 9.2)', source: 'ALA State of the Air 2026, via official county API, 12 Nov 2026' },
+        { label: 'ALA 2026, Iredell County (part of Lake Norman)', value: 'DNC (no data collected) for ozone and particles', source: 'ALA State of the Air 2026, via official county API, 12 Nov 2026' },
+      ],
+    },
+    water: {
+      mark: 'partial',
+      summary: 'Municipal consumer-confidence reports for Waxhaw, Davidson and other Lake Norman towns were not retrieved in this pass. Confirm well vs town water with the listing.',
+      municipal: [{ label: 'Town drinking-water reports', value: 'Not retrieved in this pass.', source: '—' }],
+      listingSupply: LISTING_UNKNOWN,
+      wellRisks: [
+        'North Carolina wells: test for radon, nitrates, bacteria and metals.',
+        WELL_TEST,
+      ],
+    },
+    sources: [ala('north-carolina', 'Union'), ala('north-carolina', 'Mecklenburg'), ala('north-carolina', 'Iredell'), EPA_AIRDATA],
+  },
 }

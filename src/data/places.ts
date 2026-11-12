@@ -4,6 +4,7 @@
 // used only to place map markers; they are not research findings.
 
 import { ONTARIO_PLACES, ONTARIO_CUT_IDS, TORONTO } from './ontario'
+import { RESCOUT_2026_PLACES } from './rescout2026'
 import { RETAIL } from './retail'
 import { AIRWATER, type AirWater } from './airwater'
 import { AMENITIES, OUTDOOR } from './amenities'
@@ -123,12 +124,12 @@ export interface Round {
 export const REPORT = {
   title: 'Where should we live next?',
   reportDate: '10 Oct 2026',
-  latestScout: '30 Sep 2026',
+  latestScout: '12 Nov 2026',
   startingPoint: 'Coral Springs, FL',
   currentLot: '~0.22 acre',
   budget: '~$680–720K (roughly Coral Springs house money)',
   // The 'where things stand' headline is computed from place statuses (see currentHeadline); only context lives here.
-  statusContext: 'He asked to keep hunting for more places. Canada is back in as of 10 Oct 2026.',
+  statusContext: 'He asked to keep hunting for more places. A 12 Nov 2026 rescout added Victor / Mendon, NY and Stokesdale / Oak Ridge / Kernersville, NC as live options. Canada has been back in since 10 Oct 2026.',
   canadaBack: '10 Oct 2026',
   keyInsight:
     'The hardest part is finding 2+ Sichuan and 2+ Turkish restaurants within ~40 minutes of affordable mountain-and-lake acreage. Land, scenery and safety are much easier to find than the food.',
@@ -678,6 +679,7 @@ export const PLACES: Place[] = [
   minor('huntsville', 'Huntsville, Alabama', 'Huntsville, AL', 6, 'Cut in the 30 Sep 2026 scout for weak mountains.', 34.73, -86.586),
   ...ONTARIO_PLACES,
   TORONTO,
+  ...RESCOUT_2026_PLACES,
 ]
 
 // Retail findings (10 Oct 2026)
@@ -755,6 +757,14 @@ export const ROUNDS: Round[] = [
     askedAbout: ['toronto'],
     note: 'Ontario avoids Quebec’s PSTQ and Bill 96 issues, but the federal foreign-buyer ban (to 1 Jan 2027) covers the Ottawa and Hamilton CMAs, and Ontario’s 25% NRST applies unless he is a permanent resident.',
   },
+  {
+    n: 8, title: 'November rescout', date: '12 Nov 2026',
+    summary: 'Two new live options: Victor / Mendon, NY (Finger Lakes edge of Rochester — the most different new option, with true winters and a 2+2 food pass) and Stokesdale / Oak Ridge / Kernersville, NC (Piedmont Triad, with a Monday/Tuesday restaurant closed-day caveat). Wexford / Pine Township, PA is a near-miss on air quality. Apex / Holly Springs, NC, rural Guelph/Eramosa, ON and Cochrane, AB are near-misses. Waxhaw / Lake Norman, NC is filed under Other (food geography and mountains).',
+    added: ['victor-mendon', 'stokesdale'],
+    cut: ['wexford-pine', 'apex-holly-springs', 'guelph-eramosa', 'cochrane'],
+    askedAbout: ['waxhaw-lake-norman'],
+    note: 'No recommended grade changes for places already on the table. Food is still the usual killer. Town-level official crime figures were not found for Victor / Mendon or the Triad towns and are marked not available, never estimated. Houses were re-verified 12 Nov 2026: a strict 3-full-bath listing was not found in Victor / Mendon; 231 McKinney Rd, Wexford and 5066 Wellington 32 Rd, Guelph/Eramosa were confirmed active. Other metros checked in this scout (Northern VA, Lehigh Valley, Charlottesville, Reno, Sacramento foothills, and others) did not clear a 2+2 food, mountains, or budget test worth a new place page.',
+  },
 ]
 
 export const CREDITS: string[] = [
@@ -764,6 +774,7 @@ export const CREDITS: string[] = [
   'Lookout Mountain Park, Golden CO — Hustvedt, CC BY-SA 3.0',
   'Eardley Escarpment, Gatineau Park — cjuneau, CC BY 2.0',
   'Coeur d’Alene, Hayden Lake, Lake George, Lake Winnipesaukee, Meredith, Smith Mountain Lake, Salem VA, Collingwood (aerial), Georgian Bay, Blue Mountain, and the area maps — Wikimedia Commons contributors (see each file’s Commons page for author and licence)',
+  'Canandaigua Lake, Hanging Rock State Park, North Park (Allegheny County), Jordan Lake, Elora Gorge, Cochrane foothills, and Lake Norman — Wikimedia Commons contributors (see each file’s Commons page for author and licence)',
 ]
 
 export const OTHER_MEANING = 'Other = notable places he asked about that don’t fit the criteria.'

@@ -60,6 +60,11 @@ const SC_ON_INC = 'https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3510018
 const SC_QC_INC = 'https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3510017901'
 const SC_ON_CSI = 'https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3510018801'
 const SC_QC_CSI = 'https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3510018701'
+const SC_AB_INC = 'https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3510018301'
+const SC_AB_CSI = 'https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3510019001'
+const NY_DCJS = 'https://data.ny.gov/Public-Safety/Index-Crimes-by-County-and-Agency-Beginning-1990/ca8h-8gjq'
+const NY_DCJS_SRC =
+  'NY Division of Criminal Justice Services, Index Crimes by County and Agency (Beginning 1990), data.ny.gov dataset ca8h-8gjq. Latest complete year in the table as of 12 Nov 2026 is 2024. The table does not publish a served population, so a rate is not computed from it here.'
 const SC_INC_SOURCE =
   'Statistics Canada, Incident-based crime statistics, by detailed violations, police services, 2025 (released 22 Jul 2026). Rate per 100,000 population as published. “Total violent Criminal Code violations” and “Total property crime violations.”'
 const SC_CSI_SOURCE =
@@ -69,7 +74,7 @@ export const CROSS_BORDER_NOTE =
   'US and Canadian crime figures are not directly comparable. The FBI’s violent-crime total is murder, rape, robbery and aggravated assault. Statistics Canada’s “Total violent Criminal Code violations” is broader and also includes offences such as uttering threats and criminal harassment. Property categories also differ (Canada includes mischief; the FBI’s property total is burglary, larceny-theft and motor vehicle theft). Comparisons across the border are approximate and should be read with that caveat. Canadian places also have a Crime Severity Index, which has no US counterpart here.'
 
 export const CRIME_METHOD =
-  `US figures are the latest complete calendar year (2025) from the FBI Crime Data Explorer (data refreshed 15 Oct 2026): 12 months of agency offence counts divided by that year’s FBI agency population, × 100,000. The 2026 year is incomplete and is not used. Canada figures are 2025 police-service rates and the Crime Severity Index from Statistics Canada (The Daily, 22 Jul 2026, and tables 35-10-0179-01, 35-10-0180-01, 35-10-0187-01, 35-10-0188-01). Each place uses the most local reporting agency that covers it. A missing figure is shown as “not available,” never as 0. ${CROSS_BORDER_NOTE} Checked ${CRIME_CHECKED}.`
+  `US figures are the latest complete calendar year (2025) from the FBI Crime Data Explorer (data refreshed 15 Oct 2026): 12 months of agency offence counts divided by that year’s FBI agency population, × 100,000. The 2026 year is incomplete and is not used. Canada figures are 2025 police-service rates and the Crime Severity Index from Statistics Canada (The Daily, 22 Jul 2026, and tables 35-10-0179-01, 35-10-0180-01, 35-10-0183-01, 35-10-0187-01, 35-10-0188-01, 35-10-0190-01). Each place uses the most local reporting agency that covers it. A missing figure is shown as “not available,” never as 0. ${CROSS_BORDER_NOTE} Checked ${CRIME_CHECKED}.`
 
 /** Similar means within ±15% of the Coral Springs rate. */
 export const SIMILAR_PCT = 15
@@ -131,6 +136,26 @@ const scCsi = (
   sourceUrl,
   sourceName: SC_CSI_SOURCE,
   ...extra,
+})
+
+
+const missingFigure = (
+  agency: string,
+  level: CrimeLevel,
+  year: number,
+  sourceUrl: string,
+  sourceName: string,
+  note: string,
+): CrimeFigure => ({
+  ratePer100k: null,
+  incidents: null,
+  population: null,
+  year,
+  agency,
+  level,
+  sourceUrl,
+  sourceName,
+  note,
 })
 
 export const CORAL_SPRINGS: PlaceCrime = {
@@ -283,6 +308,179 @@ export const CRIME: Record<string, PlaceCrime> = {
     violentCsi: scCsi('York Regional Police', 2025, 63.17, SC_ON_CSI),
     note: 'The realistic acreage edge is King Township / Vaughan north, served by York Regional Police, not the Toronto Police Service. Figures are for all of York Region. Toronto Police Service (the city) in 2025: violent 1,158.13 and property 3,185.74 per 100,000; CSI 59.98 (Statistics Canada tables 35-10-0180-01 and 35-10-0188-01). Toronto CMA CSI was 54.99 (The Daily, 22 Jul 2026, Table 35-10-0026-01).',
   },
+  'victor-mendon': {
+    placeId: 'victor-mendon',
+    country: 'US',
+    checked: CRIME_CHECKED,
+    violent: missingFigure(
+      'Town of Victor / Town of Mendon (no reporting agency in NY DCJS)',
+      'city',
+      2024,
+      NY_DCJS,
+      NY_DCJS_SRC,
+      'No Victor or Mendon police agency appears in NY DCJS Index Crimes for 2022–2024. Town-level official figures are not available.',
+    ),
+    property: missingFigure(
+      'Town of Victor / Town of Mendon (no reporting agency in NY DCJS)',
+      'city',
+      2024,
+      NY_DCJS,
+      NY_DCJS_SRC,
+      'No Victor or Mendon police agency appears in NY DCJS Index Crimes for 2022–2024. Town-level official figures are not available.',
+    ),
+    note: 'Do not use Rochester City PD as a proxy — that is a different, much larger jurisdiction. Ontario County Sheriff (2024, 12 of 12 months: 67 violent and 506 property offences) and Monroe County Sheriff (2024, 12 of 12 months: 188 violent and 2,571 property offences) report on NY DCJS, but those are county-service-area counts, not town rates, and the official table does not include a served population, so a rate is not computed here. FBI 2025 agency-level figures for these towns were not retrieved in this pass.',
+  },
+  stokesdale: {
+    placeId: 'stokesdale',
+    country: 'US',
+    checked: CRIME_CHECKED,
+    violent: missingFigure(
+      'Stokesdale / Oak Ridge / Kernersville / Summerfield (no clean town-level FBI figure)',
+      'city',
+      2025,
+      FBI_CDE,
+      FBI_SOURCE,
+      'No clean FBI agency-level rate for Stokesdale, Oak Ridge or Summerfield was found. Town-level official figures are not available.',
+    ),
+    property: missingFigure(
+      'Stokesdale / Oak Ridge / Kernersville / Summerfield (no clean town-level FBI figure)',
+      'city',
+      2025,
+      FBI_CDE,
+      FBI_SOURCE,
+      'No clean FBI agency-level rate for Stokesdale, Oak Ridge or Summerfield was found. Town-level official figures are not available.',
+    ),
+    note: 'Do not use Greensboro PD as a proxy for these towns — Greensboro is a different, much larger jurisdiction. Kernersville has its own department; a 2025 FBI figure for it was not retrieved in this pass. Sheriff / town UCR should be pulled before any Coral Springs comparison.',
+  },
+  'wexford-pine': {
+    placeId: 'wexford-pine',
+    country: 'US',
+    checked: CRIME_CHECKED,
+    violent: missingFigure(
+      'Pine Township / Northern Regional (official FBI figure not retrieved)',
+      'city',
+      2025,
+      FBI_CDE,
+      FBI_SOURCE,
+      'Official FBI agency-level figures for Pine Township or Northern Regional Police were not retrieved in this pass. Town-level official figures are not available.',
+    ),
+    property: missingFigure(
+      'Pine Township / Northern Regional (official FBI figure not retrieved)',
+      'city',
+      2025,
+      FBI_CDE,
+      FBI_SOURCE,
+      'Official FBI agency-level figures for Pine Township or Northern Regional Police were not retrieved in this pass. Town-level official figures are not available.',
+    ),
+    note: 'Do not use Pittsburgh city as a proxy. Cranberry Township is a different municipality. Third-party “crime grade” sites were not used. Directionally these North Hills towns are often described as low-crime, but that is not a sourced official rate and is not shown as a figure here.',
+  },
+  'apex-holly-springs': {
+    placeId: 'apex-holly-springs',
+    country: 'US',
+    checked: CRIME_CHECKED,
+    violent: missingFigure(
+      'Apex / Holly Springs (official FBI figure not retrieved)',
+      'city',
+      2025,
+      FBI_CDE,
+      FBI_SOURCE,
+      'Official FBI 2025 agency-level figures for Apex or Holly Springs were not retrieved in this pass. Town-level official figures are not available.',
+    ),
+    property: missingFigure(
+      'Apex / Holly Springs (official FBI figure not retrieved)',
+      'city',
+      2025,
+      FBI_CDE,
+      FBI_SOURCE,
+      'Official FBI 2025 agency-level figures for Apex or Holly Springs were not retrieved in this pass. Town-level official figures are not available.',
+    ),
+    note: 'Apex and Holly Springs have municipal police departments. Their 2025 FBI CDE figures should be pulled before a Coral Springs comparison. Wake County Sheriff covers unincorporated areas and is a different geography.',
+  },
+  'guelph-eramosa': {
+    placeId: 'guelph-eramosa',
+    country: 'Canada',
+    checked: CRIME_CHECKED,
+    violent: scRate(
+      'Wellington County, Ontario Provincial Police, municipal',
+      'police service',
+      2025,
+      566,
+      529.52,
+      SC_ON_INC,
+    ),
+    property: scRate(
+      'Wellington County, Ontario Provincial Police, municipal',
+      'police service',
+      2025,
+      1418,
+      1326.6,
+      SC_ON_INC,
+    ),
+    csi: scCsi('Wellington County, Ontario Provincial Police, municipal', 2025, 28.18, SC_ON_CSI),
+    violentCsi: scCsi('Wellington County, Ontario Provincial Police, municipal', 2025, 29.28, SC_ON_CSI),
+    note: 'Guelph/Eramosa Township is served by the Ontario Provincial Police, Wellington County detachment — not Guelph Police Service (the city) and not Waterloo Regional Police. Figures are for the whole Wellington County OPP municipal contract area (Statistics Canada “Wellington County, Ontario, Ontario Provincial Police, municipal [35073]”), not the township alone. The OPP rural series for Wellington County had no published 2025 CSI or rate (status “not available”). Guelph municipal police in 2025: violent 931.20 and property 2,596.42 per 100,000; CSI 57.82 (tables 35-10-0180-01 and 35-10-0188-01) — a different service.',
+  },
+  cochrane: {
+    placeId: 'cochrane',
+    country: 'Canada',
+    checked: CRIME_CHECKED,
+    violent: scRate(
+      'Cochrane, Alberta, Royal Canadian Mounted Police, municipal',
+      'police service',
+      2025,
+      333,
+      845.24,
+      SC_AB_INC,
+      { sourceName: 'Statistics Canada, table 35-10-0183-01, Incident-based crime statistics, police services in Alberta, 2025 (released 22 Jul 2026). Rate per 100,000 as published. “Total violent Criminal Code violations” and “Total property crime violations.”' },
+    ),
+    property: scRate(
+      'Cochrane, Alberta, Royal Canadian Mounted Police, municipal',
+      'police service',
+      2025,
+      865,
+      2195.6,
+      SC_AB_INC,
+      { sourceName: 'Statistics Canada, table 35-10-0183-01, Incident-based crime statistics, police services in Alberta, 2025 (released 22 Jul 2026). Rate per 100,000 as published. “Total violent Criminal Code violations” and “Total property crime violations.”' },
+    ),
+    csi: scCsi(
+      'Cochrane, Alberta, Royal Canadian Mounted Police, municipal',
+      2025,
+      36.7,
+      SC_AB_CSI,
+      { sourceName: 'Statistics Canada, table 35-10-0190-01, Crime severity index and weighted clearance rates, police services in Alberta, 2025 (released 22 Jul 2026).' },
+    ),
+    violentCsi: scCsi(
+      'Cochrane, Alberta, Royal Canadian Mounted Police, municipal',
+      2025,
+      37.78,
+      SC_AB_CSI,
+      { sourceName: 'Statistics Canada, table 35-10-0190-01, Crime severity index and weighted clearance rates, police services in Alberta, 2025 (released 22 Jul 2026).' },
+    ),
+    note: 'Figures are for Cochrane RCMP municipal [48900], which matches the town (333 violent incidents ÷ 845.24 per 100,000 implies a served population of about 39,400, in line with the 1 July 2025 CSD estimate of 39,397). West-foothills acreage outside town may be covered by Cochrane RCMP rural [48713], a different series: 2025 violent 1,377.44 and property 3,118.68 per 100,000; CSI 59.48 and violent CSI 73.14 (same tables). Calgary municipal police is not the covering agency.',
+  },
+  'waxhaw-lake-norman': {
+    placeId: 'waxhaw-lake-norman',
+    country: 'US',
+    checked: CRIME_CHECKED,
+    violent: missingFigure(
+      'Waxhaw / Davidson / Lake Norman towns (official FBI figure not retrieved)',
+      'city',
+      2025,
+      FBI_CDE,
+      FBI_SOURCE,
+      'Official FBI 2025 agency-level figures for Waxhaw or Davidson were not retrieved in this pass. Town-level official figures are not available.',
+    ),
+    property: missingFigure(
+      'Waxhaw / Davidson / Lake Norman towns (official FBI figure not retrieved)',
+      'city',
+      2025,
+      FBI_CDE,
+      FBI_SOURCE,
+      'Official FBI 2025 agency-level figures for Waxhaw or Davidson were not retrieved in this pass. Town-level official figures are not available.',
+    ),
+    note: 'Waxhaw, Davidson, Cornelius and similar Lake Norman towns have their own departments or contract coverage. Charlotte-Mecklenburg PD is the wrong geography for a lake or Waxhaw lot. Official FBI figures should be pulled before a Coral Springs comparison.',
+  },
+
 }
 
 export const CANADA_CSI_2025: CrimeIndex = {

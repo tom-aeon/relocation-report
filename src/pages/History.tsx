@@ -4,13 +4,13 @@ import { PageHeader, PlaceCard, StatusBadge } from '../components/ui'
 
 export default function History() {
   const [params, setParams] = useSearchParams()
-  const sel = Number(params.get('round')) || 6
+  const sel = Number(params.get('round')) || ROUNDS[ROUNDS.length - 1].n
   const round = ROUNDS.find((r) => r.n === sel) ?? ROUNDS[ROUNDS.length - 1]
   const alive = PLACES.filter((p) => isAliveIn(p, round.n))
 
   return (
     <div>
-      <PageHeader title="How the search narrowed" sub="Six rounds, each one tightening the filter. Click a round to see what was added, what got cut and why, and which places were still alive after it." />
+      <PageHeader title="How the search narrowed" sub="Eight rounds, each one tightening the filter. Click a round to see what was added, what got cut and why, and which places were still alive after it." />
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
         <ol className="relative space-y-3 pl-9 before:absolute before:bottom-3 before:left-[13px] before:top-3 before:w-0.5 before:bg-gradient-to-b before:from-teal-600 before:to-green-600">

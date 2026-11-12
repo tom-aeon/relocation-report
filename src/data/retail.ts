@@ -461,4 +461,432 @@ export const RETAIL: Record<string, Retail> = {
   "overall": "pass",
   "note": "Nearest: coffee Starbucks (Watkins & Lamar Alexander Pkwy) ~4 min; big box Target Maryville ~4 min; hardware The Home Depot Maryville ~4 min"
  }
+,
+ "victor-mendon": {
+  "base": "Victor / Mendon map marker (near 629 W Bloomfield Rd, Mendon, NY)",
+  "checked": "12 Nov 2026",
+  "method": "Stores from OpenStreetMap / Nominatim (and the 12 Nov 2026 scout geocodes for Victor, Greensboro and Cranberry); OSRM free-flow drive times from the place map marker, no traffic.",
+  "coffee": [
+    {
+      "name": "Starbucks (Pittsford village)",
+      "address": "24 State Street, Village of Pittsford, New York, 14534",
+      "driveMin": 11,
+      "driveText": "~11 min (5.2 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/node/8785742428"
+    },
+    {
+      "name": "Starbucks (High Point Drive, Victor)",
+      "address": "200 High Point Drive, Victor, NY 14564",
+      "driveMin": 14,
+      "driveText": "~14 min (7.4 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/search?query=Starbucks%20200%20High%20Point%20Drive%20Victor%20NY"
+    }
+  ],
+  "bigBox": [
+    {
+      "name": "Walmart Supercenter Victor",
+      "address": "441 Commerce Drive, Town of Victor, New York, 14564",
+      "driveMin": 15,
+      "driveText": "~15 min (7.2 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/way/396899180"
+    },
+    {
+      "name": "Target Victor",
+      "address": "7500 Commons Boulevard, Victor, NY 14564",
+      "driveMin": 15,
+      "driveText": "~15 min (8.0 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/search?query=Target%207500%20Commons%20Boulevard%20Victor%20NY"
+    }
+  ],
+  "hardware": [
+    {
+      "name": "The Home Depot (Commons Boulevard, Victor)",
+      "address": "7600 Commons Boulevard, Victor, NY 14564",
+      "driveMin": 18,
+      "driveText": "~18 min (8.3 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/search?query=Home%20Depot%207600%20Commons%20Boulevard%20Victor%20NY"
+    },
+    {
+      "name": "The Home Depot (Jefferson Road, Rochester)",
+      "address": "770 Jefferson Road, City of Rochester, New York, 14623",
+      "driveMin": 19,
+      "driveText": "~19 min (9.6 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/way/126305926"
+    }
+  ],
+  "overall": "pass",
+  "note": "Nearest: coffee Starbucks (Pittsford village) ~11 min; big box Target Victor ~15 min (Walmart Supercenter Victor also ~15 min); hardware The Home Depot Victor ~18 min."
+},
+ "stokesdale": {
+  "base": "Stokesdale / Oak Ridge map marker (Oak Ridge, NC)",
+  "checked": "12 Nov 2026",
+  "method": "Stores from OpenStreetMap / Nominatim (and the 12 Nov 2026 scout geocodes for Victor, Greensboro and Cranberry); OSRM free-flow drive times from the place map marker, no traffic.",
+  "coffee": [
+    {
+      "name": "Starbucks (South Main Street, Kernersville)",
+      "address": "971 South Main Street, Kernersville, North Carolina, 27284",
+      "driveMin": 15,
+      "driveText": "~15 min (7.8 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/node/2842751608"
+    },
+    {
+      "name": "Starbucks (Northline Avenue, Greensboro)",
+      "address": "3102 Northline Avenue, Greensboro, North Carolina, 27408",
+      "driveMin": 19,
+      "driveText": "~19 min (13.0 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/node/12865307746"
+    }
+  ],
+  "bigBox": [
+    {
+      "name": "Target (South Main Street, Kernersville)",
+      "address": "1090 South Main Street, Kernersville, North Carolina, 27284",
+      "driveMin": 17,
+      "driveText": "~17 min (8.1 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/way/339553724"
+    },
+    {
+      "name": "Walmart Supercenter (Kernersville)",
+      "address": "1130 South Main Street, Kernersville, North Carolina, 27284",
+      "driveMin": 17,
+      "driveText": "~17 min (8.3 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/way/339553725"
+    },
+    {
+      "name": "Target (Bridford Parkway, Greensboro)",
+      "address": "1212 Bridford Parkway, Greensboro, NC 27407",
+      "driveMin": 17,
+      "driveText": "~17 min (12.6 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/search?query=Target%201212%20Bridford%20Parkway%20Greensboro%20NC"
+    }
+  ],
+  "hardware": [
+    {
+      "name": "Lowe's (Battleground Avenue, Greensboro)",
+      "address": "3001 Battleground Avenue, Greensboro, North Carolina, 27408",
+      "driveMin": 18,
+      "driveText": "~18 min (12.1 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/way/323175009"
+    },
+    {
+      "name": "The Home Depot (Wendover, Greensboro)",
+      "address": "4425 West Wendover Avenue, Greensboro, NC 27407",
+      "driveMin": 18,
+      "driveText": "~18 min (13.0 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/search?query=Home%20Depot%204425%20West%20Wendover%20Avenue%20Greensboro%20NC"
+    }
+  ],
+  "overall": "pass",
+  "note": "Nearest: coffee Starbucks Kernersville ~15 min; big box Target Kernersville ~17 min; hardware Lowe's Greensboro ~18 min."
+},
+ "wexford-pine": {
+  "base": "Wexford / Pine Township map marker (Wexford, PA)",
+  "checked": "12 Nov 2026",
+  "method": "Stores from OpenStreetMap / Nominatim (and the 12 Nov 2026 scout geocodes for Victor, Greensboro and Cranberry); OSRM free-flow drive times from the place map marker, no traffic.",
+  "coffee": [
+    {
+      "name": "Starbucks (Perry Highway, Wexford)",
+      "address": "11354 Perry Highway, Wexford, Pennsylvania, 15090",
+      "driveMin": 2,
+      "driveText": "~2 min (0.5 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/way/361157483"
+    },
+    {
+      "name": "Starbucks (Perry Highway, McCandless)",
+      "address": "10590 Perry Highway, McCandless, Pennsylvania, 15090",
+      "driveMin": 4,
+      "driveText": "~4 min (1.2 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/node/2385907031"
+    }
+  ],
+  "bigBox": [
+    {
+      "name": "Target (Blazier Drive, McCandless / North Hills)",
+      "address": "105 Blazier Drive, Pittsburgh, Pennsylvania, 15237",
+      "driveMin": 9,
+      "driveText": "~9 min (3.4 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/node/3785146320"
+    },
+    {
+      "name": "Walmart (Cranberry Township)",
+      "address": "20245 Perry Highway, Cranberry Township, Pennsylvania, 16066",
+      "driveMin": 12,
+      "driveText": "~12 min (5.3 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/node/2333126254"
+    }
+  ],
+  "hardware": [
+    {
+      "name": "Lowe's (Mars Road, Cranberry Township)",
+      "address": "1717 Mars Road, Cranberry Township, Pennsylvania, 16066",
+      "driveMin": 13,
+      "driveText": "~13 min (5.8 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/node/365789021"
+    },
+    {
+      "name": "The Home Depot (Dutilh Road, Cranberry Township)",
+      "address": "25 Dutilh Road, Cranberry Township, PA 16066",
+      "driveMin": 13,
+      "driveText": "~13 min (5.6 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/search?query=Home%20Depot%2025%20Dutilh%20Road%20Cranberry%20Township%20PA"
+    }
+  ],
+  "overall": "pass",
+  "note": "Nearest: coffee Starbucks Wexford ~2 min; big box Target McCandless ~9 min; hardware Lowe's Cranberry ~13 min."
+},
+ "apex-holly-springs": {
+  "base": "Apex / Holly Springs map marker (near SW Wake County)",
+  "checked": "12 Nov 2026",
+  "method": "Stores from OpenStreetMap / Nominatim (and the 12 Nov 2026 scout geocodes for Victor, Greensboro and Cranberry); OSRM free-flow drive times from the place map marker, no traffic.",
+  "coffee": [
+    {
+      "name": "Starbucks (Grand Hill Place, Holly Springs)",
+      "address": "185 Grand Hill Place, Holly Springs, North Carolina, 27540",
+      "driveMin": 6,
+      "driveText": "~6 min (3.4 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/node/10138327621"
+    },
+    {
+      "name": "Starbucks (West Williams Street, Apex)",
+      "address": "1268 West Williams Street, Apex, North Carolina, 27502",
+      "driveMin": 10,
+      "driveText": "~10 min (5.0 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/node/11148636784"
+    }
+  ],
+  "bigBox": [
+    {
+      "name": "Walmart Supercenter (Apex Peakway)",
+      "address": "3151 Apex Peakway, Apex, North Carolina, 27502",
+      "driveMin": 6,
+      "driveText": "~6 min (3.1 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/way/207924787"
+    },
+    {
+      "name": "Target (Grand Hill Place, Holly Springs)",
+      "address": "100 Grand Hill Place, Holly Springs, North Carolina, 27540",
+      "driveMin": 7,
+      "driveText": "~7 min (3.9 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/node/10138327624"
+    }
+  ],
+  "hardware": [
+    {
+      "name": "Lowe's (Holly Springs)",
+      "address": "2240 Wildwood Lowes Greenway, Holly Springs, North Carolina, 27540",
+      "driveMin": 10,
+      "driveText": "~10 min (6.1 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/way/1019578609"
+    },
+    {
+      "name": "The Home Depot (Vision Drive, Apex)",
+      "address": "1000 Vision Drive, Apex, North Carolina, 27523",
+      "driveMin": 10,
+      "driveText": "~10 min (6.7 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/way/32076712"
+    }
+  ],
+  "overall": "pass",
+  "note": "Nearest: coffee Starbucks Holly Springs ~6 min; big box Walmart Supercenter Apex ~6 min; hardware Lowe's Holly Springs ~10 min."
+},
+ "guelph-eramosa": {
+  "base": "Guelph/Eramosa map marker (near 5066 Wellington 32 Road)",
+  "checked": "12 Nov 2026",
+  "method": "Stores from OpenStreetMap / Nominatim (and the 12 Nov 2026 scout geocodes for Victor, Greensboro and Cranberry); OSRM free-flow drive times from the place map marker, no traffic.",
+  "coffee": [
+    {
+      "name": "Starbucks (Gordon Street, Guelph)",
+      "address": "Gordon Street, Guelph, Ontario, N1H 4H7",
+      "driveMin": 9,
+      "driveText": "~9 min (7.3 km)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/node/6757526631"
+    },
+    {
+      "name": "Tim Hortons (Woodlawn Road West, Guelph)",
+      "address": "134 Woodlawn Road West, Guelph, Ontario, N1H 1B2",
+      "driveMin": 12,
+      "driveText": "~12 min (10.7 km)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/way/475982817"
+    }
+  ],
+  "bigBox": [
+    {
+      "name": "Costco Guelph",
+      "address": "19 Elmira Road South, Guelph, Ontario, N1K 0B6",
+      "driveMin": 7,
+      "driveText": "~7 min (5.4 km)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/way/384476551"
+    },
+    {
+      "name": "Walmart Supercentre (Stone Road West, Guelph)",
+      "address": "175 Stone Road West, Guelph, Ontario, N1G 5L4",
+      "driveMin": 11,
+      "driveText": "~11 min (7.8 km)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/search?query=Walmart%20175%20Stone%20Road%20West%20Guelph"
+    }
+  ],
+  "hardware": [
+    {
+      "name": "Canadian Tire (Stone Road West, Guelph)",
+      "address": "127 Stone Road West, Guelph, Ontario, N1G 5G4",
+      "driveMin": 11,
+      "driveText": "~11 min (7.9 km)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/way/121429571"
+    },
+    {
+      "name": "The Home Depot (Woodlawn Road West, Guelph)",
+      "address": "63 Woodlawn Road West, Guelph, Ontario, N1H 1G8",
+      "driveMin": 13,
+      "driveText": "~13 min (11.2 km)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/way/239063767"
+    }
+  ],
+  "overall": "pass",
+  "note": "Nearest: coffee Starbucks Guelph ~9 min; big box Costco Guelph ~7 min; hardware Canadian Tire Guelph ~11 min."
+},
+ "cochrane": {
+  "base": "Cochrane, Alberta map marker (town centre)",
+  "checked": "12 Nov 2026",
+  "method": "Stores from OpenStreetMap / Nominatim (and the 12 Nov 2026 scout geocodes for Victor, Greensboro and Cranberry); OSRM free-flow drive times from the place map marker, no traffic.",
+  "coffee": [
+    {
+      "name": "Starbucks (5th Avenue, Cochrane)",
+      "address": "5th Avenue West, Town of Cochrane, Alberta, T4C 0A4",
+      "driveMin": 2,
+      "driveText": "~2 min (0.8 km)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/node/196786051"
+    },
+    {
+      "name": "Tim Hortons (West Side Drive, Cochrane)",
+      "address": "West Side Drive, Town of Cochrane, Alberta, T4C 1M1",
+      "driveMin": 4,
+      "driveText": "~4 min (2.1 km)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/way/234166760"
+    }
+  ],
+  "bigBox": [
+    {
+      "name": "Walmart Supercentre (Cochrane)",
+      "address": "Centre Avenue, Town of Cochrane, Alberta, T4V 2A7",
+      "driveMin": 1,
+      "driveText": "~1 min (0.1 km)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/node/3355295391"
+    }
+  ],
+  "hardware": [
+    {
+      "name": "Canadian Tire (Bow Street, Cochrane)",
+      "address": "Bow Street, Town of Cochrane, Alberta, T4C 2N1",
+      "driveMin": 2,
+      "driveText": "~2 min (0.5 km)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/way/489635595"
+    }
+  ],
+  "overall": "pass",
+  "note": "Nearest: coffee Starbucks Cochrane ~2 min; big box Walmart Supercentre Cochrane ~1 min; hardware Canadian Tire Cochrane ~2 min. These are in-town; west-foothills acreage would be a few minutes farther."
+},
+ "waxhaw-lake-norman": {
+  "base": "Waxhaw, NC map marker (retail measured from Waxhaw; Lake Norman is farther north)",
+  "checked": "12 Nov 2026",
+  "method": "Stores from OpenStreetMap / Nominatim (and the 12 Nov 2026 scout geocodes for Victor, Greensboro and Cranberry); OSRM free-flow drive times from the place map marker, no traffic.",
+  "coffee": [
+    {
+      "name": "Starbucks (Rea Road, Waxhaw)",
+      "address": "9700 Rea Road, Waxhaw, North Carolina, 28173",
+      "driveMin": 20,
+      "driveText": "~20 min (10.2 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/way/525658734"
+    },
+    {
+      "name": "Starbucks (Old Monroe Road, Indian Trail)",
+      "address": "6701 Old Monroe Road, Indian Trail, North Carolina, 28079",
+      "driveMin": 21,
+      "driveText": "~21 min (11.7 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/way/999036295"
+    }
+  ],
+  "bigBox": [
+    {
+      "name": "Walmart (Cuthbertson Road, Waxhaw)",
+      "address": "2520 Cuthbertson Road, Waxhaw, North Carolina, 28173",
+      "driveMin": 5,
+      "driveText": "~5 min (2.5 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/node/12495560318"
+    },
+    {
+      "name": "Target (Olde Towne Drive, Monroe)",
+      "address": "2901 Olde Towne Drive, Monroe, North Carolina, 28110",
+      "driveMin": 24,
+      "driveText": "~24 min (14.9 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/node/12035679413"
+    },
+    {
+      "name": "Walmart Supercenter (Roosevelt Boulevard, Monroe)",
+      "address": "2406 West Roosevelt Boulevard, Monroe, North Carolina, 28110",
+      "driveMin": 24,
+      "driveText": "~24 min (14.0 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/way/794379782"
+    }
+  ],
+  "hardware": [
+    {
+      "name": "Lowe's (Cuthbertson Road, Waxhaw)",
+      "address": "2508 Cuthbertson Road, Waxhaw, North Carolina, 28173",
+      "driveMin": 5,
+      "driveText": "~5 min (2.6 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/way/859820843"
+    },
+    {
+      "name": "Lowe's (Roosevelt Boulevard, Monroe)",
+      "address": "2350 West Roosevelt Boulevard, Monroe, North Carolina, 28110",
+      "driveMin": 22,
+      "driveText": "~22 min (13.8 mi)",
+      "mark": "pass",
+      "source": "https://www.openstreetmap.org/way/794379781"
+    }
+  ],
+  "overall": "pass",
+  "note": "Nearest from the Waxhaw marker: coffee Starbucks Rea Road ~20 min; big box Walmart Cuthbertson Road ~5 min; hardware Lowe's Cuthbertson Road ~5 min. Lake Norman / Davidson is a separate, more northern pin — retail there was not re-measured and would use a different set of Charlotte-north stores."
+}
 }

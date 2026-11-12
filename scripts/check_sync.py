@@ -4,7 +4,7 @@ import sys, subprocess, socket, time, asyncio, os, json, re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
-CURRENT_IDS = ['forsyth','happy-valley','duvall','cantley','maryville','elizabeth','boise','on-carp-huntley','on-dunrobin','on-north-gower','on-flamborough','on-oro-medonte','toronto']
+CURRENT_IDS = ['forsyth','happy-valley','duvall','cantley','maryville','elizabeth','boise','on-carp-huntley','on-dunrobin','on-north-gower','on-flamborough','on-oro-medonte','toronto','victor-mendon','stokesdale','wexford-pine','apex-holly-springs','guelph-eramosa','cochrane','waxhaw-lake-norman']
 AM_KEYS = ['ski','rink','park','stadium','university','hospital','golf']
 def check_amenities(ids):
     f = []
@@ -39,7 +39,7 @@ def check_listings():
 
 
 # Places still in play (not dropped, including Other) that must have a sourced crime entry.
-CRIME_IDS = ['forsyth','happy-valley','duvall','cantley','maryville','elizabeth','boise','on-carp-huntley','on-dunrobin','on-north-gower','on-flamborough','on-oro-medonte','toronto']
+CRIME_IDS = ['forsyth','happy-valley','duvall','cantley','maryville','elizabeth','boise','on-carp-huntley','on-dunrobin','on-north-gower','on-flamborough','on-oro-medonte','toronto','victor-mendon','stokesdale','wexford-pine','apex-holly-springs','guelph-eramosa','cochrane','waxhaw-lake-norman']
 # Do not introduce racial or ethnic population data anywhere in this project.
 CRIME_BANNED = re.compile(
     r'\b(racial|ethnicity|ethnic group|race breakdown|by race|black population|white population|hispanic population|asian population|demographic breakdown by race|visible[- ]minority|visible minority|immigrant[- ]origin|immigrant status|ethnocultural|ancestry)\b',

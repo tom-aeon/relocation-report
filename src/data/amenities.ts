@@ -111,8 +111,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://en.wikipedia.org/wiki/Eddie_S._Henderson_Stadium",
      "note": "Eddie S. Henderson Stadium is an Atlanta Public School football stadium located in Midtown Atlanta, south of Piedmont Park."
     }
-   ],
-   "note": null
+   ]
   },
   "park": {
    "items": [
@@ -263,8 +262,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://en.wikipedia.org/wiki/Mount_Hood_Meadows",
      "note": "Mount Hood Meadows is a ski resort on the southeastern face of Mount Hood in northern Oregon, and is the largest of the mountain's ski resorts."
     }
-   ],
-   "note": null
+   ]
   },
   "rink": {
    "items": [
@@ -341,8 +339,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://en.wikipedia.org/wiki/Merlo_Field",
      "note": "Harry A. Merlo Field at the Clive Charles Soccer Complex is a 4,892-capacity soccer-specific stadium in Portland, Oregon on the campus of the University of Portland where it serves as home to the school's men's and women's soccer teams."
     }
-   ],
-   "note": null
+   ]
   },
   "park": {
    "items": [
@@ -495,8 +492,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://www.openstreetmap.org/way/1499174311",
      "note": "Season and snow reliability: not checked yet."
     }
-   ],
-   "note": null
+   ]
   },
   "rink": {
    "items": [
@@ -573,8 +569,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://en.wikipedia.org/wiki/Angel_of_the_Winds_Arena",
      "note": "Angel of the Winds Arena is a multi-purpose sports arena complex in Everett, Washington, United States, designed and developed by the Everett Public Facilities District."
     }
-   ],
-   "note": null
+   ]
   },
   "park": {
    "items": [
@@ -727,8 +722,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://en.wikipedia.org/wiki/Vorlage_(ski_hill)",
      "note": "Vorlage is a ski hill located at the village of Wakefield, within the municipality of La Pêche, Quebec, in the Gatineau Hills north of Ottawa, Ontario."
     }
-   ],
-   "note": null
+   ]
   },
   "rink": {
    "items": [
@@ -805,8 +799,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://en.wikipedia.org/wiki/TD_Place_Stadium",
      "note": "TD Place Stadium is an outdoor stadium in Ottawa, Ontario, Canada It is located at Lansdowne Park, on the southern edge of The Glebe neighbourhood, where Bank Street crosses the Rideau Canal."
     }
-   ],
-   "note": null
+   ]
   },
   "park": {
    "items": [
@@ -1012,8 +1005,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://en.wikipedia.org/wiki/Neyland_Stadium",
      "note": "Neyland Stadium is a sports stadium in Knoxville, Tennessee, United States It serves primarily as the home of the Tennessee Volunteers football team, but is also used to host large conventions and has been a site for several National Football League (NFL) exhibition games."
     }
-   ],
-   "note": null
+   ]
   },
   "park": {
    "items": [
@@ -1166,8 +1158,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://www.openstreetmap.org/way/184326663",
      "note": "Season and snow reliability: not checked yet."
     }
-   ],
-   "note": null
+   ]
   },
   "rink": {
    "items": [
@@ -1220,8 +1211,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://en.wikipedia.org/wiki/Blocktickets_Park",
      "note": "Blocktickets Park, styled as blocktickets PARK, is a baseball park in the western United States, on the eastern edge of Colorado Springs, Colorado."
     }
-   ],
-   "note": null
+   ]
   },
   "park": {
    "items": [
@@ -1372,8 +1362,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://www.openstreetmap.org/node/8016512628",
      "note": "Season and snow reliability: not checked yet."
     }
-   ],
-   "note": null
+   ]
   },
   "rink": {
    "items": [
@@ -1407,8 +1396,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://en.wikipedia.org/wiki/ExtraMile_Arena",
      "note": "ExtraMile Arena is a multi-purpose indoor arena in the western United States, on the campus of Boise State University in Boise, Idaho."
     }
-   ],
-   "note": null
+   ]
   },
   "park": {
    "items": [
@@ -1560,8 +1548,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://www.openstreetmap.org/way/330118914",
      "note": "Season and snow reliability: not checked yet."
     }
-   ],
-   "note": null
+   ]
   },
   "rink": {
    "items": [
@@ -1638,8 +1625,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://en.wikipedia.org/wiki/Gee-Gees_Field",
      "note": "Gee-Gees Field is a Canadian football stadium at the University of Ottawa in Ottawa, Ontario, Canada."
     }
-   ],
-   "note": null
+   ]
   },
   "park": {
    "items": [
@@ -1792,8 +1778,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://www.openstreetmap.org/way/330118914",
      "note": "Season and snow reliability: not checked yet."
     }
-   ],
-   "note": null
+   ]
   },
   "rink": {
    "items": [
@@ -1870,8 +1855,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://en.wikipedia.org/wiki/Gee-Gees_Field",
      "note": "Gee-Gees Field is a Canadian football stadium at the University of Ottawa in Ottawa, Ontario, Canada."
     }
-   ],
-   "note": null
+   ]
   },
   "park": {
    "items": [
@@ -2024,8 +2008,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://en.wikipedia.org/wiki/Vorlage_(ski_hill)",
      "note": "Vorlage is a ski hill located at the village of Wakefield, within the municipality of La Pêche, Quebec, in the Gatineau Hills north of Ottawa, Ontario."
     }
-   ],
-   "note": null
+   ]
   },
   "rink": {
    "items": [
@@ -2102,8 +2085,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://en.wikipedia.org/wiki/Gee-Gees_Field",
      "note": "Gee-Gees Field is a Canadian football stadium at the University of Ottawa in Ottawa, Ontario, Canada."
     }
-   ],
-   "note": null
+   ]
   },
   "park": {
    "items": [
@@ -2256,8 +2238,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://www.openstreetmap.org/way/1254864403",
      "note": "Season and snow reliability: not checked yet."
     }
-   ],
-   "note": null
+   ]
   },
   "rink": {
    "items": [
@@ -2334,8 +2315,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://en.wikipedia.org/wiki/University_Stadium_(Waterloo%2C_Ontario)",
      "note": "University Stadium, also known as Knight–Newbrough Field and formerly known as Seagram Stadium, is a stadium on the campus of Wilfrid Laurier University in Waterloo, Ontario."
     }
-   ],
-   "note": null
+   ]
   },
   "park": {
    "items": [
@@ -2486,8 +2466,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://www.openstreetmap.org/node/2633977898",
      "note": "Season and snow reliability: not checked yet."
     }
-   ],
-   "note": null
+   ]
   },
   "rink": {
    "items": [
@@ -2564,8 +2543,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://en.wikipedia.org/wiki/Lamport_Stadium",
      "note": "Allan A. Lamport Stadium is a multi-purpose stadium on King Street West in the Liberty Village neighbourhood of Toronto, Ontario, Canada."
     }
-   ],
-   "note": null
+   ]
   },
   "park": {
    "items": [
@@ -2707,8 +2685,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://www.openstreetmap.org/way/760061443",
      "note": "Season and snow reliability: not checked yet."
     }
-   ],
-   "note": null
+   ]
   },
   "rink": {
    "items": [
@@ -2785,8 +2762,7 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
      "source": "https://en.wikipedia.org/wiki/Varsity_Stadium",
      "note": "Varsity Stadium is an outdoor collegiate stadium of the University of Toronto located at the \"Varsity Centre & Arena\", a sports complex on the St."
     }
-   ],
-   "note": null
+   ]
   },
   "park": {
    "items": [
@@ -2905,8 +2881,1138 @@ export const AMENITIES: Record<string, PlaceAmenities> = {
   },
   "asOf": "26 Oct 2026",
   "method": "Places from OpenStreetMap (Overpass), notes from Wikipedia summaries where linked; drive times are free-flow OSRM estimates from the place’s base, as of 26 Oct 2026. For large parks and forests the time is to the area’s map centre, so the nearest edge is usually closer. Re-verify before relying on them."
+ },
+ "victor-mendon": {
+  "asOf": "12 Nov 2026",
+  "method": "Places from OpenStreetMap (Nominatim) and Wikipedia; drive times are free-flow OSRM estimates from the place’s base, as of 12 Nov 2026.",
+  "ski": {
+   "items": [
+    {
+     "name": "Bristol Mountain",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 54,
+     "km": 41,
+     "source": "https://www.openstreetmap.org/way/148144409",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Hunt Hollow Ski Club",
+     "kind": "ski area",
+     "town": "7532",
+     "driveMin": 70,
+     "km": 57,
+     "source": "https://www.openstreetmap.org/way/1303060558",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Swain Resort",
+     "kind": "ski area",
+     "town": "County Road 24",
+     "driveMin": 84,
+     "km": 91,
+     "source": "https://www.openstreetmap.org/node/2622572129",
+     "note": "Season and snow reliability: not checked yet."
+    }
+   ]
+  },
+  "park": {
+   "items": [
+    {
+     "name": "Mendon Ponds Park",
+     "kind": "county park",
+     "town": "Town of Mendon",
+     "driveMin": 10,
+     "km": 6,
+     "source": "https://www.openstreetmap.org/relation/17233451"
+    },
+    {
+     "name": "Ontario Beach Park",
+     "kind": "park",
+     "town": "City of Rochester",
+     "driveMin": 38,
+     "km": 37,
+     "source": "https://www.openstreetmap.org/way/778040254"
+    },
+    {
+     "name": "Letchworth State Park",
+     "kind": "state park",
+     "town": "Town of Mount Morris",
+     "driveMin": 68,
+     "km": 72,
+     "source": "https://en.wikipedia.org/wiki/Letchworth_State_Park"
+    },
+    {
+     "name": "Finger Lakes National Forest",
+     "kind": "national forest",
+     "town": "Town of Hector",
+     "driveMin": 118,
+     "km": 116,
+     "source": "https://en.wikipedia.org/wiki/Finger_Lakes_National_Forest"
+    }
+   ]
+  },
+  "rink": {
+   "items": [
+    {
+     "name": "Blue Cross Arena",
+     "kind": "major hockey arena",
+     "town": "1",
+     "driveMin": 24,
+     "km": 21,
+     "source": "https://en.wikipedia.org/wiki/Blue_Cross_Arena"
+    }
+   ]
+  },
+  "stadium": {
+   "items": [
+    {
+     "name": "Blue Cross Arena",
+     "kind": "stadium / arena",
+     "town": "1",
+     "driveMin": 24,
+     "km": 21,
+     "source": "https://en.wikipedia.org/wiki/Blue_Cross_Arena"
+    },
+    {
+     "name": "Innovative Field",
+     "kind": "stadium / arena",
+     "town": "1",
+     "driveMin": 26,
+     "km": 23,
+     "source": "https://en.wikipedia.org/wiki/Innovative_Field"
+    }
+   ]
+  },
+  "university": {
+   "items": [
+    {
+     "name": "Nazareth University",
+     "kind": "university",
+     "town": "4245",
+     "driveMin": 14,
+     "km": 10,
+     "source": "https://en.wikipedia.org/wiki/Nazareth_University"
+    },
+    {
+     "name": "Rochester Institute of Technology",
+     "kind": "university",
+     "town": "1",
+     "driveMin": 27,
+     "km": 21,
+     "source": "https://en.wikipedia.org/wiki/Rochester_Institute_of_Technology"
+    },
+    {
+     "name": "University of Rochester",
+     "kind": "university",
+     "town": "",
+     "driveMin": 27,
+     "km": 22,
+     "source": "https://en.wikipedia.org/wiki/University_of_Rochester"
+    },
+    {
+     "name": "SUNY Geneseo",
+     "kind": "university",
+     "town": "South Street",
+     "driveMin": 46,
+     "km": 47,
+     "source": "https://en.wikipedia.org/wiki/State_University_of_New_York_at_Geneseo"
+    }
+   ]
+  },
+  "hospital": {
+   "items": [
+    {
+     "name": "URMC Strong Memorial Hospital",
+     "kind": "hospital with ER",
+     "town": "601",
+     "driveMin": 24,
+     "km": 20,
+     "source": "https://en.wikipedia.org/wiki/Strong_Memorial_Hospital"
+    },
+    {
+     "name": "Rochester General Hospital",
+     "kind": "hospital with ER",
+     "town": "1425",
+     "driveMin": 29,
+     "km": 26,
+     "source": "https://en.wikipedia.org/wiki/Rochester_General_Hospital"
+    }
+   ]
+  },
+  "golf": {
+   "items": [
+    {
+     "name": "Ravenwood Golf Club",
+     "kind": "golf",
+     "town": "929",
+     "driveMin": 18,
+     "km": 14,
+     "source": "https://www.openstreetmap.org/way/89579393"
+    }
+   ]
+  }
+ },
+ "stokesdale": {
+  "asOf": "12 Nov 2026",
+  "method": "Places from OpenStreetMap (Nominatim) and Wikipedia; drive times are free-flow OSRM estimates from the place’s base, as of 12 Nov 2026.",
+  "ski": {
+   "items": [
+    {
+     "name": "Sugar Mountain Resort",
+     "kind": "ski area",
+     "town": "1009",
+     "driveMin": 168,
+     "km": 192,
+     "source": "https://en.wikipedia.org/wiki/Sugar_Mountain_Resort",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Beech Mountain Resort",
+     "kind": "ski area",
+     "town": "Beech Mountain",
+     "driveMin": 179,
+     "km": 200,
+     "source": "https://en.wikipedia.org/wiki/Beech_Mountain_Resort",
+     "note": "Season and snow reliability: not checked yet."
+    }
+   ]
+  },
+  "park": {
+   "items": [
+    {
+     "name": "Guilford Courthouse National Military Park",
+     "kind": "national park",
+     "town": "Battle Forest",
+     "driveMin": 18,
+     "km": 20,
+     "source": "https://en.wikipedia.org/wiki/Guilford_Courthouse_National_Military_Park"
+    },
+    {
+     "name": "Hanging Rock State Park",
+     "kind": "state park",
+     "town": "1790",
+     "driveMin": 50,
+     "km": 48,
+     "source": "https://en.wikipedia.org/wiki/Hanging_Rock_State_Park"
+    },
+    {
+     "name": "Pilot Mountain State Park",
+     "kind": "state park",
+     "town": "1792",
+     "driveMin": 68,
+     "km": 77,
+     "source": "https://en.wikipedia.org/wiki/Pilot_Mountain_State_Park"
+    }
+   ]
+  },
+  "rink": {
+   "items": [
+    {
+     "name": "Greensboro Ice House",
+     "kind": "ice rink / arena",
+     "town": "6119",
+     "driveMin": 19,
+     "km": 20,
+     "source": "https://www.openstreetmap.org/node/12547719224"
+    }
+   ]
+  },
+  "stadium": {
+   "items": [
+    {
+     "name": "Greensboro Coliseum Complex",
+     "kind": "stadium / arena",
+     "town": "",
+     "driveMin": 24,
+     "km": 25,
+     "source": "https://www.openstreetmap.org/way/16586989"
+    },
+    {
+     "name": "Truist Point",
+     "kind": "stadium / arena",
+     "town": "301",
+     "driveMin": 26,
+     "km": 27,
+     "source": "https://en.wikipedia.org/wiki/Truist_Point"
+    }
+   ]
+  },
+  "university": {
+   "items": [
+    {
+     "name": "Guilford College",
+     "kind": "university",
+     "town": "Greensboro",
+     "driveMin": 15,
+     "km": 16,
+     "source": "https://en.wikipedia.org/wiki/Guilford_College"
+    },
+    {
+     "name": "University of North Carolina at Greensboro",
+     "kind": "university",
+     "town": "1400",
+     "driveMin": 21,
+     "km": 24,
+     "source": "https://en.wikipedia.org/wiki/University_of_North_Carolina_at_Greensboro"
+    },
+    {
+     "name": "North Carolina A&T State University",
+     "kind": "university",
+     "town": "Guilford County",
+     "driveMin": 22,
+     "km": 25,
+     "source": "https://en.wikipedia.org/wiki/North_Carolina_A%26T_State_University"
+    },
+    {
+     "name": "High Point University",
+     "kind": "university",
+     "town": "Blessing Way",
+     "driveMin": 25,
+     "km": 25,
+     "source": "https://en.wikipedia.org/wiki/High_Point_University"
+    },
+    {
+     "name": "Wake Forest University",
+     "kind": "university",
+     "town": "1834",
+     "driveMin": 33,
+     "km": 34,
+     "source": "https://en.wikipedia.org/wiki/Wake_Forest_University"
+    }
+   ]
+  },
+  "hospital": {
+   "items": [
+    {
+     "name": "Moses Cone Hospital Greensboro",
+     "kind": "hospital with ER",
+     "town": "",
+     "driveMin": 23,
+     "km": 25,
+     "source": "https://www.openstreetmap.org/way/466184103"
+    },
+    {
+     "name": "Atrium Health Wake Forest Baptist",
+     "kind": "hospital with ER",
+     "town": "East 14th Street",
+     "driveMin": 27,
+     "km": 28,
+     "source": "https://en.wikipedia.org/wiki/Atrium_Health_Wake_Forest_Baptist"
+    }
+   ]
+  },
+  "golf": {
+   "items": [
+    {
+     "name": "Bryan Park Golf",
+     "kind": "golf",
+     "town": "Lake Herman Drive",
+     "driveMin": 33,
+     "km": 36,
+     "source": "https://www.openstreetmap.org/way/1573513994"
+    }
+   ]
+  }
+ },
+ "wexford-pine": {
+  "asOf": "12 Nov 2026",
+  "method": "Places from OpenStreetMap (Nominatim) and Wikipedia; drive times are free-flow OSRM estimates from the place’s base, as of 12 Nov 2026.",
+  "ski": {
+   "items": [
+    {
+     "name": "Boyce Park Ski Area",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 50,
+     "km": 49,
+     "source": "https://www.openstreetmap.org/way/358213066",
+     "note": "Small county-park hill, not a full mountain resort. Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Hidden Valley Resort",
+     "kind": "ski area",
+     "town": "1",
+     "driveMin": 92,
+     "km": 112,
+     "source": "https://en.wikipedia.org/wiki/Hidden_Valley_Resort_(Pennsylvania)",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Seven Springs Mountain Resort",
+     "kind": "ski area",
+     "town": "777",
+     "driveMin": 101,
+     "km": 114,
+     "source": "https://en.wikipedia.org/wiki/Seven_Springs_Mountain_Resort",
+     "note": "Season and snow reliability: not checked yet."
+    }
+   ]
+  },
+  "park": {
+   "items": [
+    {
+     "name": "North Park (Allegheny County)",
+     "kind": "county park",
+     "town": "McCandless",
+     "driveMin": 18,
+     "km": 11,
+     "source": "https://en.wikipedia.org/wiki/North_Park_(Allegheny_County)"
+    },
+    {
+     "name": "McConnells Mill State Park",
+     "kind": "state park",
+     "town": "Slippery Rock Township",
+     "driveMin": 40,
+     "km": 45,
+     "source": "https://en.wikipedia.org/wiki/McConnells_Mill_State_Park"
+    },
+    {
+     "name": "Moraine State Park",
+     "kind": "state park",
+     "town": "Brady Township",
+     "driveMin": 65,
+     "km": 58,
+     "source": "https://en.wikipedia.org/wiki/Moraine_State_Park"
+    }
+   ]
+  },
+  "rink": {
+   "items": [
+    {
+     "name": "UPMC Lemieux Sports Complex",
+     "kind": "ice rink / arena",
+     "town": "800",
+     "driveMin": 14,
+     "km": 13,
+     "source": "https://www.openstreetmap.org/node/3312127372"
+    },
+    {
+     "name": "PPG Paints Arena",
+     "kind": "major hockey arena",
+     "town": "1001",
+     "driveMin": 28,
+     "km": 24,
+     "source": "https://en.wikipedia.org/wiki/PPG_Paints_Arena"
+    }
+   ]
+  },
+  "stadium": {
+   "items": [
+    {
+     "name": "PNC Park",
+     "kind": "stadium / arena",
+     "town": "North Shore Trail",
+     "driveMin": 27,
+     "km": 23,
+     "source": "https://en.wikipedia.org/wiki/PNC_Park"
+    },
+    {
+     "name": "Acrisure Stadium",
+     "kind": "stadium / arena",
+     "town": "Art Rooney Avenue",
+     "driveMin": 28,
+     "km": 24,
+     "source": "https://en.wikipedia.org/wiki/Acrisure_Stadium"
+    },
+    {
+     "name": "PPG Paints Arena",
+     "kind": "stadium / arena",
+     "town": "1001",
+     "driveMin": 28,
+     "km": 24,
+     "source": "https://en.wikipedia.org/wiki/PPG_Paints_Arena"
+    }
+   ]
+  },
+  "university": {
+   "items": [
+    {
+     "name": "Duquesne University",
+     "kind": "university",
+     "town": "Armstrong Tunnel",
+     "driveMin": 29,
+     "km": 24,
+     "source": "https://en.wikipedia.org/wiki/Duquesne_University"
+    },
+    {
+     "name": "University of Pittsburgh",
+     "kind": "university",
+     "town": "4200",
+     "driveMin": 33,
+     "km": 27,
+     "source": "https://en.wikipedia.org/wiki/University_of_Pittsburgh"
+    },
+    {
+     "name": "Carnegie Mellon University",
+     "kind": "university",
+     "town": "Winthrop Street",
+     "driveMin": 34,
+     "km": 26,
+     "source": "https://en.wikipedia.org/wiki/Carnegie_Mellon_University"
+    }
+   ]
+  },
+  "hospital": {
+   "items": [
+    {
+     "name": "AHN Wexford Hospital",
+     "kind": "hospital with ER",
+     "town": "12351",
+     "driveMin": 3,
+     "km": 2,
+     "source": "https://www.openstreetmap.org/way/1050893241"
+    },
+    {
+     "name": "UPMC Passavant–McCandless",
+     "kind": "hospital with ER",
+     "town": "9100",
+     "driveMin": 13,
+     "km": 9,
+     "source": "https://en.wikipedia.org/wiki/UPMC_Passavant"
+    }
+   ]
+  },
+  "golf": {
+   "items": [
+    {
+     "name": "Pittsburgh North Golf Course",
+     "kind": "golf",
+     "town": "Gibsonia",
+     "driveMin": 15,
+     "km": 14,
+     "source": "https://www.openstreetmap.org/way/221365908"
+    }
+   ]
+  }
+ },
+ "apex-holly-springs": {
+  "asOf": "12 Nov 2026",
+  "method": "Places from OpenStreetMap (Nominatim) and Wikipedia; drive times are free-flow OSRM estimates from the place’s base, as of 12 Nov 2026.",
+  "ski": {
+   "items": [
+    {
+     "name": "Winterplace Ski Resort",
+     "kind": "ski area",
+     "town": "100",
+     "driveMin": 277,
+     "km": 375,
+     "source": "https://en.wikipedia.org/wiki/Winterplace_Ski_Resort",
+     "note": "Season and snow reliability: not checked yet."
+    }
+   ]
+  },
+  "park": {
+   "items": [
+    {
+     "name": "Jordan Lake State Recreation Area",
+     "kind": "state park",
+     "town": "280",
+     "driveMin": 26,
+     "km": 27,
+     "source": "https://en.wikipedia.org/wiki/Jordan_Lake_State_Recreation_Area"
+    },
+    {
+     "name": "William B. Umstead State Park",
+     "kind": "state park",
+     "town": "Raleigh",
+     "driveMin": 36,
+     "km": 40,
+     "source": "https://en.wikipedia.org/wiki/William_B._Umstead_State_Park"
+    },
+    {
+     "name": "Uwharrie National Forest",
+     "kind": "national forest",
+     "town": "Troy",
+     "driveMin": 126,
+     "km": 137,
+     "source": "https://en.wikipedia.org/wiki/Uwharrie_National_Forest"
+    },
+    {
+     "name": "Morrow Mountain State Park",
+     "kind": "state park",
+     "town": "49104",
+     "driveMin": 134,
+     "km": 155,
+     "source": "https://en.wikipedia.org/wiki/Morrow_Mountain_State_Park"
+    }
+   ]
+  },
+  "rink": {
+   "items": [
+    {
+     "name": "Lenovo Center",
+     "kind": "major hockey arena",
+     "town": "1400",
+     "driveMin": 22,
+     "km": 23,
+     "source": "https://en.wikipedia.org/wiki/Lenovo_Center"
+    }
+   ]
+  },
+  "stadium": {
+   "items": [
+    {
+     "name": "Carter-Finley Stadium",
+     "kind": "stadium / arena",
+     "town": "4600",
+     "driveMin": 22,
+     "km": 23,
+     "source": "https://en.wikipedia.org/wiki/Carter%E2%80%93Finley_Stadium"
+    },
+    {
+     "name": "Lenovo Center",
+     "kind": "stadium / arena",
+     "town": "1400",
+     "driveMin": 22,
+     "km": 23,
+     "source": "https://en.wikipedia.org/wiki/Lenovo_Center"
+    },
+    {
+     "name": "Durham Bulls Athletic Park",
+     "kind": "stadium / arena",
+     "town": "409",
+     "driveMin": 29,
+     "km": 40,
+     "source": "https://en.wikipedia.org/wiki/Durham_Bulls_Athletic_Park"
+    }
+   ]
+  },
+  "university": {
+   "items": [
+    {
+     "name": "North Carolina State University",
+     "kind": "university",
+     "town": "Marilyn Drive",
+     "driveMin": 21,
+     "km": 24,
+     "source": "https://en.wikipedia.org/wiki/North_Carolina_State_University"
+    },
+    {
+     "name": "Duke University",
+     "kind": "university",
+     "town": "Towerview Road",
+     "driveMin": 36,
+     "km": 45,
+     "source": "https://en.wikipedia.org/wiki/Duke_University"
+    },
+    {
+     "name": "University of North Carolina at Chapel Hill",
+     "kind": "university",
+     "town": "North Fordham Boulevard",
+     "driveMin": 38,
+     "km": 47,
+     "source": "https://en.wikipedia.org/wiki/University_of_North_Carolina_at_Chapel_Hill"
+    }
+   ]
+  },
+  "hospital": {
+   "items": [
+    {
+     "name": "WakeMed Apex",
+     "kind": "hospital",
+     "town": "",
+     "driveMin": 9,
+     "km": 7,
+     "source": "https://www.openstreetmap.org/way/353628105",
+     "note": "WakeMed Apex Healthplex; confirm emergency-department hours. UNC Rex is a full hospital with ER."
+    },
+    {
+     "name": "UNC Rex Hospital",
+     "kind": "hospital with ER",
+     "town": "4420",
+     "driveMin": 23,
+     "km": 26,
+     "source": "https://en.wikipedia.org/wiki/UNC_Rex_Healthcare"
+    }
+   ]
+  },
+  "golf": {
+   "items": [
+    {
+     "name": "Prestonwood Country Club",
+     "kind": "golf",
+     "town": "300",
+     "driveMin": 19,
+     "km": 19,
+     "source": "https://www.openstreetmap.org/relation/4084162"
+    }
+   ]
+  }
+ },
+ "guelph-eramosa": {
+  "asOf": "12 Nov 2026",
+  "method": "Places from OpenStreetMap (Nominatim) and Wikipedia; drive times are free-flow OSRM estimates from the place’s base, as of 12 Nov 2026.",
+  "ski": {
+   "items": [
+    {
+     "name": "Chicopee Ski Hill",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 18,
+     "km": 15,
+     "source": "https://en.wikipedia.org/wiki/Chicopee_(ski_area)",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Caledon Ski Club",
+     "kind": "ski area",
+     "town": "Main Lodge Road",
+     "driveMin": 55,
+     "km": 46,
+     "source": "https://www.openstreetmap.org/node/2633055318",
+     "note": "Season and snow reliability: not checked yet."
+    }
+   ]
+  },
+  "park": {
+   "items": [
+    {
+     "name": "Guelph Lake Conservation Area",
+     "kind": "conservation area",
+     "town": "7743",
+     "driveMin": 23,
+     "km": 20,
+     "source": "https://www.openstreetmap.org/way/1087800692"
+    },
+    {
+     "name": "Rockwood Conservation Area",
+     "kind": "conservation area",
+     "town": "Rockwood",
+     "driveMin": 25,
+     "km": 19,
+     "source": "https://www.openstreetmap.org/way/37678606"
+    },
+    {
+     "name": "Elora Gorge Conservation Area",
+     "kind": "conservation area",
+     "town": "7400",
+     "driveMin": 36,
+     "km": 32,
+     "source": "https://en.wikipedia.org/wiki/Elora_Gorge"
+    },
+    {
+     "name": "Forks of the Credit Provincial Park",
+     "kind": "provincial park",
+     "town": "",
+     "driveMin": 53,
+     "km": 45,
+     "source": "https://en.wikipedia.org/wiki/Forks_of_the_Credit_Provincial_Park"
+    }
+   ]
+  },
+  "rink": {
+   "items": [
+    {
+     "name": "Sleeman Centre",
+     "kind": "ice rink / arena",
+     "town": "50",
+     "driveMin": 11,
+     "km": 8,
+     "source": "https://en.wikipedia.org/wiki/Sleeman_Centre_(Guelph)"
+    },
+    {
+     "name": "Kitchener Memorial Auditorium",
+     "kind": "ice rink / arena",
+     "town": "400",
+     "driveMin": 23,
+     "km": 19,
+     "source": "https://en.wikipedia.org/wiki/Kitchener_Memorial_Auditorium_Complex"
+    }
+   ]
+  },
+  "stadium": {
+   "items": [
+    {
+     "name": "Alumni Stadium (Guelph)",
+     "kind": "stadium / arena",
+     "town": "Hersey Lane",
+     "driveMin": 13,
+     "km": 9,
+     "source": "https://en.wikipedia.org/wiki/Alumni_Stadium_(Guelph)"
+    },
+    {
+     "name": "Tim Hortons Field",
+     "kind": "stadium / arena",
+     "town": "Cannon Street East",
+     "driveMin": 57,
+     "km": 54,
+     "source": "https://en.wikipedia.org/wiki/Tim_Hortons_Field"
+    }
+   ]
+  },
+  "university": {
+   "items": [
+    {
+     "name": "University of Guelph",
+     "kind": "university",
+     "town": "50",
+     "driveMin": 13,
+     "km": 9,
+     "source": "https://en.wikipedia.org/wiki/University_of_Guelph"
+    },
+    {
+     "name": "Wilfrid Laurier University",
+     "kind": "university",
+     "town": "75",
+     "driveMin": 29,
+     "km": 25,
+     "source": "https://en.wikipedia.org/wiki/Wilfrid_Laurier_University"
+    },
+    {
+     "name": "University of Waterloo",
+     "kind": "university",
+     "town": "Laurel Trail (Trans-Canada Trail)",
+     "driveMin": 31,
+     "km": 26,
+     "source": "https://en.wikipedia.org/wiki/University_of_Waterloo"
+    }
+   ]
+  },
+  "hospital": {
+   "items": [
+    {
+     "name": "Guelph General Hospital",
+     "kind": "hospital with ER",
+     "town": "115",
+     "driveMin": 14,
+     "km": 9,
+     "source": "https://en.wikipedia.org/wiki/Guelph_General_Hospital"
+    },
+    {
+     "name": "Grand River Hospital",
+     "kind": "hospital with ER",
+     "town": "835",
+     "driveMin": 26,
+     "km": 23,
+     "source": "https://en.wikipedia.org/wiki/Grand_River_Hospital"
+    }
+   ]
+  },
+  "golf": {
+   "items": [
+    {
+     "name": "Cutten Fields",
+     "kind": "golf",
+     "town": "190",
+     "driveMin": 13,
+     "km": 9,
+     "source": "https://www.openstreetmap.org/way/177696067"
+    }
+   ]
+  }
+ },
+ "cochrane": {
+  "asOf": "12 Nov 2026",
+  "method": "Places from OpenStreetMap (Nominatim) and Wikipedia; drive times are free-flow OSRM estimates from the place’s base, as of 12 Nov 2026.",
+  "ski": {
+   "items": [
+    {
+     "name": "Canada Olympic Park (WinSport)",
+     "kind": "ski area",
+     "town": "88",
+     "driveMin": 28,
+     "km": 28,
+     "source": "https://en.wikipedia.org/wiki/Canada_Olympic_Park",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Nakiska",
+     "kind": "ski area",
+     "town": "",
+     "driveMin": 66,
+     "km": 73,
+     "source": "https://en.wikipedia.org/wiki/Nakiska",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Sunshine Village",
+     "kind": "ski area",
+     "town": "Banff Avenue",
+     "driveMin": 102,
+     "km": 118,
+     "source": "https://en.wikipedia.org/wiki/Sunshine_Village",
+     "note": "Season and snow reliability: not checked yet."
+    },
+    {
+     "name": "Lake Louise Ski Resort",
+     "kind": "ski area",
+     "town": "Whitehorn Road",
+     "driveMin": 134,
+     "km": 158,
+     "source": "https://en.wikipedia.org/wiki/Lake_Louise_Ski_Resort",
+     "note": "Season and snow reliability: not checked yet."
+    }
+   ]
+  },
+  "park": {
+   "items": [
+    {
+     "name": "Glenbow Ranch Provincial Park",
+     "kind": "provincial park",
+     "town": "Calgary",
+     "driveMin": 14,
+     "km": 9,
+     "source": "https://en.wikipedia.org/wiki/Glenbow_Ranch_Provincial_Park"
+    },
+    {
+     "name": "Ghost Lake / Ghost Reservoir",
+     "kind": "provincial recreation area",
+     "town": "Mînî Thnî",
+     "driveMin": 32,
+     "km": 21,
+     "source": "https://www.openstreetmap.org/relation/17639759"
+    },
+    {
+     "name": "Bow Valley Provincial Park",
+     "kind": "provincial park",
+     "town": "Kananaskis Improvement District",
+     "driveMin": 54,
+     "km": 57,
+     "source": "https://en.wikipedia.org/wiki/Bow_Valley_Provincial_Park"
+    },
+    {
+     "name": "Banff National Park",
+     "kind": "national park",
+     "town": "",
+     "driveMin": 85,
+     "km": 101,
+     "source": "https://en.wikipedia.org/wiki/Banff_National_Park"
+    }
+   ]
+  },
+  "rink": {
+   "items": [
+    {
+     "name": "Cochrane Arena",
+     "kind": "ice rink / arena",
+     "town": "609",
+     "driveMin": 3,
+     "km": 2,
+     "source": "https://www.openstreetmap.org/way/312684367"
+    },
+    {
+     "name": "Scotiabank Saddledome",
+     "kind": "major hockey arena",
+     "town": "555",
+     "driveMin": 42,
+     "km": 39,
+     "source": "https://en.wikipedia.org/wiki/Scotiabank_Saddledome"
+    }
+   ]
+  },
+  "stadium": {
+   "items": [
+    {
+     "name": "McMahon Stadium",
+     "kind": "stadium / arena",
+     "town": "University Drive NW",
+     "driveMin": 29,
+     "km": 31,
+     "source": "https://en.wikipedia.org/wiki/McMahon_Stadium"
+    },
+    {
+     "name": "Scotiabank Saddledome",
+     "kind": "stadium / arena",
+     "town": "555",
+     "driveMin": 42,
+     "km": 39,
+     "source": "https://en.wikipedia.org/wiki/Scotiabank_Saddledome"
+    }
+   ]
+  },
+  "university": {
+   "items": [
+    {
+     "name": "University of Calgary",
+     "kind": "university",
+     "town": "2500",
+     "driveMin": 31,
+     "km": 32,
+     "source": "https://en.wikipedia.org/wiki/University_of_Calgary"
+    },
+    {
+     "name": "SAIT",
+     "kind": "university",
+     "town": "1301",
+     "driveMin": 34,
+     "km": 34,
+     "source": "https://en.wikipedia.org/wiki/Southern_Alberta_Institute_of_Technology"
+    },
+    {
+     "name": "Mount Royal University",
+     "kind": "university",
+     "town": "Glenmore Trail SW",
+     "driveMin": 37,
+     "km": 38,
+     "source": "https://en.wikipedia.org/wiki/Mount_Royal_University"
+    }
+   ]
+  },
+  "hospital": {
+   "items": [
+    {
+     "name": "Foothills Medical Centre",
+     "kind": "hospital with ER",
+     "town": "16 Avenue NW",
+     "driveMin": 30,
+     "km": 32,
+     "source": "https://en.wikipedia.org/wiki/Foothills_Medical_Centre"
+    }
+   ]
+  },
+  "golf": {
+   "items": [
+    {
+     "name": "Cochrane Golf Club",
+     "kind": "golf",
+     "town": "Riverview Close",
+     "driveMin": 4,
+     "km": 2,
+     "source": "https://www.openstreetmap.org/way/11322120"
+    }
+   ]
+  }
+ },
+ "waxhaw-lake-norman": {
+  "asOf": "12 Nov 2026",
+  "method": "Places from OpenStreetMap (Nominatim) and Wikipedia; drive times are free-flow OSRM estimates from the place’s base, as of 12 Nov 2026.",
+  "ski": {
+   "items": [
+    {
+     "name": "Winterplace Ski Resort",
+     "kind": "ski area",
+     "town": "100",
+     "driveMin": 257,
+     "km": 349,
+     "source": "https://en.wikipedia.org/wiki/Winterplace_Ski_Resort",
+     "note": "Season and snow reliability: not checked yet."
+    }
+   ]
+  },
+  "park": {
+   "items": [
+    {
+     "name": "Andrew Jackson State Park",
+     "kind": "state park",
+     "town": "196",
+     "driveMin": 14,
+     "km": 15,
+     "source": "https://en.wikipedia.org/wiki/Andrew_Jackson_State_Park"
+    },
+    {
+     "name": "Crowders Mountain State Park",
+     "kind": "state park",
+     "town": "522",
+     "driveMin": 79,
+     "km": 87,
+     "source": "https://en.wikipedia.org/wiki/Crowders_Mountain_State_Park"
+    },
+    {
+     "name": "Lake Norman State Park",
+     "kind": "state park",
+     "town": "759",
+     "driveMin": 92,
+     "km": 102,
+     "source": "https://en.wikipedia.org/wiki/Lake_Norman_State_Park"
+    }
+   ]
+  },
+  "rink": {
+   "items": [
+    {
+     "name": "Extreme Ice Center",
+     "kind": "ice rink / arena",
+     "town": "Indian Trail Fairview Road",
+     "driveMin": 26,
+     "km": 23,
+     "source": "https://www.openstreetmap.org/way/511819505"
+    },
+    {
+     "name": "Spectrum Center",
+     "kind": "major hockey arena",
+     "town": "333",
+     "driveMin": 37,
+     "km": 36,
+     "source": "https://en.wikipedia.org/wiki/Spectrum_Center"
+    }
+   ]
+  },
+  "stadium": {
+   "items": [
+    {
+     "name": "Bank of America Stadium",
+     "kind": "stadium / arena",
+     "town": "800",
+     "driveMin": 38,
+     "km": 37,
+     "source": "https://en.wikipedia.org/wiki/Bank_of_America_Stadium"
+    },
+    {
+     "name": "Truist Field",
+     "kind": "stadium / arena",
+     "town": "324",
+     "driveMin": 38,
+     "km": 37,
+     "source": "https://en.wikipedia.org/wiki/Truist_Field"
+    }
+   ]
+  },
+  "university": {
+   "items": [
+    {
+     "name": "Winthrop University",
+     "kind": "university",
+     "town": "Oakland Avenue",
+     "driveMin": 37,
+     "km": 39,
+     "source": "https://en.wikipedia.org/wiki/Winthrop_University"
+    },
+    {
+     "name": "University of North Carolina at Charlotte",
+     "kind": "university",
+     "town": "9201",
+     "driveMin": 52,
+     "km": 57,
+     "source": "https://en.wikipedia.org/wiki/University_of_North_Carolina_at_Charlotte"
+    },
+    {
+     "name": "Davidson College",
+     "kind": "university",
+     "town": "Shearer Street",
+     "driveMin": 70,
+     "km": 73,
+     "source": "https://en.wikipedia.org/wiki/Davidson_College"
+    }
+   ]
+  },
+  "hospital": {
+   "items": [
+    {
+     "name": "Atrium Health Union",
+     "kind": "hospital with ER",
+     "town": "600",
+     "driveMin": 24,
+     "km": 22,
+     "source": "https://www.openstreetmap.org/way/439125951"
+    }
+   ]
+  },
+  "golf": {
+   "items": [
+    {
+     "name": "Firethorne Country Club",
+     "kind": "golf",
+     "town": "",
+     "driveMin": 12,
+     "km": 11,
+     "source": "https://www.openstreetmap.org",
+     "note": "Drive time from the Waxhaw map pin; re-confirm the club address."
+    }
+   ]
+  }
  }
-} as unknown as Record<string, PlaceAmenities>
+}
 
 export const OUTDOOR: Record<string, { mark: Exclude<Mark, 'unknown'>; note: string }> = {
  "forsyth": {
@@ -2960,5 +4066,33 @@ export const OUTDOOR: Record<string, { mark: Exclude<Mark, 'unknown'>; note: str
  "toronto": {
   "mark": "pass",
   "note": "Nearest ski ~41 min, nearest national/state/provincial park ~36 min (derived)."
+ },
+ "victor-mendon": {
+  "mark": "partial",
+  "note": "Nearest ski ~54 min (Bristol Mountain), nearest national/state/provincial park ~68 min (Letchworth State Park) (derived)."
+ },
+ "stokesdale": {
+  "mark": "partial",
+  "note": "Nearest ski ~168 min (Sugar Mountain Resort), nearest national/state/provincial park ~18 min (Guilford Courthouse National Military Park) (derived)."
+ },
+ "wexford-pine": {
+  "mark": "partial",
+  "note": "Nearest full ski resort ~92 min (Hidden Valley); a small county-park hill at Boyce Park is ~50 min. Nearest state park ~40 min (McConnells Mill State Park) (derived)."
+ },
+ "apex-holly-springs": {
+  "mark": "partial",
+  "note": "Nearest ski ~277 min (Winterplace Ski Resort), nearest national/state/provincial park ~26 min (Jordan Lake State Recreation Area) (derived)."
+ },
+ "guelph-eramosa": {
+  "mark": "partial",
+  "note": "Nearest ski ~18 min (Chicopee Ski Hill), nearest national/state/provincial park ~53 min (Forks of the Credit Provincial Park) (derived)."
+ },
+ "cochrane": {
+  "mark": "pass",
+  "note": "Nearest ski ~28 min (Canada Olympic Park (WinSport)), nearest national/state/provincial park ~14 min (Glenbow Ranch Provincial Park) (derived)."
+ },
+ "waxhaw-lake-norman": {
+  "mark": "partial",
+  "note": "Nearest ski ~257 min (Winterplace Ski Resort), nearest national/state/provincial park ~14 min (Andrew Jackson State Park) (derived)."
  }
 }
