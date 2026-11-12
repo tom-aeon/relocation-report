@@ -42,7 +42,7 @@ def check_listings():
 CRIME_IDS = ['forsyth','happy-valley','duvall','cantley','maryville','elizabeth','boise','on-carp-huntley','on-dunrobin','on-north-gower','on-flamborough','on-oro-medonte','toronto']
 # Do not introduce racial or ethnic population data anywhere in this project.
 CRIME_BANNED = re.compile(
-    r'\b(racial|ethnicity|ethnic group|race breakdown|by race|black population|white population|hispanic population|demographic breakdown by race)\b',
+    r'\b(racial|ethnicity|ethnic group|race breakdown|by race|black population|white population|hispanic population|asian population|demographic breakdown by race|visible[- ]minority|visible minority|immigrant[- ]origin|immigrant status|ethnocultural|ancestry)\b',
     re.I,
 )
 
@@ -97,6 +97,55 @@ def check_crime():
     return f
 
 
+def check_population():
+    f = []
+    ts_path = os.path.join(HERE, '..', 'src', 'data', 'population.ts')
+    if not os.path.exists(ts_path):
+        return ['src/data/population.ts is missing']
+    ts = open(ts_path, encoding='utf-8').read()
+    if 'Coral Springs city, Florida' not in ts:
+        f.append('population data is missing the Coral Springs city baseline')
+    for pid in CRIME_IDS:
+        pat = r"(placeId:\s*['\"]" + re.escape(pid) + r"['\"]|['\"]" + re.escape(pid) + r"['\"]\s*:)"
+        if not re.search(pat, ts):
+            f.append(f'population data is missing a place entry for {pid}')
+    # Helpers that attach source, year and geography to every figure.
+    for helper in ('acsNum', 'acsIncome', 'acsEdu', 'acsCommute', 'pepPop', 'pepGrowth', 'acsGrowth',
+                   'scEst', 'scEstGrowth', 'scCensusPop', 'scCensusGrowth', 'scAge', 'scIncome', 'scEdu', 'scCommute'):
+        if 'function ' + helper + '(' not in ts and 'function ' + helper + ' (' not in ts:
+            f.append(f'population data helper {helper}() was not found; figures must be built with source, year and geography')
+            continue
+        # A loose window after the function name should mention the required fields.
+        m = re.search(r'function ' + helper + r'\b[\s\S]{0,2500}?\n\}', ts)
+        body = m.group(0) if m else ''
+        for field in ('sourceUrl', 'geography'):
+            if field not in body:
+                f.append(f'population data helper {helper}() does not set {field} on every figure')
+        if 'year' not in body and 'fromYear' not in body:
+            f.append(f'population data helper {helper}() does not set year (or fromYear/toYear) on every figure')
+    urls = re.findall(r"'(https?://[^']+)'", ts)
+    official = [u for u in urls if any(h in u for h in (
+        'census.gov', 'data.census.gov', 'www2.census.gov', 'statcan.gc.ca',
+    ))]
+    if len(official) < 8:
+        f.append(f'population data has only {len(official)} official source URLs; expected Census Bureau and Statistics Canada URLs')
+    for u in official:
+        if not u.startswith('https://'):
+            f.append(f'population figure source is not https: {u!r}')
+    if 'ACSDT5Y2024' not in ts and 'acs/summary_file/2024' not in ts:
+        f.append('population data does not cite ACS 2024 5-year estimates')
+    if '17100155' not in ts:
+        f.append('population data does not cite Statistics Canada CSD population estimates (table 17-10-0155-01)')
+    # Required characteristics exist as fields
+    for field in ('medianAge', 'medianIncome', 'bachelorPct', 'meanCommute', 'population', 'growth'):
+        if field not in ts:
+            f.append(f'population data is missing the {field} field')
+    # allPopulationFigures is the inventory used to confirm every figure is sourced
+    if 'export function allPopulationFigures' not in ts:
+        f.append('population data does not export allPopulationFigures() for validation')
+    return f
+
+
 from playwright.async_api import async_playwright
 
 CURRENT = ['best', 'live', 'stretch', 'parked']
@@ -137,6 +186,7 @@ async def run(base):
             if st not in CURRENT: fails.append(f'non-current status on home: {st}')
         lf, n = check_listings(); fails += lf
         fails += check_crime()
+        fails += check_population()
         nd = []
         await pg.goto(base + '#/places', wait_until='networkidle')
         nd = [await c.get_attribute('data-id') for c in await pg.locator('[data-testid="places-card"]').all() if await c.get_attribute('data-status') != 'dropped']
@@ -156,6 +206,14 @@ async def run(base):
                     fails.append(f'place page {pid} Google Maps link must be target=_blank rel=noopener noreferrer')
             if await pg.get_by_test_id('place-map-embed').count() != 1: fails.append(f'place page {pid} has no embedded place map')
             if await pg.get_by_test_id('crime-chart').count() != 1: fails.append(f'place page {pid} has no crime comparison chart')
+            if await pg.get_by_test_id('population-section').count() != 1: fails.append(f'place page {pid} has no population section')
+            if await pg.get_by_test_id('population-chart').count() != 1: fails.append(f'place page {pid} has no population comparison chart')
+            pop_txt = await pg.get_by_test_id('population-section').inner_text()
+            if 'Coral Springs' not in pop_txt:
+                fails.append(f'place page {pid} population section does not mention Coral Springs')
+            for tid in ('pop-total', 'pop-growth', 'pop-age', 'pop-income', 'pop-education', 'pop-commute'):
+                if await pg.get_by_test_id(tid).count() < 1:
+                    fails.append(f'place page {pid} is missing {tid}')
             if await pg.locator('[data-testid="homes-section"] [data-testid="home-map-embed"], [data-testid="homes-section"] [data-testid="home-map-embed-fallback"]').count() == 0:
                 # only required when the place has qualifying homes
                 if await pg.get_by_test_id('home-card').count() > 0:
@@ -177,12 +235,18 @@ async def run(base):
             fails.append('map page has no crime layer toggle')
         else:
             await pg.get_by_test_id('crime-layer-toggle').click()
-            # Coral Springs baseline should be mentionable once the layer is on
+            # The toggle writes a URL param; wait for the layer (and baseline label) to render.
+            try:
+                await pg.get_by_text('Coral Springs', exact=False).first.wait_for(timeout=8000)
+            except Exception:
+                pass
             body = await pg.inner_text('body')
             if 'Coral Springs' not in body: fails.append('crime map layer does not mention Coral Springs')
         await pg.goto(base + '#/graphs', wait_until='networkidle')
         if await pg.get_by_test_id('crime-graph').count() != 1:
             fails.append('graphs page has no crime comparison chart')
+        if await pg.get_by_test_id('population-graph').count() != 1:
+            fails.append('graphs page has no population comparison chart')
         await b.close()
     # Third-party map iframes (Google) often write console errors we cannot control; ignore those.
     def _ours(e):

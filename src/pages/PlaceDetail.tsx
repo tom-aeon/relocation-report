@@ -7,6 +7,7 @@ import { HOMES, HOMES_META } from '../data/homes'
 import { HomeCard, HomesNote } from '../components/HomeCard'
 import { AmenitiesSection } from '../components/Amenities'
 import { CrimeSection } from '../components/CrimeSection'
+import { PopulationSection } from '../components/PopulationSection'
 import { GoogleMapEmbed, GoogleMapsLink } from '../components/GoogleMap'
 import { AW_METHOD, WELL_TEST, type AirWater, type AWFact } from '../data/airwater'
 import type { Mark } from '../data/places'
@@ -255,6 +256,7 @@ export default function PlaceDetail() {
             <Field label="Wildlife" value={p.wildlifeText} />
             {p.otherFacts.map((f) => <Field key={f.label} label={f.label} value={f.value} />)}
           </section>
+          <PopulationSection placeId={p.id} country={p.country} />
           <CrimeSection placeId={p.id} country={p.country} />
           {p.country === 'Canada' && !p.minor && (
             <section className="rounded-2xl border border-red-200 bg-red-50 p-5 text-sm dark:border-red-900 dark:bg-red-950/30">

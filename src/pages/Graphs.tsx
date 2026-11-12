@@ -14,6 +14,11 @@ import {
   CANADA_CSI_2025, CORAL_SPRINGS, CRIME_BAND_META, CRIME_CHECKED, CRIME_METHOD, CROSS_BORDER_NOTE,
   compareRate, crimeFor, formatPct, formatRate,
 } from '../data/crime'
+import {
+  COMMUTE_YEAR_NOTE, CORAL_SPRINGS_POP, INCOME_YEAR_NOTE, POP_CHECKED, POP_METHOD,
+  formatCount as formatPopCount, formatMinutes, formatMoney, formatPct as formatPopPct, formatYears,
+} from '../data/population'
+import { populationRowsForGraph } from '../components/PopulationSection'
 
 const BUDGET_USD = 850000
 const CURRENT_STATUSES: Status[] = ['best', 'live', 'stretch', 'parked']
@@ -132,6 +137,7 @@ export default function Graphs() {
       <DriveTimeComparison places={filteredPlaces} />
       <CriteriaScoreChart places={filteredPlaces} />
       <CrimeComparisonChart places={filteredPlaces} />
+      <PopulationComparisonChart places={filteredPlaces} />
     </div>
   )
 }
@@ -751,6 +757,193 @@ function CrimeComparisonChart({ places }: { places: Place[] }) {
         </div>
       )}
       <p className="mt-4 text-xs text-slate-500">{CRIME_METHOD}</p>
+    </section>
+  )
+}
+
+type PopMetric = 'population' | 'growth' | 'age' | 'income' | 'education' | 'commute'
+
+const POP_METRICS: Record<PopMetric, { label: string; axis: string }> = {
+  population: { label: 'Total population', axis: 'people' },
+  growth: { label: 'Recent growth', axis: '%' },
+  age: { label: 'Median age', axis: 'years' },
+  income: { label: 'Median household income (US$)', axis: 'USD' },
+  education: { label: 'Bachelor’s or higher, age 25+', axis: '%' },
+  commute: { label: 'Mean commute', axis: 'min' },
+}
+
+function PopulationComparisonChart({ places }: { places: Place[] }) {
+  const [metric, setMetric] = useState<PopMetric>('population')
+  const coral = CORAL_SPRINGS_POP
+
+  const data = useMemo(() => {
+    const rows = populationRowsForGraph(places)
+    const coralRow = {
+      placeId: 'coral-springs',
+      name: 'Coral Springs, FL (baseline)',
+      geography: coral.geography,
+      country: 'US' as const,
+      status: 'baseline',
+      population: coral.population.value,
+      popPeriod: coral.population.period,
+      growth: coral.growth.pct,
+      growthYears: `${coral.growth.fromYear}–${coral.growth.toYear}`,
+      age: coral.medianAge.value,
+      incomeUsd: coral.medianIncome.valueUsd,
+      incomeCurrency: coral.medianIncome.currency,
+      incomeLocal: coral.medianIncome.value,
+      bachelorPct: coral.bachelorPct.value,
+      commute: coral.meanCommute.value,
+      isCoral: true,
+    }
+    const withCoral = [
+      coralRow,
+      ...rows.map((r) => ({ ...r, isCoral: false })),
+    ]
+    const valueOf = (r: (typeof withCoral)[0]) => {
+      if (metric === 'population') return r.population
+      if (metric === 'growth') return r.growth
+      if (metric === 'age') return r.age
+      if (metric === 'income') return r.incomeUsd
+      if (metric === 'education') return r.bachelorPct
+      return r.commute
+    }
+    return withCoral
+      .map((r) => ({ ...r, value: valueOf(r) }))
+      .sort((a, b) => {
+        if (a.value == null && b.value == null) return a.name.localeCompare(b.name)
+        if (a.value == null) return 1
+        if (b.value == null) return -1
+        return a.value - b.value
+      })
+  }, [places, metric, coral])
+
+  const canadaShown = data.some((d) => d.country === 'Canada' && !d.isCoral)
+  const showCanadaNote = data.some((d) => d.country === 'Canada') && (metric === 'income' || metric === 'commute' || metric === 'education' || metric === 'age')
+
+  const formatVal = (v: number | null | undefined) => {
+    if (v == null) return 'not available'
+    if (metric === 'population') return formatPopCount(v)
+    if (metric === 'growth') return `${v > 0 ? '+' : ''}${formatPopPct(v)}`
+    if (metric === 'age') return formatYears(v)
+    if (metric === 'income') return formatMoney(v, 'USD')
+    if (metric === 'education') return formatPopPct(v)
+    return formatMinutes(v)
+  }
+
+  const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: { payload: (typeof data)[0] }[] }) => {
+    if (!active || !payload?.length) return null
+    const d = payload[0].payload
+    return (
+      <div className="rounded-lg border bg-white p-3 shadow-lg dark:border-slate-700 dark:bg-slate-800 max-w-xs">
+        <p className="font-semibold text-sm">{d.name}</p>
+        <p className="text-xs text-slate-500">{d.geography}</p>
+        <p className="text-xs text-slate-500">{d.country}{d.status !== 'baseline' ? ` · ${STATUS_META[d.status as Status]?.label ?? d.status}` : ' · baseline'}</p>
+        <p className="mt-1 text-sm"><b>{formatVal(d.value)}</b></p>
+        {metric === 'population' && <p className="text-xs text-slate-500">{d.popPeriod}</p>}
+        {metric === 'growth' && <p className="text-xs text-slate-500">{d.growthYears}</p>}
+        {metric === 'income' && d.incomeCurrency === 'CAD' && d.incomeLocal != null && (
+          <p className="text-xs text-slate-500">{formatMoney(d.incomeLocal, 'CAD')} at the app FX rate</p>
+        )}
+        {d.country === 'Canada' && (metric === 'income' || metric === 'commute') && (
+          <p className="mt-1 text-xs text-amber-700 dark:text-amber-300">US–Canada comparison is approximate (different years)</p>
+        )}
+        {!d.isCoral && <p className="mt-2 text-xs text-teal-600 dark:text-teal-400">Click to open the place →</p>}
+      </div>
+    )
+  }
+
+  const coralValue = data.find((d) => d.isCoral)?.value ?? null
+
+  return (
+    <section className="card p-4 sm:p-6" data-testid="population-graph">
+      <h2 className="text-lg font-bold mb-1">Population &amp; community vs Coral Springs, FL</h2>
+      <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">
+        {POP_METRICS[metric].label}, compared with Coral Springs
+        ({formatVal(coralValue)}
+        {metric === 'population' && coral.population.period ? `, ${coral.population.period}` : ''}
+        {metric === 'growth' ? `, ${coral.growth.fromYear} to ${coral.growth.toYear}` : ''}
+        ). The dashed line is the Coral Springs value. Ottawa and Hamilton figures are for the entire city, not the rural community alone. Latest estimates are 1 July 2025 where published; county subdivisions without a Vintage 2025 estimate use ACS 2020–2024. Checked {POP_CHECKED}.
+      </p>
+      <div className="mb-3 flex flex-wrap gap-2">
+        {(Object.keys(POP_METRICS) as PopMetric[]).map((k) => (
+          <button
+            type="button"
+            key={k}
+            onClick={() => setMetric(k)}
+            aria-pressed={metric === k}
+            className={`rounded-full border px-3 py-1 text-sm ${metric === k ? 'border-slate-400 bg-white dark:border-slate-500 dark:bg-slate-800' : 'border-dashed opacity-60'}`}
+          >
+            {POP_METRICS[k].label}
+          </button>
+        ))}
+      </div>
+      {showCanadaNote && metric === 'income' && (
+        <p className="mt-2 rounded-md bg-amber-50 p-2 text-xs text-amber-900 dark:bg-amber-900/30 dark:text-amber-200">{INCOME_YEAR_NOTE}</p>
+      )}
+      {showCanadaNote && metric === 'commute' && (
+        <p className="mt-2 rounded-md bg-amber-50 p-2 text-xs text-amber-900 dark:bg-amber-900/30 dark:text-amber-200">{COMMUTE_YEAR_NOTE}</p>
+      )}
+      {data.length === 0 ? (
+        <p className="mt-4 text-slate-500">No places match the current filters.</p>
+      ) : (
+        <div className="mt-4 h-[32rem]">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={data} layout="vertical" margin={{ top: 10, right: 80, left: 130, bottom: 10 }}>
+              <CartesianGrid strokeDasharray="3 3" className="stroke-slate-200 dark:stroke-slate-700" />
+              <XAxis
+                type="number"
+                domain={metric === 'growth' ? ['auto', 'auto'] : [0, 'auto']}
+                tickFormatter={(v) =>
+                  metric === 'income' || metric === 'population'
+                    ? Number(v).toLocaleString('en-US', { notation: 'compact', maximumFractionDigits: 1 })
+                    : Number(v).toLocaleString('en-US')
+                }
+              />
+              <YAxis
+                type="category"
+                dataKey="name"
+                width={120}
+                tick={{ fontSize: 11 }}
+                tickFormatter={(v) => (v.length > 22 ? v.slice(0, 21) + '…' : v)}
+              />
+              <Tooltip content={<CustomTooltip />} />
+              <Bar
+                dataKey="value"
+                cursor="pointer"
+                onClick={(d) => {
+                  const id = (d as { placeId?: string }).placeId
+                  if (id && id !== 'coral-springs') window.location.hash = `/places/${id}`
+                }}
+              >
+                {data.map((entry) => (
+                  <Cell key={entry.geography} fill={entry.isCoral ? '#64748b' : '#0d9488'} />
+                ))}
+                <LabelList
+                  dataKey="value"
+                  position="right"
+                  formatter={(v) => (v == null || v === undefined ? 'n/a' : formatVal(Number(v)))}
+                  className="text-xs fill-slate-600 dark:fill-slate-300"
+                />
+              </Bar>
+              {coralValue != null && metric !== 'population' && (
+                <ReferenceLine
+                  x={coralValue}
+                  stroke="#0f172a"
+                  strokeDasharray="4 3"
+                  label={{ value: 'Coral Springs', position: 'top', fill: '#0f172a', fontSize: 10 }}
+                />
+              )}
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      )}
+      {canadaShown && metric === 'population' && (
+        <p className="mt-2 text-xs text-slate-500">
+          Canadian totals are 1 July 2025 Statistics Canada CSD estimates; US totals are Census Bureau Vintage 2025 July 1 estimates, except county subdivisions (Elizabeth CCD, Boise Hills CCD) which use ACS 2020–2024. Years are labelled on each place page.
+        </p>
+      )}
+      <p className="mt-4 text-xs text-slate-500">{POP_METHOD}</p>
     </section>
   )
 }
