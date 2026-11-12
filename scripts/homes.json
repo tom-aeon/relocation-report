@@ -1,6 +1,6 @@
 {
  "meta": {
-  "asOf": "25\u201326 Oct 2026",
+  "asOf": "7 Nov 2026",
   "fx": "Canadian prices converted at 1 USD = 1.3995 CAD (ECB rate via frankfurter.dev, 23 Oct 2026).",
   "note": "Every listing has 4+ bedrooms and 3+ bathrooms as listed (\u201c3+1\u201d = above + below grade). Listings come from Zillow (US) and Royal LePage (Canada) and were checked active on 25 Oct 2026 (US, Zillow) and 26 Oct 2026 (Canada, Royal LePage). Re-verify before acting. Photos are copyright of the listing brokerages and are shown only as small thumbnails linked to the source. 1 USD = 1.3995 CAD (ECB via frankfurter.dev, 23 Oct 2026). Drive times are free-flow OSRM estimates.",
   "gaps": {
@@ -217,32 +217,6 @@
    "photos": [
     "listings/maryville/2-1.jpg",
     "listings/maryville/2-2.jpg"
-   ]
-  },
-  {
-   "id": "maryville-3",
-   "placeId": "maryville",
-   "address": "4434 Oakhurst Dr, Louisville, TN 37777",
-   "price": 574900,
-   "currency": "USD",
-   "priceUsd": 574900,
-   "acres": 1.3,
-   "beds": 4,
-   "baths": 4,
-   "bathNote": "3 full + 1 half",
-   "sqft": 2418,
-   "daysOnMarket": null,
-   "newListing": false,
-   "mls": null,
-   "url": "https://www.zillow.com/homedetails/4434-Oakhurst-Dr-Louisville-TN-37777/40809494_zpid/",
-   "source": "Zillow",
-   "broker": null,
-   "water": null,
-   "sewer": null,
-   "driveMin": 15,
-   "photos": [
-    "listings/maryville/3-1.jpg",
-    "listings/maryville/3-2.jpg"
    ]
   },
   {

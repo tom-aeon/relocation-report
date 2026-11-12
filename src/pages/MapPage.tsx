@@ -2,16 +2,25 @@ import { useMemo } from 'react'
 import { useNavigate, useSearchParams, Link } from 'react-router-dom'
 import { MapContainer, TileLayer, CircleMarker, Tooltip } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-import { OTHER_MEANING, PLACES, ROUNDS, STATUS_META, STATUS_ORDER, isAliveIn, consideredIn, type Status } from '../data/places'
+import { OTHER_MEANING, ROUNDS, STATUS_META, STATUS_ORDER, isAliveIn, consideredIn, type Status } from '../data/places'
 import { PageHeader } from '../components/ui'
+import { CrimeBandLegend } from '../components/CrimeSection'
+import { useStore } from '../lib/store'
+import {
+  CORAL_SPRINGS, CORAL_SPRINGS_COORDS, CRIME_BAND_META, CROSS_BORDER_NOTE,
+  bandForPlace, compareRate, crimeFor, formatPct, formatRate, type CrimeBand,
+} from '../data/crime'
 
 const ALL: Status[] = STATUS_ORDER
 
 export default function MapPage() {
   const nav = useNavigate()
+  const { activePlaces, rejectedCount } = useStore()
   const [params, setParams] = useSearchParams()
   const round = Number(params.get('round')) || 0
   const statuses = (params.get('s')?.split(',').filter(Boolean) as Status[] | undefined) ?? ALL
+  const crimeOn = params.get('layer') === 'crime'
+  const metric = params.get('metric') === 'property' ? 'property' : 'violent'
   const set = (k: string, v: string | null) => {
     const n = new URLSearchParams(params)
     if (v === null) n.delete(k); else n.set(k, v)
@@ -21,11 +30,18 @@ export default function MapPage() {
     const next = statuses.includes(s) ? statuses.filter((x) => x !== s) : [...statuses, s]
     set('s', next.length === ALL.length ? null : next.join(','))
   }
-  const shown = useMemo(() => PLACES.filter((p) => statuses.includes(p.status) && (!round || consideredIn(p, round))), [statuses, round])
+  const shown = useMemo(() => activePlaces.filter((p) => statuses.includes(p.status) && (!round || consideredIn(p, round))), [statuses, round, activePlaces])
+
+  const setLayer = (on: boolean) => set('layer', on ? 'crime' : null)
 
   return (
     <div>
-      <PageHeader title="Map of every place" sub="Markers are coloured by current status. Click one to open the place. Marker positions are approximate area centres." />
+      <PageHeader
+        title="Map of every place"
+        sub={crimeOn
+          ? `Markers are coloured by ${metric} crime rate compared with Coral Springs, FL (±15% is similar). Click one to open the place. Marker positions are approximate area centres.`
+          : 'Markers are coloured by current status. Click one to open the place. Marker positions are approximate area centres.'}
+      />
       <div className="mb-3 flex flex-wrap items-center gap-2">
         {ALL.map((s) => (
           <button key={s} onClick={() => toggle(s)} aria-pressed={statuses.includes(s)}
@@ -38,20 +54,75 @@ export default function MapPage() {
           {ROUNDS.map((r) => <option key={r.n} value={r.n}>Round {r.n}: {r.title}</option>)}
         </select>
       </div>
-      <p className="mb-2 text-xs text-slate-500"><span className="mr-1 inline-block h-2.5 w-2.5 rounded-full" style={{ background: STATUS_META.other.color }} />{OTHER_MEANING}</p>
+      <div className="mb-3 flex flex-wrap items-center gap-2">
+        <button
+          type="button"
+          onClick={() => setLayer(!crimeOn)}
+          aria-pressed={crimeOn}
+          data-testid="crime-layer-toggle"
+          className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-sm font-medium ${crimeOn ? 'border-teal-600 bg-teal-50 text-teal-800 dark:border-teal-500 dark:bg-teal-950 dark:text-teal-200' : 'border-slate-300 bg-white dark:border-slate-600 dark:bg-slate-800'}`}
+        >
+          {crimeOn ? 'Crime comparison layer on' : 'Show crime comparison layer'}
+        </button>
+        {crimeOn && (
+          <>
+            <button type="button" onClick={() => set('metric', null)} aria-pressed={metric === 'violent'}
+              className={`rounded-full border px-3 py-1 text-sm ${metric === 'violent' ? 'border-slate-400 bg-white dark:border-slate-500 dark:bg-slate-800' : 'border-dashed border-slate-300 opacity-60'}`}>Violent crime</button>
+            <button type="button" onClick={() => set('metric', 'property')} aria-pressed={metric === 'property'}
+              className={`rounded-full border px-3 py-1 text-sm ${metric === 'property' ? 'border-slate-400 bg-white dark:border-slate-500 dark:bg-slate-800' : 'border-dashed border-slate-300 opacity-60'}`}>Property crime</button>
+          </>
+        )}
+      </div>
+      {crimeOn ? (
+        <div className="mb-2 space-y-1">
+          <CrimeBandLegend extra={<span className="inline-flex items-center gap-1.5"><span className="h-3 w-3 rotate-45 rounded-sm bg-slate-900 ring-2 ring-amber-400 dark:bg-white" />Coral Springs, FL (baseline)</span>} />
+          <p className="text-xs text-amber-800 dark:text-amber-200">{CROSS_BORDER_NOTE}</p>
+        </div>
+      ) : (
+        <p className="mb-2 text-xs text-slate-500"><span className="mr-1 inline-block h-2.5 w-2.5 rounded-full" style={{ background: STATUS_META.other.color }} />{OTHER_MEANING}</p>
+      )}
       {round > 0 && <p className="mb-2 text-sm text-slate-500">Round {round}: solid markers were still alive after the round; hollow markers were considered and cut in it.</p>}
-      <div className="card h-[65vh] min-h-[420px] overflow-hidden">
-        <MapContainer center={[42, -98]} zoom={4} scrollWheelZoom className="h-full w-full">
+      <div className="card h-[65vh] min-h-[420px] overflow-hidden" data-testid="places-map">
+        <MapContainer center={crimeOn ? [42, -90] : [42, -98]} zoom={4} scrollWheelZoom className="h-full w-full">
           <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          {crimeOn && (
+            <CircleMarker
+              center={[CORAL_SPRINGS_COORDS.lat, CORAL_SPRINGS_COORDS.lng]}
+              radius={11}
+              pathOptions={{ color: '#fbbf24', weight: 3, fillColor: '#0f172a', fillOpacity: 1 }}
+            >
+              <Tooltip direction="top" offset={[0, -6]} permanent={false}>
+                <b>{CORAL_SPRINGS_COORDS.short}</b><br />
+                Current home · comparison baseline<br />
+                Violent {formatRate(CORAL_SPRINGS.violent.ratePer100k)} per 100k · Property {formatRate(CORAL_SPRINGS.property.ratePer100k)} per 100k<br />
+                Coral Springs Police Department, 2025, FBI CDE
+              </Tooltip>
+            </CircleMarker>
+          )}
           {shown.map((p) => {
             const alive = !round || isAliveIn(p, round)
             const major = !p.minor
+            const crime = crimeFor(p.id)
+            const band: CrimeBand = crimeOn ? bandForPlace(crime, metric) : 'no-data'
+            const fill = crimeOn ? CRIME_BAND_META[band].color : STATUS_META[p.status].color
+            const cmp = crime ? compareRate(crime[metric].ratePer100k, CORAL_SPRINGS[metric].ratePer100k) : null
             return (
               <CircleMarker key={p.id} center={[p.lat, p.lng]} radius={major ? 10 : 6}
-                pathOptions={{ color: '#fff', weight: 2, fillColor: STATUS_META[p.status].color, fillOpacity: alive ? 0.95 : 0.25 }}
+                pathOptions={{ color: '#fff', weight: 2, fillColor: fill, fillOpacity: alive ? 0.95 : 0.25 }}
                 eventHandlers={{ click: () => nav(`/places/${p.id}`) }}>
                 <Tooltip direction="top" offset={[0, -6]}>
-                  <b>{p.short}</b><br />{p.statusLabel}{p.minor ? ' · cut-list only' : ''}
+                  <b>{p.short}</b><br />
+                  {p.statusLabel}{p.minor ? ' · cut-list only' : ''}
+                  {crimeOn && (
+                    <>
+                      <br />
+                      {crime && crime[metric].ratePer100k != null
+                        ? `${metric === 'violent' ? 'Violent' : 'Property'} ${formatRate(crime[metric].ratePer100k)} per 100k · ${formatPct(cmp!.pct)}`
+                        : 'Crime data not available'}
+                      {crime && <><br /><span style={{ fontSize: 11 }}>{crime[metric].agency}, {crime[metric].year}</span></>}
+                      {p.country === 'Canada' && <><br /><span style={{ fontSize: 11 }}>US–Canada comparison is approximate</span></>}
+                    </>
+                  )}
                 </Tooltip>
               </CircleMarker>
             )
@@ -59,13 +130,27 @@ export default function MapPage() {
         </MapContainer>
       </div>
       <div className="mt-4 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-3">
-        {shown.filter((p) => !p.minor).map((p) => (
-          <Link key={p.id} to={`/places/${p.id}`} className="flex items-center gap-2 hover:underline">
-            <span className="h-3 w-3 rounded-full" style={{ background: STATUS_META[p.status].color }} />{p.short}
-          </Link>
-        ))}
+        {shown.filter((p) => !p.minor).map((p) => {
+          const band = crimeOn ? bandForPlace(crimeFor(p.id), metric) : null
+          const color = crimeOn ? CRIME_BAND_META[band!].color : STATUS_META[p.status].color
+          return (
+            <Link key={p.id} to={`/places/${p.id}`} className="flex items-center gap-2 hover:underline">
+              <span className="h-3 w-3 rounded-full" style={{ background: color }} />{p.short}
+              {crimeOn && band && <span className="text-xs text-slate-500">· {CRIME_BAND_META[band].short}</span>}
+            </Link>
+          )
+        })}
+        {crimeOn && (
+          <span className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
+            <span className="h-3 w-3 rotate-45 rounded-sm bg-slate-900 ring-2 ring-amber-400 dark:bg-white" />Coral Springs, FL (baseline)
+          </span>
+        )}
       </div>
-      <p className="mt-2 text-xs text-slate-500">{shown.length} markers shown ({shown.filter((p) => p.minor).length} small markers are places only named in a round’s cut list).</p>
+      <p className="mt-2 text-xs text-slate-500">
+        {shown.length} markers shown ({shown.filter((p) => p.minor).length} small markers are places only named in a round's cut list).
+        {crimeOn && <> Coral Springs is the comparison baseline, not a candidate.</>}
+        {rejectedCount > 0 && <> · {rejectedCount} personally rejected place{rejectedCount === 1 ? '' : 's'} excluded. <Link to="/places?rejected=1" className="text-teal-700 underline dark:text-teal-400">View rejected →</Link></>}
+      </p>
     </div>
   )
 }

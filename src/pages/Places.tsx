@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { OTHER_MEANING, PLACES, ROUNDS, STATUS_META, STATUS_ORDER, byStatus, consideredIn, isAliveIn, statusCounts, type Place, type Status } from '../data/places'
+import { OTHER_MEANING, ROUNDS, STATUS_META, STATUS_ORDER, byStatus, consideredIn, isAliveIn, statusCounts, type Place, type Status } from '../data/places'
 import { PageHeader, PlaceCard } from '../components/ui'
 import { useStore } from '../lib/store'
 
@@ -8,13 +8,14 @@ const ALL: Status[] = STATUS_ORDER
 
 export default function Places() {
   const [params, setParams] = useSearchParams()
-  const { saved } = useStore()
+  const { saved, activePlaces, rejectedPlaces, rejectedCount, isRejected } = useStore()
   const q = params.get('q') ?? ''
   const round = Number(params.get('round')) || 0
   const roundMode = params.get('rm') === 'considered' ? 'considered' : 'alive'
   const statuses = (params.get('s')?.split(',').filter(Boolean) as Status[] | undefined) ?? ALL
   const favOnly = params.get('fav') === '1'
   const showMinor = params.get('minor') !== '0'
+  const showRejected = params.get('rejected') === '1'
 
   const set = (k: string, v: string | null) => {
     const n = new URLSearchParams(params)
@@ -26,10 +27,10 @@ export default function Places() {
     set('s', next.length === ALL.length ? null : next.join(','))
   }
 
-  // Every filter except status; status chip counts are computed from this so they always match the list
   const base = useMemo(() => {
     const needle = q.trim().toLowerCase()
-    return PLACES.filter((p: Place) => {
+    const sourceList = showRejected ? rejectedPlaces : activePlaces
+    return sourceList.filter((p: Place) => {
       if (favOnly && !saved.favorites.includes(p.id)) return false
       if (!showMinor && p.minor) return false
       if (round && !(roundMode === 'alive' ? isAliveIn(p, round) : consideredIn(p, round))) return false
@@ -37,13 +38,32 @@ export default function Places() {
       const hay = [p.name, p.short, p.summary, p.statusLabel, p.cutReason, ...p.restaurants.map((r) => `${r.name} ${r.area ?? ''}`), ...p.pros, ...p.cons, saved.notes[p.id] ?? ''].join(' ').toLowerCase()
       return hay.includes(needle)
     }).sort(byStatus)
-  }, [q, favOnly, showMinor, round, roundMode, saved])
+  }, [q, favOnly, showMinor, round, roundMode, saved, showRejected, activePlaces, rejectedPlaces])
+
   const counts = statusCounts(base)
   const list = base.filter((p) => statuses.includes(p.status))
 
   return (
     <div>
-      <PageHeader title="The places" sub="Current options first, then everything explored and set aside. Prices and listings are “as of” their dates and should be re-verified; drive times are no-traffic estimates." />
+      <PageHeader title={showRejected ? 'Rejected places' : 'The places'} sub={showRejected ? 'Places you have personally rejected. Click Restore to bring them back to the active list.' : 'Current options first, then everything explored and set aside. Prices and listings are "as of" their dates and should be re-verified; drive times are no-traffic estimates.'} />
+
+      <div className="mb-6 flex gap-2">
+        <button
+          onClick={() => set('rejected', null)}
+          className={`rounded-lg px-4 py-2 text-sm font-medium transition ${!showRejected ? 'bg-teal-700 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'}`}
+        >
+          Active places ({activePlaces.length})
+        </button>
+        <button
+          onClick={() => set('rejected', '1')}
+          className={`rounded-lg px-4 py-2 text-sm font-medium transition ${showRejected ? 'bg-slate-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'}`}
+          data-testid="places-rejected-tab"
+          data-count={rejectedCount}
+        >
+          Rejected ({rejectedCount})
+        </button>
+      </div>
+
       <div className="card mb-6 space-y-3 p-4">
         <div className="flex flex-wrap gap-2">
           <input type="search" value={q} onChange={(e) => set('q', e.target.value)} placeholder="Search places, restaurants, notes…" aria-label="Search places" className="input min-w-0 flex-1" />
@@ -74,9 +94,32 @@ export default function Places() {
         </div>
       </div>
       <p className="mb-1 text-xs text-slate-500"><span className="mr-1 inline-block h-2.5 w-2.5 rounded-full" style={{ background: STATUS_META.other.color }} />{OTHER_MEANING}</p>
-      <p className="mb-3 text-sm text-slate-500" data-testid="places-total" data-count={list.length}>{list.length} of {PLACES.length} places{round ? ` · round ${round} (${roundMode === 'alive' ? 'alive after it' : 'considered in it'})` : ''}</p>
-      {list.length === 0 ? <div className="card p-8 text-center text-slate-500">No places match those filters.</div> : (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{list.map((p) => <div key={p.id} data-testid="places-card" data-id={p.id} data-status={p.status} className="contents"><PlaceCard place={p} /></div>)}</div>
+      <p className="mb-3 text-sm text-slate-500" data-testid="places-total" data-count={list.length}>
+        {list.length} of {showRejected ? rejectedCount : activePlaces.length} {showRejected ? 'rejected ' : ''}places
+        {round ? ` · round ${round} (${roundMode === 'alive' ? 'alive after it' : 'considered in it'})` : ''}
+        {!showRejected && rejectedCount > 0 && <span className="text-slate-400"> · {rejectedCount} rejected</span>}
+      </p>
+      {list.length === 0 ? (
+        <div className="card p-8 text-center text-slate-500">
+          {showRejected ? 'No rejected places. Places you reject will appear here.' : 'No places match those filters.'}
+        </div>
+      ) : (
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {list.map((p) => (
+            <div key={p.id} data-testid="places-card" data-id={p.id} data-status={p.status} data-rejected={isRejected(p.id) ? '1' : '0'} className="contents">
+              <PlaceCard place={p} showReject={!showRejected} />
+            </div>
+          ))}
+        </div>
+      )}
+
+      {showRejected && list.length > 0 && (
+        <div className="mt-6 rounded-lg bg-slate-100 p-4 dark:bg-slate-800">
+          <p className="text-sm text-slate-600 dark:text-slate-400">
+            <b>Tip:</b> Click the ↩ button on any card or visit the place detail page to restore it to the active list.
+            Rejections are personal preferences stored in your browser and do not affect the canonical research status.
+          </p>
+        </div>
       )}
     </div>
   )

@@ -8,6 +8,7 @@ import PlaceDetail from './pages/PlaceDetail'
 import Compare from './pages/Compare'
 import Homes from './pages/Homes'
 import Scorecard from './pages/Scorecard'
+import Graphs from './pages/Graphs'
 import Food from './pages/Food'
 import Notes from './pages/Notes'
 import Credits from './pages/Credits'
@@ -33,6 +34,7 @@ export default function App() {
             <Route path="map" element={<Suspense fallback={<p>Loading map…</p>}><MapPage /></Suspense>} />
             <Route path="compare" element={<Compare />} />
             <Route path="scorecard" element={<Scorecard />} />
+            <Route path="graphs" element={<Graphs />} />
             <Route path="food" element={<Food />} />
             <Route path="notes" element={<Notes />} />
             <Route path="credits" element={<Credits />} />

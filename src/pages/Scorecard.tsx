@@ -1,12 +1,14 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { CRITERIA, PLACES, STATUS_META, STATUS_ORDER, type Status } from '../data/places'
+import { CRITERIA, STATUS_META, STATUS_ORDER, type Status } from '../data/places'
 import { DEFAULT_WEIGHTS, rankPlace, type Weights } from '../lib/score'
 import { MarkDot, PageHeader, StatusBadge } from '../components/ui'
+import { useStore } from '../lib/store'
 
 const KEY = 'reloc.weights.v1'
 
 export default function Scorecard() {
+  const { activePlaces, rejectedCount } = useStore()
   const [w, setW] = useState<Weights>(() => {
     try { const v = JSON.parse(localStorage.getItem(KEY) ?? 'null'); if (v) return { ...DEFAULT_WEIGHTS, ...v } } catch { /* ignore */ }
     return DEFAULT_WEIGHTS
@@ -16,11 +18,11 @@ export default function Scorecard() {
   const [statuses, setStatuses] = useState<Status[]>(STATUS_ORDER)
   useEffect(() => { try { localStorage.setItem(KEY, JSON.stringify(w)) } catch { /* ignore */ } }, [w])
 
-  const ranked = useMemo(() => PLACES
+  const ranked = useMemo(() => activePlaces
     .filter((p) => !p.minor && statuses.includes(p.status) && (country === 'all' || p.country === country))
     .map((p) => rankPlace(p, w))
     .filter((r) => r.known >= minKnown)
-    .sort((a, b) => (b.score ?? -1) - (a.score ?? -1) || b.known - a.known), [w, country, minKnown, statuses])
+    .sort((a, b) => (b.score ?? -1) - (a.score ?? -1) || b.known - a.known), [w, country, minKnown, statuses, activePlaces])
 
   return (
     <div>
@@ -87,6 +89,7 @@ export default function Scorecard() {
             ))}
           </ol>
           {ranked.length === 0 && <p className="card p-6 text-center text-slate-500">No places with enough known criteria. Lower the minimum.</p>}
+          {rejectedCount > 0 && <p className="text-xs text-slate-500">{rejectedCount} personally rejected place{rejectedCount === 1 ? '' : 's'} excluded. <Link to="/places?rejected=1" className="text-teal-700 underline dark:text-teal-400">View rejected →</Link></p>}
         </div>
       </div>
     </div>

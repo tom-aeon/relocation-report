@@ -12,6 +12,7 @@ const LINKS = [
   { to: '/map', label: 'Map' },
   { to: '/compare', label: 'Compare' },
   { to: '/scorecard', label: 'Scorecard' },
+  { to: '/graphs', label: 'Graphs' },
   { to: '/food', label: 'Food finder' },
   { to: '/notes', label: 'My notes' },
 ]
