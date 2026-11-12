@@ -5,9 +5,15 @@ import {
   BarChart, Bar, Cell, LabelList, Legend, ReferenceLine, ComposedChart
 } from 'recharts'
 import { HOMES, HOMES_META } from '../data/homes'
-import { PLACES, STATUS_META, STATUS_ORDER, CRITERIA, placeById, type Status, type Place } from '../data/places'
+import { STATUS_META, STATUS_ORDER, CRITERIA, placeById, type Status, type Place } from '../data/places'
 import { DEFAULT_WEIGHTS, rankPlace, type Weights } from '../lib/score'
 import { PageHeader } from '../components/ui'
+import { CrimeBandLegend } from '../components/CrimeSection'
+import { useStore } from '../lib/store'
+import {
+  CANADA_CSI_2025, CORAL_SPRINGS, CRIME_BAND_META, CRIME_CHECKED, CRIME_METHOD, CROSS_BORDER_NOTE,
+  compareRate, crimeFor, formatPct, formatRate,
+} from '../data/crime'
 
 const BUDGET_USD = 850000
 const CURRENT_STATUSES: Status[] = ['best', 'live', 'stretch', 'parked']
@@ -33,25 +39,27 @@ function getPlaceColor(placeId: string): string {
 }
 
 export default function Graphs() {
+  const { activePlaces, rejectedCount } = useStore()
   const [countryFilter, setCountryFilter] = useState<'all' | 'US' | 'Canada'>('all')
   const [statusFilter, setStatusFilter] = useState<Status[]>(CURRENT_STATUSES)
   const [selectedPlace, setSelectedPlace] = useState<string>('all')
 
   const filteredPlaces = useMemo(() =>
-    PLACES.filter(p =>
+    activePlaces.filter(p =>
       !p.minor &&
       statusFilter.includes(p.status) &&
       (countryFilter === 'all' || p.country === countryFilter)
-    ), [countryFilter, statusFilter])
+    ), [countryFilter, statusFilter, activePlaces])
 
   const filteredHomes = useMemo(() =>
     HOMES.filter(h => {
       const place = placeById(h.placeId)
       if (!place) return false
+      if (!activePlaces.some(p => p.id === h.placeId)) return false
       if (selectedPlace !== 'all' && h.placeId !== selectedPlace) return false
       if (countryFilter !== 'all' && place.country !== countryFilter) return false
       return statusFilter.includes(place.status)
-    }), [countryFilter, statusFilter, selectedPlace])
+    }), [countryFilter, statusFilter, selectedPlace, activePlaces])
 
   const toggleStatus = (s: Status) => {
     setStatusFilter(prev =>
@@ -98,7 +106,7 @@ export default function Graphs() {
           </label>
         </div>
         <div className="flex flex-wrap gap-2" aria-label="Status filter">
-          {STATUS_ORDER.filter(s => s !== 'other').map(s => (
+          {STATUS_ORDER.map(s => (
             <button
               key={s}
               onClick={() => toggleStatus(s)}
@@ -115,11 +123,15 @@ export default function Graphs() {
           ))}
         </div>
       </section>
+      {rejectedCount > 0 && (
+        <p className="text-sm text-slate-500">{rejectedCount} personally rejected place{rejectedCount === 1 ? '' : 's'} excluded from these graphs. <Link to="/places?rejected=1" className="text-teal-700 underline dark:text-teal-400">View rejected →</Link></p>
+      )}
 
       <PriceAcreageScatter homes={filteredHomes} />
       <HomesPerPlace homes={filteredHomes} places={filteredPlaces} />
       <DriveTimeComparison places={filteredPlaces} />
       <CriteriaScoreChart places={filteredPlaces} />
+      <CrimeComparisonChart places={filteredPlaces} />
     </div>
   )
 }
@@ -611,6 +623,134 @@ function CriteriaScoreChart({ places }: { places: Place[] }) {
           </ul>
         </div>
       )}
+    </section>
+  )
+}
+
+
+function CrimeComparisonChart({ places }: { places: Place[] }) {
+  const [metric, setMetric] = useState<'violent' | 'property'>('violent')
+  const baseline = CORAL_SPRINGS[metric].ratePer100k
+
+  const data = useMemo(() => {
+    return places
+      .filter(p => !p.minor)
+      .map(p => {
+        const c = crimeFor(p.id)
+        const rate = c ? c[metric].ratePer100k : null
+        const cmp = compareRate(rate, baseline)
+        return {
+          placeId: p.id,
+          name: p.short,
+          country: p.country,
+          status: p.status,
+          rate,
+          coral: baseline,
+          band: cmp.band,
+          pct: cmp.pct,
+          agency: c ? c[metric].agency : null,
+          year: c ? c[metric].year : null,
+          csi: c?.csi?.value ?? null,
+        }
+      })
+      .sort((a, b) => {
+        if (a.rate == null && b.rate == null) return a.name.localeCompare(b.name)
+        if (a.rate == null) return 1
+        if (b.rate == null) return -1
+        return a.rate - b.rate
+      })
+  }, [places, metric, baseline])
+
+  const canadaShown = data.some(d => d.country === 'Canada')
+
+  const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: { payload: (typeof data)[0] }[] }) => {
+    if (!active || !payload?.length) return null
+    const d = payload[0].payload
+    return (
+      <div className="rounded-lg border bg-white p-3 shadow-lg dark:border-slate-700 dark:bg-slate-800 max-w-xs">
+        <p className="font-semibold text-sm">{d.name}</p>
+        <p className="text-xs text-slate-500">{d.country} · {STATUS_META[d.status].label}</p>
+        <p className="mt-1 text-sm"><b>{formatRate(d.rate)}</b> per 100,000</p>
+        <p className="text-sm">{formatPct(d.pct)}</p>
+        {d.agency && <p className="mt-1 text-xs text-slate-500">{d.agency}, {d.year}</p>}
+        {d.country === 'Canada' && d.csi != null && <p className="text-xs text-slate-500">CSI {d.csi} (Canada {CANADA_CSI_2025.value})</p>}
+        {d.country === 'Canada' && <p className="mt-1 text-xs text-amber-700 dark:text-amber-300">US–Canada comparison is approximate</p>}
+        <p className="mt-2 text-xs text-teal-600 dark:text-teal-400">Click to open the place →</p>
+      </div>
+    )
+  }
+
+  return (
+    <section className="card p-4 sm:p-6" data-testid="crime-graph">
+      <h2 className="text-lg font-bold mb-1">Crime rate vs Coral Springs, FL</h2>
+      <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">
+        {metric === 'violent' ? 'Violent' : 'Property'} crime per 100,000, compared with Coral Springs Police Department
+        ({formatRate(baseline)} per 100,000 in {CORAL_SPRINGS[metric].year}). The dashed line is the Coral Springs rate.
+        Colours: lower (green), similar within ±15% (amber), higher (red), not available (grey). Checked {CRIME_CHECKED}.
+      </p>
+      <div className="mb-3 flex flex-wrap gap-2">
+        <button type="button" onClick={() => setMetric('violent')} aria-pressed={metric === 'violent'}
+          className={`rounded-full border px-3 py-1 text-sm ${metric === 'violent' ? 'border-slate-400 bg-white dark:border-slate-500 dark:bg-slate-800' : 'border-dashed opacity-60'}`}>Violent crime</button>
+        <button type="button" onClick={() => setMetric('property')} aria-pressed={metric === 'property'}
+          className={`rounded-full border px-3 py-1 text-sm ${metric === 'property' ? 'border-slate-400 bg-white dark:border-slate-500 dark:bg-slate-800' : 'border-dashed opacity-60'}`}>Property crime</button>
+      </div>
+      <CrimeBandLegend />
+      {canadaShown && <p className="mt-2 rounded-md bg-amber-50 p-2 text-xs text-amber-900 dark:bg-amber-900/30 dark:text-amber-200">{CROSS_BORDER_NOTE}</p>}
+      {data.length === 0 ? (
+        <p className="mt-4 text-slate-500">No places match the current filters.</p>
+      ) : (
+        <div className="mt-4 h-96">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={data} layout="vertical" margin={{ top: 10, right: 60, left: 100, bottom: 10 }}>
+              <CartesianGrid strokeDasharray="3 3" className="stroke-slate-200 dark:stroke-slate-700" />
+              <XAxis type="number" tickFormatter={v => Number(v).toLocaleString('en-US')} />
+              <YAxis type="category" dataKey="name" width={90} tick={{ fontSize: 11 }}
+                tickFormatter={v => v.length > 15 ? v.slice(0, 14) + '…' : v} />
+              <Tooltip content={<CustomTooltip />} />
+              <Bar dataKey="rate" cursor="pointer"
+                onClick={(d) => { const id = (d as { placeId?: string }).placeId; if (id) window.location.hash = `/places/${id}` }}>
+                {data.map((entry) => (
+                  <Cell key={entry.placeId} fill={CRIME_BAND_META[entry.band].color} />
+                ))}
+                <LabelList dataKey="rate" position="right"
+                  formatter={(v) => v == null || v === undefined ? 'n/a' : Number(v).toLocaleString('en-US', { maximumFractionDigits: 1 })}
+                  className="text-xs fill-slate-600 dark:fill-slate-300" />
+              </Bar>
+              {baseline != null && (
+                <ReferenceLine x={baseline} stroke="#0f172a" strokeDasharray="4 3"
+                  label={{ value: 'Coral Springs', position: 'top', fill: '#0f172a', fontSize: 10 }} />
+              )}
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      )}
+      {canadaShown && (
+        <div className="mt-6" data-testid="csi-graph">
+          <h3 className="font-semibold mb-1">Crime Severity Index (Canada only)</h3>
+          <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">
+            The CSI has no Coral Springs counterpart. The dashed line is Canada’s 2025 national index ({CANADA_CSI_2025.value}).
+          </p>
+          <div className="h-56">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={data.filter(d => d.country === 'Canada' && d.csi != null)} layout="vertical"
+                margin={{ top: 10, right: 50, left: 100, bottom: 10 }}>
+                <CartesianGrid strokeDasharray="3 3" className="stroke-slate-200 dark:stroke-slate-700" />
+                <XAxis type="number" />
+                <YAxis type="category" dataKey="name" width={90} tick={{ fontSize: 11 }}
+                  tickFormatter={v => v.length > 15 ? v.slice(0, 14) + '…' : v} />
+                <Tooltip formatter={(v) => [v, 'CSI']} />
+                <Bar dataKey="csi" fill="#0d9488" cursor="pointer"
+                  onClick={(d) => { const id = (d as { placeId?: string }).placeId; if (id) window.location.hash = `/places/${id}` }}>
+                  <LabelList dataKey="csi" position="right" className="text-xs fill-slate-600" />
+                </Bar>
+                <ReferenceLine x={CANADA_CSI_2025.value!} stroke="#0f172a" strokeDasharray="4 3"
+                  label={{ value: 'Canada', position: 'top', fill: '#0f172a', fontSize: 10 }} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      )}
+      <p className="mt-4 text-xs text-slate-500">{CRIME_METHOD}</p>
     </section>
   )
 }

@@ -6,6 +6,8 @@ import { useStore } from '../lib/store'
 import { HOMES, HOMES_META } from '../data/homes'
 import { HomeCard, HomesNote } from '../components/HomeCard'
 import { AmenitiesSection } from '../components/Amenities'
+import { CrimeSection } from '../components/CrimeSection'
+import { GoogleMapEmbed, GoogleMapsLink } from '../components/GoogleMap'
 import { AW_METHOD, WELL_TEST, type AirWater, type AWFact } from '../data/airwater'
 import type { Mark } from '../data/places'
 
@@ -198,6 +200,7 @@ export default function PlaceDetail() {
             </div>
           </div>
           <h1 className="text-2xl font-bold sm:text-3xl">{p.name}</h1>
+          <GoogleMapsLink lat={p.lat} lng={p.lng} className="inline-flex text-sm font-medium text-teal-700 underline dark:text-teal-400" />
           <p className="text-slate-600 dark:text-slate-300">{p.summary}</p>
           {p.cutReason && (
             <div className="rounded-lg border-l-4 border-red-500 bg-red-50 px-3 py-2 text-sm dark:bg-red-950/40">
@@ -215,6 +218,14 @@ export default function PlaceDetail() {
           )}
         </div>
       </div>
+
+      <section className="card overflow-hidden" data-testid="place-map-section">
+        <GoogleMapEmbed lat={p.lat} lng={p.lng} title={`Map of ${p.name}`} className="h-64 w-full sm:h-80" testId="place-map-embed" />
+        <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-2 text-xs text-slate-500">
+          <span>Approximate area centre{p.coordNote ? ` · ${p.coordNote}` : ''}</span>
+          <GoogleMapsLink lat={p.lat} lng={p.lng} className="text-sm font-medium text-teal-700 underline dark:text-teal-400" testId="place-map-google-link" />
+        </div>
+      </section>
 
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-2">
@@ -244,6 +255,7 @@ export default function PlaceDetail() {
             <Field label="Wildlife" value={p.wildlifeText} />
             {p.otherFacts.map((f) => <Field key={f.label} label={f.label} value={f.value} />)}
           </section>
+          <CrimeSection placeId={p.id} country={p.country} />
           {p.country === 'Canada' && !p.minor && (
             <section className="rounded-2xl border border-red-200 bg-red-50 p-5 text-sm dark:border-red-900 dark:bg-red-950/30">
               <h2 className="mb-2 font-semibold">Buying in Canada</h2>

@@ -37,6 +37,66 @@ def check_listings():
             if not os.path.isfile(os.path.join(HERE, '..', 'public', ph)): f.append(f"listing {h['id']} photo file missing: {ph}")
     return f, len(data['homes'])
 
+
+# Places still in play (not dropped, including Other) that must have a sourced crime entry.
+CRIME_IDS = ['forsyth','happy-valley','duvall','cantley','maryville','elizabeth','boise','on-carp-huntley','on-dunrobin','on-north-gower','on-flamborough','on-oro-medonte','toronto']
+# Do not introduce racial or ethnic population data anywhere in this project.
+CRIME_BANNED = re.compile(
+    r'\b(racial|ethnicity|ethnic group|race breakdown|by race|black population|white population|hispanic population|demographic breakdown by race)\b',
+    re.I,
+)
+
+def check_crime():
+    f = []
+    ts_path = os.path.join(HERE, '..', 'src', 'data', 'crime.ts')
+    ts = open(ts_path, encoding='utf-8').read()
+    if CRIME_BANNED.search(ts):
+        f.append('src/data/crime.ts contains racial or ethnic population language — that is not allowed')
+    src_root = os.path.join(HERE, '..', 'src')
+    for dirpath, _, files in os.walk(src_root):
+        for name in files:
+            if not name.endswith(('.ts', '.tsx', '.css', '.json')):
+                continue
+            path = os.path.join(dirpath, name)
+            text = open(path, encoding='utf-8').read()
+            if CRIME_BANNED.search(text):
+                rel = os.path.relpath(path, os.path.join(HERE, '..'))
+                f.append(f'{rel} contains racial or ethnic population language — that is not allowed')
+    if 'coral-springs' not in ts or 'Coral Springs Police Department' not in ts:
+        f.append('crime data is missing the Coral Springs Police Department baseline')
+    for pid in CRIME_IDS:
+        pat = r"(placeId:\s*['\"]" + re.escape(pid) + r"['\"]|['\"]" + re.escape(pid) + r"['\"]\s*:)"
+        if not re.search(pat, ts):
+            f.append(f'crime data is missing a place entry for {pid}')
+    # Every figure is built by fbi(), scRate() or scCsi(), which must set source, year and agency.
+    for helper in ('fbi', 'scRate', 'scCsi'):
+        m = re.search(r'const ' + helper + r' = \((.*?)\)\s*:\s*Crime(?:Figure|Index)\s*=>\s*\({(.*?)\}\)', ts, re.S)
+        if not m:
+            f.append(f'crime data helper {helper}() was not found; figures must be built with source, year and agency')
+            continue
+        params, body = m.group(1), m.group(2)
+        for field in ('year', 'agency', 'sourceUrl'):
+            if field not in params and field not in body:
+                f.append(f'crime data helper {helper}() does not set {field} on every figure')
+    urls = re.findall(r"'(https?://[^']+)'", ts)
+    official = [u for u in urls if any(h in u for h in ('cde.ucr.cjis.gov', 'statcan.gc.ca', 'fbi.gov'))]
+    if len(official) < 5:
+        f.append(f'crime data has only {len(official)} official source URLs; expected FBI CDE and Statistics Canada table URLs')
+    for u in official:
+        if not u.startswith('https://'):
+            f.append(f'crime figure source is not https: {u!r}')
+    if 'cde.ucr.cjis.gov' not in ts:
+        f.append('crime data does not cite the FBI Crime Data Explorer')
+    if 'statcan.gc.ca' not in ts or '35100180' not in ts:
+        f.append('crime data does not cite Statistics Canada police-service tables')
+    for m in re.finditer(r'ratePer100k:\s*([0-9.]+)', ts):
+        if float(m.group(1)) == 0:
+            window = ts[max(0, m.start()-400):m.end()+400]
+            if 'reportedZero: true' not in window and 'reportedZero:true' not in window:
+                f.append('a crime rate of 0 was found without reportedZero: true — missing data must be null, not 0')
+    return f
+
+
 from playwright.async_api import async_playwright
 
 CURRENT = ['best', 'live', 'stretch', 'parked']
@@ -44,9 +104,15 @@ CURRENT = ['best', 'live', 'stretch', 'parked']
 async def run(base):
     errs, fails = [], []
     async with async_playwright() as p:
-        b = await p.chromium.launch(); pg = await b.new_page()
+        b = await p.chromium.launch(channel='chrome'); pg = await b.new_page()
         pg.on('pageerror', lambda e: errs.append(str(e)))
         pg.on('console', lambda m: errs.append(m.text) if m.type == 'error' else None)
+        # Don't wait on third-party Google Maps embeds; we still assert the iframe/link is present.
+        async def _abort_maps(route):
+            await route.abort()
+        await pg.route('**/*maps.google.com/**', _abort_maps)
+        await pg.route('**/*google.com/maps/**', _abort_maps)
+        await pg.route('**/*maps.gstatic.com/**', _abort_maps)
         await pg.goto(base + '#/', wait_until='networkidle')
         home_counts = {}
         for el in await pg.locator('[data-testid^="home-count-"]').all():
@@ -70,13 +136,30 @@ async def run(base):
         for _, st in cards:
             if st not in CURRENT: fails.append(f'non-current status on home: {st}')
         lf, n = check_listings(); fails += lf
+        fails += check_crime()
         nd = []
         await pg.goto(base + '#/places', wait_until='networkidle')
         nd = [await c.get_attribute('data-id') for c in await pg.locator('[data-testid="places-card"]').all() if await c.get_attribute('data-status') != 'dropped']
         fails += check_amenities(sorted(set(nd) | set(CURRENT_IDS)))
-        for pid in nd[:2]:
+        # Prefer a place we know has crime + homes (forsyth) if it's in the list
+        sample = (['forsyth'] if 'forsyth' in nd else []) + [i for i in nd if i != 'forsyth']
+        for pid in sample[:2]:
             await pg.goto(base + '#/places/' + pid, wait_until='networkidle')
             if await pg.get_by_test_id('amenities-section').count() != 1: fails.append(f'place page {pid} has no amenities section')
+            if await pg.get_by_test_id('crime-section').count() != 1: fails.append(f'place page {pid} has no crime section')
+            gl = pg.get_by_test_id('google-maps-link')
+            if await gl.count() < 1: fails.append(f'place page {pid} has no Open in Google Maps link')
+            else:
+                href = await gl.first.get_attribute('href') or ''
+                if '/maps/search/' not in href or 'query=' not in href: fails.append(f'place page {pid} Google Maps link looks wrong: {href!r}')
+                if await gl.first.get_attribute('target') != '_blank' or 'noopener' not in (await gl.first.get_attribute('rel') or ''):
+                    fails.append(f'place page {pid} Google Maps link must be target=_blank rel=noopener noreferrer')
+            if await pg.get_by_test_id('place-map-embed').count() != 1: fails.append(f'place page {pid} has no embedded place map')
+            if await pg.get_by_test_id('crime-chart').count() != 1: fails.append(f'place page {pid} has no crime comparison chart')
+            if await pg.locator('[data-testid="homes-section"] [data-testid="home-map-embed"], [data-testid="homes-section"] [data-testid="home-map-embed-fallback"]').count() == 0:
+                # only required when the place has qualifying homes
+                if await pg.get_by_test_id('home-card').count() > 0:
+                    fails.append(f'place page {pid} home cards have no embedded maps')
         await pg.goto(base + '#/homes', wait_until='networkidle')
         hc = pg.get_by_test_id('home-card')
         if await hc.count() != n: fails.append(f'homes page shows {await hc.count()} cards, data has {n}')
@@ -89,8 +172,23 @@ async def run(base):
         imgs = await pg.evaluate("Promise.all([...document.querySelectorAll('[data-testid=home-card] img')].map(i=>(i.loading='eager', i.decode().then(()=>i.naturalWidth).catch(()=>0))))")
         if any(w == 0 for w in imgs): fails.append(f'{sum(w == 0 for w in imgs)} home photos failed to load')
         print('listings     :', n)
+        await pg.goto(base + '#/map', wait_until='networkidle')
+        if await pg.get_by_test_id('crime-layer-toggle').count() != 1:
+            fails.append('map page has no crime layer toggle')
+        else:
+            await pg.get_by_test_id('crime-layer-toggle').click()
+            # Coral Springs baseline should be mentionable once the layer is on
+            body = await pg.inner_text('body')
+            if 'Coral Springs' not in body: fails.append('crime map layer does not mention Coral Springs')
+        await pg.goto(base + '#/graphs', wait_until='networkidle')
+        if await pg.get_by_test_id('crime-graph').count() != 1:
+            fails.append('graphs page has no crime comparison chart')
         await b.close()
-    fails += [f'console error: {e}' for e in errs]
+    # Third-party map iframes (Google) often write console errors we cannot control; ignore those.
+    def _ours(e):
+        s = (e or '').lower()
+        return not any(k in s for k in ('maps.google', 'google.com/maps', 'maps.gstatic', 'googleapis.com', 'gg-maps', 'cookie', 'third-party'))
+    fails += [f'console error: {e}' for e in errs if _ours(e)]
     print('home counts  :', home_counts); print('places counts:', places_counts); print('home cards   :', [i for i, _ in cards])
     if fails:
         print('SYNC CHECK FAILED'); [print(' -', f) for f in fails]; return 1

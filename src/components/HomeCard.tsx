@@ -2,9 +2,10 @@ import type { Home } from '../data/homesTypes'
 import { HOMES_META } from '../data/homes'
 import { AMENITIES } from '../data/amenities'
 import { nearest } from '../data/amenitiesTypes'
+import { GoogleMapEmbed, GoogleMapsLink, googleMapsSearchUrl } from './GoogleMap'
 
 const fmt = (n: number, c: string) => (c === 'CAD' ? 'CAD $' : '$') + n.toLocaleString('en-US')
-export const mapUrl = (a: string) => `https://www.openstreetmap.org/search?query=${encodeURIComponent(a)}`
+export const mapUrl = (a: string) => googleMapsSearchUrl(undefined, undefined, a) ?? `https://www.openstreetmap.org/search?query=${encodeURIComponent(a)}`
 
 export function HomeCard({ h, showPlace }: { h: Home; showPlace?: string }) {
   const base = import.meta.env.BASE_URL
@@ -24,9 +25,10 @@ export function HomeCard({ h, showPlace }: { h: Home; showPlace?: string }) {
         {AMENITIES[h.placeId] && (() => { const a = AMENITIES[h.placeId]; const f = (k: 'ski' | 'rink' | 'park', l: string) => { const n = nearest(a[k]); return n ? `${l} ~${n.driveMin} min` : null }; return <div className="text-xs text-slate-500" data-testid="home-amen">Area: {[f('ski', 'ski'), f('rink', 'rink'), f('park', 'park')].filter(Boolean).join(' · ')} (from the place’s base)</div> })()}
         {h.note && <div className="text-xs text-amber-700 dark:text-amber-300">{h.note}</div>}
         <div className="text-xs text-slate-500">As of {HOMES_META.asOf}, re-verify. Photo © {h.broker ?? 'listing brokerage'} via {h.source}.</div>
+        <GoogleMapEmbed address={h.address} title={`Map of ${h.address}`} className="mt-2 h-36 w-full rounded-lg" testId="home-map-embed" />
         <div className="mt-auto flex flex-wrap gap-2 pt-2">
           <a href={h.url} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-teal-700 px-3 py-1.5 text-xs font-semibold text-white hover:bg-teal-800" data-testid="view-listing">View listing ↗</a>
-          <a href={mapUrl(h.address)} target="_blank" rel="noopener noreferrer" className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold hover:bg-slate-100 dark:border-slate-600 dark:hover:bg-slate-800">Map ↗</a>
+          <GoogleMapsLink address={h.address} className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold hover:bg-slate-100 dark:border-slate-600 dark:hover:bg-slate-800" testId="home-map-link">Map ↗</GoogleMapsLink>
         </div>
       </div>
     </article>
