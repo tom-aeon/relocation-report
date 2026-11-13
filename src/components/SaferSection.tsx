@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { lazy, Suspense, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import {
   CANADA_CSI_2025, CORAL_PROPERTY_RATE, CORAL_SPRINGS, CORAL_VIOLENT_RATE, CROSS_BORDER_NOTE,
@@ -7,6 +7,8 @@ import {
 import { hasQualifyingHomes } from '../data/homes'
 import { NO_QUALIFYING_HOMES } from '../data/homesTypes'
 import { STATUS_META, type Place } from '../data/places'
+
+const SaferVisuals = lazy(() => import('./SaferVisuals'))
 
 export const SAFER_RULE =
   `A US place is “at or below Coral Springs” only when both of its sourced official rates per 100,000 are at or below the Coral Springs Police Department’s 2025 FBI figures: violent ${formatRate(CORAL_VIOLENT_RATE)} and property ${formatRate(CORAL_PROPERTY_RATE)}. A second tier holds US places where both rates are sourced but only one of the two qualifies. Canadian places use different offence definitions, so they are never counted as at-or-below Coral Springs; they appear in a clearly labelled “Canada (approximate)” group, with Crime Severity Index vs Canada’s 2025 national CSI of ${(CANADA_CSI_2025.value as number).toFixed(2)} as context only. Places whose official violent or property rate is not available are listed under “Unverified crime” and are never included in the at-or-below groups.`
@@ -163,6 +165,9 @@ export function SaferSection({ places, id }: { places: Place[]; id?: string }) {
         </p>
         <p className="mt-2 text-xs text-amber-800 dark:text-amber-200">{CROSS_BORDER_NOTE}</p>
       </header>
+      <Suspense fallback={<p className="text-sm text-slate-500">Loading chart and map…</p>}>
+        <SaferVisuals groups={groups} />
+      </Suspense>
       <Group group="safer" rows={groups.safer} showUsRates testId="safer-both" />
       <Group group="one-sided" rows={groups['one-sided']} showUsRates testId="safer-one" />
       <Group

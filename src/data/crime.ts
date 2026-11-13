@@ -753,6 +753,10 @@ export interface LowCrimeArea {
   note: string
   /** Pittsburgh-area air quality applies to the Allegheny County townships. */
   airNote?: string
+  /** Approximate county or township administrative centre (OpenStreetMap Nominatim, 12 Nov 2026). */
+  lat: number
+  lng: number
+  coordNote: string
 }
 
 export const LOWCRIME_MORE: LowCrimeArea[] = [
@@ -763,6 +767,9 @@ export const LOWCRIME_MORE: LowCrimeArea[] = [
     violent: fbi("Livingston County Sheriff's Office", 'county', 'NY0250000', 2025, 10, 39035, 25.6),
     property: fbi("Livingston County Sheriff's Office", 'county', 'NY0250000', 2025, 228, 39035, 584.1),
     note: 'Both rates at or below Coral Springs, FBI CDE 2025, 12 of 12 months, refreshed 15 Oct 2026. No 1–3 acre 3-full listing was verified this pass.',
+    lat: 42.7360902,
+    lng: -77.7781416,
+    coordNote: 'OpenStreetMap Nominatim administrative centre (county or township relation), 12 Nov 2026. Approximate.',
   },
   {
     name: 'Wayne County, NY',
@@ -771,6 +778,9 @@ export const LOWCRIME_MORE: LowCrimeArea[] = [
     violent: fbi("Wayne County Sheriff's Office", 'county', 'NY0580000', 2025, 37, 64734, 57.2),
     property: fbi("Wayne County Sheriff's Office", 'county', 'NY0580000', 2025, 214, 64734, 330.6),
     note: 'Both rates at or below Coral Springs, FBI CDE 2025, 12 of 12 months, refreshed 15 Oct 2026. No qualifying 1–3 acre listing was verified this pass. Food to Rochester needs a per-address drive-time check.',
+    lat: 43.1500557,
+    lng: -77.0377603,
+    coordNote: 'OpenStreetMap Nominatim administrative centre (county or township relation), 12 Nov 2026. Approximate.',
   },
   {
     name: 'Genesee County, NY',
@@ -779,6 +789,9 @@ export const LOWCRIME_MORE: LowCrimeArea[] = [
     violent: fbi("Genesee County Sheriff's Office", 'county', 'NY0180000', 2025, 25, 37876, 66.0),
     property: fbi("Genesee County Sheriff's Office", 'county', 'NY0180000', 2025, 166, 37876, 438.3),
     note: 'Both rates at or below Coral Springs, FBI CDE 2025, 12 of 12 months, refreshed 15 Oct 2026. No listing was verified this pass. Food was not re-checked.',
+    lat: 43.0102726,
+    lng: -78.1780196,
+    coordNote: 'OpenStreetMap Nominatim administrative centre (county or township relation), 12 Nov 2026. Approximate.',
   },
   {
     name: 'Wyoming County, NY',
@@ -787,6 +800,9 @@ export const LOWCRIME_MORE: LowCrimeArea[] = [
     violent: fbi("Wyoming County Sheriff's Office", 'county', 'NY0600000', 2025, 20, 28420, 70.4),
     property: fbi("Wyoming County Sheriff's Office", 'county', 'NY0600000', 2025, 77, 28420, 270.9),
     note: 'Both rates at or below Coral Springs, FBI CDE 2025, 12 of 12 months, refreshed 15 Oct 2026. No listing was verified this pass. Rochester food is likely over 40 min from Warsaw.',
+    lat: 42.7039813,
+    lng: -78.2415228,
+    coordNote: 'OpenStreetMap Nominatim administrative centre (county or township relation), 12 Nov 2026. Approximate.',
   },
   {
     name: 'Yates County, NY',
@@ -795,6 +811,9 @@ export const LOWCRIME_MORE: LowCrimeArea[] = [
     violent: fbi("Yates County Sheriff's Office", 'county', 'NY0610000', 2025, 8, 19537, 40.9),
     property: fbi("Yates County Sheriff's Office", 'county', 'NY0610000', 2025, 63, 19537, 322.5),
     note: 'Both rates at or below Coral Springs, FBI CDE 2025, 12 of 12 months, refreshed 15 Oct 2026. Small served population. Food to Rochester is a stretch. No listing was verified this pass.',
+    lat: 42.6444444,
+    lng: -77.112177,
+    coordNote: 'OpenStreetMap Nominatim administrative centre (county or township relation), 12 Nov 2026. Approximate.',
   },
   {
     name: 'Indiana Township, PA',
@@ -807,6 +826,9 @@ export const LOWCRIME_MORE: LowCrimeArea[] = [
     property: fbi('Indiana Township Police Department', 'city', 'PA0020V00', 2025, 14, 7402, 189.1),
     note: 'Both rates at or below Coral Springs, FBI CDE 2025, 12 of 12 months, refreshed 15 Oct 2026. No listing was verified this pass.',
     airNote: 'Pittsburgh-area air quality applies (same hard air miss as Wexford / Pine).',
+    lat: 40.566062,
+    lng: -79.8771329,
+    coordNote: 'OpenStreetMap Nominatim administrative centre (county or township relation), 12 Nov 2026. Approximate.',
   },
   {
     name: 'Hampton Township, PA',
@@ -816,6 +838,9 @@ export const LOWCRIME_MORE: LowCrimeArea[] = [
     property: fbi('Hampton Township Police Department', 'city', 'PA0023300', 2025, 54, 17835, 302.8),
     note: 'Both rates at or below Coral Springs, FBI CDE 2025, 12 of 12 months, refreshed 15 Oct 2026. No listing was verified this pass. Food may work from this belt but was not re-timed.',
     airNote: 'Pittsburgh-area air quality applies (same hard air miss as Wexford / Pine).',
+    lat: 40.5811818,
+    lng: -79.953211,
+    coordNote: 'OpenStreetMap Nominatim administrative centre (county or township relation), 12 Nov 2026. Approximate.',
   },
   {
     name: 'West Deer Township, PA',
@@ -825,6 +850,9 @@ export const LOWCRIME_MORE: LowCrimeArea[] = [
     property: fbi('West Deer Township Police Department', 'city', 'PA0021D00', 2025, 21, 12235, 171.6),
     note: 'Both rates at or below Coral Springs, FBI CDE 2025, 12 of 12 months, refreshed 15 Oct 2026. A 4-bed 1.1-acre Active listing (4581 Bakerstown Culmerville Rd) was 2 full + 1 half and was not shown.',
     airNote: 'Pittsburgh-area air quality applies (same hard air miss as Wexford / Pine).',
+    lat: 40.6371978,
+    lng: -79.8692335,
+    coordNote: 'OpenStreetMap Nominatim administrative centre (county or township relation), 12 Nov 2026. Approximate.',
   },
 ]
 
