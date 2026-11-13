@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { BUYING_IN_CANADA, CRITERIA, ROUNDS, placeById, type Restaurant, type Retail, type RetailStop } from '../data/places'
 import { FavButton, MarkDot, MarkLegend, NotChecked, RejectButton, StatusBadge } from '../components/ui'
 import { useStore } from '../lib/store'
-import { HOMES, HOMES_META, hasQualifyingHomes } from '../data/homes'
+import { HOMES, HOMES_META, closeHomes, hasQualifyingHomes } from '../data/homes'
 import { NO_QUALIFYING_HOMES } from '../data/homesTypes'
 import { HomeCard, HomesNote } from '../components/HomeCard'
 import { AmenitiesSection } from '../components/Amenities'
@@ -143,6 +143,7 @@ function AirWaterSection({ aw }: { aw?: AirWater }) {
 
 function HomesSection({ placeId }: { placeId: string }) {
   const hs = HOMES.filter((h) => h.placeId === placeId)
+  const close = closeHomes(placeId)
   const gap = HOMES_META.gaps[placeId]
   return (
     <section className="card p-5" data-testid="homes-section">
@@ -162,6 +163,13 @@ function HomesSection({ placeId }: { placeId: string }) {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{hs.map((h) => <HomeCard key={h.id} h={h} />)}</div>
           <div className="mt-3"><HomesNote /></div>
         </>
+      )}
+      {close.length > 0 && (
+        <div className="mt-5 border-t border-slate-200 pt-4 dark:border-slate-700" data-testid="close-to-43">
+          <h3 className="font-semibold">Close to 4/3</h3>
+          <p className="mb-3 mt-1 text-sm text-slate-600 dark:text-slate-400">These listings are near the 4-bed / 3-full-bath must but do not meet it (three-quarter baths are not counted as full baths). They are not qualifying 3-full homes, and the list is not padded.</p>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{close.map((h) => <HomeCard key={h.id} h={h} />)}</div>
+        </div>
       )}
     </section>
   )

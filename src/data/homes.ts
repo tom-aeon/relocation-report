@@ -4,7 +4,7 @@ import { qualifies43 } from './homesTypes'
 
 export const HOMES_META: { asOf: string; fx: string; note: string; gaps: Record<string, string> } = 
 {
- "asOf": "12 Nov 2026",
+ "asOf": "12 Nov 2026 evening",
  "fx": "Canadian prices converted at 1 USD = 1.4066 CAD (ECB rate via frankfurter.dev, 6 Nov 2026).",
  "note": "Every listing has 4+ bedrooms and 3+ full bathrooms (half baths are not counted toward the 3). Listings already on the page were collected earlier from Zillow (US) and Royal LePage (Canada). New 12 Nov 2026 listings were re-verified the same day on their brokerage pages. Re-verify before acting. Photos are copyright of the listing brokerages and are shown only as small thumbnails linked to the source. 1 USD = 1.4066 CAD (ECB via frankfurter.dev, 6 Nov 2026). Drive times are free-flow OSRM estimates from the place map marker.",
  "gaps": {
@@ -13,14 +13,15 @@ export const HOMES_META: { asOf: string; fx: string; note: string; gaps: Record<
   "cantley": "None qualify right now. Royal LePage had no active 4+ bed / 3+ bath house on ~1–3 acres under CAD ~$1.19M within ~25 min of Cantley (26 Oct 2026). The three earlier homes were dropped (under 4 bed / 3 bath).",
   "on-flamborough": "Only 1 qualifies (26 Oct 2026). Under the CAD ~$1.19M cap, 4+ bed / 3+ bath houses on 1+ acre are scarce. One other candidate (22 Old Brock Rd, Puslinch) was skipped because it is an unfinished build.",
   "toronto": "None qualify right now. Searching King Twp, King City, Schomberg, Nobleton, Kleinburg, Stouffville, Aurora and Caledon on Royal LePage (26 Oct 2026) found no active 4+ bed / 3+ bath house on ~1–3 acres under CAD ~$1.19M within ~30 min. One candidate was skipped because it was sold “as is”. The earlier Schomberg home (2+1 bed) was dropped.",
-  "victor-mendon": "None qualify right now. No currently-active 4-bed / 3-full-bath house on 1–3 acres under US$850K was re-verified on 12 Nov 2026. Several 4-bed acreage listings under the cap were 2 full + 1 half bath, including 8090 The Siding Court, Victor ($699,900, 1.4 acres, marketed as 3 baths). A patient search is realistic given prices in this belt; nothing is shown until a 3-full-bath listing is confirmed live.",
-  "stokesdale": "None shown. 6101 Trotter Ridge Road, Summerfield (MLS 1237335, $635,000, 4 bed, 3 full baths, 1.25 acres) was reported active in the 12 Nov 2026 scout, but its brokerage and listing pages could not be re-verified in this pass (blocked or empty). It is not shown until it can be confirmed live. Sold comps were not used as live homes.",
-  "wexford-pine": "Only 1 qualifies (re-verified 12 Nov 2026): 231 McKinney Road, Wexford. Fewer than 3 is fine; the list is not padded.",
-  "apex-holly-springs": "None qualify right now. The 9208 Holly Springs Road, Apex listing that appeared in the scout is pending and only 2.5 baths. No other active 4-bed / 3-full-bath house on 1–3 acres under US$850K was re-verified on 12 Nov 2026.",
+  "victor-mendon": "1 qualifies (re-verified 12 Nov 2026 evening): 1431 State Route 444, Victor — $749,900, 4 bed, 3 full baths (0 half), 1.10 acres, MLS R1716315, Active on the Homebodies brokerage page (last updated 12 Nov 2026). Earlier examples (8090 The Siding Court, 7668 Creekwood) remain 2 full + 1 half and are not shown. The list is not padded.",
+  "stokesdale": "None shown. Local covering agencies all have a violent rate above Coral Springs (Guilford Sheriff 152.3, Forsyth NC Sheriff 206.4, Kernersville PD 231.8, Stokes Sheriff 218.5). 6101 Trotter Ridge Road, Summerfield sits in Guilford Sheriff territory and is not a low-crime special-section house; it is also not shown until it can be confirmed live. The list is not padded.",
+  "wexford-pine": "Only 1 qualifies (re-verified 12 Nov 2026 evening): 231 McKinney Road, Wexford / Pine Township — $675,000, 4 bed, 3 full baths, 1.476 acres, MLS 1776720, Status Active on The Preferred Realty brokerage page. Fewer than 3 is fine; the list is not padded.",
+  "apex-holly-springs": "None qualify right now. Apex PD and Holly Springs PD rates are at or below Coral Springs, but no active 4-bed / 3-full-bath house on 1–3 acres under US$850K was re-verified on 12 Nov 2026 evening. 9208 Holly Springs Road is 2.5 baths. The list is not padded.",
   "guelph-eramosa": "Only 1 qualifies (re-verified 12 Nov 2026): 5066 Wellington 32 Road, listed at CAD $750,000, on a septic system, sold as-is and needing significant renovation. Acreage at budget is thin. Fewer than 3 is fine; the list is not padded.",
   "cochrane": "None qualify right now. No active 4-bed / 3-full-bath house on 1–3 acres under CAD $1.196M (US$850K at 1.4066) was found in the west foothills on 12 Nov 2026. In-town Cochrane houses on small lots are affordable; typical foothills acreages were listed from about CAD $1.77M up. A Bearspaw-area 15.32-acre house under the dollar cap is well over the 1–3 acre target; a $739,900 Redwood Meadows house is only 0.28 acres.",
   "waxhaw-lake-norman": "None shown. This place is filed under Other on food geography and mountains; no qualifying 4-bed / 3-full-bath listing on 1–3 acres under US$850K was re-verified on 12 Nov 2026.",
-  "forsyth": "Only 2 qualify. A third listing (444 Brights Way, Dawsonville, 4 bed, listed as 3 baths) was removed because it is 2 full baths and 1 half bath; 3 full baths are required. The list is not padded."
+  "forsyth": "3 qualify (re-verified 12 Nov 2026 evening): 9210 Hannamill Dr; 2595 Marsha Circle, Cumming ($579,900, 5 bed, 3 full baths, 1.02 acres, Active) — mailing city Cumming; confirm the lot is unincorporated Forsyth County, not City of Cumming, so the sheriff rate applies; and 6430 Pine Ridge Circle, a fixer / as-is rustic 1971 house on two adjoining parcels totaling 1.11 acres with a Lake Lanier dock ($525,000, 4 bed, 3 full baths, 0 half, Active on Coldwell Banker, updated 12 Nov 2026). 444 Brights Way was removed earlier because it is 2 full + 1 half. The list is not padded.",
+  "elizabeth": "2 qualify. 5360 Pine Ridge Drive ($650,000, 4 bed, 2.07 acres, Active, MLS 4608977) is 1 full + 2 three-quarter baths (showers, no tubs) — shown under “Close to 4/3”, not as a qualifying 3-full home. The list is not padded."
  }
 }
 
@@ -61,21 +62,23 @@ const ALL_HOMES: Home[] =
   "acres": 1.02,
   "beds": 5,
   "baths": 3,
-  "bathNote": null,
+  "bathNote": "3 full baths, 0 half (re-verified Active on the Carl Hawthorne brokerage page, 12 Nov 2026 evening). Mailing city Cumming — confirm the lot is unincorporated Forsyth County, not City of Cumming, so the sheriff rate applies.",
   "sqft": 3292,
   "daysOnMarket": 3,
   "newListing": false,
-  "mls": null,
-  "url": "https://www.zillow.com/homedetails/2595-Marsha-Cir-Cumming-GA-30041/14636728_zpid/",
-  "source": "Zillow",
-  "broker": "Chapman Hall Realtors",
+  "mls": "FMLS 7858024 / GAMLS 10877657",
+  "url": "https://carlhawthorne.com/listing/gamls/10877657/Cumming/2595-Marsha-Circle/",
+  "source": "The Carl Hawthorne Team (GAMLS 10877657), re-verified Active 12 Nov 2026 evening",
+  "broker": "The Carl Hawthorne Team / Chapman Hall Realtors",
   "water": null,
   "sewer": null,
   "driveMin": 19,
   "photos": [
    "listings/forsyth/2-1.jpg",
    "listings/forsyth/2-2.jpg"
-  ]
+  ],
+  "note": "Buyer must confirm it is outside Cumming city limits. “Permitted through the City of Cumming” on some pages refers to permits, not city limits.",
+  "listedDate": null
  },
  {
   "id": "happy-valley-1",
@@ -256,31 +259,6 @@ const ALL_HOMES: Home[] =
   "driveMin": 3,
   "photos": [
    "listings/elizabeth/2-2.jpg"
-  ]
- },
- {
-  "id": "elizabeth-3",
-  "placeId": "elizabeth",
-  "address": "5360 Pine Ridge Drive, Elizabeth, CO 80107",
-  "price": 650000,
-  "currency": "USD",
-  "priceUsd": 650000,
-  "acres": 2.07,
-  "beds": 4,
-  "baths": 3,
-  "bathNote": null,
-  "sqft": 2334,
-  "daysOnMarket": 121,
-  "newListing": false,
-  "mls": null,
-  "url": "https://www.zillow.com/homedetails/5360-Pine-Ridge-Dr-Elizabeth-CO-80107/13527311_zpid/",
-  "source": "Zillow",
-  "broker": "Keller Williams Action Realty LLC",
-  "water": null,
-  "sewer": null,
-  "driveMin": 5,
-  "photos": [
-   "listings/elizabeth/3-1.jpg"
   ]
  },
  {
@@ -680,17 +658,17 @@ const ALL_HOMES: Home[] =
   "price": 675000,
   "currency": "USD",
   "priceUsd": 675000,
-  "acres": 1.47,
+  "acres": 1.476,
   "beds": 4,
   "baths": 3,
-  "bathNote": "3 full baths (re-verified on the brokerage page, 12 Nov 2026).",
+  "bathNote": "3 full bathrooms, lot 1.476 acres (Status: Active on The Preferred Realty brokerage page, 12 Nov 2026 evening).",
   "sqft": 1644,
   "daysOnMarket": null,
   "listedDate": "2026-09-26",
   "newListing": false,
   "mls": "1776720",
-  "url": "https://www.231mckinneyroad.com/",
-  "source": "231mckinneyroad.com (Berkshire Hathaway HomeServices The Preferred Realty)",
+  "url": "https://www.thepreferredrealty.com/real-estate/1776720/",
+  "source": "Berkshire Hathaway HomeServices The Preferred Realty, re-verified Status Active 12 Nov 2026 evening",
   "broker": "Betsy Wotherspoon & Team of Berkshire Hathaway HomeServices The Preferred Realty",
   "water": null,
   "sewer": null,
@@ -699,7 +677,7 @@ const ALL_HOMES: Home[] =
    "listings/wexford-pine/1-1.jpg",
    "listings/wexford-pine/1-2.jpg"
   ],
-  "note": "Pine Township, borders North Park. Pine-Richland schools. Tax about $5,525/year. Status For Sale (schema.org InStock) on the brokerage page fetched 12 Nov 2026. Ranch plus finished lower level."
+  "note": "Pine Township, borders North Park. Pine-Richland schools. Estimated taxes about $5,736/year. Mid-century ranch, livable or a project."
  },
  {
   "id": "guelph-eramosa-1",
@@ -729,11 +707,99 @@ const ALL_HOMES: Home[] =
    "listings/guelph-eramosa/1-2.jpg"
   ],
   "note": "Active (listingStatus Active; schema.org InStock) on the page fetched 12 Nov 2026, last updated 22 Oct 2026. Sold as-is and needs significant renovation — that is a sale condition, not a Sold status. About 1,900 sq ft."
+ },
+ {
+  "id": "victor-mendon-1",
+  "placeId": "victor-mendon",
+  "address": "1431 State Route 444, Victor, NY 14564",
+  "price": 749900,
+  "currency": "USD",
+  "priceUsd": 749900,
+  "acres": 1.1,
+  "beds": 4,
+  "baths": 3,
+  "bathNote": "3 full baths, 0 half (re-verified Active on the Homebodies brokerage page, last updated 12 Nov 2026).",
+  "sqft": 4600,
+  "daysOnMarket": 49,
+  "listedDate": "2026-09-24",
+  "newListing": false,
+  "mls": "R1716315",
+  "url": "https://rochesterhomebodies.com/listing/nysa/R1716315/Victor/1431-State-Route-444/",
+  "source": "The Homebodies Team at Keller Williams Realty, re-verified Active 12 Nov 2026 evening",
+  "broker": "The Homebodies Team at Keller Williams Realty",
+  "water": "Public",
+  "sewer": null,
+  "driveMin": 16,
+  "photos": [
+   "listings/victor-mendon/1-1.jpg",
+   "listings/victor-mendon/1-2.jpg"
+  ],
+  "note": "Ontario County, Victor school district. 4,600 sq ft includes finished walk-out with a private in-law suite. Golf-course views, pool. Annual tax listed at $11,964. Built 1991. Drive time is free-flow OSRM from the place map marker (629 W Bloomfield Rd, Mendon)."
+ },
+ {
+  "id": "forsyth-4",
+  "placeId": "forsyth",
+  "address": "6430 Pine Ridge Circle, Cumming, GA 30041",
+  "price": 525000,
+  "currency": "USD",
+  "priceUsd": 525000,
+  "acres": 1.11,
+  "beds": 4,
+  "baths": 3,
+  "bathNote": "3 full baths, 0 half (re-verified For Sale / Active, 3 Full Baths, on Coldwell Banker, updated 12 Nov 2026; Easy Street Realty also lists Full Baths 3, Half Baths 0).",
+  "sqft": 2016,
+  "daysOnMarket": null,
+  "listedDate": "2026-10-01",
+  "newListing": false,
+  "mls": "10856622",
+  "url": "https://www.coldwellbankerhomes.com/ga/cumming/6430-pine-ridge-circle/pid_74038266/",
+  "source": "Coldwell Banker (GAMLS 10856622), re-verified Active 12 Nov 2026 evening, updated 12 Nov 2026",
+  "broker": "Maximum One Premier Realtors (listing on Coldwell Banker)",
+  "water": "Public",
+  "sewer": null,
+  "driveMin": 12,
+  "photos": [
+   "listings/forsyth/4-1.jpg",
+   "listings/forsyth/4-2.jpg"
+  ],
+  "note": "Fixer / as-is, rustic 1971 residence on two adjoining Lake Lanier parcels totaling 1.11 acres, with a permitted single-slip dock. Secondary to 2595 Marsha Circle, which is the cleaner house. Drive time is free-flow OSRM from the place map marker."
  }
 ]
 
-/** Only listings that meet the 4-bed / 3-full-bath must. Half baths do not count. The list is never padded. */
+/** Only listings that meet the 4-bed / 3-full-bath must. Half baths and three-quarter baths do not count as a full bath toward the 3. The list is never padded. */
 export const HOMES: Home[] = ALL_HOMES.filter(qualifies43)
+
+/** Near the 4/3 must but not qualifying — shown as a “Close to 4/3” sub-note, never in HOMES. */
+export const CLOSE_HOMES: Home[] = 
+[
+ {
+  "id": "elizabeth-3",
+  "placeId": "elizabeth",
+  "address": "5360 Pine Ridge Drive, Elizabeth, CO 80107",
+  "price": 650000,
+  "currency": "USD",
+  "priceUsd": 650000,
+  "acres": 2.07,
+  "beds": 4,
+  "baths": 3,
+  "bathNote": "1 full + 2 three-quarter baths (showers, no tubs). This is not a half-bath situation, and it is not counted as 3 full baths.",
+  "sqft": 2334,
+  "daysOnMarket": 121,
+  "newListing": false,
+  "mls": "4608977",
+  "url": "https://greyrockrealty.com/co-real-estate/elizabeth/5360-pine-ridge-dr-mls-4608977",
+  "source": "Grey Rock Realty, re-verified Status Active 12 Nov 2026 evening, MLS 4608977",
+  "broker": "Grey Rock Realty / Keller Williams Action Realty LLC",
+  "water": null,
+  "sewer": null,
+  "driveMin": 5,
+  "photos": [
+   "listings/elizabeth/3-1.jpg"
+  ],
+  "note": "Status Active, 140 DOM, 4 bed, 2.07 acres, $650,000, no HOA, well and septic, barn and pasture. Shown under “Close to 4/3”, not as a qualifying 3-full home. Re-verified on the Grey Rock Realty page 12 Nov 2026 evening."
+ }
+]
 
 export const qualifyingHomes = (placeId: string) => HOMES.filter((h) => h.placeId === placeId)
 export const hasQualifyingHomes = (placeId: string) => qualifyingHomes(placeId).length > 0
+export const closeHomes = (placeId: string) => CLOSE_HOMES.filter((h) => h.placeId === placeId)

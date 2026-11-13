@@ -88,6 +88,24 @@ export function CrimeSection({ placeId, country }: { placeId: string; country: '
               </p>
             </div>
           )}
+          {c.also && c.also.length > 0 && (
+            <div className="space-y-3" data-testid="crime-also">
+              <h3 className="text-sm font-semibold">Other local agencies</h3>
+              {c.also.map((a) => (
+                <div key={a.violent.agency + a.covers} className="space-y-2 rounded-xl border border-slate-200 p-3 dark:border-slate-700">
+                  <p className="text-sm font-medium">{a.covers}</p>
+                  {a.notTheCoveringAgency && (
+                    <p className="text-xs text-amber-800 dark:text-amber-200">Not the covering agency for the named towns — shown as context only, and not used to classify this place.</p>
+                  )}
+                  {a.note && <p className="text-xs text-slate-600 dark:text-slate-400">{a.note}</p>}
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <RateBlock label={`Violent — ${a.violent.agency}`} figure={a.violent} baseline={CORAL_SPRINGS.violent} />
+                    <RateBlock label={`Property — ${a.violent.agency}`} figure={a.property} baseline={CORAL_SPRINGS.property} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
           {c.note && <p className="text-sm text-slate-600 dark:text-slate-400">{c.note}</p>}
           <p className="text-xs text-slate-500">{c.violent.sourceName} {CRIME_METHOD}</p>
         </div>

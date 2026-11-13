@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import {
   CANADA_CSI_2025, CORAL_PROPERTY_RATE, CORAL_SPRINGS, CORAL_VIOLENT_RATE, CROSS_BORDER_NOTE,
-  SAFER_GROUP_META, classifySafer, crimeFor, formatRate, type SaferGroup, type SaferResult,
+  LOWCRIME_MORE, SAFER_GROUP_META, classifySafer, crimeFor, formatRate, type LowCrimeArea, type SaferGroup, type SaferResult,
 } from '../data/crime'
 import { hasQualifyingHomes } from '../data/homes'
 import { NO_QUALIFYING_HOMES } from '../data/homesTypes'
@@ -53,6 +53,7 @@ function RateCell({ label, rate, ok, missing }: { label: string; rate: number | 
 }
 
 function SaferRow({ place, safer, showUsRates, showCsi }: { place: Place; safer: SaferResult; showUsRates?: boolean; showCsi?: boolean }) {
+  const also = crimeFor(place.id)?.also
   const noHomes = !hasQualifyingHomes(place.id)
   return (
     <li className="flex flex-col gap-2 rounded-xl border border-slate-200 p-3 sm:flex-row sm:items-center sm:justify-between dark:border-slate-700">
@@ -71,6 +72,16 @@ function SaferRow({ place, safer, showUsRates, showCsi }: { place: Place; safer:
         </div>
         {safer.agency && safer.year && (
           <div className="mt-0.5 text-xs text-slate-500">{safer.agency}, {safer.year}</div>
+        )}
+        {showUsRates && also && also.length > 0 && (
+          <ul className="mt-1 space-y-0.5 text-xs text-slate-600 dark:text-slate-400">
+            {also.map((a) => (
+              <li key={a.violent.agency}>
+                {a.covers}: {a.violent.agency}, {a.violent.year} — violent {formatRate(a.violent.ratePer100k)} ({a.violent.ratePer100k != null && a.violent.ratePer100k <= CORAL_VIOLENT_RATE ? 'at or below' : 'above'}), property {formatRate(a.property.ratePer100k)} ({a.property.ratePer100k != null && a.property.ratePer100k <= CORAL_PROPERTY_RATE ? 'at or below' : 'above'})
+                {a.notTheCoveringAgency ? ' — context only, not used to classify this place' : ''}
+              </li>
+            ))}
+          </ul>
         )}
       </div>
       <div className="grid min-w-[16rem] grid-cols-2 gap-3 text-sm">
@@ -162,6 +173,7 @@ export function SaferSection({ places, id }: { places: Place[]; id?: string }) {
         extra={<p className="mb-2 text-xs text-slate-500">Rates per 100k are not compared with Coral Springs here, even when published, because the definitions differ.</p>}
       />
       <Group group="unverified" rows={groups.unverified} testId="safer-unverified" />
+      <MoreLowCrime />
     </section>
   )
 }
@@ -177,6 +189,54 @@ export function SaferLegend({ extra }: { extra?: ReactNode }) {
         </span>
       ))}
       {extra}
+    </div>
+  )
+}
+
+
+function AreaRates({ area }: { area: LowCrimeArea }) {
+  const vOk = area.violent.ratePer100k != null && area.violent.ratePer100k <= CORAL_VIOLENT_RATE
+  const pOk = area.property.ratePer100k != null && area.property.ratePer100k <= CORAL_PROPERTY_RATE
+  const v = area.violent
+  const p = area.property
+  return (
+    <li className="rounded-xl border border-slate-200 p-3 dark:border-slate-700">
+      <div className="flex flex-wrap items-baseline justify-between gap-2">
+        <div>
+          <div className="font-semibold">{area.name}</div>
+          <div className="text-xs text-slate-500">{area.covers}</div>
+          <div className="text-xs text-slate-500">{v.agency}, {v.year} · {v.coverage ?? '12 of 12 months'} · FBI Crime Data Explorer, refreshed 15 Oct 2026{v.sourceName.includes('ORI') ? ` · ${v.sourceName.split('ORI ').pop()}` : ''}</div>
+        </div>
+        <div className="grid min-w-[16rem] grid-cols-2 gap-3 text-sm">
+          <RateCell label="Violent" rate={v.ratePer100k} ok={vOk} />
+          <RateCell label="Property" rate={p.ratePer100k} ok={pOk} />
+        </div>
+      </div>
+      <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">
+        {v.incidents != null && p.incidents != null && (
+          <>Violent {v.incidents.toLocaleString('en-US')} / {(v.population ?? 0).toLocaleString('en-US')}{v.reportedZero ? ' (reported zero offences, not missing data)' : ''} · Property {p.incidents.toLocaleString('en-US')} / {(p.population ?? 0).toLocaleString('en-US')}. </>
+        )}
+        {area.note}
+      </p>
+      {area.airNote && <p className="mt-1 text-xs font-medium text-amber-800 dark:text-amber-200">{area.airNote}</p>}
+    </li>
+  )
+}
+
+function MoreLowCrime() {
+  const ny = LOWCRIME_MORE.filter((a) => a.region === 'NY Finger Lakes')
+  const pa = LOWCRIME_MORE.filter((a) => a.region === 'Pittsburgh-adjacent')
+  return (
+    <div data-testid="safer-more">
+      <h3 className="font-semibold">More low-crime areas (no qualifying home yet)</h3>
+      <p className="mb-2 mt-1 text-sm text-slate-600 dark:text-slate-400">
+        These areas have sourced official 2025 FBI Crime Data Explorer rates at or below Coral Springs (118.8 / 888.0 per 100k, 12 of 12 months, refreshed 15 Oct 2026) on both violent and property crime, but they are not in-app places and had no verified 4-bed / 3-full-bath / 1–3 acre / under US$850K listing this pass. They are not counted in the at-or-below group above. The list is not padded.
+      </p>
+      <h4 className="mb-2 mt-3 text-sm font-semibold">Finger Lakes / Rochester belt, New York</h4>
+      <ul className="space-y-2">{ny.map((a) => <AreaRates key={a.name} area={a} />)}</ul>
+      <h4 className="mb-2 mt-4 text-sm font-semibold">Pittsburgh-adjacent townships, Pennsylvania</h4>
+      <p className="mb-2 text-xs text-amber-800 dark:text-amber-200">Pittsburgh-area air quality applies to these townships — the same hard air miss as Wexford / Pine.</p>
+      <ul className="space-y-2">{pa.map((a) => <AreaRates key={a.name} area={a} />)}</ul>
     </div>
   )
 }

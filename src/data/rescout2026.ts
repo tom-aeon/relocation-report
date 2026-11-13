@@ -19,7 +19,7 @@ export const RESCOUT_2026_PLACES: Place[] = [
     statusLabel: 'New live option (round 8)',
     firstRound: 8,
     summary:
-      'Finger Lakes edge of Rochester. Two real Sichuan and two real Turkish kitchens all within 17–29 min. True snowy winters, Canandaigua about 32 min, Bristol Mountain about 54 min (partial mountains, same band as East Forsyth). Strong suburban schools, ROC about 28 min, houses clearly affordable. A strict 3-full-bath listing was not found this pass — several “3 bath” actives are 2 full + 1 half.',
+      'Finger Lakes edge of Rochester. Two real Sichuan and two real Turkish kitchens all within 17–29 min. True snowy winters, Canandaigua about 32 min, Bristol Mountain about 54 min (partial mountains, same band as East Forsyth). Strong suburban schools, ROC about 28 min, houses clearly affordable. Both covering sheriffs (Ontario County for Victor, Monroe County for Mendon) are at or below Coral Springs on violent and property crime, FBI CDE 2025. A qualifying 4-bed / 3-full-bath listing is live at 1431 State Route 444, Victor.',
     lat: 43.0199,
     lng: -77.5259,
     coordNote: 'Rural drive-time origin at 629 W Bloomfield Rd, Mendon, NY. That address itself is not a qualifying house (pending, 2.5 baths, 5 acres).',
@@ -28,7 +28,7 @@ export const RESCOUT_2026_PLACES: Place[] = [
     mountainsLakes:
       'Canandaigua ~32 min; Conesus, Hemlock, Honeoye and Lake Ontario in the same band. Bristol Mountain ski area ~54 min; Letchworth State Park ~68 min. Finger Lakes highlands, not a daily mountain backdrop.',
     crime:
-      'No town-level official rate for Mendon or Victor. NY DCJS 2024 Index Crimes has no Victor or Mendon agency. Do not use Rochester city as a proxy. Figures on the crime section are marked not available.',
+      'Neither town has its own PD. Ontario County Sheriff (Victor) 62.9 / 506.5 and Monroe County Sheriff (Mendon) 60.2 / 775.8 per 100,000, FBI CDE 2025, 12 of 12 months — both at or below Coral Springs (118.8 / 888.0). Do not use Rochester PD. NY DCJS 2024 counts are supplemental only (no published population, no rate computed).',
     schools:
       'Honeoye Falls-Lima and Pittsford are among New York’s stronger public districts (state proficiency, 2023–24). Victor is also well regarded. Colleges: University of Rochester, RIT, Nazareth, SUNY Geneseo (~30–46 min).',
     infrastructure:
@@ -63,8 +63,8 @@ export const RESCOUT_2026_PLACES: Place[] = [
     ],
     scores: {
       seasons: S('pass', 'True four seasons with real lake-effect snow'),
-      crime: S('unknown', 'No town-level official rate; not available, not estimated'),
-      acreage: S('pass', '1–3 acre houses under $850K are common; a strict 3-full-bath listing was not on the market this pass'),
+      crime: S('pass', 'Ontario County Sheriff (Victor) 62.9 / 506.5 and Monroe County Sheriff (Mendon) 60.2 / 775.8, FBI CDE 2025 — both at or below Coral Springs'),
+      acreage: S('pass', '1–3 acre houses under $850K are common; 1431 State Route 444, Victor, is a live 4-bed / 3-full-bath listing at $749,900 on 1.10 acres'),
       mountains: S('partial', 'Bristol Mountain ~54 min; Letchworth ~68 min — same band as East Forsyth'),
       lakes: S('pass', 'Canandaigua ~32 min'),
       wildlife: D('pass', 'Ticks and Lyme are the main everyday hazard; limited large dangerous wildlife'),
@@ -88,7 +88,7 @@ export const RESCOUT_2026_PLACES: Place[] = [
     statusLabel: 'New live option (round 8)',
     firstRound: 8,
     summary:
-      'Piedmont Triad towns north and east of Greensboro. Two real Sichuan and two real Turkish kitchens inside 40 min from Kernersville, Oak Ridge and western Summerfield, with an important closed-day caveat (Monday and Tuesday each leave one Sichuan and one Turkish open). Belews Lake 13–20 min, Hanging Rock State Park 44–52 min depending on the town, GSO next door. Short Piedmont winter. Town-level crime still needs an official FBI pull.',
+      'Piedmont Triad towns north and east of Greensboro. Two real Sichuan and two real Turkish kitchens inside 40 min from Kernersville, Oak Ridge and western Summerfield, with an important closed-day caveat (Monday and Tuesday each leave one Sichuan and one Turkish open). Belews Lake 13–20 min, Hanging Rock State Park 44–52 min depending on the town, GSO next door. Short Piedmont winter. Official 2025 FBI rates are now in: every local covering agency has a violent rate above Coral Springs, so this place is not in the both-at-or-below group.',
     lat: 36.1736,
     lng: -79.9892,
     coordNote: 'Oak Ridge town center, a midpoint of the Stokesdale / Oak Ridge / Kernersville / western Summerfield cluster.',
@@ -97,7 +97,7 @@ export const RESCOUT_2026_PLACES: Place[] = [
     mountainsLakes:
       'Belews Lake ~13–20 min from Stokesdale / Kernersville / Oak Ridge; Oak Hollow Lake (High Point) ~24 min from Summerfield. Hanging Rock State Park ~44 min from Stokesdale, ~50 min from Oak Ridge, ~52 min from Kernersville. Pilot Mountain ~57–68 min. Still a trip, not a daily backdrop.',
     crime:
-      'Do not use Greensboro PD as a proxy for these towns. No clean FBI agency-level rate for Summerfield, Oak Ridge or Stokesdale was found. Figures on the crime section are marked not available.',
+      'Every local covering agency has a violent rate above Coral Springs, FBI CDE 2025, 12 of 12 months: Guilford Sheriff (Stokesdale / Oak Ridge / Summerfield) 152.3 / 624.2, Forsyth County NC Sheriff 206.4 / 1,208.8, Kernersville PD 231.8 / 2,785.2, Stokes Sheriff 218.5 / 763.6. Do not use Greensboro PD or Winston-Salem PD as a proxy.',
     schools:
       'Oak Ridge and western Summerfield are often zoned Oak Ridge Elementary and Northwest Guilford Middle and High — one of the better-known Guilford County publics. Stokesdale is Stokes County schools; Kernersville is Winston-Salem/Forsyth. Colleges: Wake Forest, UNC Greensboro, NC A&T, Guilford College, High Point University.',
     infrastructure:
@@ -132,7 +132,7 @@ export const RESCOUT_2026_PLACES: Place[] = [
     ],
     scores: {
       seasons: S('partial', 'Short Piedmont winter, long hot humid summers'),
-      crime: S('unknown', 'No town-level official rate; Greensboro city is the wrong geography'),
+      crime: S('partial', 'Guilford Sheriff 152.3 / 624.2 — violent above Coral Springs, property below. Forsyth NC Sheriff, Kernersville PD and Stokes Sheriff also have violent rates above. FBI CDE 2025.'),
       acreage: S('pass', '4/3 on an acre under $850K is normal here; sold comps in 2026 at $515K–$695K'),
       mountains: S('partial', 'Hanging Rock ~44–52 min depending on the town; Pilot Mountain ~57–68 min'),
       lakes: S('pass', 'Belews Lake ~13–20 min'),
@@ -160,7 +160,7 @@ export const RESCOUT_2026_PLACES: Place[] = [
     cutReason:
       'Pittsburgh-area air quality is poor (ALA State of the Air 2026: D ozone, F short-term particle pollution, Fail year-round particles). Mountains are about 90–100 min (Seven Springs ~101 min).',
     summary:
-      'Food and houses work from Wexford, Franklin Park and south Gibsonia — not from Mars, where Turkish kitchens are already 46–47 min free-flow. A live 4 bed / 3 full bath house on 1.47 acres at $675K borders North Park. Pine-Richland schools, PIT ~32 min, UPMC Passavant next to the park. The standing problem is regional air quality, the worst of this scout.',
+      'Food and houses work from Wexford, Franklin Park and south Gibsonia — not from Mars, where Turkish kitchens are already 46–47 min free-flow. A live 4 bed / 3 full bath house on 1.47 acres at $675K borders North Park. Northern Regional PD crime is well below Coral Springs (33.3 / 264.4, FBI CDE 2025). Pine-Richland schools, PIT ~32 min, UPMC Passavant next to the park. The standing problem is regional air quality, the worst of this scout — this stays a near-miss on air.',
     lat: 40.6265,
     lng: -80.0559,
     coordNote: 'Wexford, Pine Township. Center the search here, not on Mars or Connoquenessing.',
@@ -171,7 +171,7 @@ export const RESCOUT_2026_PLACES: Place[] = [
     mountainsLakes:
       'North Park (lakes, 3,000+ acres) is next door to the McKinney Road listing. Moraine State Park / Lake Arthur ~65 min. Seven Springs ~101 min; Laurel Highlands are real mountains but a 90–100 min trip. Daily landscape is rolling Appalachian hills.',
     crime:
-      'Wexford / Pine is not Pittsburgh city and is not Cranberry Township. Official FBI town-level figures for Pine Township were not retrieved in this pass; third-party “crime grade” sites were not used. Figures on the crime section are marked not available.',
+      'Northern Regional PD (Pine, Richland, Marshall, Bradford Woods) 33.3 / 264.4 per 100,000, FBI CDE 2025, 12 of 12 months — both well below Coral Springs (118.8 / 888.0). Do not use Pittsburgh city figures. This place stays a near-miss on Pittsburgh-area air quality.',
     schools:
       'Pine-Richland (Pine Township / much of Gibsonia) and North Allegheny (Franklin Park / McCandless) are among western Pennsylvania’s stronger publics. Colleges: Pitt, Carnegie Mellon, Duquesne, ~29–34 min.',
     infrastructure:
@@ -209,7 +209,7 @@ export const RESCOUT_2026_PLACES: Place[] = [
     ],
     scores: {
       seasons: S('pass', 'True four seasons, snowy winters'),
-      crime: S('unknown', 'Official town-level FBI figures not retrieved; Pittsburgh city is the wrong geography'),
+      crime: S('pass', 'Northern Regional PD 33.3 / 264.4, FBI CDE 2025, both well below Coral Springs. Do not use Pittsburgh city figures.'),
       acreage: S('pass', 'Live 4 bed / 3 full bath / 1.47 acres at $675K (12 Nov 2026)'),
       mountains: S('partial', 'Seven Springs ~101 min; daily landscape is rolling hills'),
       lakes: S('pass', 'North Park lakes next door'),
@@ -238,7 +238,7 @@ export const RESCOUT_2026_PLACES: Place[] = [
     cutReason:
       'Mountains fail. Morrow Mountain / Uwharrie ~126–134 min from Apex. There is no East-Forsyth-style 50–60 min mountain.',
     summary:
-      'Southwest Wake County, in the Research Triangle. Food passes easily (Chengdu 7, Chuan Cafe, Szechuan Mansion; Istanbul and Bosphorus in Cary). Jordan Lake ~26 min, RDU ~27 min, Duke / UNC / NC State, strong Wake County schools, full retail. The mountain test is the fail — rolling Piedmont is not a substitute. A qualifying live 4/3 listing on 1–3 acres was not confirmed this pass (the URL checked was pending and only 2.5 baths).',
+      'Southwest Wake County, in the Research Triangle. Food passes easily (Chengdu 7, Chuan Cafe, Szechuan Mansion; Istanbul and Bosphorus in Cary). Jordan Lake ~26 min, RDU ~27 min, Duke / UNC / NC State, strong Wake County schools, full retail. Apex PD (53.2 / 800.6) and Holly Springs PD (88.9 / 709.0) are both at or below Coral Springs, FBI CDE 2025; Wake County Sheriff (unincorporated) is above on violent and is not used for the cities. The mountain test is the fail — rolling Piedmont is not a substitute — so this stays a near-miss. A qualifying live 4/3 listing on 1–3 acres was not confirmed this pass.',
     lat: 35.6853,
     lng: -78.8621,
     coordNote: 'Drive-time origin at 9208 Holly Springs Rd, Apex — used as a rural base. That listing itself is pending and only 2.5 baths, so it is not a qualifying house.',
@@ -274,7 +274,7 @@ export const RESCOUT_2026_PLACES: Place[] = [
     ],
     scores: {
       seasons: S('partial', 'Short-winter Piedmont, like East Forsyth'),
-      crime: S('unknown', 'Official town-level FBI figures not retrieved this pass'),
+      crime: S('pass', 'Apex PD 53.2 / 800.6 and Holly Springs PD 88.9 / 709.0, FBI CDE 2025, both at or below Coral Springs. Wake Sheriff (unincorporated) is not used to classify the cities.'),
       acreage: S('pass', 'The market has acreage under $850K; a qualifying live listing was not confirmed this pass'),
       mountains: S('fail', 'Morrow Mountain / Uwharrie ~126–134 min'),
       lakes: S('pass', 'Jordan Lake ~26 min'),

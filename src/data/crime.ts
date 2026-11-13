@@ -36,12 +36,25 @@ export interface CrimeIndex {
   note?: string
 }
 
+/** An additional covering (or context-only) agency for a place that spans more than one jurisdiction. */
+export interface CoveringCrime {
+  /** What this agency covers. */
+  covers: string
+  violent: CrimeFigure
+  property: CrimeFigure
+  note?: string
+  /** When true, shown as context only — not the covering agency for the named towns, and not used to classify the place. */
+  notTheCoveringAgency?: boolean
+}
+
 export interface PlaceCrime {
   placeId: string
   country: 'US' | 'Canada'
   checked: string
   violent: CrimeFigure
   property: CrimeFigure
+  /** Other local agencies for the same cluster, each with its own sourced rates. */
+  also?: CoveringCrime[]
   /** Canada only: Crime Severity Index (Canada 2006 = 100). Not comparable to a US rate. */
   csi?: CrimeIndex
   violentCsi?: CrimeIndex
@@ -312,89 +325,93 @@ export const CRIME: Record<string, PlaceCrime> = {
     placeId: 'victor-mendon',
     country: 'US',
     checked: CRIME_CHECKED,
-    violent: missingFigure(
-      'Town of Victor / Town of Mendon (no reporting agency in NY DCJS)',
-      'city',
-      2024,
-      NY_DCJS,
-      NY_DCJS_SRC,
-      'No Victor or Mendon police agency appears in NY DCJS Index Crimes for 2022–2024. Town-level official figures are not available.',
-    ),
-    property: missingFigure(
-      'Town of Victor / Town of Mendon (no reporting agency in NY DCJS)',
-      'city',
-      2024,
-      NY_DCJS,
-      NY_DCJS_SRC,
-      'No Victor or Mendon police agency appears in NY DCJS Index Crimes for 2022–2024. Town-level official figures are not available.',
-    ),
-    note: 'Do not use Rochester City PD as a proxy — that is a different, much larger jurisdiction. Ontario County Sheriff (2024, 12 of 12 months: 67 violent and 506 property offences) and Monroe County Sheriff (2024, 12 of 12 months: 188 violent and 2,571 property offences) report on NY DCJS, but those are county-service-area counts, not town rates, and the official table does not include a served population, so a rate is not computed here. FBI 2025 agency-level figures for these towns were not retrieved in this pass.',
+    // Primary: Ontario County Sheriff, which covers Victor (and the 1431 State Route 444 listing). Both covering sheriffs are at or below Coral Springs on both rates.
+    violent: fbi("Ontario County Sheriff's Office", 'county', 'NY0340000', 2025, 55, 87462, 62.9, '12 of 12 months reported', {
+      note: 'Covers Victor, Farmington, and other Ontario County towns with no municipal PD. Neither Victor nor Mendon has its own PD.',
+    }),
+    property: fbi("Ontario County Sheriff's Office", 'county', 'NY0340000', 2025, 443, 87462, 506.5, '12 of 12 months reported'),
+    also: [
+      {
+        covers: 'Mendon and other Monroe County towns without a PD',
+        violent: fbi("Monroe County Sheriff's Office", 'county', 'NY0270000', 2025, 155, 257401, 60.2, '12 of 12 months reported'),
+        property: fbi("Monroe County Sheriff's Office", 'county', 'NY0270000', 2025, 1997, 257401, 775.8, '12 of 12 months reported', {
+          note: 'Property is 12.6% lower than Coral Springs (inside the ±15% similar band) and still at or below.',
+        }),
+        note: 'Most local agency for Mendon, Rush, and other Monroe towns with no PD. Both rates are at or below Coral Springs. Do not use Rochester PD.',
+      },
+    ],
+    note: 'Neither town has its own police department (confirmed against the FBI agency list and NY DCJS). Both covering sheriffs — Ontario County (Victor) 62.9 / 506.5 and Monroe County (Mendon) 60.2 / 775.8 per 100,000 — are at or below Coral Springs (118.8 / 888.0) on both rates, FBI CDE 2025, 12 of 12 months, refreshed 15 Oct 2026. Do not use Rochester PD. Supplemental, not used as rates: NY DCJS Index Crimes (dataset ca8h-8gjq), 2024, 12 of 12 months, counts only — Monroe County Sheriff 188 violent / 2,571 property; Ontario County Sheriff 67 violent / 506 property. NY DCJS publishes no population, so no 2024 rate is computed. ' + NY_DCJS_SRC + ' (' + NY_DCJS + ').',
   },
   stokesdale: {
     placeId: 'stokesdale',
     country: 'US',
     checked: CRIME_CHECKED,
-    violent: missingFigure(
-      'Stokesdale / Oak Ridge / Kernersville / Summerfield (no clean town-level FBI figure)',
-      'city',
-      2025,
-      FBI_CDE,
-      FBI_SOURCE,
-      'No clean FBI agency-level rate for Stokesdale, Oak Ridge or Summerfield was found. Town-level official figures are not available.',
-    ),
-    property: missingFigure(
-      'Stokesdale / Oak Ridge / Kernersville / Summerfield (no clean town-level FBI figure)',
-      'city',
-      2025,
-      FBI_CDE,
-      FBI_SOURCE,
-      'No clean FBI agency-level rate for Stokesdale, Oak Ridge or Summerfield was found. Town-level official figures are not available.',
-    ),
-    note: 'Do not use Greensboro PD as a proxy for these towns — Greensboro is a different, much larger jurisdiction. Kernersville has its own department; a 2025 FBI figure for it was not retrieved in this pass. Sheriff / town UCR should be pulled before any Coral Springs comparison.',
+    // Primary: Guilford County Sheriff, which covers Stokesdale, Oak Ridge and Summerfield (no town PD). Violent is above Coral Springs, so this place is not in the both-at-or-below group.
+    violent: fbi("Guilford County Sheriff's Office", 'county', 'NC0410000', 2025, 202, 132642, 152.3, '12 of 12 months reported', {
+      note: 'Covers unincorporated Guilford, including Stokesdale, Oak Ridge and Summerfield (no town PD). Violent is 28.2% higher than Coral Springs.',
+    }),
+    property: fbi("Guilford County Sheriff's Office", 'county', 'NC0410000', 2025, 828, 132642, 624.2, '12 of 12 months reported'),
+    also: [
+      {
+        covers: 'Unincorporated Forsyth County, North Carolina (not the Georgia Forsyth)',
+        violent: fbi("Forsyth County Sheriff's Office (NC)", 'county', 'NC0340000', 2025, 236, 114329, 206.4),
+        property: fbi("Forsyth County Sheriff's Office (NC)", 'county', 'NC0340000', 2025, 1382, 114329, 1208.8),
+        note: 'Both rates are above Coral Springs.',
+      },
+      {
+        covers: 'Kernersville city',
+        violent: fbi('Kernersville Police Department', 'city', 'NC0340100', 2025, 68, 29334, 231.8),
+        property: fbi('Kernersville Police Department', 'city', 'NC0340100', 2025, 817, 29334, 2785.2, '12 of 12 months reported', {
+          note: 'Property is strikingly high — 213.6% higher than Coral Springs.',
+        }),
+        note: 'Both rates are above Coral Springs.',
+      },
+      {
+        covers: 'Walnut Cove and unincorporated Stokes County (Hanging Rock side)',
+        violent: fbi("Stokes County Sheriff's Office", 'county', 'NC0850000', 2025, 85, 38897, 218.5),
+        property: fbi("Stokes County Sheriff's Office", 'county', 'NC0850000', 2025, 297, 38897, 763.6),
+        note: 'Violent is 83.9% higher than Coral Springs; property is 14.0% lower.',
+      },
+    ],
+    note: 'Every local covering agency has a violent rate above Coral Springs (118.8 per 100,000), FBI CDE 2025, 12 of 12 months, refreshed 15 Oct 2026: Guilford Sheriff 152.3 / 624.2, Forsyth County NC Sheriff 206.4 / 1,208.8, Kernersville PD 231.8 / 2,785.2, Stokes Sheriff 218.5 / 763.6. This place is not in the both-at-or-below group. Do not use Greensboro PD or Winston-Salem PD as a proxy. 6101 Trotter Ridge Road, Summerfield, sits in Guilford Sheriff territory and is not a low-crime special-section house.',
   },
   'wexford-pine': {
     placeId: 'wexford-pine',
     country: 'US',
     checked: CRIME_CHECKED,
-    violent: missingFigure(
-      'Pine Township / Northern Regional (official FBI figure not retrieved)',
-      'city',
-      2025,
-      FBI_CDE,
-      FBI_SOURCE,
-      'Official FBI agency-level figures for Pine Township or Northern Regional Police were not retrieved in this pass. Town-level official figures are not available.',
-    ),
-    property: missingFigure(
-      'Pine Township / Northern Regional (official FBI figure not retrieved)',
-      'city',
-      2025,
-      FBI_CDE,
-      FBI_SOURCE,
-      'Official FBI agency-level figures for Pine Township or Northern Regional Police were not retrieved in this pass. Town-level official figures are not available.',
-    ),
-    note: 'Do not use Pittsburgh city as a proxy. Cranberry Township is a different municipality. Third-party “crime grade” sites were not used. Directionally these North Hills towns are often described as low-crime, but that is not a sourced official rate and is not shown as a figure here.',
+    violent: fbi('Northern Regional Police Department', 'city', 'PA0021B00', 2025, 14, 41981, 33.3, '12 of 12 months reported', {
+      note: 'Covers Pine, Richland, Marshall and Bradford Woods. This is the agency for 231 McKinney Road.',
+    }),
+    property: fbi('Northern Regional Police Department', 'city', 'PA0021B00', 2025, 111, 41981, 264.4),
+    note: 'Northern Regional PD 33.3 / 264.4 per 100,000 is well below Coral Springs (118.8 / 888.0) on both rates, FBI CDE 2025, 12 of 12 months, refreshed 15 Oct 2026, ORI PA0021B00. Do not use Pittsburgh city figures. This place stays a near-miss on air quality (ALA 2026 D / F / Fail for the Pittsburgh area).',
   },
   'apex-holly-springs': {
     placeId: 'apex-holly-springs',
     country: 'US',
     checked: CRIME_CHECKED,
-    violent: missingFigure(
-      'Apex / Holly Springs (official FBI figure not retrieved)',
-      'city',
-      2025,
-      FBI_CDE,
-      FBI_SOURCE,
-      'Official FBI 2025 agency-level figures for Apex or Holly Springs were not retrieved in this pass. Town-level official figures are not available.',
-    ),
-    property: missingFigure(
-      'Apex / Holly Springs (official FBI figure not retrieved)',
-      'city',
-      2025,
-      FBI_CDE,
-      FBI_SOURCE,
-      'Official FBI 2025 agency-level figures for Apex or Holly Springs were not retrieved in this pass. Town-level official figures are not available.',
-    ),
-    note: 'Apex and Holly Springs have municipal police departments. Their 2025 FBI CDE figures should be pulled before a Coral Springs comparison. Wake County Sheriff covers unincorporated areas and is a different geography.',
+    // Primary: Apex PD. Holly Springs PD is also at or below. Wake County Sheriff (unincorporated) is not used to classify the cities.
+    violent: fbi('Apex Police Department', 'city', 'NC0920200', 2025, 42, 78938, 53.2, '12 of 12 months reported', {
+      note: 'Property is 9.8% lower than Coral Springs (inside the ±15% similar band) and still at or below.',
+    }),
+    property: fbi('Apex Police Department', 'city', 'NC0920200', 2025, 632, 78938, 800.6),
+    also: [
+      {
+        covers: 'Holly Springs city',
+        violent: fbi('Holly Springs Police Department', 'city', 'NC0921700', 2025, 45, 50637, 88.9),
+        property: fbi('Holly Springs Police Department', 'city', 'NC0921700', 2025, 359, 50637, 709.0),
+        note: 'Both rates are at or below Coral Springs.',
+      },
+      {
+        covers: 'Unincorporated Wake County only',
+        violent: fbi("Wake County Sheriff's Office", 'county', 'NC0920000', 2025, 256, 193737, 132.1, '12 of 12 months reported', {
+          note: 'Violent is 11.2% higher than Coral Springs.',
+        }),
+        property: fbi("Wake County Sheriff's Office", 'county', 'NC0920000', 2025, 1002, 193737, 517.2),
+        note: 'Not the covering agency for Apex or Holly Springs city lots. Violent is above Coral Springs. Do not use Apex PD for a sheriff-jurisdiction lot.',
+        notTheCoveringAgency: true,
+      },
+    ],
+    note: 'Apex PD 53.2 / 800.6 and Holly Springs PD 88.9 / 709.0 per 100,000 are both at or below Coral Springs (118.8 / 888.0), FBI CDE 2025, 12 of 12 months, refreshed 15 Oct 2026. Wake County Sheriff (unincorporated Wake) is 132.1 / 517.2 — violent is above the bar and is not used to classify the cities. This place stays a near-miss on mountains (Morrow Mountain / Uwharrie well over an hour).',
   },
   'guelph-eramosa': {
     placeId: 'guelph-eramosa',
@@ -719,5 +736,96 @@ export function crimeScoreFromSafer(c: PlaceCrime | undefined): { mark: 'pass' |
     note: 'Official violent and property rates are not available. This is left out of the score, not treated as zero.',
   }
 }
+
+
+/**
+ * Long-tail areas whose sourced official 2025 FBI rates are at or below Coral Springs
+ * on both violent and property crime, but which are not in-app places and had no
+ * verified qualifying 4-bed / 3-full-bath / 1–3 acre / under US$850K listing this pass.
+ * Shown in the Safer than Coral Springs section only. Not counted as in-app places.
+ */
+export interface LowCrimeArea {
+  name: string
+  region: 'NY Finger Lakes' | 'Pittsburgh-adjacent'
+  covers: string
+  violent: CrimeFigure
+  property: CrimeFigure
+  note: string
+  /** Pittsburgh-area air quality applies to the Allegheny County townships. */
+  airNote?: string
+}
+
+export const LOWCRIME_MORE: LowCrimeArea[] = [
+  {
+    name: 'Livingston County, NY',
+    region: 'NY Finger Lakes',
+    covers: 'Unincorporated Lima, Livonia, Avon and other towns without a PD (villages with a PD are different)',
+    violent: fbi("Livingston County Sheriff's Office", 'county', 'NY0250000', 2025, 10, 39035, 25.6),
+    property: fbi("Livingston County Sheriff's Office", 'county', 'NY0250000', 2025, 228, 39035, 584.1),
+    note: 'Both rates at or below Coral Springs, FBI CDE 2025, 12 of 12 months, refreshed 15 Oct 2026. No 1–3 acre 3-full listing was verified this pass.',
+  },
+  {
+    name: 'Wayne County, NY',
+    region: 'NY Finger Lakes',
+    covers: 'Macedon, Walworth and other towns without a PD',
+    violent: fbi("Wayne County Sheriff's Office", 'county', 'NY0580000', 2025, 37, 64734, 57.2),
+    property: fbi("Wayne County Sheriff's Office", 'county', 'NY0580000', 2025, 214, 64734, 330.6),
+    note: 'Both rates at or below Coral Springs, FBI CDE 2025, 12 of 12 months, refreshed 15 Oct 2026. No qualifying 1–3 acre listing was verified this pass. Food to Rochester needs a per-address drive-time check.',
+  },
+  {
+    name: 'Genesee County, NY',
+    region: 'NY Finger Lakes',
+    covers: 'Unincorporated Genesee County towns without a PD',
+    violent: fbi("Genesee County Sheriff's Office", 'county', 'NY0180000', 2025, 25, 37876, 66.0),
+    property: fbi("Genesee County Sheriff's Office", 'county', 'NY0180000', 2025, 166, 37876, 438.3),
+    note: 'Both rates at or below Coral Springs, FBI CDE 2025, 12 of 12 months, refreshed 15 Oct 2026. No listing was verified this pass. Food was not re-checked.',
+  },
+  {
+    name: 'Wyoming County, NY',
+    region: 'NY Finger Lakes',
+    covers: 'Unincorporated Wyoming County (Letchworth is next door)',
+    violent: fbi("Wyoming County Sheriff's Office", 'county', 'NY0600000', 2025, 20, 28420, 70.4),
+    property: fbi("Wyoming County Sheriff's Office", 'county', 'NY0600000', 2025, 77, 28420, 270.9),
+    note: 'Both rates at or below Coral Springs, FBI CDE 2025, 12 of 12 months, refreshed 15 Oct 2026. No listing was verified this pass. Rochester food is likely over 40 min from Warsaw.',
+  },
+  {
+    name: 'Yates County, NY',
+    region: 'NY Finger Lakes',
+    covers: 'Keuka Lake / Penn Yan area (Penn Yan has its own PD)',
+    violent: fbi("Yates County Sheriff's Office", 'county', 'NY0610000', 2025, 8, 19537, 40.9),
+    property: fbi("Yates County Sheriff's Office", 'county', 'NY0610000', 2025, 63, 19537, 322.5),
+    note: 'Both rates at or below Coral Springs, FBI CDE 2025, 12 of 12 months, refreshed 15 Oct 2026. Small served population. Food to Rochester is a stretch. No listing was verified this pass.',
+  },
+  {
+    name: 'Indiana Township, PA',
+    region: 'Pittsburgh-adjacent',
+    covers: 'Indiana Township (Allegheny County, north of Pittsburgh)',
+    violent: fbi('Indiana Township Police Department', 'city', 'PA0020V00', 2025, 0, 7402, 0.0, '12 of 12 months reported', {
+      reportedZero: true,
+      note: 'Genuine reported zero violent offences, 12 of 12 months — not missing data. Served population is under 10,000, so a single offence would move the rate sharply.',
+    }),
+    property: fbi('Indiana Township Police Department', 'city', 'PA0020V00', 2025, 14, 7402, 189.1),
+    note: 'Both rates at or below Coral Springs, FBI CDE 2025, 12 of 12 months, refreshed 15 Oct 2026. No listing was verified this pass.',
+    airNote: 'Pittsburgh-area air quality applies (same hard air miss as Wexford / Pine).',
+  },
+  {
+    name: 'Hampton Township, PA',
+    region: 'Pittsburgh-adjacent',
+    covers: 'Hampton Township (Allegheny County, north of Pittsburgh)',
+    violent: fbi('Hampton Township Police Department', 'city', 'PA0023300', 2025, 2, 17835, 11.2),
+    property: fbi('Hampton Township Police Department', 'city', 'PA0023300', 2025, 54, 17835, 302.8),
+    note: 'Both rates at or below Coral Springs, FBI CDE 2025, 12 of 12 months, refreshed 15 Oct 2026. No listing was verified this pass. Food may work from this belt but was not re-timed.',
+    airNote: 'Pittsburgh-area air quality applies (same hard air miss as Wexford / Pine).',
+  },
+  {
+    name: 'West Deer Township, PA',
+    region: 'Pittsburgh-adjacent',
+    covers: 'West Deer Township (Allegheny County, north of Pittsburgh)',
+    violent: fbi('West Deer Township Police Department', 'city', 'PA0021D00', 2025, 3, 12235, 24.5),
+    property: fbi('West Deer Township Police Department', 'city', 'PA0021D00', 2025, 21, 12235, 171.6),
+    note: 'Both rates at or below Coral Springs, FBI CDE 2025, 12 of 12 months, refreshed 15 Oct 2026. A 4-bed 1.1-acre Active listing (4581 Bakerstown Culmerville Rd) was 2 full + 1 half and was not shown.',
+    airNote: 'Pittsburgh-area air quality applies (same hard air miss as Wexford / Pine).',
+  },
+]
 
 export const CRIME_PLACE_IDS = Object.keys(CRIME)
