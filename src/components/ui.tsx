@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { STATUS_META, type Mark, type Place, type Score, type Status } from '../data/places'
+import { hasQualifyingHomes } from '../data/homes'
+import { NO_QUALIFYING_HOMES } from '../data/homesTypes'
 import { useStore } from '../lib/store'
 
 export function StatusBadge({ status, label }: { status: Status; label?: string }) {
@@ -106,6 +108,9 @@ export function PlaceCard({ place, showReject = true }: { place: Place; showReje
         <div className="flex flex-wrap items-center gap-2">
           <StatusBadge status={place.status} label={place.statusLabel} />
           {rejected && <span className="rounded-full bg-slate-200 px-2 py-0.5 text-xs font-medium text-slate-600 dark:bg-slate-700 dark:text-slate-300">Rejected</span>}
+          {place.status !== 'dropped' && !place.minor && !hasQualifyingHomes(place.id) && (
+            <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-900 dark:bg-amber-950 dark:text-amber-200" data-testid="no-qualifying-homes">{NO_QUALIFYING_HOMES}</span>
+          )}
         </div>
         <h3 className="font-semibold leading-tight group-hover:text-teal-700 dark:group-hover:text-teal-400">{place.name}</h3>
         <p className="line-clamp-3 text-sm text-slate-600 dark:text-slate-400">{place.summary}</p>

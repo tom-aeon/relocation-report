@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { OTHER_MEANING, ROUNDS, STATUS_META, STATUS_ORDER, byStatus, consideredIn, isAliveIn, statusCounts, type Place, type Status } from '../data/places'
 import { PageHeader, PlaceCard } from '../components/ui'
+import { SaferSection } from '../components/SaferSection'
 import { useStore } from '../lib/store'
 
 const ALL: Status[] = STATUS_ORDER
@@ -16,12 +17,16 @@ export default function Places() {
   const favOnly = params.get('fav') === '1'
   const showMinor = params.get('minor') !== '0'
   const showRejected = params.get('rejected') === '1'
+  const showSafer = params.get('view') === 'safer'
 
-  const set = (k: string, v: string | null) => {
+  const setMany = (changes: Record<string, string | null>) => {
     const n = new URLSearchParams(params)
-    if (v === null || v === '') n.delete(k); else n.set(k, v)
+    for (const [k, v] of Object.entries(changes)) {
+      if (v === null || v === '') n.delete(k); else n.set(k, v)
+    }
     setParams(n, { replace: true })
   }
+  const set = (k: string, v: string | null) => setMany({ [k]: v })
   const toggleStatus = (s: Status) => {
     const next = statuses.includes(s) ? statuses.filter((x) => x !== s) : [...statuses, s]
     set('s', next.length === ALL.length ? null : next.join(','))
@@ -45,25 +50,36 @@ export default function Places() {
 
   return (
     <div>
-      <PageHeader title={showRejected ? 'Rejected places' : 'The places'} sub={showRejected ? 'Places you have personally rejected. Click Restore to bring them back to the active list.' : 'Current options first, then everything explored and set aside. Prices and listings are "as of" their dates and should be re-verified; drive times are no-traffic estimates.'} />
+      <PageHeader title={showSafer ? 'Safer than Coral Springs' : showRejected ? 'Rejected places' : 'The places'} sub={showSafer ? 'Places whose sourced official crime rates are at or below Coral Springs, plus one-sided, Canadian, and unverified groups. Canadian figures are never counted as at-or-below Coral Springs.' : showRejected ? 'Places you have personally rejected. Click Restore to bring them back to the active list.' : 'Current options first, then everything explored and set aside. Prices and listings are "as of" their dates and should be re-verified; drive times are no-traffic estimates.'} />
 
-      <div className="mb-6 flex gap-2">
+      <div className="mb-6 flex flex-wrap gap-2">
         <button
-          onClick={() => set('rejected', null)}
-          className={`rounded-lg px-4 py-2 text-sm font-medium transition ${!showRejected ? 'bg-teal-700 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'}`}
+          onClick={() => setMany({ rejected: null, view: null })}
+          className={`rounded-lg px-4 py-2 text-sm font-medium transition ${!showRejected && !showSafer ? 'bg-teal-700 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'}`}
         >
           Active places ({activePlaces.length})
         </button>
         <button
-          onClick={() => set('rejected', '1')}
+          onClick={() => setMany({ rejected: '1', view: null })}
           className={`rounded-lg px-4 py-2 text-sm font-medium transition ${showRejected ? 'bg-slate-600 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'}`}
           data-testid="places-rejected-tab"
           data-count={rejectedCount}
         >
           Rejected ({rejectedCount})
         </button>
+        <button
+          onClick={() => setMany({ rejected: null, view: 'safer' })}
+          className={`rounded-lg px-4 py-2 text-sm font-medium transition ${showSafer ? 'bg-emerald-800 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'}`}
+          data-testid="places-safer-tab"
+        >
+          Safer than Coral Springs
+        </button>
       </div>
 
+      {showSafer ? (
+        <SaferSection places={activePlaces} />
+      ) : (
+      <>
       <div className="card mb-6 space-y-3 p-4">
         <div className="flex flex-wrap gap-2">
           <input type="search" value={q} onChange={(e) => set('q', e.target.value)} placeholder="Search places, restaurants, notes…" aria-label="Search places" className="input min-w-0 flex-1" />
@@ -120,6 +136,8 @@ export default function Places() {
             Rejections are personal preferences stored in your browser and do not affect the canonical research status.
           </p>
         </div>
+      )}
+      </>
       )}
     </div>
   )

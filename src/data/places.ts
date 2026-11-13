@@ -8,6 +8,7 @@ import { RESCOUT_2026_PLACES } from './rescout2026'
 import { RETAIL } from './retail'
 import { AIRWATER, type AirWater } from './airwater'
 import { AMENITIES, OUTDOOR } from './amenities'
+import { crimeFor, crimeScoreFromSafer } from './crime'
 import type { PlaceAmenities } from './amenitiesTypes'
 
 export type Status = 'best' | 'live' | 'parked' | 'stretch' | 'near-miss' | 'dropped' | 'other'
@@ -141,7 +142,7 @@ export interface Criterion { key: CriterionKey; label: string; detail: string; h
 
 export const CRITERIA: Criterion[] = [
   { key: 'seasons', label: 'Four true seasons', detail: 'Real winters, not just a cool spell.' },
-  { key: 'crime', label: 'Low crime', detail: 'Safe day-to-day living.' },
+  { key: 'crime', label: 'Low crime vs Coral Springs', detail: 'Sourced official violent and property rates at or below Coral Springs, FL (118.8 / 888.0 per 100k, FBI 2025). Both at or below = pass; only one = partial; both higher = fail. This carries the heaviest default scorecard weight. Canadian places are not scored on this comparison (different offence definitions). Missing official rates are left out of the average, never treated as zero.' },
   { key: 'acreage', label: 'Acreage at budget', detail: 'A couple of acres (~1–3) at roughly Coral Springs house money (~$680–720K). Current lot is ~0.22 acre.' },
   { key: 'mountains', label: 'Mountains nearby', detail: 'Within about 45–60 minutes.' },
   { key: 'lakes', label: 'Lakes nearby', detail: 'Within about 45–60 minutes.' },
@@ -699,6 +700,12 @@ for (const p of PLACES) {
   const am = AMENITIES[p.id]
   if (am) { p.amenities = am; const o = OUTDOOR[p.id]; if (o) p.scores.outdoor = { mark: o.mark, source: 'derived', note: o.note } }
 }
+
+// Sourced crime vs Coral Springs (official rates). Canadian places are not scored against Coral Springs.
+for (const p of PLACES) {
+  p.scores.crime = crimeScoreFromSafer(crimeFor(p.id))
+}
+
 
 // Minor round-6 cuts: the report says these were killed on food
 for (const p of PLACES) {

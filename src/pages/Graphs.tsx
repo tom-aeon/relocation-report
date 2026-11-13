@@ -208,7 +208,7 @@ function PriceAcreageScatter({ homes }: { homes: typeof HOMES }) {
     <section className="card p-4 sm:p-6">
       <h2 className="text-lg font-bold mb-1">Home Price vs. Acreage</h2>
       <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
-        All qualifying homes (4+ bed, 3+ bath) under US${BUDGET_USD.toLocaleString()}. Prices normalized to USD.
+        All qualifying homes (4+ bed, 3+ full baths) under US${BUDGET_USD.toLocaleString()}. Prices normalized to USD.
         Red line = US${BUDGET_USD.toLocaleString()} budget cap. Click a point to view the listing.
         <span className="block mt-1 text-xs">Data as of {HOMES_META.asOf}. {HOMES_META.fx}</span>
       </p>
@@ -347,7 +347,7 @@ function HomesPerPlace({ homes, places }: { homes: typeof HOMES; places: Place[]
     <section className="card p-4 sm:p-6">
       <h2 className="text-lg font-bold mb-1">Qualifying Homes Per Place</h2>
       <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
-        Count of 4+ bed, 3+ bath homes under US$850K per place. Places with 0 homes show why none qualify.
+        Count of 4+ bed, 3+ full-bath homes under US$850K per place. Places with 0 qualifying homes show a “No qualifying 4/3 homes found yet” flag; the list is not padded.
         <span className="block mt-1 text-xs">Data as of {HOMES_META.asOf}.</span>
       </p>
       <div className="h-80 sm:h-96">
@@ -382,12 +382,12 @@ function HomesPerPlace({ homes, places }: { homes: typeof HOMES; places: Place[]
           </BarChart>
         </ResponsiveContainer>
       </div>
-      {data.some(d => d.noHomes && d.gapReason) && (
+      {data.some(d => d.noHomes) && (
         <div className="mt-4 rounded-lg bg-amber-50 dark:bg-amber-950/30 p-3 text-sm">
-          <p className="font-semibold text-amber-800 dark:text-amber-300">Places with no qualifying homes:</p>
+          <p className="font-semibold text-amber-800 dark:text-amber-300">Places with no qualifying 4/3 homes found yet:</p>
           <ul className="mt-2 space-y-1 text-xs text-amber-700 dark:text-amber-400">
-            {data.filter(d => d.noHomes && d.gapReason).map(d => (
-              <li key={d.placeId}><b>{d.name}:</b> {d.gapReason}</li>
+            {data.filter(d => d.noHomes).map(d => (
+              <li key={d.placeId} data-testid="no-qualifying-homes"><b>{d.name}:</b> No qualifying 4/3 homes found yet{d.gapReason ? ` — ${d.gapReason}` : ''}</li>
             ))}
           </ul>
         </div>

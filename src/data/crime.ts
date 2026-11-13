@@ -566,4 +566,158 @@ export function allCrimeFigures(): { placeId: string; kind: string; year: number
   return rows
 }
 
+
+/** Coral Springs baseline rates (FBI CDE 2025, Coral Springs PD, 12 of 12 months). */
+export const CORAL_VIOLENT_RATE = CORAL_SPRINGS.violent.ratePer100k as number
+export const CORAL_PROPERTY_RATE = CORAL_SPRINGS.property.ratePer100k as number
+
+/**
+ * Safer-than-Coral-Springs grouping.
+ * - safer: US, both sourced rates at or below the Coral Springs baselines
+ * - one-sided: US, both rates sourced, exactly one at or below
+ * - higher: US, both sourced rates above
+ * - canada: Canadian place — different offence definitions; never counted as at-or-below Coral Springs. CSI is context only.
+ * - unverified: a sourced violent or property rate is missing; never included in safer / one-sided
+ */
+export type SaferGroup = 'safer' | 'one-sided' | 'higher' | 'canada' | 'unverified'
+
+export interface SaferResult {
+  group: SaferGroup
+  violent: number | null
+  property: number | null
+  violentAtOrBelow: boolean | null
+  propertyAtOrBelow: boolean | null
+  csi: number | null
+  csiAtOrBelowNational: boolean | null
+  agency: string | null
+  year: number | null
+  country: 'US' | 'Canada' | null
+}
+
+export const SAFER_GROUP_META: Record<SaferGroup, { label: string; short: string; color: string; description: string }> = {
+  safer: {
+    label: 'At or below Coral Springs on both violent and property crime',
+    short: 'Both at or below',
+    color: '#15803d',
+    description: 'Sourced US violent and property rates per 100,000 are both at or below Coral Springs (118.8 / 888.0, 2025).',
+  },
+  'one-sided': {
+    label: 'One of the two rates at or below Coral Springs',
+    short: 'One of two',
+    color: '#d97706',
+    description: 'Both US rates are sourced, but only one is at or below the Coral Springs baseline. The other is higher.',
+  },
+  higher: {
+    label: 'Both rates above Coral Springs',
+    short: 'Both higher',
+    color: '#dc2626',
+    description: 'Sourced US violent and property rates are both above Coral Springs.',
+  },
+  canada: {
+    label: 'Canada (approximate)',
+    short: 'Canada (approx.)',
+    color: '#0369a1',
+    description: 'Canadian offence definitions differ from the FBI’s and are not counted as at-or-below Coral Springs. The Crime Severity Index vs Canada’s 2025 national CSI (75.01) is shown as context only.',
+  },
+  unverified: {
+    label: 'Unverified crime',
+    short: 'Unverified',
+    color: '#94a3b8',
+    description: 'An official violent or property rate is not available. These places are never included in the at-or-below lists, and they are left out of the crime score rather than treated as zero.',
+  },
+}
+
+function atOrBelow(rate: number | null | undefined, baseline: number): boolean | null {
+  if (rate == null) return null
+  return rate <= baseline
+}
+
+export function classifySafer(c: PlaceCrime | undefined): SaferResult {
+  if (!c) {
+    return {
+      group: 'unverified',
+      violent: null,
+      property: null,
+      violentAtOrBelow: null,
+      propertyAtOrBelow: null,
+      csi: null,
+      csiAtOrBelowNational: null,
+      agency: null,
+      year: null,
+      country: null,
+    }
+  }
+  const violent = c.violent.ratePer100k
+  const property = c.property.ratePer100k
+  const csi = c.csi?.value ?? null
+  const national = CANADA_CSI_2025.value
+  const csiAtOrBelowNational = csi != null && national != null ? csi <= national : null
+  const vOk = atOrBelow(violent, CORAL_VIOLENT_RATE)
+  const pOk = atOrBelow(property, CORAL_PROPERTY_RATE)
+  const base = {
+    violent,
+    property,
+    violentAtOrBelow: vOk,
+    propertyAtOrBelow: pOk,
+    csi,
+    csiAtOrBelowNational,
+    agency: c.violent.agency,
+    year: c.violent.year,
+    country: c.country,
+  }
+  if (c.country === 'Canada') {
+    // Even with published rates or CSI, Canada is never in the US at-or-below groups.
+    return { group: 'canada', ...base }
+  }
+  if (violent == null || property == null) {
+    return { group: 'unverified', ...base }
+  }
+  if (vOk && pOk) return { group: 'safer', ...base }
+  if (vOk || pOk) return { group: 'one-sided', ...base }
+  return { group: 'higher', ...base }
+}
+
+/** Scorecard mark for the Low crime criterion, from sourced rates vs Coral Springs. */
+export function crimeScoreFromSafer(c: PlaceCrime | undefined): { mark: 'pass' | 'partial' | 'fail' | 'unknown'; source: 'table'; note: string } {
+  const r = classifySafer(c)
+  if (r.group === 'safer') {
+    return {
+      mark: 'pass',
+      source: 'table',
+      note: `Sourced violent ${formatRate(r.violent)} and property ${formatRate(r.property)} per 100k (${r.year}, ${r.agency}) are both at or below Coral Springs (118.8 / 888.0, 2025).`,
+    }
+  }
+  if (r.group === 'one-sided') {
+    const v = r.violentAtOrBelow ? 'violent is at or below' : 'violent is above'
+    const p = r.propertyAtOrBelow ? 'property is at or below' : 'property is above'
+    return {
+      mark: 'partial',
+      source: 'table',
+      note: `Only one of the two sourced rates is at or below Coral Springs (118.8 / 888.0, 2025): ${v} (${formatRate(r.violent)}), ${p} (${formatRate(r.property)}). ${r.year}, ${r.agency}.`,
+    }
+  }
+  if (r.group === 'higher') {
+    return {
+      mark: 'fail',
+      source: 'table',
+      note: `Sourced violent ${formatRate(r.violent)} and property ${formatRate(r.property)} per 100k (${r.year}, ${r.agency}) are both above Coral Springs (118.8 / 888.0, 2025).`,
+    }
+  }
+  if (r.group === 'canada') {
+    const csiBit = r.csi != null
+      ? ` Crime Severity Index ${r.csi.toFixed(2)} vs Canada’s 2025 national CSI of ${(CANADA_CSI_2025.value as number).toFixed(2)} (${r.csiAtOrBelowNational ? 'at or below' : 'above'} the national index) — context only.`
+      : ''
+    return {
+      mark: 'unknown',
+      source: 'table',
+      note: `Canadian figures use different offence definitions and are not scored against Coral Springs.${csiBit}`,
+    }
+  }
+  return {
+    mark: 'unknown',
+    source: 'table',
+    note: 'Official violent and property rates are not available. This is left out of the score, not treated as zero.',
+  }
+}
+
 export const CRIME_PLACE_IDS = Object.keys(CRIME)

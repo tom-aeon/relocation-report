@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { HOMES, HOMES_META } from '../data/homes'
-import { total } from '../data/homesTypes'
+import { fullBaths, total } from '../data/homesTypes'
 import { placeById } from '../data/places'
 import { HomeCard, HomesNote } from '../components/HomeCard'
 import { PageHeader } from '../components/ui'
@@ -12,11 +12,11 @@ export default function Homes() {
   const [minBeds, setMinBeds] = useState(4)
   const [minBaths, setMinBaths] = useState(3)
   const [sort, setSort] = useState<'price' | 'price-desc' | 'acres'>('price')
-  const list = HOMES.filter((h) => (place === 'all' || h.placeId === place) && h.priceUsd <= cap && total(h.beds) >= minBeds && total(h.baths) >= minBaths)
+  const list = HOMES.filter((h) => (place === 'all' || h.placeId === place) && h.priceUsd <= cap && total(h.beds) >= minBeds && fullBaths(h) >= minBaths)
     .sort((a, b) => sort === 'price' ? a.priceUsd - b.priceUsd : sort === 'price-desc' ? b.priceUsd - a.priceUsd : b.acres - a.acres)
   return (
     <div className="space-y-4">
-      <PageHeader title="Example homes" sub={`Real for-sale houses with 4+ bedrooms and 3+ baths on roughly 1–3 acres under US$850K, checked active as of ${HOMES_META.asOf}. Re-verify before acting.`} />
+      <PageHeader title="Example homes" sub={`Real for-sale houses with 4+ bedrooms and 3+ full bathrooms (half baths do not count) on roughly 1–3 acres under US$850K, checked active as of ${HOMES_META.asOf}. Re-verify before acting.`} />
       <div className="card flex flex-wrap items-end gap-4 p-4 text-sm">
         <label className="flex flex-col gap-1">Place
           <select className="rounded border border-slate-300 bg-white px-2 py-1 dark:border-slate-600 dark:bg-slate-900" value={place} onChange={(e) => setPlace(e.target.value)} data-testid="homes-place">
@@ -32,7 +32,7 @@ export default function Homes() {
             {[4, 5, 6].map((n) => <option key={n} value={n}>{n}+</option>)}
           </select>
         </label>
-        <label className="flex flex-col gap-1">Min baths
+        <label className="flex flex-col gap-1">Min full baths
           <select className="rounded border border-slate-300 bg-white px-2 py-1 dark:border-slate-600 dark:bg-slate-900" value={minBaths} onChange={(e) => setMinBaths(Number(e.target.value))} data-testid="homes-minbaths">
             {[3, 4, 5].map((n) => <option key={n} value={n}>{n}+</option>)}
           </select>

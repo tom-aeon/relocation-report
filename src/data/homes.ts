@@ -1,5 +1,6 @@
 // Generated from scripts/homes.json. Listings are a snapshot; re-verify before acting.
 import type { Home } from './homesTypes'
+import { qualifies43 } from './homesTypes'
 
 export const HOMES_META: { asOf: string; fx: string; note: string; gaps: Record<string, string> } = 
 {
@@ -18,11 +19,12 @@ export const HOMES_META: { asOf: string; fx: string; note: string; gaps: Record<
   "apex-holly-springs": "None qualify right now. The 9208 Holly Springs Road, Apex listing that appeared in the scout is pending and only 2.5 baths. No other active 4-bed / 3-full-bath house on 1–3 acres under US$850K was re-verified on 12 Nov 2026.",
   "guelph-eramosa": "Only 1 qualifies (re-verified 12 Nov 2026): 5066 Wellington 32 Road, listed at CAD $750,000, on a septic system, sold as-is and needing significant renovation. Acreage at budget is thin. Fewer than 3 is fine; the list is not padded.",
   "cochrane": "None qualify right now. No active 4-bed / 3-full-bath house on 1–3 acres under CAD $1.196M (US$850K at 1.4066) was found in the west foothills on 12 Nov 2026. In-town Cochrane houses on small lots are affordable; typical foothills acreages were listed from about CAD $1.77M up. A Bearspaw-area 15.32-acre house under the dollar cap is well over the 1–3 acre target; a $739,900 Redwood Meadows house is only 0.28 acres.",
-  "waxhaw-lake-norman": "None shown. This place is filed under Other on food geography and mountains; no qualifying 4-bed / 3-full-bath listing on 1–3 acres under US$850K was re-verified on 12 Nov 2026."
+  "waxhaw-lake-norman": "None shown. This place is filed under Other on food geography and mountains; no qualifying 4-bed / 3-full-bath listing on 1–3 acres under US$850K was re-verified on 12 Nov 2026.",
+  "forsyth": "Only 2 qualify. A third listing (444 Brights Way, Dawsonville, 4 bed, listed as 3 baths) was removed because it is 2 full baths and 1 half bath; 3 full baths are required. The list is not padded."
  }
 }
 
-export const HOMES: Home[] = 
+const ALL_HOMES: Home[] = 
 [
  {
   "id": "forsyth-1",
@@ -73,32 +75,6 @@ export const HOMES: Home[] =
   "photos": [
    "listings/forsyth/2-1.jpg",
    "listings/forsyth/2-2.jpg"
-  ]
- },
- {
-  "id": "forsyth-3",
-  "placeId": "forsyth",
-  "address": "444 Brights Way, Dawsonville, GA 30534",
-  "price": 639900,
-  "currency": "USD",
-  "priceUsd": 639900,
-  "acres": 1.64,
-  "beds": 4,
-  "baths": 3,
-  "bathNote": "2 full + 1 half",
-  "sqft": 2945,
-  "daysOnMarket": 5,
-  "newListing": false,
-  "mls": null,
-  "url": "https://www.zillow.com/homedetails/444-Brights-Way-Dawsonville-GA-30534/68625739_zpid/",
-  "source": "Zillow",
-  "broker": "Ansley RE|Christie's Int'l RE",
-  "water": null,
-  "sewer": null,
-  "driveMin": 21,
-  "photos": [
-   "listings/forsyth/3-1.jpg",
-   "listings/forsyth/3-2.jpg"
   ]
  },
  {
@@ -755,3 +731,9 @@ export const HOMES: Home[] =
   "note": "Active (listingStatus Active; schema.org InStock) on the page fetched 12 Nov 2026, last updated 22 Oct 2026. Sold as-is and needs significant renovation — that is a sale condition, not a Sold status. About 1,900 sq ft."
  }
 ]
+
+/** Only listings that meet the 4-bed / 3-full-bath must. Half baths do not count. The list is never padded. */
+export const HOMES: Home[] = ALL_HOMES.filter(qualifies43)
+
+export const qualifyingHomes = (placeId: string) => HOMES.filter((h) => h.placeId === placeId)
+export const hasQualifyingHomes = (placeId: string) => qualifyingHomes(placeId).length > 0

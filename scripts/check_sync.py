@@ -30,8 +30,23 @@ def check_listings():
         if not re.fullmatch(r'https?://[^\s/$.?#][^\s]*\.[^\s]+', u): f.append(f"listing {h['id']} has no valid http(s) URL: {u!r}")
         if u and u not in ts: f.append(f"listing {h['id']} URL missing from src/data/homes.ts (re-run generator)")
         tot = lambda x: sum(int(p or 0) for p in str(x or 0).split('+'))
+        def full_baths(h):
+            note = (h.get('bathNote') or '').lower()
+            m = re.search(r'(\d+(?:\.\d+)?)\s*full', note)
+            if m and 'half' in note:
+                return int(float(m.group(1)))
+            baths = h.get('baths')
+            if baths is None:
+                return 0
+            s = str(baths).strip()
+            if '.' in s:
+                try:
+                    return int(float(s))
+                except ValueError:
+                    return 0
+            return tot(baths)
         if tot(h.get('beds')) < 4: f.append(f"listing {h['id']} has under 4 beds: {h.get('beds')}")
-        if tot(h.get('baths')) < 3: f.append(f"listing {h['id']} has under 3 baths: {h.get('baths')}")
+        if full_baths(h) < 3: f.append(f"listing {h['id']} has under 3 full baths: baths={h.get('baths')!r} bathNote={h.get('bathNote')!r}")
         if not h.get('photos'): f.append(f"listing {h['id']} has no photo")
         for ph in h.get('photos', []):
             if not os.path.isfile(os.path.join(HERE, '..', 'public', ph)): f.append(f"listing {h['id']} photo file missing: {ph}")

@@ -2,10 +2,12 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CRITERIA, STATUS_META, STATUS_ORDER, type Status } from '../data/places'
 import { DEFAULT_WEIGHTS, rankPlace, type Weights } from '../lib/score'
+import { SAFER_RULE } from '../components/SaferSection'
+import { formatRate, CORAL_VIOLENT_RATE, CORAL_PROPERTY_RATE } from '../data/crime'
 import { MarkDot, PageHeader, StatusBadge } from '../components/ui'
 import { useStore } from '../lib/store'
 
-const KEY = 'reloc.weights.v1'
+const KEY = 'reloc.weights.v2'
 
 export default function Scorecard() {
   const { activePlaces, rejectedCount } = useStore()
@@ -27,6 +29,11 @@ export default function Scorecard() {
   return (
     <div>
       <PageHeader title="Weighted scorecard" sub="Drag the sliders to say what matters most. The ranking updates live." />
+      <div className="card mb-6 space-y-2 p-4 text-sm" data-testid="scorecard-crime-rule">
+        <p><b>Default weight:</b> “Low crime vs Coral Springs” starts at <b>5 of 5</b>, the heaviest default, so a US place whose sourced violent and property rates are at or below Coral Springs ({formatRate(CORAL_VIOLENT_RATE)} / {formatRate(CORAL_PROPERTY_RATE)} per 100k, 2025) rises in the ranking, and a place where both are higher falls. Reset restores this default.</p>
+        <p>{SAFER_RULE}</p>
+        <p className="text-xs text-slate-500">A place’s crime mark is pass if both US rates are at or below the baseline, partial if only one is, and fail if both are higher. Canadian places and places with no official rate are left out of the crime average (unknown), not treated as zero, and are not counted as at-or-below Coral Springs.</p>
+      </div>
       <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
         <aside className="card h-fit space-y-4 p-5 lg:sticky lg:top-20">
           {CRITERIA.map((c) => (

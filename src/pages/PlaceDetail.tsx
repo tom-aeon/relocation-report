@@ -3,7 +3,8 @@ import { Link, useParams } from 'react-router-dom'
 import { BUYING_IN_CANADA, CRITERIA, ROUNDS, placeById, type Restaurant, type Retail, type RetailStop } from '../data/places'
 import { FavButton, MarkDot, MarkLegend, NotChecked, RejectButton, StatusBadge } from '../components/ui'
 import { useStore } from '../lib/store'
-import { HOMES, HOMES_META } from '../data/homes'
+import { HOMES, HOMES_META, hasQualifyingHomes } from '../data/homes'
+import { NO_QUALIFYING_HOMES } from '../data/homesTypes'
 import { HomeCard, HomesNote } from '../components/HomeCard'
 import { AmenitiesSection } from '../components/Amenities'
 import { CrimeSection } from '../components/CrimeSection'
@@ -147,10 +148,15 @@ function HomesSection({ placeId }: { placeId: string }) {
     <section className="card p-5" data-testid="homes-section">
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <h2 className="font-semibold">Example homes</h2>
-        <span className="text-xs text-slate-500">4+ bed · 3+ bath · ~1–3 acres · under US$850K</span>
+        <span className="text-xs text-slate-500">4+ bed · 3+ full baths · ~1–3 acres · under US$850K</span>
         <span className="text-xs text-slate-500">as of {HOMES_META.asOf}, re-verify · <Link to="/homes" className="text-teal-700 underline dark:text-teal-400">all homes</Link></span>
       </div>
-      {hs.length === 0 ? <p className="text-sm text-amber-700 dark:text-amber-300" data-testid="homes-none">{gap ?? 'No qualifying listings found (4+ bed, 3+ bath, ~1–3 acres, under US$850K, in the drive zone).'}</p> : (
+      {hs.length === 0 ? (
+        <div>
+          <p className="rounded-lg bg-amber-100 px-3 py-2 text-sm font-semibold text-amber-950 dark:bg-amber-950 dark:text-amber-100" data-testid="no-qualifying-homes">{NO_QUALIFYING_HOMES}</p>
+          <p className="mt-2 text-sm text-amber-700 dark:text-amber-300" data-testid="homes-none">{gap ?? 'No qualifying listings found (4+ bed, 3+ full baths, ~1–3 acres, under US$850K, in the drive zone). The list is not padded.'}</p>
+        </div>
+      ) : (
         <>
           {gap && <p className="mb-3 text-sm text-amber-700 dark:text-amber-300">{gap}</p>}
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{hs.map((h) => <HomeCard key={h.id} h={h} />)}</div>
@@ -201,6 +207,9 @@ export default function PlaceDetail() {
             </div>
           </div>
           <h1 className="text-2xl font-bold sm:text-3xl">{p.name}</h1>
+          {p.status !== 'dropped' && !p.minor && !hasQualifyingHomes(p.id) && (
+            <p className="rounded-lg bg-amber-100 px-3 py-2 text-sm font-semibold text-amber-950 dark:bg-amber-950 dark:text-amber-100">{NO_QUALIFYING_HOMES}</p>
+          )}
           <GoogleMapsLink lat={p.lat} lng={p.lng} className="inline-flex text-sm font-medium text-teal-700 underline dark:text-teal-400" />
           <p className="text-slate-600 dark:text-slate-300">{p.summary}</p>
           {p.cutReason && (

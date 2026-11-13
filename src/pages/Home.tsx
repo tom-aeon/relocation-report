@@ -2,6 +2,7 @@ import { HOMES_META } from '../data/homes'
 import { Link } from 'react-router-dom'
 import { CRITERIA, CURRENT_STATUSES, EXTRA_CRITERION, PLACES, REPORT, ROUNDS, STATUS_META, STATUS_ORDER, currentHeadline, currentPlaces, statusCounts } from '../data/places'
 import { PlaceCard } from '../components/ui'
+import { SaferSection } from '../components/SaferSection'
 import { useStore } from '../lib/store'
 
 export default function Home() {
@@ -46,6 +47,11 @@ export default function Home() {
             </Link>
           )}
         </div>
+        <div className="mb-10">
+          <SaferSection places={activePlaces} />
+        </div>
+        <h2 className="mb-1 text-xl font-bold">Current options</h2>
+        <p className="mb-4 text-sm text-slate-600 dark:text-slate-400">Places still in play, ranked by status. The Safer than Coral Springs section above uses sourced official rates, not this status ranking.</p>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" data-testid="home-current" data-count={current.length}>
           {current.map((p) => <div key={p.id} data-testid="home-current-card" data-id={p.id} data-status={p.status} className="contents"><PlaceCard place={p} /></div>)}
         </div>
