@@ -40,8 +40,14 @@ function Card({ row, rank }: { row: FutureRanked; rank: number }) {
       <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <Sub label="Climate" value={row.climate} />
         <Sub label="AI resilience" value={row.ai} />
-        <Sub label="Climate factors known" value={row.climateKnown} />
-        <Sub label="AI factors known" value={row.aiKnown} />
+        <div>
+          <div className="text-[11px] uppercase tracking-wide text-slate-500">Climate factors known</div>
+          <div className="text-lg font-semibold tabular-nums">{row.climateKnown}</div>
+        </div>
+        <div>
+          <div className="text-[11px] uppercase tracking-wide text-slate-500">AI factors known</div>
+          <div className="text-lg font-semibold tabular-nums">{row.aiKnown}</div>
+        </div>
       </div>
       <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
         <div className="h-full rounded-full bg-gradient-to-r from-sky-600 to-teal-500" style={{ width: `${((row.combined ?? 0) / 3) * 100}%` }} />

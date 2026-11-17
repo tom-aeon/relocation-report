@@ -75,7 +75,10 @@ export function scorecardWhy(place: Place, ranked: Ranked, w: Weights): WhyCard 
     tradeoffs.push(NO_QUALIFYING_HOMES + '.')
   }
 
-  for (const c of place.cons) tradeoffs.push(c)
+  for (const c of place.cons) {
+    if (home && /no qualifying|not found this pass|listing was not found|3-full-bath listing was not/i.test(c)) continue
+    tradeoffs.push(c)
+  }
   if (place.status === 'parked') tradeoffs.unshift('Parked at his request (Oregon), so this is not a current pick even if the checklist score is solid.')
   if (place.cutReason) tradeoffs.push(place.cutReason)
   if (ranked.hardFail) tradeoffs.unshift('Fails a hard food rule (2+ real Sichuan or 2+ real Turkish within about 35–40 minutes).')
