@@ -68,8 +68,10 @@ export function scorecardWhy(place: Place, ranked: Ranked, w: Weights): WhyCard 
 
   if (home) {
     strengths.push(`A qualifying 4-bedroom, 3-full-bath listing is on file: ${home.address} at US$${home.priceUsd.toLocaleString('en-US')} on ${home.acres} acres.`)
-    if (/confirm the lot is unincorporated|outside Cumming city limits/i.test(`${home.note ?? ''} ${home.bathNote ?? ''}`)) {
-      tradeoffs.push(`${home.address}: mailing city Cumming — confirm the lot is unincorporated Forsyth County, not the City of Cumming, so the sheriff crime rate still applies.`)
+    for (const h of qualifyingHomes(place.id)) {
+      if (/confirm the lot is unincorporated|outside Cumming city limits/i.test(`${h.note ?? ''} ${h.bathNote ?? ''}`)) {
+        tradeoffs.push(`${h.address}: mailing city Cumming — confirm the lot is unincorporated Forsyth County, not the City of Cumming, so the sheriff crime rate still applies.`)
+      }
     }
   } else if (place.status !== 'dropped') {
     tradeoffs.push(NO_QUALIFYING_HOMES + '.')
