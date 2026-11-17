@@ -75,8 +75,10 @@ export default function Home() {
         </ul>
       </section>
 
-      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {[
+          { to: '/best', t: 'Best overall', d: 'A ranked shortlist with why each place is there — our scorecard, or a typical-family view.' },
+          { to: '/future', t: 'Future-proof', d: 'Which places look better placed for climate change and AI-driven job changes, with sources.' },
           { to: '/places', t: 'Places', d: 'Search and filter every place, with photos, listings and food.' },
           { to: '/compare', t: 'Compare', d: 'Put 2–3 places side by side on every criterion.' },
           { to: '/food', t: 'Food finder', d: 'Every Sichuan and Turkish spot found, filterable by drive time.' },

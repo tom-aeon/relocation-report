@@ -12,6 +12,8 @@ const LINKS = [
   { to: '/map', label: 'Map' },
   { to: '/compare', label: 'Compare' },
   { to: '/scorecard', label: 'Scorecard' },
+  { to: '/best', label: 'Best overall' },
+  { to: '/future', label: 'Future-proof' },
   { to: '/graphs', label: 'Graphs' },
   { to: '/food', label: 'Food finder' },
   { to: '/notes', label: 'My notes' },
@@ -24,7 +26,7 @@ export default function Layout() {
   useEffect(() => { setOpen(false); window.scrollTo(0, 0) }, [loc.pathname])
 
   const linkCls = ({ isActive }: { isActive: boolean }) =>
-    `rounded-lg px-3 py-1.5 text-sm font-medium transition ${isActive ? 'bg-teal-700 text-white' : 'text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800'}`
+    `rounded-lg px-2 py-1.5 text-[13px] font-medium transition ${isActive ? 'bg-teal-700 text-white' : 'text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800'}`
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -34,7 +36,7 @@ export default function Layout() {
             <span className="grid h-7 w-7 place-items-center rounded-lg bg-teal-700 text-sm text-white">⛰</span>
             The Move
           </NavLink>
-          <nav className="hidden flex-1 items-center gap-1 lg:flex">
+          <nav className="hidden flex-1 flex-wrap items-center gap-0.5 lg:flex">
             {LINKS.map((l) => (
               <NavLink key={l.to} to={l.to} end={l.end} className={linkCls}>
                 {l.label}{l.to === '/notes' && saved.favorites.length > 0 ? ` (${saved.favorites.length}★)` : ''}

@@ -12,6 +12,8 @@ import Graphs from './pages/Graphs'
 import Food from './pages/Food'
 import Notes from './pages/Notes'
 import Credits from './pages/Credits'
+import BestOverall from './pages/BestOverall'
+import FutureProof from './pages/FutureProof'
 import { StoreProvider } from './lib/store'
 
 const MapPage = lazy(() => import('./pages/MapPage'))
@@ -34,6 +36,8 @@ export default function App() {
             <Route path="map" element={<Suspense fallback={<p>Loading map…</p>}><MapPage /></Suspense>} />
             <Route path="compare" element={<Compare />} />
             <Route path="scorecard" element={<Scorecard />} />
+            <Route path="best" element={<BestOverall />} />
+            <Route path="future" element={<FutureProof />} />
             <Route path="graphs" element={<Graphs />} />
             <Route path="food" element={<Food />} />
             <Route path="notes" element={<Notes />} />

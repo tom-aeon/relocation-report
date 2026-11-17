@@ -21,6 +21,43 @@ def check_amenities(ids):
                 if not re.match(r'https?://', i.get('source') or ''): f.append(f"place {pid} {k} item {i.get('name')!r} has no source")
     return f
 
+
+def check_futureproof():
+    f = []
+    ts_path = os.path.join(HERE, '..', 'src', 'data', 'futureproof.ts')
+    if not os.path.exists(ts_path):
+        return ['src/data/futureproof.ts is missing']
+    ts = open(ts_path, encoding='utf-8').read()
+    if '1.20.0' not in ts or 'December 2025' not in ts:
+        f.append('futureproof data does not cite FEMA NRI v1.20.0 (December 2025)')
+    if 'fema.gov/about/reports-and-data/openfema/nri/v120/NRI_Table_Counties.zip' not in ts:
+        f.append('futureproof data does not cite the official FEMA NRI county zip URL')
+    if 'bls.gov/cew' not in ts and 'data.bls.gov/cew' not in ts:
+        f.append('futureproof data does not cite BLS QCEW')
+    if 'eia.gov/electricity/annual' not in ts:
+        f.append('futureproof data does not cite EIA Electric Power Annual')
+    if 'hydroquebec.com' not in ts or 'comparaison-prix-2025' not in ts:
+        f.append('futureproof data does not cite the Hydro-Québec 2025 price comparison')
+    if 'brookings.edu/articles/the-geography-of-generative-ais-workforce-impacts' not in ts:
+        f.append('futureproof data does not cite the Brookings February 2025 geography of generative AI article')
+    if 'publicsafety.gc.ca' not in ts:
+        f.append('futureproof data does not cite Public Safety Canada’s National Risk Profile')
+    # In-play US places must have an NRI county block; Canadian in-play places must be labelled approximate.
+    us_ids = ['forsyth','happy-valley','duvall','maryville','elizabeth','boise','victor-mendon','stokesdale','wexford-pine','apex-holly-springs','waxhaw-lake-norman']
+    ca_ids = ['cantley','on-carp-huntley','on-dunrobin','on-north-gower','on-flamborough','on-oro-medonte','toronto','guelph-eramosa','cochrane']
+    for pid in us_ids:
+        if not re.search(r"['\"]" + re.escape(pid) + r"['\"]\s*:\s*\[", ts):
+            f.append(f'futureproof data is missing an NRI or QCEW entry for {pid}')
+    for pid in ca_ids:
+        if pid not in ts:
+            f.append(f'futureproof data is missing a Canadian entry for {pid}')
+    if "approximate: true" not in ts and 'approximate: true' not in ts:
+        f.append('futureproof Canadian climate notes must be labelled approximate')
+    if 'First Street' in ts and 'were not used' not in ts and 'was not used' not in ts:
+        f.append('futureproof mentions First Street without saying those factors were not used')
+    return f
+
+
 def check_listings():
     f = []
     data = json.load(open(os.path.join(HERE, 'homes.json')))
@@ -202,6 +239,7 @@ async def run(base):
         lf, n = check_listings(); fails += lf
         fails += check_crime()
         fails += check_population()
+        fails += check_futureproof()
         nd = []
         await pg.goto(base + '#/places', wait_until='networkidle')
         nd = [await c.get_attribute('data-id') for c in await pg.locator('[data-testid="places-card"]').all() if await c.get_attribute('data-status') != 'dropped']
@@ -262,6 +300,38 @@ async def run(base):
             fails.append('graphs page has no crime comparison chart')
         if await pg.get_by_test_id('population-graph').count() != 1:
             fails.append('graphs page has no population comparison chart')
+        await pg.goto(base + '#/best', wait_until='networkidle')
+        if await pg.get_by_test_id('best-page').count() != 1:
+            fails.append('best overall page did not render')
+        bc = await pg.get_by_test_id('best-card').count()
+        if bc < 5:
+            fails.append(f'best overall scorecard shows {bc} cards, expected at least 5')
+        if await pg.get_by_test_id('best-chart').count() != 1:
+            fails.append('best overall page has no score chart')
+        await pg.get_by_test_id('best-mode-family').click()
+        try:
+            await pg.get_by_test_id('family-chart').wait_for(timeout=8000)
+        except Exception:
+            pass
+        if await pg.get_by_test_id('family-chart').count() != 1:
+            fails.append('best overall typical-family view has no chart')
+        fc = await pg.get_by_test_id('best-card').count()
+        if fc < 5:
+            fails.append(f'best overall typical-family view shows {fc} cards, expected at least 5')
+        why = await pg.locator('[data-testid=best-card]').first.inner_text()
+        if 'Why' not in why and 'why' not in why:
+            fails.append('best overall cards do not include a Why section')
+        await pg.goto(base + '#/future', wait_until='networkidle')
+        if await pg.get_by_test_id('future-page').count() != 1:
+            fails.append('future-proof page did not render')
+        if await pg.get_by_test_id('future-chart').count() != 1:
+            fails.append('future-proof page has no score chart')
+        fut = await pg.get_by_test_id('future-card').count()
+        if fut < 5:
+            fails.append(f'future-proof page shows {fut} cards, expected at least 5')
+        fwhy = await pg.locator('[data-testid=future-card]').first.inner_text()
+        if 'Why' not in fwhy and 'why' not in fwhy:
+            fails.append('future-proof cards do not include a Why section')
         await b.close()
     # Third-party map iframes (Google) often write console errors we cannot control; ignore those.
     def _ours(e):
