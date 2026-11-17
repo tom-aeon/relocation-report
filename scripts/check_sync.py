@@ -55,6 +55,18 @@ def check_futureproof():
         f.append('futureproof Canadian climate notes must be labelled approximate')
     if 'First Street' in ts and 'were not used' not in ts and 'was not used' not in ts:
         f.append('futureproof mentions First Street without saying those factors were not used')
+    # Coral Springs is a Future-proof baseline only, scored with the same official sources.
+    if not re.search(r"['\"]coral-springs['\"]", ts):
+        f.append('futureproof data is missing a Coral Springs / Broward baseline entry')
+    if "fips: '12011'" not in ts and 'fips: "12011"' not in ts:
+        f.append('futureproof Coral Springs baseline must use Broward County FIPS 12011')
+    if 'Biscayne' not in ts:
+        f.append('futureproof Coral Springs water note must cite the Biscayne Aquifer')
+    if 'sfwmd.gov' not in ts and 'usgs.gov' not in ts:
+        f.append('futureproof Coral Springs water note must cite SFWMD or USGS')
+    places_ts = open(os.path.join(HERE, '..', 'src', 'data', 'places.ts'), encoding='utf-8').read()
+    if re.search(r"id:\s*['\"]coral-springs['\"]", places_ts):
+        f.append('Coral Springs must not be added to PLACES; it is a Future-proof baseline only')
     return f
 
 
@@ -332,6 +344,28 @@ async def run(base):
         fwhy = await pg.locator('[data-testid=future-card]').first.inner_text()
         if 'Why' not in fwhy and 'why' not in fwhy:
             fails.append('future-proof cards do not include a Why section')
+        bl = pg.get_by_test_id('future-baseline')
+        if await bl.count() != 1:
+            fails.append('future-proof page has no Coral Springs baseline card')
+        else:
+            btxt = await bl.inner_text()
+            if 'Coral Springs' not in btxt:
+                fails.append('future-proof baseline card does not name Coral Springs')
+            if 'Would rank' not in btxt and 'would rank' not in btxt:
+                fails.append('future-proof baseline card does not show a would-rank figure')
+        if await pg.get_by_test_id('future-delta').count() < 1:
+            fails.append('future-proof ranked cards have no delta vs Coral Springs')
+        first_id = await pg.locator('[data-testid=future-card]').first.get_attribute('data-id')
+        if first_id == 'coral-springs':
+            fails.append('Coral Springs must not appear as a ranked future-proof candidate card')
+        await pg.goto(base + '#/places', wait_until='networkidle')
+        place_ids = [await c.get_attribute('data-id') for c in await pg.locator('[data-testid="places-card"]').all()]
+        if 'coral-springs' in place_ids:
+            fails.append('Coral Springs must not appear as a Places tab card')
+        await pg.goto(base + '#/', wait_until='networkidle')
+        home_ids = [await c.get_attribute('data-id') for c in await pg.locator('[data-testid="home-current-card"]').all()]
+        if 'coral-springs' in home_ids:
+            fails.append('Coral Springs must not appear as a home current-options card')
         await b.close()
     # Third-party map iframes (Google) often write console errors we cannot control; ignore those.
     def _ours(e):

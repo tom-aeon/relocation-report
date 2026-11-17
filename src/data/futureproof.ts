@@ -7,11 +7,14 @@
  * First Street Foundation county factors were not used — a free, citable bulk extract was not available.
  * Projected counts of extreme-heat days are left unknown; US heat is scored from the NRI heat-wave rating instead.
  */
-import type { Place } from './places'
+import { REPORT, type Place } from './places'
 import { qualifyingHomes } from './homes'
 import { nearest } from './amenitiesTypes'
 
 export const FUTURE_CHECKED = '17 Nov 2026'
+
+/** Scored only as a Future-proof baseline. Not a relocation candidate and not in the Places list. */
+export const CORAL_SPRINGS_FUTURE_ID = 'coral-springs'
 
 export const NRI_SOURCE = {
   name: 'FEMA National Risk Index, county table, version 1.20.0 (December 2025)',
@@ -180,6 +183,7 @@ export const EIA_RESIDENTIAL_2025: Record<string, { state: string; cents: number
   'wexford-pine': { state: 'Pennsylvania', cents: 19.29 },
   'apex-holly-springs': { state: 'North Carolina', cents: 14.00 },
   'waxhaw-lake-norman': { state: 'North Carolina', cents: 14.00 },
+  'coral-springs': { state: 'Florida', cents: 15.21 },
 }
 
 export interface HqPrice {
@@ -215,6 +219,15 @@ export const BROOKINGS_COUNTY_NOTES: Record<string, string> = {
 const src = (name: string, url: string, year: string | number) => ({ name, url, year })
 
 export const WATER_SUPPLY: Record<string, SourcedNote> = {
+  'coral-springs': {
+    mark: 'partial',
+    summary: 'The City of Coral Springs’ 2025 Annual Water Quality Report (2024 monitoring) says its drinking water is groundwater from the Biscayne Aquifer, pumped from 18 production wells as deep as 145 feet, and that 2024 monitoring met federal and state requirements. The Biscayne / surficial aquifer is a large, productive source, but it is not as secure over the long term as a Great Lakes or St. Lawrence supply: the South Florida Water Management District’s 2024 saltwater-interface mapping documents inland movement of the saltwater front at some Broward wellfields, and the USGS (SIR 2022-5074) finds that sea-level rise can raise groundwater and reduce drainage capacity in Broward County. Coral Springs is inland in western/central Broward, so coastal wellfield intrusion is a regional aquifer risk, not a statement that the city’s wells have already been lost.',
+    sources: [
+      src('City of Coral Springs, 2025 Annual Water Quality Report (2024 monitoring)', 'https://www.coralsprings.gov/files/assets/public/v/6/documents/waterqualityreport2025-final-cropped__20250701.pdf', 2025),
+      src('South Florida Water Management District, Saltwater Interface Monitoring and Mapping Program Update 2024 (WS-67)', 'https://www.sfwmd.gov/sites/default/files/documents/WS-67_2024_swi_mapping_report.pdf', 2024),
+      src('USGS Scientific Investigations Report 2022-5074, Drainage infrastructure and groundwater system response to changes in sea level and precipitation, Broward County, Florida', 'https://pubs.usgs.gov/publication/sir20225074', 2022),
+    ],
+  },
   forsyth: {
     mark: 'partial',
     summary: 'Metro Atlanta, including Forsyth County, relies heavily on Lake Lanier and the Chattahoochee (ACF) basin, which has a documented history of drought and interstate allocation disputes. Water is available but is not as secure as a Great Lakes or St. Lawrence supply.',
@@ -450,6 +463,15 @@ export const CANADA_CLIMATE: Record<string, SourcedNote> = {
 }
 
 export const NRI_COUNTIES: Record<string, NriCounty[]> = {
+  'coral-springs': [
+    {
+      fips: '12011', geography: "Broward County, Florida", role: "County-wide, not city-only. Coral Springs is inland in western/central Broward, so coastal-flood ratings for the county may overstate risk at the city, though hurricane, heat, inland flooding, and sea-level effects on canals and groundwater still apply.",
+      riskScore: 99.4593, riskRating: "Relatively High", ealRating: "Relatively High",
+      heat: "Relatively High", inlandFlood: "Very High", coastalFlood: "Very High",
+      wildfire: "Relatively Moderate", strongWind: "Relatively Moderate", hurricane: "Very High",
+      tornado: "Relatively High", drought: "Relatively Low",
+    }
+  ],
   'forsyth': [
     {
       fips: '13117', geography: "Forsyth County, Georgia", role: "primary",
@@ -668,6 +690,19 @@ export const NRI_COUNTIES: Record<string, NriCounty[]> = {
 }
 
 export const QCEW_COUNTIES: Record<string, QcewCounty[]> = {
+  'coral-springs': [
+    {
+      fips: '12011', geography: "Broward County, Florida", year: 2024,
+      totalEmployment: 864520, governmentEmployment: 107724,
+      governmentPct: 12.5, healthPct: 11.0,
+      educationPrivatePct: 2.6, constructionPct: 6.2,
+      manufacturingPct: 3.6, transportationPct: 4.6,
+      utilitiesPct: 0.1, informationPct: 1.9,
+      financePct: 4.6, professionalPct: 7.5,
+      highExposurePct: 15.0, lowerExposurePct: 14.6,
+      hhi: 814,
+    }
+  ],
   'forsyth': [
     {
       fips: '13117', geography: "Forsyth County, Georgia", year: 2024,
@@ -1062,6 +1097,14 @@ function powerScore(place: Place): FactorScore {
 }
 
 function selfSufficiency(place: Place): FactorScore {
+  if (place.id === CORAL_SPRINGS_FUTURE_ID) {
+    return {
+      key: 'self',
+      label: 'Acreage / well self-sufficiency',
+      score: 0,
+      detail: `The report’s current lot is ${REPORT.currentLot}, below the 1-acre threshold used for other places. A private well is not noted; the City’s 2025 water-quality report (2024 monitoring) describes a municipal Biscayne Aquifer supply.`,
+    }
+  }
   const homes = qualifyingHomes(place.id)
   const acres = homes.filter((h) => h.acres >= 1)
   const aw = place.airWater
@@ -1175,17 +1218,61 @@ export function rankFuture(place: Place): FutureRanked {
   }
 }
 
+export const CORAL_SPRINGS_BASELINE_PLACE: Place = {
+  id: CORAL_SPRINGS_FUTURE_ID,
+  name: 'Coral Springs, Florida',
+  short: 'Coral Springs, FL',
+  country: 'US',
+  status: 'other',
+  statusLabel: 'Current home · baseline',
+  firstRound: 0,
+  summary: 'The current home base, scored on the Future-proof tab only so other places can be compared. It is not a relocation candidate.',
+  lat: 26.264788,
+  lng: -80.26626,
+  listings: [],
+  otherFacts: [{ label: 'Current lot', value: REPORT.currentLot }],
+  restaurants: [],
+  pros: [],
+  cons: [],
+  scores: {},
+  inUS: true,
+  photos: [],
+}
+
+export function compareFuture(a: FutureRanked, b: FutureRanked): number {
+  return (b.combined ?? -1) - (a.combined ?? -1) || (b.climateKnown + b.aiKnown) - (a.climateKnown + a.aiKnown) || a.place.short.localeCompare(b.place.short)
+}
+
 export function rankFutureList(places: Place[]): FutureRanked[] {
   return places
-    .filter((p) => !p.minor)
+    .filter((p) => !p.minor && p.id !== CORAL_SPRINGS_FUTURE_ID)
     .map(rankFuture)
     .filter((r) => r.combined != null && (r.climateKnown + r.aiKnown) >= 5)
-    .sort((a, b) => (b.combined ?? -1) - (a.combined ?? -1) || (b.climateKnown + b.aiKnown) - (a.climateKnown + a.aiKnown) || a.place.short.localeCompare(b.place.short))
+    .sort(compareFuture)
+}
+
+export function rankCoralSprings(): FutureRanked {
+  return rankFuture(CORAL_SPRINGS_BASELINE_PLACE)
+}
+
+export interface FutureRanking {
+  ranked: FutureRanked[]
+  baseline: FutureRanked
+  baselineRank: number
+  of: number
+}
+
+export function rankWithCoralBaseline(places: Place[]): FutureRanking {
+  const ranked = rankFutureList(places)
+  const baseline = rankCoralSprings()
+  const withBaseline = [...ranked, baseline].sort(compareFuture)
+  const baselineRank = withBaseline.findIndex((r) => r.place.id === CORAL_SPRINGS_FUTURE_ID) + 1
+  return { ranked, baseline, baselineRank, of: withBaseline.length }
 }
 
 export const FUTURE_METHOD = `US climate uses FEMA’s National Risk Index county table, version 1.20.0 (December 2025): heat-wave, inland flood, coastal flood (when it applies), wildfire, wind/hurricane/tornado, and drought ratings. Ratings map to 0–3 (Very Low = 3, Very High = 0). The overall NRI risk score is shown for context but is not averaged in, because it rises with the value of what a county can lose and so favours small counties. Water-supply security is a separate, sourced basin note (for example Great Lakes / St. Lawrence versus Colorado River or Lake Lanier dependence). Wildfire smoke is scored only when this report’s air-quality notes already mention it. Projected counts of extreme-heat days are left unknown — no single official county table was applied. First Street Foundation factors were not used.
 
 Canadian climate is labelled approximate. Canada has no FEMA-NRI equivalent at county scale in this file. Notes use Public Safety Canada’s National Risk Profile (2023, revised January 2024), the IMF’s July 2025 Canada climate-risk technical note, and ClimateData.ca’s citation of Canada’s Changing Climate Report 2026 on rising hot extremes. They are not compared as if they were NRI scores.
 
-AI resilience does not use our food, acreage, or 4/3 listing rules as gates. For U.S. places, 2024 BLS QCEW county employment supplies an industry-mix proxy: the share in information, finance, professional services and management (higher generative-AI exposure per Brookings, 19 February 2025, which built on OpenAI/Eloundou et al. 2023), the share in health care, government, construction and manufacturing, and a sector Herfindahl diversity index. County figures describe the whole county, not just the town. Brookings’ published “around 40% or more” occupation-exposure figure is cited only for King County, which that paper names. Canadian industry mix is left unknown. Other AI factors, when sourced, are university drive time from this report, EIA 2025 state (or Hydro-Québec 1 April 2025 city) residential electricity prices, broadband only if this report already mentions fibre, and acreage/well self-sufficiency from existing listings and water notes. Grid reliability is not scored. Unknown factors are left out of the average, never treated as zero. A climate sub-score is used only when at least two climate factors are known; an AI sub-score only when at least three are known, so a single cheap-power or water note cannot top the list. Combined rank is the average of the climate and AI sub-scores when both exist, and a place needs at least five known factors in total to appear in the ranked list.`
+AI resilience does not use our food, acreage, or 4/3 listing rules as gates. For U.S. places, 2024 BLS QCEW county employment supplies an industry-mix proxy: the share in information, finance, professional services and management (higher generative-AI exposure per Brookings, 19 February 2025, which built on OpenAI/Eloundou et al. 2023), the share in health care, government, construction and manufacturing, and a sector Herfindahl diversity index. County figures describe the whole county, not just the town. Brookings’ published “around 40% or more” occupation-exposure figure is cited only for King County, which that paper names. Canadian industry mix is left unknown. Other AI factors, when sourced, are university drive time from this report, EIA 2025 state (or Hydro-Québec 1 April 2025 city) residential electricity prices, broadband only if this report already mentions fibre, and acreage/well self-sufficiency from existing listings and water notes. Grid reliability is not scored. Unknown factors are left out of the average, never treated as zero. A climate sub-score is used only when at least two climate factors are known; an AI sub-score only when at least three are known, so a single cheap-power or water note cannot top the list. Combined rank is the average of the climate and AI sub-scores when both exist, and a place needs at least five known factors in total to appear in the ranked list. Coral Springs, FL (the current home, in Broward County) is scored with this same method and shown only as a baseline at the top of the Future-proof page. It is not a relocation candidate and does not appear in other tabs. Its National Risk Index and QCEW figures are Broward County–wide, not city-only; Coral Springs is inland, so the county’s coastal-flood rating may overstate risk at the city itself.`
 
